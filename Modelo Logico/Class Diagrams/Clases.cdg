@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Clases">
+  <ClassDiagramComponents>
+    <Class name="Persona" package="" visibility="public" xPosition="274.0" yPosition="29.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="rut" type="String" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="apellidos" type="String" visibility="private"/>
+        <Field name="sexo" type="char" visibility="private"/>
+        <Field name="fecha_nacimiento" type="Date" visibility="private"/>
+        <Field name="telefono" type="String" visibility="private"/>
+        <Field name="correo" type="String" visibility="private"/>
+        <Field name="nacionalidad" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Usuario" package="" visibility="public" xPosition="32.0" yPosition="77.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="usuario" type="String" visibility="private"/>
+        <Field name="pass" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Vuelo" package="" visibility="public" xPosition="565.0" yPosition="381.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="horas_vuelo" type="Float" visibility="private"/>
+        <Field name="condicion_vuelo" type="char" visibility="private"/>
+        <Field name="mision_vuelo" type="String" visibility="private"/>
+        <Field name="fecha_vuelo" type="Date" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Piloto" package="" visibility="public" xPosition="551.0" yPosition="77.0">
+      <Fields>
+        <Field name="horas_vuelo" type="Float" visibility="private"/>
+        <Field name="dias_vuelo" type="int" visibility="private"/>
+        <Field name="vencimiento_medicina" type="Date" visibility="private"/>
+        <Field name="fecha_ultimo_vuelo" type="Date" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Aeronave" package="" visibility="public" xPosition="252.0" yPosition="362.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="matricula" type="String" visibility="private"/>
+        <Field name="estado" type="char" visibility="private"/>
+        <Field name="fecha_aeronavegavilidad" type="Date" visibility="private"/>
+        <Field name="fecha_ultima_inspeccion_anual" type="Date" visibility="private"/>
+        <Field name="horas_vuelo" type="Float" visibility="private"/>
+        <Field name="dias_vuelo" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Licencia" package="" visibility="public" xPosition="861.0" yPosition="68.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="numero" type="int" visibility="private"/>
+        <Field name="dias_vuelo" type="int" visibility="private"/>
+        <Field name="fecha_vencimiento" type="Date" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Componente" package="" visibility="public" xPosition="292.0" yPosition="713.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="descripcion" type="String" visibility="private"/>
+        <Field name="fabricante" type="String" visibility="private"/>
+        <Field name="horas_vuelo" type="Float" visibility="private"/>
+        <Field name="dias_vuelo" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Aerodromo" package="" visibility="public" xPosition="869.0" yPosition="409.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="descripcion" type="String" visibility="private"/>
+        <Field name="ciudad" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Mantenimiento" package="" visibility="public" xPosition="602.0" yPosition="651.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Plan_de_Mantenimiento" package="" visibility="public" xPosition="593.0" yPosition="829.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Administrar_Personas" package="" visibility="public" xPosition="1111.0" yPosition="246.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="ingresarPersona" returnType="void" visibility="public"/>
+        <Method name="asignarRol" returnType="void" visibility="public"/>
+        <Method name="modificarPersona" returnType="void" visibility="public"/>
+        <Method name="darDeAlta" returnType="void" visibility="public"/>
+        <Method name="darDeBaja" returnType="void" visibility="public"/>
+        <Method name="eliminarPersona" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Administrar_Pilotos" package="" visibility="public" xPosition="1149.0" yPosition="473.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="ingresarPiloto" returnType="void" visibility="public"/>
+        <Method name="modificarPiloto" returnType="void" visibility="public"/>
+        <Method name="asignarLicencia" returnType="void" visibility="public"/>
+        <Method name="eliminarPiloto" returnType="void" visibility="public"/>
+        <Method name="alertarPiloto" returnType="void" visibility="public"/>
+        <Method name="sumarHoras" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Administrar_Vuelo" package="" visibility="public" xPosition="1143.0" yPosition="689.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="ingresarVuelo" returnType="void" visibility="public"/>
+        <Method name="modificarVuelo" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Prefil_usuario" package="" visibility="public" xPosition="32.0" yPosition="305.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="descripcion" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Tipo_licencia" package="" visibility="public" xPosition="1111.0" yPosition="68.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="descripcion" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Tipo_aeronave" package="" visibility="public" xPosition="32.0" yPosition="511.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="descripcion" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Administrar_Aeronave" package="" visibility="public" xPosition="1082.0" yPosition="857.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="ingresarAeronave" returnType="void" visibility="public"/>
+        <Method name="configurarAeronave" returnType="void" visibility="public"/>
+        <Method name="asociarComponentes" returnType="void" visibility="public"/>
+        <Method name="alertarAeronave" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Administrar_Componente" package="" visibility="public" xPosition="828.0" yPosition="829.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="ingresarComponente" returnType="void" visibility="public"/>
+        <Method name="asociarAeronave" returnType="void" visibility="public"/>
+        <Method name="asociarSubcomponente" returnType="void" visibility="public"/>
+        <Method name="configurarComponente" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Interface name="administrar_horas_vuelo" package="" visibility="public" xPosition="853.0" yPosition="632.0">
+      <Methods>
+        <Method name="sumarHoras" returnType="void" visibility="public"/>
+      </Methods>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="tipo" source="Aeronave" target="Tipo_aeronave" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="lista_sub_componentes" source="Componente" target="Componente" type="Aggregation" sourceCardinality="0..1" targetCardinality="0..*" collectionType="LinkedList"/>
+    <UseRelation name="licencias" source="Piloto" target="Licencia" sourceCardinality="1..*" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Administrar_Componente" target="administrar_horas_vuelo"/>
+    <UseRelation name="Aerodromos" source="Vuelo" target="Aerodromo" sourceCardinality="1..1" targetCardinality="0..*"/>
+    <HasRelation name="lista_de_componentes" source="Aeronave" target="Componente" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..*" collectionType="LinkedList"/>
+    <UseRelation name="tipo" source="Licencia" target="Tipo_licencia" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation name="plan" source="Mantenimiento" target="Plan_de_Mantenimiento" sourceCardinality="1..*" targetCardinality="0..*"/>
+    <HasRelation name="perfil" source="Usuario" target="Prefil_usuario" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="tripulacion" source="Vuelo" target="Piloto" type="Default" sourceCardinality="0..1" targetCardinality="0..*" collectionType="LinkedList"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Administrar_Aeronave" target="administrar_horas_vuelo"/>
+    <HasRelation name="aeronave" source="Vuelo" target="Aeronave" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Piloto" target="Persona"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Administrar_Pilotos" target="administrar_horas_vuelo"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Administrar_Vuelo" target="administrar_horas_vuelo"/>
+    <IsRelation name="is" source="Persona" target="Usuario"/>
+    <UseRelation name="componente" source="Mantenimiento" target="Componente" sourceCardinality="1..*" targetCardinality="0..*"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
