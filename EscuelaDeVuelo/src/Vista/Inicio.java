@@ -102,7 +102,10 @@ public class Inicio extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
         String texto = txtUsuario.getText()+txtPass.getText();
-        JOptionPane.showInputDialog(texto);
+        //JOptionPane.showInputDialog(texto);
+        new MenuPrincipalAdministrador().setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void txtPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusGained
