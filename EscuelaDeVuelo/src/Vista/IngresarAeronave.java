@@ -59,6 +59,7 @@ public class IngresarAeronave extends javax.swing.JFrame {
         txtdiasvuelo = new javax.swing.JTextPane();
         btningresar = new javax.swing.JButton();
         cmbtiponave = new javax.swing.JComboBox<>();
+        button1 = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,6 +116,8 @@ public class IngresarAeronave extends javax.swing.JFrame {
             }
         });
 
+        button1.setLabel("machao");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,13 +151,18 @@ public class IngresarAeronave extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGap(43, 43, 43)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(cmbestado, 0, 131, Short.MAX_VALUE)
-                                .addComponent(cmbtiponave, 0, 131, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1)
-                                .addComponent(jScrollPane2)
-                                .addComponent(jScrollPane3)))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(43, 43, 43)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(cmbestado, 0, 131, Short.MAX_VALUE)
+                                        .addComponent(cmbtiponave, 0, 131, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane1)
+                                        .addComponent(jScrollPane2)
+                                        .addComponent(jScrollPane3)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(56, 56, 56)
+                                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(141, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -173,10 +181,15 @@ public class IngresarAeronave extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -292,6 +305,7 @@ Administrar_Aeronave ingresar = new Administrar_Aeronave();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btningresar;
+    private java.awt.Button button1;
     private javax.swing.JComboBox<String> cmbestado;
     private javax.swing.JComboBox<String> cmbtiponave;
     private javax.swing.JLabel jLabel1;
