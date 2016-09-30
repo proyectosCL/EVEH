@@ -30,7 +30,6 @@ public class IngresarUsuario extends javax.swing.JFrame {
 
         jTextField1 = new javax.swing.JTextField();
         gruposexo = new javax.swing.ButtonGroup();
-        dateChooserPanelBeanInfo1 = new com.toedter.calendar.demo.DateChooserPanelBeanInfo();
         jSlider1 = new javax.swing.JSlider();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -321,7 +320,6 @@ public class IngresarUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JComboBox<String> cmbNacionalidad;
-    private com.toedter.calendar.demo.DateChooserPanelBeanInfo dateChooserPanelBeanInfo1;
     public static javax.swing.ButtonGroup gruposexo;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;

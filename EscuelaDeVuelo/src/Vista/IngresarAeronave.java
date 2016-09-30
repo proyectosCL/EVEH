@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 
 import java.util.Date;
 import Controlador.Administrar_Aeronave;
-import Database.DB_Connection;
+
 import Database.Conexion;
 import Modelo.Usuario;
 import java.sql.Connection;
@@ -59,8 +59,6 @@ public class IngresarAeronave extends javax.swing.JFrame {
         txtdiasvuelo = new javax.swing.JTextPane();
         btningresar = new javax.swing.JButton();
         cmbtiponave = new javax.swing.JComboBox<>();
-        fechanave = new com.toedter.calendar.JDateChooser();
-        fechaanual = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -154,8 +152,6 @@ public class IngresarAeronave extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(cmbestado, 0, 131, Short.MAX_VALUE)
                                 .addComponent(cmbtiponave, 0, 131, Short.MAX_VALUE)
-                                .addComponent(fechaanual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(fechanave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1)
                                 .addComponent(jScrollPane2)
                                 .addComponent(jScrollPane3)))))
@@ -164,28 +160,23 @@ public class IngresarAeronave extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbtiponave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(fechanave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbtiponave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fechaanual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -231,15 +222,15 @@ public class IngresarAeronave extends javax.swing.JFrame {
                 break;
         }
    
-String formato = fechanave.getDateFormatString();
-Date date = fechanave.getDate();
-SimpleDateFormat sdf = new SimpleDateFormat(formato);
-String fechaaeronavegabilidad = String.valueOf(sdf.format(date));
-
-String formato2 = fechaanual.getDateFormatString();
-Date date2 = fechaanual.getDate();
-SimpleDateFormat sdfs = new SimpleDateFormat(formato2);
-String fechaanual = String.valueOf(sdfs.format(date2));
+//String formato = fechanave.getDateFormatString();
+//Date date = fechanave.getDate();
+//SimpleDateFormat sdf = new SimpleDateFormat(formato);
+//String fechaaeronavegabilidad = String.valueOf(sdf.format(date));
+//
+//String formato2 = fechaanual.getDateFormatString();
+//Date date2 = fechaanual.getDate();
+//SimpleDateFormat sdfs = new SimpleDateFormat(formato2);
+//String fechaanual = String.valueOf(sdfs.format(date2));
 
 Administrar_Aeronave ingresar = new Administrar_Aeronave();
 
@@ -249,14 +240,14 @@ Administrar_Aeronave ingresar = new Administrar_Aeronave();
         }else{
              tiponave="2";
         }
-       
-         java.sql.Date datito = new java.sql.Date(fechanave.getDate().getTime());
-         
+//       
+//         java.sql.Date datito = new java.sql.Date(fechanave.getDate().getTime());
+//         
 //ingresar.ingresarAeronave(WIDTH, matricula, 0, date2, date2, TOP_ALIGNMENT, TEXT_CURSOR, componentes);
         //JOptionPane.showMessageDialog(null,"matricula  "+matricula+"tipo nave "+ Integer.parseInt(tiponave) +"  estado "+estado+" fecha aeronavegabilidad "+datito+" fecha anual "+fechaanual+"horas vuelo "+ Integer.parseInt(horasvuelo) +" dias vuelo"+Integer.parseInt(diasvuelo));
        
-        con.escribir("INSERT INTO aeronaves  VALUES (48,"+matricula+","+Integer.parseInt(tiponave)+","+estado+","+datito+","+datito+","+Integer.parseInt(horasvuelo)+","+Integer.parseInt(diasvuelo)+")");
-        // TODO add your handling code here:
+//        con.escribir("INSERT INTO aeronaves  VALUES (48,"+matricula+","+Integer.parseInt(tiponave)+","+estado+","+datito+","+datito+","+Integer.parseInt(horasvuelo)+","+Integer.parseInt(diasvuelo)+")");
+//        // TODO add your handling code here:
     }//GEN-LAST:event_btningresarActionPerformed
 
     private void cmbtiponaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbtiponaveActionPerformed
@@ -303,8 +294,6 @@ Administrar_Aeronave ingresar = new Administrar_Aeronave();
     private javax.swing.JButton btningresar;
     private javax.swing.JComboBox<String> cmbestado;
     private javax.swing.JComboBox<String> cmbtiponave;
-    private com.toedter.calendar.JDateChooser fechaanual;
-    private com.toedter.calendar.JDateChooser fechanave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
