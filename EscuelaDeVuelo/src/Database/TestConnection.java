@@ -20,7 +20,7 @@ public class TestConnection {
             DB_Connection dbconn = new DB_Connection();
             Connection myconnection = dbconn.Connection();
 
-            String sqlString = "SELECT * FROM usuarios";
+            String sqlString = "Select id from (select id from aeronaves order by id desc ) where rownum = 1 ; ";
             Statement myStatement = myconnection.createStatement();
             ResultSet rs = myStatement.executeQuery(sqlString);
 

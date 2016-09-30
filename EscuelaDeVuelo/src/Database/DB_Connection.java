@@ -15,7 +15,7 @@ public class DB_Connection {
     public Connection Connection() {
         try {
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
-            Connection myConnection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "TEST", "3200256");    //URL, DB, PASSWORD
+            Connection myConnection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "escuela_halcon", "oracle");    //URL, DB, PASSWORD
             return myConnection;
         } catch (SQLException ex) {
             Logger.getLogger(DB_Connection.class.getName()).log(Level.SEVERE, null, ex);
