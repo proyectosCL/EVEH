@@ -5,22 +5,25 @@ import java.util.LinkedList;
 
 public class Aeronave {
 
-    private int id;
+    static public int id;
 
-    private String matricula;
+   static  public String matricula;
 
-    private char estado;
+   static public char estado;
 
-    private Date fecha_aeronavegavilidad;
+    static public Date fecha_aeronavegavilidad;
 
-    private Date fecha_ultima_inspeccion_anual;
+   static public Date fecha_ultima_inspeccion_anual;
 
-    private Float horas_vuelo;
+   static public Float horas_vuelo;
 
-    private int dias_vuelo;
+   static public int dias_vuelo;
     
-    private LinkedList componentes;
+    
 
     public Aeronave() {
     }
+
+
+    
 }
