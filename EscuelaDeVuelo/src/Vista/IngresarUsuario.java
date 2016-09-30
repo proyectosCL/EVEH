@@ -31,6 +31,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         gruposexo = new javax.swing.ButtonGroup();
         dateChooserPanelBeanInfo1 = new com.toedter.calendar.demo.DateChooserPanelBeanInfo();
+        jSlider1 = new javax.swing.JSlider();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -48,7 +49,6 @@ public class IngresarUsuario extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        txtFechaNacimiento = new com.toedter.calendar.JDateChooser();
         jComboBox2 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         rbnHombre = new javax.swing.JRadioButton();
@@ -185,7 +185,6 @@ public class IngresarUsuario extends javax.swing.JFrame {
                     .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtRut, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cmbNacionalidad, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(70, Short.MAX_VALUE))
@@ -229,10 +228,8 @@ public class IngresarUsuario extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(cmbNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -340,13 +337,13 @@ public class IngresarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSlider jSlider1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JRadioButton rbnHombre;
     private javax.swing.JRadioButton rbnMujer;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JPasswordField txtConfirmarPass;
     private javax.swing.JTextField txtCorreo;
-    private com.toedter.calendar.JDateChooser txtFechaNacimiento;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtRut;

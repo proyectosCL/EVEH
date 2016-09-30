@@ -14,6 +14,8 @@
     </Component>
     <Component class="com.toedter.calendar.demo.DateChooserPanelBeanInfo" name="dateChooserPanelBeanInfo1">
     </Component>
+    <Component class="javax.swing.JSlider" name="jSlider1">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -64,7 +66,6 @@
                   <Component id="txtApellido" alignment="0" max="32767" attributes="0"/>
                   <Component id="txtRut" alignment="0" max="32767" attributes="0"/>
                   <Component id="cmbNacionalidad" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtFechaNacimiento" alignment="0" max="32767" attributes="0"/>
                   <Component id="jComboBox2" alignment="0" max="32767" attributes="0"/>
                   <Component id="jPanel1" max="32767" attributes="0"/>
               </Group>
@@ -120,11 +121,8 @@
                   <Component id="cmbNacionalidad" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtFechaNacimiento" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="25" max="32767" attributes="0"/>
+              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="31" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel9" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="txtTelefono" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -245,8 +243,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Rol:"/>
       </Properties>
-    </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="txtFechaNacimiento">
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBox2">
       <Properties>
