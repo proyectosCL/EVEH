@@ -1,8 +1,11 @@
 package Database;
 
-import java.sql.Connection;
+import Modelo.Usuario;
+import java.sql.*;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,5 +25,6 @@ public class DB_Connection {
         }
         return null;
     }
+   
 
 }
