@@ -28,9 +28,9 @@ public class Conexion {
 public Conexion conectar() { 
     try { 
         Class.forName("oracle.jdbc.OracleDriver"); 
-        String BaseDeDatos = "jdbc:oracle:thin:@localhost:1521:XE"; 
+        String BaseDeDatos = "jdbc:oracle:thin:@escuelavuelo.ccjs1vqr4hyu.us-west-2.rds.amazonaws.com:1521:orcl"; 
           
-        conexion = DriverManager.getConnection(BaseDeDatos, "escuela_halcon","oracle");             
+        conexion = DriverManager.getConnection(BaseDeDatos, "escuela","12345678");             
         if (conexion != null) { 
             System.out.println("Conexion exitosa!"); 
         } else { 
@@ -46,7 +46,9 @@ public boolean escribir(String sql) {
             Statement sentencia; 
             sentencia = getConexion().createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
             sentencia.executeUpdate(sql); 
-            getConexion().commit(); 
+            
+            //getConexion().commit();             
+      
             sentencia.close(); 
             JOptionPane.showMessageDialog(null,"insertado correctamente"+sql);
              
@@ -68,13 +70,14 @@ public ResultSet consultar(String sql) {
         } catch (SQLException e) { 
             e.printStackTrace(); 
             return null; 
-        }        return resultado; 
+        }        
+        return resultado; 
     } 
 
     public static void main(String[] args) {
         Conexion con = new Conexion();
         con.conectar();
-        con.escribir("INSERT INTO aeronaves  VALUES (44,'MMDSA',2,'V','22/12/2017','22/03/2016',1121,454)");
+        con.escribir("insert into alumnos values('20.300.566-3','jorda perez 2',18)");
     }
 
 }
