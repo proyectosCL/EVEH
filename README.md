@@ -5,7 +5,7 @@
 Script: http://www.mediafire.com/?x967zh2e4pudboc (30-09-2016)
 
 * 30-09-2016
-  Se cambio 'user' a 'cuenta' dentro de la tabla USUARIOS. :+1:
+  Se cambio 'user' a 'cuenta' dentro de la tabla USUARIOS.
 
 # Conectarse a la base de datos
 1. Nueva conección.
