@@ -2,29 +2,30 @@ package Modelo;
 
 public class Usuario {
 
-    private int id;
+    private int id_usuario;
 
     private String usuario;
 
     private String pass;
     
-    private String id_tipo;
+    private int id_tipo;
 
-    public Usuario(int id, String usuario, String id_tipo) {
-        this.id = id;
+    public Usuario(int id_usuario, String usuario, String pass, int id_tipo) {
+        this.id_usuario = id_usuario;
         this.usuario = usuario;
+        this.pass = pass;
         this.id_tipo = id_tipo;
     }
 
     public Usuario() {
     }
 
-    public int getId() {
-        return id;
+    public int getId_usuario() {
+        return id_usuario;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public String getUsuario() {
@@ -43,14 +44,16 @@ public class Usuario {
         this.pass = pass;
     }
 
-    public String getId_tipo() {
+    public int getId_tipo() {
         return id_tipo;
     }
 
-    public void setId_tipo(String id_tipo) {
+    public void setId_tipo(int id_tipo) {
         this.id_tipo = id_tipo;
     }
+    
 
+   
     
     
 }

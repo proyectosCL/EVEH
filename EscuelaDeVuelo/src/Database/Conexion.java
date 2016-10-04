@@ -27,6 +27,7 @@ public class Conexion {
 
 public Conexion conectar() { 
     try { 
+        
         Class.forName("oracle.jdbc.OracleDriver"); 
         String BaseDeDatos = "jdbc:oracle:thin:@escuelavuelo.ccjs1vqr4hyu.us-west-2.rds.amazonaws.com:1521:orcl"; 
           
@@ -36,8 +37,8 @@ public Conexion conectar() {
         } else { 
             System.out.println("Conexion fallida!"); 
         } 
-    } catch (Exception e) { 
-        e.printStackTrace(); 
+    } catch (ClassNotFoundException | SQLException e) { 
+        JOptionPane.showMessageDialog(null, e+"no conecta");
     }        return this; 
 } 
 
@@ -45,6 +46,7 @@ public boolean escribir(String sql) {
         try { 
             Statement sentencia; 
             sentencia = getConexion().createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            
             sentencia.executeUpdate(sql); 
             
             //getConexion().commit();             
@@ -74,11 +76,11 @@ public ResultSet consultar(String sql) {
         return resultado; 
     } 
 
-    public static void main(String[] args) {
-        Conexion con = new Conexion();
-        con.conectar();
-        con.escribir("insert into alumnos values('20.300.566-3','jorda perez 2',18)");
-    }
+//    public static void main(String[] args) {
+//        Conexion con = new Conexion();
+//        con.conectar();
+//        con.escribir("insert into usuarios values((select (max(id)+1)from usuarios),'jogfdhfg','contraa',1)");
+//    }
 
 }
 

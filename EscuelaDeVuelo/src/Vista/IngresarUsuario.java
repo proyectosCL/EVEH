@@ -6,6 +6,15 @@
 package Vista;
 import Controlador.Administrar_Personas;
 import Controlador.Administrar_Usuarios;
+import Database.Conexion;
+import Modelo.Persona;
+import Modelo.Usuario;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Diego
@@ -17,6 +26,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
      */
     public IngresarUsuario() {
         initComponents();
+        
     }
 
     /**
@@ -43,12 +53,12 @@ public class IngresarUsuario extends javax.swing.JFrame {
         txtRut = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        cmbNacionalidad = new javax.swing.JComboBox<>();
+        cboNacionalidad = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cboRol = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         rbnHombre = new javax.swing.JRadioButton();
         rbnMujer = new javax.swing.JRadioButton();
@@ -79,7 +89,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
 
         jLabel8.setText("Fecha de nacimiento:");
 
-        cmbNacionalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chileno", "Argentino", "Boliviano", "Venezolarno", "Paraguayo", "Escuatoriano", "Peruano", "Uruguayo", " " }));
+        cboNacionalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chileno", "Argentino", "Boliviano", "Venezolarno", "Paraguayo", "Escuatoriano", "Peruano", "Uruguayo", " " }));
 
         jLabel9.setText("Telefono:");
 
@@ -89,7 +99,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
 
         jLabel12.setText("Rol:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Piloto", "Operador" }));
+        cboRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Operador", "Piloto", "Consultor", " " }));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -126,14 +136,17 @@ public class IngresarUsuario extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        txtPass.setText("jPasswordField1");
         txtPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPassActionPerformed(evt);
             }
         });
 
-        txtConfirmarPass.setText("jPasswordField2");
+        txtConfirmarPass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtConfirmarPassFocusLost(evt);
+            }
+        });
         txtConfirmarPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtConfirmarPassActionPerformed(evt);
@@ -173,7 +186,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(jLabel9)
                     .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 16, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txtConfirmarPass, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtPass, javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,10 +196,10 @@ public class IngresarUsuario extends javax.swing.JFrame {
                     .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtRut, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbNacionalidad, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cboNacionalidad, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cboRol, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(89, 89, 89)
                 .addComponent(btnIngresar)
@@ -225,10 +238,10 @@ public class IngresarUsuario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(cmbNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addComponent(cboNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -244,7 +257,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
                         .addComponent(jLabel11)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -277,15 +290,64 @@ public class IngresarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtConfirmarPassActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        // TODO add your handling code here:
+        // persona
+        int id_persona = 0;
+        String rut = txtRut.getText();
+        String nombre = txtNombre.getText();
+        String apellidos = txtApellido.getText();
+        char sexo;
+        if (rbnHombre.isSelected()) {
+            sexo='m';
+            
+        } else {
+            sexo='m';
+        }
+        
+  
+        
+        String fechaNac = "12/12/1999";
+
+        
+        String telefono=txtTelefono.getText();
+        String correo=txtCorreo.getText();
+        String nacionalidad=cboNacionalidad.getSelectedItem()+"";
+       
+        int tipo = cboRol.getSelectedIndex();
+        //usuario
+        int iduser = 0;
+        String nombreusuario = txtUsuario.getText();
+        String pass=txtPass.getText();
+        int id_perfil=cboRol.getSelectedIndex()+1;
+        
+        Usuario userr = new Usuario(iduser, nombreusuario, pass, id_perfil);
+        Persona person = new Persona(id_persona,rut,nombre,apellidos,sexo,fechaNac,telefono,correo,nacionalidad,iduser,nombreusuario,pass,tipo);
+        Administrar_Personas admp = new Administrar_Personas();
+        Administrar_Usuarios usr = new Administrar_Usuarios();
+        usr.ingresarUsuario(userr);
+        admp.ingresarPersona(person);
+        
+        
+        
+        
+        //JOptionPane.showMessageDialog(null, id_persona+rut+nombre+apellidos+sexo+fechaNac+telefono+correo+nacionalidad+iduser+nombreusuario+pass+tipo);
         
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void txtConfirmarPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmarPassFocusLost
+        if (!txtPass.getText().equals(txtConfirmarPass.getText())) {
+            JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+            txtPass.setText("");
+            txtConfirmarPass.setText("");
+            txtPass.requestFocus();
+           
+        }
+    }//GEN-LAST:event_txtConfirmarPassFocusLost
 
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
 //        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
 //         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -307,21 +369,22 @@ public class IngresarUsuario extends javax.swing.JFrame {
 //            java.util.logging.Logger.getLogger(IngresarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
-//
-//        /* Create and display the form */
-////        java.awt.EventQueue.invokeLater(new Runnable() {
-////            public void run() {
-////                new IngresarUsuario().setVisible(true);
-////            }
-////        });
-//    }
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new IngresarUsuario().setVisible(true);
+                
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JComboBox<String> cmbNacionalidad;
+    private javax.swing.JComboBox<String> cboNacionalidad;
+    private javax.swing.JComboBox<String> cboRol;
     public static javax.swing.ButtonGroup gruposexo;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
