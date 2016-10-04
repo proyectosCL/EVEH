@@ -1,22 +1,38 @@
 package Controlador;
+import Database.Conexion;
 import Modelo.Aeronave;
 
+
 import java.util.Date;
-import java.util.LinkedList;
 
 public class Administrar_Aeronave implements administrar_horas_vuelo {
 
     
-        public void ingresarAeronave(int id, String matricula, char estado, Date fecha_aeronavegavilidad, Date fecha_ultima_inspeccion_anual, Float horas_vuelo, int dias_vuelo) {
-        Aeronave.id = id;
-        Aeronave.matricula = matricula;
-        Aeronave.estado = estado;
-        Aeronave.fecha_aeronavegavilidad = fecha_aeronavegavilidad;
-        Aeronave.fecha_ultima_inspeccion_anual = fecha_ultima_inspeccion_anual;
-        Aeronave.horas_vuelo = horas_vuelo;
-        Aeronave.dias_vuelo = dias_vuelo;
+         public boolean ingresarAeronave(Aeronave nuevoAeronave) {
+        try {
+            //int id = nuevoUsuario.getId_usuario();
+            String nombreMatricula = nuevoAeronave.getMatricula();
+            char estado = nuevoAeronave.getEstado();
+           Date fecha_aero = nuevoAeronave.getFecha_aeronavegavilidad();
+           Date fecha_insp = nuevoAeronave.getFecha_ultima_inspeccion_anual();
+           Float horasvuelo =nuevoAeronave.getHoras_vuelo();
+           int diasvuelo = nuevoAeronave.getDias_vuelo();
+           
+           Conexion conec = new Conexion();
+            conec.conectar();
+            String sql = "INSERT INTO aeronaves  VALUES ((select (max(id)+1)from aeronaves),'"+nombreMatricula+"','"+estado+"','"+fecha_aero+"','"+fecha_insp+"','"+horasvuelo+"','"+diasvuelo+"')";
+            
+            
+           
+            
+            conec.escribir(sql);
+            
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
         
-    }
+         }
         
     
 
