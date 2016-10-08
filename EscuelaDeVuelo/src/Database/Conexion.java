@@ -63,24 +63,40 @@ public boolean escribir(String sql) {
     } 
 
 public ResultSet consultar(String sql) { 
-        ResultSet resultado = null; 
-        try { 
-            Statement sentencia; 
-            sentencia = getConexion().createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-            resultado = sentencia.executeQuery(sql); 
-             
-        } catch (SQLException e) { 
-            e.printStackTrace(); 
-            return null; 
+        ResultSet resultado = null;
+        Conexion con = new Conexion();
+        try {
+            con.conectar();
+            Connection myconnection = con.getConexion();
+            PreparedStatement myStatement = myconnection.prepareStatement(sql);
+            resultado = myStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }        
-        return resultado; 
+        return resultado;      
+        
     } 
 
-//    public static void main(String[] args) {
+    public static void main(String[] args) {
 //        Conexion con = new Conexion();
-//        con.conectar();
-//        con.escribir("insert into usuarios values((select (max(id)+1)from usuarios),'jogfdhfg','contraa',1)");
-//    }
+//        try {
+//            con.conectar();
+//            Connection myconnection = con.getConexion();
+//            PreparedStatement myStatement = myconnection.prepareStatement("SELECT * FROM usuarios");
+//            ResultSet rs = myStatement.executeQuery();
+//        
+//            while (rs.next()) {
+//                System.out.println(rs.getString(1)+rs.getString(2)+rs.getString(3));
+//            
+//            }
+//            
+//        } catch (Exception e) {
+//            
+//        }
+        
+        
+    }
 
 }
 

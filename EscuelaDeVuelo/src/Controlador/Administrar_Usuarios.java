@@ -7,6 +7,7 @@ package Controlador;
 
 import Modelo.Usuario;
 import Database.Conexion;
+import java.sql.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,14 +44,37 @@ public class Administrar_Usuarios {
         }
         
     }
-    public boolean buscarUsuario(Usuario buscadoUsuario) {
-        int id = buscadoUsuario.getId_usuario();
-        String nombreUsuario = buscadoUsuario.getUsuario();
-        String pass = buscadoUsuario.getPass();
-        int idtipo = buscadoUsuario.getId_tipo();
+    public static boolean buscarUsuario(int id) {
+//        int id = buscadoUsuario.getId_usuario();
+//        String nombreUsuario = buscadoUsuario.getUsuario();
+//        String pass = buscadoUsuario.getPass();
+//        int idtipo = buscadoUsuario.getId_tipo();
+       
+        
         Conexion con = new Conexion();
+        try {
+            con.conectar();
+            Connection myconnection = con.getConexion();
+            PreparedStatement myStatement = myconnection.prepareStatement("SELECT * FROM usuarios where id = "+id);
+            ResultSet rs = myStatement.executeQuery();
+            int fila = 0;
+            while(rs.next()){
+                fila = 1;
+            }
+        
+            if (fila==1) {
+                return true;
+            } else {
+                return false;
+            }
+                
+            
+            
+        } catch (Exception e) {
+            return false;
+        }
          
-        return false;
+        
     }
     public boolean autenticarUsuario() {
         return false;
@@ -81,10 +105,9 @@ public class Administrar_Usuarios {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-//        public static void main(String[] args) {
-//        Conexion con = new Conexion();
-//        con.conectar();
-//        con.escribir("insert into usuarios values((select (max(id)+1)from usuarios),'jorddfgfdgperez 23','contraa',1)");
-//    }
+    public static void main(String[] args) {
+        System.out.println(buscarUsuario(99999));
+    }
+    
     
 }
