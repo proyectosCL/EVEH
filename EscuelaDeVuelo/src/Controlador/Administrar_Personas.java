@@ -20,27 +20,17 @@ public class Administrar_Personas {
             String nacionalidad = npersona.getNacionalidad();
             
             
-                Conexion con = new Conexion();
-                con.conectar();
-                //cambiar el 32 por el id del user
-                String sql = "INSERT INTO personas VALUES ((select (max(id)+1) from personas),'"+rut+"','"+nombre+"','"+apellidos+"','"+sexo+"','"+fecha_nacimiento+"','"+telefono+"','"+correo+"','"+nacionalidad+"',32)";
-                JOptionPane.showMessageDialog(null, "intentando insertar: "+sql);
-                System.out.println(sql);
-                con.escribir(sql);
-                return true;
-           
-            
-            //Administrar_Usuarios adm = new Administrar_Usuarios(usuario);
-            
-            
-//            if (adm.ingresarUsuario(usuario)) {
-//                Conexion con = new Conexion();
-//                String sql = "INSERT INTO personas VALUES ((select (max(id)+1)from personas),'"+rut+"','"+nombre+"','"+apellidos+"','"+sexo+"','"+fecha_nacimiento+"','"+telefono+"','"+correo+"','"+nacionalidad+"',"+usuario.getId_usuario()+")";
-//                JOptionPane.showMessageDialog(null, "intentando insertar: "+sql);
-//                con.escribir(sql);
-//                return true;
-//            }else{return false;}
-            
+            Conexion con = new Conexion();
+            con.conectar();
+            //cambiar el 32 por el id del user
+            String sql = "INSERT INTO personas VALUES ((select (max(id)+1) from personas),'"+rut+"','"+nombre+"','"+apellidos+"','"+sexo+"','"+fecha_nacimiento+"','"+telefono+"','"+correo+"','"+nacionalidad+"', (select max(id) from usuarios))";
+            //JOptionPane.showMessageDialog(null, "intentando insertar: "+sql);
+            System.out.println(sql);
+            con.escribir(sql);
+            JOptionPane.showMessageDialog(null, "Insertado correctamente");
+            return true;
+                
+                
             
             
         } catch (Exception e) {
