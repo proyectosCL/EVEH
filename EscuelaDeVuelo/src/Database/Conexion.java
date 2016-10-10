@@ -32,11 +32,11 @@ public Conexion conectar() {
         String BaseDeDatos = "jdbc:oracle:thin:@escuelavuelo.ccjs1vqr4hyu.us-west-2.rds.amazonaws.com:1521:orcl"; 
           
         conexion = DriverManager.getConnection(BaseDeDatos, "escuela","12345678");             
-        if (conexion != null) { 
-            System.out.println("Conexion exitosa!"); 
-        } else { 
-            System.out.println("Conexion fallida!"); 
-        } 
+//        if (conexion != null) { 
+//            System.out.println("Conexion exitosa!"); 
+//        } else { 
+//            System.out.println("Conexion fallida!"); 
+//        } 
     } catch (ClassNotFoundException | SQLException e) { 
         JOptionPane.showMessageDialog(null, e+"no conecta");
     }        return this; 
@@ -52,7 +52,7 @@ public boolean escribir(String sql) {
             //getConexion().commit();             
       
             sentencia.close(); 
-            JOptionPane.showMessageDialog(null,"insertado correctamente"+sql);
+            //JOptionPane.showMessageDialog(null,"insertado correctamente"+sql);
              
         } catch (SQLException e) { 
             e.printStackTrace(); 
@@ -78,25 +78,7 @@ public ResultSet consultar(String sql) {
         
     } 
 
-    public static void main(String[] args) {
-//        Conexion con = new Conexion();
-//        try {
-//            con.conectar();
-//            Connection myconnection = con.getConexion();
-//            PreparedStatement myStatement = myconnection.prepareStatement("SELECT * FROM usuarios");
-//            ResultSet rs = myStatement.executeQuery();
-//        
-//            while (rs.next()) {
-//                System.out.println(rs.getString(1)+rs.getString(2)+rs.getString(3));
-//            
-//            }
-//            
-//        } catch (Exception e) {
-//            
-//        }
-        
-        
-    }
+
 
 }
 

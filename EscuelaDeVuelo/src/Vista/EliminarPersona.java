@@ -19,12 +19,12 @@ import javax.swing.JOptionPane;
  *
  * @author Diego
  */
-public class IngresarUsuario extends javax.swing.JFrame {
+public class EliminarPersona extends javax.swing.JFrame {
 
     /**
      * Creates new form IngresarUsuario
      */
-    public IngresarUsuario() {
+    public EliminarPersona() {
         initComponents();
 //        lblapellido.setVisible(false);
 //        lblconfirmar.setVisible(false);
@@ -72,7 +72,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
         txtTelefono = new javax.swing.JTextField();
         txtPass = new javax.swing.JPasswordField();
         txtConfirmarPass = new javax.swing.JPasswordField();
-        btnIngresar = new javax.swing.JButton();
+        btnactualizar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         cboMes = new javax.swing.JComboBox<>();
         cboDia = new javax.swing.JComboBox<>();
@@ -86,6 +86,8 @@ public class IngresarUsuario extends javax.swing.JFrame {
         lblnombre = new javax.swing.JLabel();
         lblapellido = new javax.swing.JLabel();
         lblrut = new javax.swing.JLabel();
+        btncargar = new javax.swing.JButton();
+        lblId_usuario = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -103,18 +105,21 @@ public class IngresarUsuario extends javax.swing.JFrame {
 
         jLabel6.setText("Rut:");
 
+        txtUsuario.setEditable(false);
         txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtUsuarioFocusLost(evt);
             }
         });
 
+        txtNombre.setEditable(false);
         txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtNombreFocusLost(evt);
             }
         });
 
+        txtApellido.setEditable(false);
         txtApellido.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtApellidoFocusLost(evt);
@@ -132,6 +137,8 @@ public class IngresarUsuario extends javax.swing.JFrame {
         jLabel8.setText("Fecha de nacimiento:");
 
         cboNacionalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chileno", "Argentino", "Boliviano", "Venezolarno", "Paraguayo", "Escuatoriano", "Peruano", "Uruguayo", " " }));
+        cboNacionalidad.setEnabled(false);
+        cboNacionalidad.setFocusable(false);
 
         jLabel9.setText("Telefono:");
 
@@ -142,12 +149,14 @@ public class IngresarUsuario extends javax.swing.JFrame {
         jLabel12.setText("Rol:");
 
         cboRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Operador", "Piloto", "Consultor" }));
+        cboRol.setEnabled(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         gruposexo.add(rbnHombre);
         rbnHombre.setSelected(true);
         rbnHombre.setText("Masculino");
+        rbnHombre.setEnabled(false);
         rbnHombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbnHombreActionPerformed(evt);
@@ -156,6 +165,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
 
         gruposexo.add(rbnMujer);
         rbnMujer.setText("Femenino");
+        rbnMujer.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -178,6 +188,11 @@ public class IngresarUsuario extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
+        txtCorreo.setEditable(false);
+
+        txtTelefono.setEditable(false);
+
+        txtPass.setEditable(false);
         txtPass.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtPassFocusLost(evt);
@@ -189,6 +204,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
             }
         });
 
+        txtConfirmarPass.setEditable(false);
         txtConfirmarPass.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtConfirmarPassFocusLost(evt);
@@ -200,10 +216,10 @@ public class IngresarUsuario extends javax.swing.JFrame {
             }
         });
 
-        btnIngresar.setText("Ingresar");
-        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+        btnactualizar.setText("Eliminar");
+        btnactualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresarActionPerformed(evt);
+                btnactualizarActionPerformed(evt);
             }
         });
 
@@ -215,8 +231,10 @@ public class IngresarUsuario extends javax.swing.JFrame {
         });
 
         cboMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        cboMes.setEnabled(false);
 
         cboDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cboDia.setEnabled(false);
 
         jLabel13.setText("Día");
 
@@ -226,6 +244,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
 
         cboAnio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1915", "1916", "1917", "1918", "1919", "1920", "1921", "1922", "1923", "1924", "1925", "1926", "1927", "1928", "1929", "1930", "1931", "1932", "1933", "1934", "1935", "1936", "1937", "1938", "1939", "1940", "1941", "1942", "1943", "1944", "1945", "1946", "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016" }));
         cboAnio.setSelectedIndex(60);
+        cboAnio.setEnabled(false);
 
         lblusuario.setText("*");
 
@@ -239,32 +258,41 @@ public class IngresarUsuario extends javax.swing.JFrame {
 
         lblrut.setText("*");
 
+        btncargar.setText("buscar");
+        btncargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncargarActionPerformed(evt);
+            }
+        });
+
+        lblId_usuario.setText("  ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(89, 89, 89)
-                .addComponent(btnIngresar)
+                .addComponent(btnactualizar)
                 .addGap(55, 55, 55)
                 .addComponent(btnCancelar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8)
                     .addComponent(jLabel12)
                     .addComponent(jLabel10)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel11))
-                .addGap(18, 61, Short.MAX_VALUE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,9 +312,10 @@ public class IngresarUsuario extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cboAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(71, Short.MAX_VALUE))
+                        .addGap(0, 100, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtRut)
                             .addComponent(txtConfirmarPass, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPass, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,30 +323,48 @@ public class IngresarUsuario extends javax.swing.JFrame {
                             .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                             .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtRut, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cboNacionalidad, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cboRol, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblpass, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblconfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblrut, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblrut, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                                .addComponent(btncargar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblpass, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblconfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblId_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblrut)
+                    .addComponent(btncargar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblnombre))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblusuario))
+                            .addComponent(lblusuario)
+                            .addComponent(lblId_usuario))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -329,21 +376,13 @@ public class IngresarUsuario extends javax.swing.JFrame {
                             .addComponent(txtConfirmarPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblconfirmar))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel4))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblnombre)))
+                        .addComponent(jLabel4)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblapellido))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblrut))
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(cboNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -358,7 +397,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
                     .addComponent(cboMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -378,7 +417,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
                     .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIngresar)
+                    .addComponent(btnactualizar)
                     .addComponent(btnCancelar))
                 .addGap(9, 9, 9))
         );
@@ -406,12 +445,13 @@ public class IngresarUsuario extends javax.swing.JFrame {
         //txtConfirmarPass.setText("");
     }//GEN-LAST:event_txtConfirmarPassActionPerformed
 
-    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+    private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
         // persona
         //validaciones
        
         
-        int id_persona = 0;
+        int id_persona = Integer.parseInt(lblId_usuario.getText());
+        
         String rut = txtRut.getText();
         
         String nombre = txtNombre.getText();
@@ -439,17 +479,17 @@ public class IngresarUsuario extends javax.swing.JFrame {
         
         String nacionalidad=cboNacionalidad.getSelectedItem()+"";
        
-        int tipo = cboRol.getSelectedIndex();
+        int tipo = cboRol.getSelectedIndex()+1;
         //usuario
-        int iduser = 0;
+        int iduser = id_persona;
         String nombreusuario = txtUsuario.getText();
         
         String pass=txtPass.getText();
        
         int id_perfil=cboRol.getSelectedIndex()+1;
         
-        if (lblconfirmar.isVisible()||lblnombre.isVisible()||lblapellido.isVisible()||lblpass.isVisible()||lblrut.isVisible()||lblusuario.isVisible()) {
-            JOptionPane.showMessageDialog(null, "debe llenar todos los campos con asteriscos");
+        if (lblrut.isVisible()) {
+            JOptionPane.showMessageDialog(null, "debe ingresar un rut");
         }else{
             
             Usuario userr = new Usuario(iduser, nombreusuario, pass, id_perfil);
@@ -457,37 +497,27 @@ public class IngresarUsuario extends javax.swing.JFrame {
             Administrar_Personas admp = new Administrar_Personas();
             Administrar_Usuarios usr = new Administrar_Usuarios();
             
-            if (usr.buscarUsuario(userr.getUsuario())) {
-                JOptionPane.showMessageDialog(null, "el nombre de usuario ya esta registrado, por favor seleccione otro");
-                txtUsuario.requestFocus();
-             
+            if (!admp.buscarPersona(rut)) {
+            JOptionPane.showMessageDialog(null, "No se encontró el usaurio rut:"+txtRut.getText());
             } else {
                 
-                if (admp.buscarPersona(person.getRut())) {
-                    JOptionPane.showMessageDialog(null, "El Rut Ya esta registrado");
-                    txtRut.requestFocus();
-                    
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea eliminar este usuario?", "confirmacion", dialogButton);
+                if(dialogResult == 0) {
+                  if (admp.eliminarPersona(rut)&&usr.eliminarUsuario(nombreusuario)) {
+                            JOptionPane.showMessageDialog(null, "usuario eliminado");
+                        }
                 } else {
-                    
-                    
-                    
-                    int dialogButton = JOptionPane.YES_NO_OPTION;
-                    int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar al sistema?", "confirmacion", dialogButton);
-                    if(dialogResult == 0) {
-                        
-                      if (usr.ingresarUsuario(userr)&&admp.ingresarPersona(person)) {
-                                JOptionPane.showMessageDialog(null, "Se ingreso correctamente");
-                            }
-                    } else {
-                      JOptionPane.showMessageDialog(null, "no se puedo ingresar");
-                    }
-                    
-                    
-                    
+                  JOptionPane.showMessageDialog(null, "no se guardaron los cambios");
                 }
                 
-                
             }
+            
+            
+            
+            
+            
+             
             
             
         }
@@ -506,7 +536,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
         
         //JOptionPane.showMessageDialog(null, id_persona+rut+nombre+apellidos+sexo+fechaNac+telefono+correo+nacionalidad+iduser+nombreusuario+pass+tipo);
         
-    }//GEN-LAST:event_btnIngresarActionPerformed
+    }//GEN-LAST:event_btnactualizarActionPerformed
 
     private void txtConfirmarPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmarPassFocusLost
         if (!txtPass.getText().equals(txtConfirmarPass.getText())) {
@@ -563,6 +593,71 @@ public class IngresarUsuario extends javax.swing.JFrame {
                 }else{lblapellido.setVisible(false);}
     }//GEN-LAST:event_txtApellidoFocusLost
 
+    private void btncargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncargarActionPerformed
+        // TODO add your handling code here:
+        
+        Administrar_Personas admper = new Administrar_Personas();
+        Persona person = admper.cargarPersona(txtRut.getText());
+        
+        if (person==null) {
+            JOptionPane.showMessageDialog(null, "No se encontró el usaurio rut:"+txtRut.getText());
+        } else {
+            txtNombre.setText(person.getNombre());
+            lblnombre.setVisible(false);
+            
+          
+            
+            txtNombre.setText(person.getNombre());
+            lblnombre.setVisible(false);
+            
+            txtApellido.setText(person.getApellidos());
+            lblapellido.setVisible(false);
+            
+            txtTelefono.setText(person.getTelefono());
+            txtCorreo.setText(person.getCorreo());
+            
+            if (person.getSexo()=='F') {
+                rbnMujer.setSelected(true);
+                rbnHombre.setSelected(false);
+            } else {
+                rbnMujer.setSelected(false);
+                rbnHombre.setSelected(true);
+            }
+            
+            cboNacionalidad.setSelectedItem(person.getNacionalidad());
+            
+            
+                        
+            Administrar_Usuarios admusr = new Administrar_Usuarios();
+            Usuario usr =  admusr.cargarPUsuario(person.getId_usuario());
+            
+            txtUsuario.setText(usr.getUsuario());
+            lblusuario.setVisible(false);
+            
+            txtPass.setText(usr.getPass());
+            txtConfirmarPass.setText(usr.getPass());
+            lblpass.setVisible(false);
+            lblconfirmar.setVisible(false);
+            
+            cboRol.setSelectedIndex(usr.getId_tipo()-1);
+            
+            lblId_usuario.setText(usr.getId_usuario()+"");
+            
+            String año = person.getFecha_nacimiento().substring(0, 4);
+            String mes = person.getFecha_nacimiento().substring(5, 7);
+            String dia = person.getFecha_nacimiento().substring(8, 10);
+            
+            
+            cboAnio.setSelectedItem(año);
+            cboMes.setSelectedIndex(Integer.parseInt(mes)-1);
+            cboDia.setSelectedItem(dia);
+            //System.out.println(person.getFecha_nacimiento());
+            //System.out.println(dia+"/"+mes+"/"+año+" fehc");
+            
+        }
+        
+    }//GEN-LAST:event_btncargarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -593,7 +688,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new IngresarUsuario().setVisible(true);
+//                new EliminarPersona().setVisible(true);
 //                
 //            }
 //        });
@@ -601,7 +696,8 @@ public class IngresarUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnactualizar;
+    private javax.swing.JButton btncargar;
     private javax.swing.JComboBox<String> cboAnio;
     private javax.swing.JComboBox<String> cboDia;
     private javax.swing.JComboBox<String> cboMes;
@@ -626,6 +722,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblId_usuario;
     private javax.swing.JLabel lblapellido;
     private javax.swing.JLabel lblconfirmar;
     private javax.swing.JLabel lblnombre;
