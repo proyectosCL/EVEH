@@ -128,8 +128,8 @@ public class Administrar_Aeronave implements administrar_horas_vuelo {
            
             Conexion conec = new Conexion();
             conec.conectar();
-            String sql = "update aeronaves set tipo_aeronaves_id = "+tiponave+"', estado = "+estado+"', fecha_aeronavegabilidad = "+fecha_aero+"', fecha_inspeccion_anual = "+fecha_insp+"', horas_vuelo = "+horasvuelo+"', dias_vuelo = "+diasvuelo+" where id = "+id;
-            
+           // String sql = "update aeronaves set tipo_aeronaves_id = "+tiponave+"', estado = "+estado+"', fecha_aeronavegabilidad = "+fecha_aero+"', fecha_inspeccion_anual = "+fecha_insp+"', horas_vuelo = "+horasvuelo+"', dias_vuelo = "+diasvuelo+" where id = "+id;
+             String sql = "update aeronaves set tipo_aeronaves_id = '"+tiponave+"', estado = '"+estado+"', fecha_aeronavegabilidad = '"+fecha_aero+"', fecha_inspeccion_anual = '"+fecha_insp+"', horas_vuelo = '"+horasvuelo+"', dias_vuelo = '"+diasvuelo+"' where id = '"+id+"'";
             
            
             

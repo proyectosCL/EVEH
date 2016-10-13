@@ -60,7 +60,7 @@ public class ModificarAeronave extends javax.swing.JFrame {
         cmbtiponave = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
         btncargar = new javax.swing.JButton();
-        lblId_usuario = new javax.swing.JLabel();
+        lblusuario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -163,7 +163,7 @@ public class ModificarAeronave extends javax.swing.JFrame {
             }
         });
 
-        lblId_usuario.setText("  ");
+        lblusuario.setText("*");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -243,9 +243,9 @@ public class ModificarAeronave extends javax.swing.JFrame {
                                     .addComponent(cmbestado, 0, 131, Short.MAX_VALUE)
                                     .addComponent(cmbtiponave, 0, 131, Short.MAX_VALUE)
                                     .addComponent(jScrollPane1))
-                                .addGap(13, 13, 13)
-                                .addComponent(lblId_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(10, 10, 10)
+                                .addComponent(lblusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(btncargar)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -261,7 +261,7 @@ public class ModificarAeronave extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btncargar)
-                        .addComponent(lblId_usuario)))
+                        .addComponent(lblusuario)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbltiponave, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -351,7 +351,7 @@ public class ModificarAeronave extends javax.swing.JFrame {
         Conexion con = new Conexion();
         con.conectar();
         Administrar_Aeronave ingresar = new Administrar_Aeronave();
-         String id_persona = lblId_usuario.getText();
+         String id_persona = lblusuario.getText();
         String matricula = txtmatricula.getText();
         String horasvuelo = txthorasvuelo.getText();
         String diasvuelo = txtdiasvuelo.getText();
@@ -389,7 +389,9 @@ public class ModificarAeronave extends javax.swing.JFrame {
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea guardar los cambios?", "confirmacion", dialogButton);
             if(dialogResult == 0) {
-              if (ingresar.modificarAeronave(nueva)) {
+                        // JOptionPane.showMessageDialog(null, "DA"+id_persona+"DA"+matricula+"DA"+tiponave+"DA"+estado+"DA"+fechaaero+"DA"+fechainsp+"DA"+horasvuelo+"DA"+diasvuelo);
+
+                if (ingresar.modificarAeronave(nueva)) {
                         JOptionPane.showMessageDialog(null, "Aeronave Actualizada");
                     }
             } else {
@@ -419,7 +421,7 @@ public class ModificarAeronave extends javax.swing.JFrame {
         } else {
             txtmatricula.setText(person.getMatricula());
             lblmatricula.setVisible(false);
-
+            lblusuario.setText(person.getId());
             txthorasvuelo.setText(person.getHoras_vuelo());
             lblhorasvuelo.setVisible(false);
 
@@ -518,12 +520,12 @@ public class ModificarAeronave extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JLabel lblId_usuario;
     private javax.swing.JLabel lbldiasvuelo;
     private javax.swing.JLabel lblestado;
     private javax.swing.JLabel lblhorasvuelo;
     private javax.swing.JLabel lblmatricula;
     private javax.swing.JLabel lbltiponave;
+    private javax.swing.JLabel lblusuario;
     private javax.swing.JTextField txtaero;
     private javax.swing.JTextField txtanual;
     private javax.swing.JTextPane txtdiasvuelo;
