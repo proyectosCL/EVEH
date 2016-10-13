@@ -4,32 +4,20 @@
  * and open the template in the editor.
  */
 package Vista;
-
-import java.text.SimpleDateFormat;
-
-import java.util.Date;
-import Controlador.Administrar_Aeronave;
-
 import Database.Conexion;
 import Modelo.Aeronave;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import Controlador.Administrar_Aeronave;
 /**
  *
  * @author jordans
  */
-public class IngresarAeronave extends javax.swing.JFrame {
+public class ModificarAeronave extends javax.swing.JFrame {
 
     /**
-     * Creates new form IngresarAeronave
+     * Creates new form ModificarAeronave
      */
-    public IngresarAeronave() {
+    public ModificarAeronave() {
         initComponents();
     }
 
@@ -42,6 +30,7 @@ public class IngresarAeronave extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        cboMes1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         lbltiponave = new javax.swing.JLabel();
         lblmatricula = new javax.swing.JLabel();
@@ -49,33 +38,36 @@ public class IngresarAeronave extends javax.swing.JFrame {
         txtmatricula = new javax.swing.JTextPane();
         lblestado = new javax.swing.JLabel();
         cmbestado = new javax.swing.JComboBox<>();
+        cboMes = new javax.swing.JComboBox<>();
+        txtaero = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         lblhorasvuelo = new javax.swing.JLabel();
+        cboDia = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         lbldiasvuelo = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txthorasvuelo = new javax.swing.JTextPane();
+        jLabel15 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtdiasvuelo = new javax.swing.JTextPane();
-        btningresar = new javax.swing.JButton();
-        cmbtiponave = new javax.swing.JComboBox<>();
-        cboMes = new javax.swing.JComboBox<>();
-        cboDia = new javax.swing.JComboBox<>();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         cboDia1 = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        cboMes1 = new javax.swing.JComboBox<>();
-        txtaero = new javax.swing.JTextField();
         txtanual = new javax.swing.JTextField();
+        btningresar = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        cmbtiponave = new javax.swing.JComboBox<>();
+        jLabel18 = new javax.swing.JLabel();
+        btncargar = new javax.swing.JButton();
+        lblId_usuario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        cboMes1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setText("Ingresar Aeronave");
+        jLabel1.setText("Modificar Aeronave");
 
         lbltiponave.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbltiponave.setText("Tipo Aeronave");
@@ -100,17 +92,27 @@ public class IngresarAeronave extends javax.swing.JFrame {
             }
         });
 
+        cboMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+
+        txtaero.setText("2016");
+
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Fecha Aeronavegabilidad");
 
         lblhorasvuelo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblhorasvuelo.setText("Horas de Vuelo");
 
+        cboDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Fecha de Inspeccion Anual");
 
+        jLabel13.setText("Día");
+
         lbldiasvuelo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbldiasvuelo.setText("Días de Vuelo");
+
+        jLabel14.setText("Mes");
 
         txthorasvuelo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -119,6 +121,8 @@ public class IngresarAeronave extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(txthorasvuelo);
 
+        jLabel15.setText("Año");
+
         txtdiasvuelo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtdiasvueloFocusLost(evt);
@@ -126,13 +130,21 @@ public class IngresarAeronave extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(txtdiasvuelo);
 
+        cboDia1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        jLabel16.setText("Día");
+
+        txtanual.setText("2016");
+
         btningresar.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
-        btningresar.setText("Ingresar Aeronave");
+        btningresar.setText("Actualizar Aeronave");
         btningresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btningresarActionPerformed(evt);
             }
         });
+
+        jLabel17.setText("Mes");
 
         cmbtiponave.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione:", "Helicoptero", "Aeronave" }));
         cmbtiponave.setToolTipText("");
@@ -142,29 +154,16 @@ public class IngresarAeronave extends javax.swing.JFrame {
             }
         });
 
-        cboMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
-
-        cboDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-
-        jLabel13.setText("Día");
-
-        jLabel14.setText("Mes");
-
-        jLabel15.setText("Año");
-
-        cboDia1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-
-        jLabel16.setText("Día");
-
-        jLabel17.setText("Mes");
-
         jLabel18.setText("Año");
 
-        cboMes1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        btncargar.setText("buscar");
+        btncargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncargarActionPerformed(evt);
+            }
+        });
 
-        txtaero.setText("2016");
-
-        txtanual.setText("2016");
+        lblId_usuario.setText("  ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -243,8 +242,12 @@ public class IngresarAeronave extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(cmbestado, 0, 131, Short.MAX_VALUE)
                                     .addComponent(cmbtiponave, 0, 131, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1))))))
-                .addContainerGap(101, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane1))
+                                .addGap(13, 13, 13)
+                                .addComponent(lblId_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btncargar)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,18 +258,22 @@ public class IngresarAeronave extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbltiponave, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbtiponave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblestado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btncargar)
+                        .addComponent(lblId_usuario)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbltiponave, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbtiponave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblestado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
                             .addComponent(jLabel14)
@@ -300,115 +307,161 @@ public class IngresarAeronave extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btningresar)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtmatriculaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtmatriculaFocusLost
+        if(txtmatricula.getText().equals("")){
+            //JOptionPane.showMessageDialog(null, "La matricula no puede estar vacia");
+            lblmatricula.setEnabled(true);
+
+        }else{lblmatricula.setEnabled(false);
+        }
+        
+    
+    
+    }//GEN-LAST:event_txtmatriculaFocusLost
+
     private void cmbestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbestadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbestadoActionPerformed
 
+    private void txthorasvueloFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txthorasvueloFocusLost
+        if(txthorasvuelo.getText().equals("")){
+            //JOptionPane.showMessageDialog(null, "Las horas vuelo no puede estar vacio");
+            // lblhorasvuelo.setVisible(true);
+            lblhorasvuelo.setEnabled(true);
+
+        }else{lblhorasvuelo.setEnabled(false);
+
+    }//GEN-LAST:event_txthorasvueloFocusLost
+    }
+    private void txtdiasvueloFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtdiasvueloFocusLost
+        if(txtdiasvuelo.getText().equals("")){
+            //JOptionPane.showMessageDialog(null, "Los dias de vuelo no puede estar vacio");
+            lbldiasvuelo.setEnabled(true);
+        }else{lbldiasvuelo.setEnabled(false);}// TODO add your handling code here:
+    }//GEN-LAST:event_txtdiasvueloFocusLost
+
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
 
- Conexion con = new Conexion();
+        Conexion con = new Conexion();
         con.conectar();
-Administrar_Aeronave ingresar = new Administrar_Aeronave();
-      String id="0"; 
-    String matricula = txtmatricula.getText();
-    String horasvuelo = txthorasvuelo.getText();
-    String diasvuelo = txtdiasvuelo.getText();
-    String tiponave = ""+cmbtiponave.getSelectedItem();
-    String estado = ""+cmbestado.getSelectedItem();
-    String fechaaero = cboDia.getSelectedItem()+"/"+(cboMes.getSelectedIndex()+1)+"/"+txtaero.getText();
-    String fechainsp = cboDia1.getSelectedItem()+"/"+(cboMes1.getSelectedIndex()+1)+"/"+txtanual.getText();
-   
-      if (tiponave.equals("Helicoptero")) {
-            tiponave="1"; 
-            
+        Administrar_Aeronave ingresar = new Administrar_Aeronave();
+         String id_persona = lblId_usuario.getText();
+        String matricula = txtmatricula.getText();
+        String horasvuelo = txthorasvuelo.getText();
+        String diasvuelo = txtdiasvuelo.getText();
+        String tiponave = ""+cmbtiponave.getSelectedItem();
+        String estado = ""+cmbestado.getSelectedItem();
+        String fechaaero = cboDia.getSelectedItem()+"/"+(cboMes.getSelectedIndex()+1)+"/"+txtaero.getText();
+        String fechainsp = cboDia1.getSelectedItem()+"/"+(cboMes1.getSelectedIndex()+1)+"/"+txtanual.getText();
+
+        if (tiponave.equals("Helicoptero")) {
+            tiponave="1";
+
         }else {
-               tiponave="2";
+            tiponave="2";
 
         }
-        
-         
-         
-  
-    
-    switch (estado) {
+
+        switch (estado) {
             case "Seleccione:":
-                
-                 JOptionPane.showMessageDialog(null, "Seleccione estado!!!", "Ventana Error Datos", JOptionPane.ERROR_MESSAGE);
-                break;
+
+            JOptionPane.showMessageDialog(null, "Seleccione estado!!!", "Ventana Error Datos", JOptionPane.ERROR_MESSAGE);
+            break;
             case "Disponible":
-                estado="V";
-                break;
+            estado="V";
+            break;
             default:
-                estado="M";
-                break;
+            estado="M";
+            break;
         }
-    
-    if (lblmatricula.isEnabled()||lbldiasvuelo.isEnabled()||lblhorasvuelo.isEnabled()) {
+
+        if (lblmatricula.isEnabled()||lbldiasvuelo.isEnabled()||lblhorasvuelo.isEnabled()) {
             JOptionPane.showMessageDialog(null, "debe llenar todos los campos ");
         }else {
-        Aeronave nueva = new Aeronave(id,matricula,tiponave,estado,fechaaero,fechainsp,horasvuelo,diasvuelo);
-  
-          
-         if (ingresar.buscarAeronave(nueva.getMatricula())) {
-                JOptionPane.showMessageDialog(null, "La matricula de la aeronave ya esta registrado, por favor ingrese otra");
-                txtmatricula.requestFocus();
-            
-    
-       
-         }else{
-             
-                if (ingresar.ingresarAeronave(nueva)) {
-                    JOptionPane.showMessageDialog(null, "Se ingreso correctamente");
-                         
-                    } else {
-                      JOptionPane.showMessageDialog(null, "no se puedo ingresar");
+            Aeronave nueva = new Aeronave(id_persona,matricula,tiponave,estado,fechaaero,fechainsp,horasvuelo,diasvuelo);
+
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea guardar los cambios?", "confirmacion", dialogButton);
+            if(dialogResult == 0) {
+              if (ingresar.modificarAeronave(nueva)) {
+                        JOptionPane.showMessageDialog(null, "Aeronave Actualizada");
                     }
-        
-         }
-         
-    }
-    
-   
-//        // TODO add your handling code here:
+            } else {
+              JOptionPane.showMessageDialog(null, "no se guardaron los cambios");
+            }
+            
+             
+            
+
+        }
+
+        //        // TODO add your handling code here:
     }//GEN-LAST:event_btningresarActionPerformed
- 
-    
+
     private void cmbtiponaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbtiponaveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbtiponaveActionPerformed
 
-    private void txtmatriculaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtmatriculaFocusLost
-            if(txtmatricula.getText().equals("")){
-                    //JOptionPane.showMessageDialog(null, "La matricula no puede estar vacia");
-                    lblmatricula.setEnabled(true);
-                    
-                }else{lblmatricula.setEnabled(false);}    }//GEN-LAST:event_txtmatriculaFocusLost
+    private void btncargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncargarActionPerformed
+        // TODO add your handling code here:
 
-    private void txtdiasvueloFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtdiasvueloFocusLost
-        if(txtdiasvuelo.getText().equals("")){
-                    //JOptionPane.showMessageDialog(null, "Los dias de vuelo no puede estar vacio");
-                    lbldiasvuelo.setEnabled(true);
-                }else{lbldiasvuelo.setEnabled(false);}// TODO add your handling code here:
-    }//GEN-LAST:event_txtdiasvueloFocusLost
+        Administrar_Aeronave admper = new Administrar_Aeronave();
+        Aeronave person = admper.cargarAeronave(txtmatricula.getText());
 
-    private void txthorasvueloFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txthorasvueloFocusLost
- if(txthorasvuelo.getText().equals("")){
-                    //JOptionPane.showMessageDialog(null, "Las horas vuelo no puede estar vacio");
-                   // lblhorasvuelo.setVisible(true);
-                    lblhorasvuelo.setEnabled(true);
-                    
-                }else{lblhorasvuelo.setEnabled(false);
- }    }//GEN-LAST:event_txthorasvueloFocusLost
+        if (person==null) {
+            JOptionPane.showMessageDialog(null, "No se encontró la aeronave matricula:"+txtmatricula.getText());
+        } else {
+            txtmatricula.setText(person.getMatricula());
+            lblmatricula.setVisible(false);
 
-     
-    
-       
+            txthorasvuelo.setText(person.getHoras_vuelo());
+            lblhorasvuelo.setVisible(false);
+
+            txtdiasvuelo.setText(person.getDias_vuelo());
+            lbldiasvuelo.setVisible(false);
+
+            
+        if(person.getTiponave().equals("1")){
+         cmbtiponave.setSelectedItem("Helicoptero");
+        }else{
+         cmbtiponave.setSelectedItem("Aeronave");
+        }
+        if(person.getEstado().equals("V")){
+             cmbestado.setSelectedItem("Disponible");
+        }else{
+             cmbestado.setSelectedItem("No Disponible");
+        }
+           
+             
+
+
+            String añoaero = person.getFecha_aeronavegavilidad().substring(0, 4);
+            String mesaero = person.getFecha_aeronavegavilidad().substring(5, 7);
+            String diaaero = person.getFecha_aeronavegavilidad().substring(8, 10);
+
+            String añoinspe = person.getFecha_ultima_inspeccion_anual().substring(0, 4);
+            String mesinspe = person.getFecha_ultima_inspeccion_anual().substring(5, 7);
+            String diainspe = person.getFecha_ultima_inspeccion_anual().substring(8, 10);
+
+            txtaero.setText(añoaero);
+            cboMes.setSelectedIndex(Integer.parseInt(mesaero)-1);
+            cboDia.setSelectedItem(diaaero);
+            
+             txtanual.setText(añoinspe);
+            cboMes1.setSelectedIndex(Integer.parseInt(mesinspe)-1);
+            cboDia1.setSelectedItem(diainspe);
+            
+            
+        }
+
+    }//GEN-LAST:event_btncargarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -426,26 +479,26 @@ Administrar_Aeronave ingresar = new Administrar_Aeronave();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IngresarAeronave.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarAeronave.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IngresarAeronave.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarAeronave.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IngresarAeronave.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarAeronave.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IngresarAeronave.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarAeronave.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IngresarAeronave().setVisible(true);
+                new ModificarAeronave().setVisible(true);
             }
         });
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btncargar;
     private javax.swing.JButton btningresar;
     private javax.swing.JComboBox<String> cboDia;
     private javax.swing.JComboBox<String> cboDia1;
@@ -465,6 +518,7 @@ Administrar_Aeronave ingresar = new Administrar_Aeronave();
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblId_usuario;
     private javax.swing.JLabel lbldiasvuelo;
     private javax.swing.JLabel lblestado;
     private javax.swing.JLabel lblhorasvuelo;

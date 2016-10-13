@@ -260,6 +260,7 @@
     <Component class="javax.swing.JTextField" name="txtRut">
       <Events>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtRutFocusLost"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRutActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
@@ -499,7 +500,7 @@
     <Component class="javax.swing.JComboBox" name="cboAnio">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="102">
+          <StringArray count="126">
             <StringItem index="0" value="1915"/>
             <StringItem index="1" value="1916"/>
             <StringItem index="2" value="1917"/>
@@ -602,9 +603,32 @@
             <StringItem index="99" value="2014"/>
             <StringItem index="100" value="2015"/>
             <StringItem index="101" value="2016"/>
+            <StringItem index="102" value="2017"/>
+            <StringItem index="103" value="2018"/>
+            <StringItem index="104" value="2019"/>
+            <StringItem index="105" value="2020"/>
+            <StringItem index="106" value="2021"/>
+            <StringItem index="107" value="2022"/>
+            <StringItem index="108" value="2023"/>
+            <StringItem index="109" value="2024"/>
+            <StringItem index="110" value="2025"/>
+            <StringItem index="111" value="2026"/>
+            <StringItem index="112" value="2027"/>
+            <StringItem index="113" value="2028"/>
+            <StringItem index="114" value="2029"/>
+            <StringItem index="115" value="2030"/>
+            <StringItem index="116" value="2031"/>
+            <StringItem index="117" value="2032"/>
+            <StringItem index="118" value="2033"/>
+            <StringItem index="119" value="2034"/>
+            <StringItem index="120" value="2035"/>
+            <StringItem index="121" value="2036"/>
+            <StringItem index="122" value="2037"/>
+            <StringItem index="123" value="2038"/>
+            <StringItem index="124" value="2039"/>
+            <StringItem index="125" value="2040"/>
           </StringArray>
         </Property>
-        <Property name="selectedIndex" type="int" value="60"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

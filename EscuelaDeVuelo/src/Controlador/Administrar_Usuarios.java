@@ -87,12 +87,7 @@ public class Administrar_Usuarios {
     
     
     public boolean buscarUsuario(String cuenta) {
-//        int id = buscadoUsuario.getId_usuario();
-//        String nombreUsuario = buscadoUsuario.getUsuario();
-//        String pass = buscadoUsuario.getPass();
-//        int idtipo = buscadoUsuario.getId_tipo();
-       
-        
+     
         Conexion con = new Conexion();
         try {
             con.conectar();

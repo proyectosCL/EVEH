@@ -8,10 +8,10 @@ public class Administrar_Componente implements administrar_horas_vuelo {
 
     public boolean ingresarComponente(Componente nuevoComponente) {
         
-        String desc = nuevoComponente.getDescripcion();
-        String fabricte = nuevoComponente.getFabricante();
-        Float horasVuelo = nuevoComponente.getHoras_vuelo();
-        int diasVuelo = nuevoComponente.getDias_vuelo();
+    //    String desc = nuevoComponente.getDescripcion();
+      //  String fabricte = nuevoComponente.getFabricante();
+        //Float horasVuelo = nuevoComponente.getHoras_vuelo();
+        //int diasVuelo = nuevoComponente.getDias_vuelo();
         
         Conexion conec = new Conexion();
         conec.conectar();
