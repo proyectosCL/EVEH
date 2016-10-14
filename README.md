@@ -17,5 +17,8 @@ Script: http://www.mediafire.com/?x967zh2e4pudboc (30-09-2016)
 3. Datos de la base de datos
   http://bit.ly/2d5fjIe
   Username es el nombre de la base de datos.
-4. Libreria Look And Fell ._.
-  http://www.jtattoo.net/Download.html
+  
+  
+# Libreria Look And Fell ._.
+
+ * http://www.jtattoo.net/Download.html
