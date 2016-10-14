@@ -21,4 +21,5 @@ Script: http://www.mediafire.com/?x967zh2e4pudboc (30-09-2016)
   
 # Libreria Look And Fell ._.
 
- * http://www.jtattoo.net/Download.html
+ The JTattoo jar file.
+  http://www.jtattoo.net/Download.html
