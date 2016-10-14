@@ -128,9 +128,9 @@ public class Inicio extends javax.swing.JFrame {
         
         
         try {
-       UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
-     } catch (Exception ex) {// Manejo de excepción...
-                                     }
+             UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+        } catch (Exception ex) {// Manejo de excepción...
+                               }
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
