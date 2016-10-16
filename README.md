@@ -23,3 +23,9 @@ Script: http://www.mediafire.com/?x967zh2e4pudboc (30-09-2016)
 
  The JTattoo jar file.
   http://www.jtattoo.net/Download.html
+  
+# Libreria para validar textField
+
+http://serprogramador.es/limitando-el-numero-de-elementos-en-un-jtextfield-restrictedtextfield/
+
+Ayuda a limitar la cantidad de caracteres que se pueden ingresar a un textField, asi se ahorra tiempo mostrando mensajes de error y esas cosas. Yo le pongo de limite la cantidad que permite la bd.
