@@ -1,6 +1,7 @@
 package Controlador;
 
 import Database.Conexion;
+import Modelo.Aerodromo;
 import Modelo.Vuelo;
 import Vista.ListarVuelo;
 import java.sql.ResultSet;
@@ -9,7 +10,17 @@ import javax.swing.JTable;
 
 public class Administrar_Vuelo implements administrar_horas_vuelo {
 
-    public void ingresarVuelo() {
+    public void ingresarVuelo(Vuelo vuelo) {
+
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            dbconn.escribir("INSERT INTO vuelos VALUES ((select (max(id)+1)from vuelos),'" + vuelo.getAerodromo_origen() + "','" + vuelo.getAerodromo_destino() + "','" + vuelo.getHoras_vuelo() + "','" + vuelo.getCondicion_vuelo() + "','" + vuelo.getMision_vuelo() + "','" + vuelo.getFecha_vuelo() + "','" + vuelo.getAeronave() + "')");
+            dbconn.escribir("INSERT INTO tripulacion VALUES (select (max(id)) from vuelos)");
+        } catch (Exception e) {
+
+        }
+
     }
 
     public void modificarVuelo() {
@@ -22,6 +33,28 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
 
     ListarVuelo vistaListarVuelo = new ListarVuelo();
     JTable tabla = null;
+
+    //Metodo para llenar la lista de aerodromos.
+    public ArrayList<Aerodromo> listarAerodromo() {
+        ArrayList listaAerodromo = new ArrayList();
+        Aerodromo aerodromo;
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM aerodromos");
+            while (rs.next()) {
+                aerodromo = new Aerodromo();
+                aerodromo.setId(rs.getInt("id"));
+                aerodromo.setDescripcion(rs.getString("descripcion"));
+                aerodromo.setCiudad(rs.getString("ciudad"));
+                listaAerodromo.add(aerodromo);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return listaAerodromo;
+    }
 
     //Metodo para llenar la tabla de vuelos.
     public ArrayList<Vuelo> listarVuelo() {
@@ -50,4 +83,22 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
         return listaVuelo;
     }
 
+    public static void main(String[] args) {
+        ArrayList listaAerodromo = new ArrayList();
+        Aerodromo aerodromo;
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM aerodromos");
+            while (rs.next()) {
+                aerodromo = new Aerodromo();
+                System.out.print(rs.getInt("id"));
+                System.out.print(rs.getString("descripcion"));
+                System.out.println(rs.getString("ciudad"));
+            }
+
+        } catch (Exception e) {
+
+        }
+    }
 }
