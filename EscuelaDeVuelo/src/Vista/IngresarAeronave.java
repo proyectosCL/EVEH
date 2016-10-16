@@ -20,6 +20,7 @@ import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author jordans
@@ -312,103 +313,95 @@ public class IngresarAeronave extends javax.swing.JFrame {
 
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
 
- Conexion con = new Conexion();
+        Conexion con = new Conexion();
         con.conectar();
-Administrar_Aeronave ingresar = new Administrar_Aeronave();
-      String id="0"; 
-    String matricula = txtmatricula.getText();
-    String horasvuelo = txthorasvuelo.getText();
-    String diasvuelo = txtdiasvuelo.getText();
-    String tiponave = ""+cmbtiponave.getSelectedItem();
-    String estado = ""+cmbestado.getSelectedItem();
-    String fechaaero = cboDia.getSelectedItem()+"/"+(cboMes.getSelectedIndex()+1)+"/"+txtaero.getText();
-    String fechainsp = cboDia1.getSelectedItem()+"/"+(cboMes1.getSelectedIndex()+1)+"/"+txtanual.getText();
-   
-      if (tiponave.equals("Helicoptero")) {
-            tiponave="1"; 
-            
-        }else {
-               tiponave="2";
+        Administrar_Aeronave ingresar = new Administrar_Aeronave();
+        String id = "0";
+        String matricula = txtmatricula.getText();
+        String horasvuelo = txthorasvuelo.getText();
+        String diasvuelo = txtdiasvuelo.getText();
+        String tiponave = "" + cmbtiponave.getSelectedItem();
+        String estado = "" + cmbestado.getSelectedItem();
+        String fechaaero = cboDia.getSelectedItem() + "/" + (cboMes.getSelectedIndex() + 1) + "/" + txtaero.getText();
+        String fechainsp = cboDia1.getSelectedItem() + "/" + (cboMes1.getSelectedIndex() + 1) + "/" + txtanual.getText();
+
+        if (tiponave.equals("Helicoptero")) {
+            tiponave = "1";
+
+        } else {
+            tiponave = "2";
 
         }
-        
-         
-         
-  
-    
-    switch (estado) {
+
+        switch (estado) {
             case "Seleccione:":
-                
-                 JOptionPane.showMessageDialog(null, "Seleccione estado!!!", "Ventana Error Datos", JOptionPane.ERROR_MESSAGE);
+
+                JOptionPane.showMessageDialog(null, "Seleccione estado!!!", "Ventana Error Datos", JOptionPane.ERROR_MESSAGE);
                 break;
             case "Disponible":
-                estado="V";
+                estado = "V";
                 break;
             default:
-                estado="M";
+                estado = "M";
                 break;
         }
-    
-    if (lblmatricula.isEnabled()||lbldiasvuelo.isEnabled()||lblhorasvuelo.isEnabled()) {
+
+        if (lblmatricula.isEnabled() || lbldiasvuelo.isEnabled() || lblhorasvuelo.isEnabled()) {
             JOptionPane.showMessageDialog(null, "debe llenar todos los campos ");
-        }else {
-        Aeronave nueva = new Aeronave(id,matricula,tiponave,estado,fechaaero,fechainsp,horasvuelo,diasvuelo);
-  
-          
-         if (ingresar.buscarAeronave(nueva.getMatricula())) {
+        } else {
+            Aeronave nueva = new Aeronave(id, matricula, tiponave, estado, fechaaero, fechainsp, horasvuelo, diasvuelo);
+
+            if (ingresar.buscarAeronave(nueva.getMatricula())) {
                 JOptionPane.showMessageDialog(null, "La matricula de la aeronave ya esta registrado, por favor ingrese otra");
                 txtmatricula.requestFocus();
-            
-    
-       
-         }else{
-             
+
+            } else {
+
                 if (ingresar.ingresarAeronave(nueva)) {
                     JOptionPane.showMessageDialog(null, "Se ingreso correctamente");
-                         
-                    } else {
-                      JOptionPane.showMessageDialog(null, "no se puedo ingresar");
-                    }
-        
-         }
-         
-    }
-    
-   
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "no se puedo ingresar");
+                }
+
+            }
+
+        }
+
 //        // TODO add your handling code here:
     }//GEN-LAST:event_btningresarActionPerformed
- 
-    
+
+
     private void cmbtiponaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbtiponaveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbtiponaveActionPerformed
 
     private void txtmatriculaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtmatriculaFocusLost
-            if(txtmatricula.getText().equals("")){
-                    //JOptionPane.showMessageDialog(null, "La matricula no puede estar vacia");
-                    lblmatricula.setEnabled(true);
-                    
+        if (txtmatricula.getText().equals("")) {
+            //JOptionPane.showMessageDialog(null, "La matricula no puede estar vacia");
+            lblmatricula.setEnabled(true);
+
                 }else{lblmatricula.setEnabled(false);}    }//GEN-LAST:event_txtmatriculaFocusLost
 
     private void txtdiasvueloFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtdiasvueloFocusLost
-        if(txtdiasvuelo.getText().equals("")){
-                    //JOptionPane.showMessageDialog(null, "Los dias de vuelo no puede estar vacio");
-                    lbldiasvuelo.setEnabled(true);
-                }else{lbldiasvuelo.setEnabled(false);}// TODO add your handling code here:
+        if (txtdiasvuelo.getText().equals("")) {
+            //JOptionPane.showMessageDialog(null, "Los dias de vuelo no puede estar vacio");
+            lbldiasvuelo.setEnabled(true);
+        } else {
+            lbldiasvuelo.setEnabled(false);
+        }// TODO add your handling code here:
     }//GEN-LAST:event_txtdiasvueloFocusLost
 
     private void txthorasvueloFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txthorasvueloFocusLost
- if(txthorasvuelo.getText().equals("")){
-                    //JOptionPane.showMessageDialog(null, "Las horas vuelo no puede estar vacio");
-                   // lblhorasvuelo.setVisible(true);
-                    lblhorasvuelo.setEnabled(true);
-                    
-                }else{lblhorasvuelo.setEnabled(false);
+        if (txthorasvuelo.getText().equals("")) {
+            //JOptionPane.showMessageDialog(null, "Las horas vuelo no puede estar vacio");
+            // lblhorasvuelo.setVisible(true);
+            lblhorasvuelo.setEnabled(true);
+
+        } else {
+            lblhorasvuelo.setEnabled(false);
  }    }//GEN-LAST:event_txthorasvueloFocusLost
 
-     
-    
-       
     /**
      * @param args the command line arguments
      */
@@ -442,7 +435,7 @@ Administrar_Aeronave ingresar = new Administrar_Aeronave();
                 new IngresarAeronave().setVisible(true);
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
