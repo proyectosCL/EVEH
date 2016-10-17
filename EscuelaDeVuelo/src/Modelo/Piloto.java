@@ -13,24 +13,31 @@ public class Piloto extends Persona {
     private Date vencimiento_medicina;
 
     private Date fecha_ultimo_vuelo;
+    
+    private int id_persona;
 
     public Piloto() {
     }
 
-    public Piloto(Float horas_vuelo, int dias_vuelo, Date vencimiento_medicina, Date fecha_ultimo_vuelo) {
+    public Piloto(int id, Float horas_vuelo, int dias_vuelo, Date vencimiento_medicina, Date fecha_ultimo_vuelo, int id_persona) {
+        this.id = id;
         this.horas_vuelo = horas_vuelo;
         this.dias_vuelo = dias_vuelo;
         this.vencimiento_medicina = vencimiento_medicina;
         this.fecha_ultimo_vuelo = fecha_ultimo_vuelo;
+        this.id_persona = id_persona;
     }
 
-    public Piloto(Float horas_vuelo, int dias_vuelo, Date vencimiento_medicina, Date fecha_ultimo_vuelo, int id_persona, String rut, String nombre, String apellidos, char sexo, String fecha_nacimiento, String telefono, String correo, String nacionalidad, int id_usuario, String usuario, String pass, int id_tipo) {
-        super(id_persona, rut, nombre, apellidos, sexo, fecha_nacimiento, telefono, correo, nacionalidad, id_usuario, usuario, pass, id_tipo);
-        this.horas_vuelo = horas_vuelo;
-        this.dias_vuelo = dias_vuelo;
-        this.vencimiento_medicina = vencimiento_medicina;
-        this.fecha_ultimo_vuelo = fecha_ultimo_vuelo;
+    public int getId_persona() {
+        return id_persona;
     }
+
+    public void setId_persona(int id_persona) {
+        this.id_persona = id_persona;
+    }
+
+   
+
 
     public int getId() {
         return id;
