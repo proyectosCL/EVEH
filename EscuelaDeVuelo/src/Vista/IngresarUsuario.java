@@ -86,6 +86,8 @@ public class IngresarUsuario extends javax.swing.JFrame {
         lblnombre = new javax.swing.JLabel();
         lblapellido = new javax.swing.JLabel();
         lblrut = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        cboEstado = new javax.swing.JComboBox<>();
 
         jTextField1.setText("jTextField1");
 
@@ -243,6 +245,11 @@ public class IngresarUsuario extends javax.swing.JFrame {
 
         lblrut.setText("*");
 
+        jLabel16.setText("Estado de Cuenta:");
+
+        cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "activado", "desactivado" }));
+        cboEstado.setFocusable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -267,8 +274,9 @@ public class IngresarUsuario extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(jLabel10)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel11))
-                .addGap(18, 61, Short.MAX_VALUE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,28 +296,31 @@ public class IngresarUsuario extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cboAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(71, Short.MAX_VALUE))
+                        .addContainerGap(62, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtConfirmarPass, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPass, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtRut, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboNacionalidad, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cboRol, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblpass, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblconfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblrut, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtConfirmarPass, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtPass, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtRut, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cboNacionalidad, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cboRol, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblpass, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblconfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblrut, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -362,7 +373,11 @@ public class IngresarUsuario extends javax.swing.JFrame {
                     .addComponent(cboMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -452,12 +467,16 @@ public class IngresarUsuario extends javax.swing.JFrame {
        
         int id_perfil=cboRol.getSelectedIndex()+1;
         
+        String estado_cuenta = cboEstado.getSelectedItem()+"";
+        
         if (lblconfirmar.isVisible()||lblnombre.isVisible()||lblapellido.isVisible()||lblpass.isVisible()||lblrut.isVisible()||lblusuario.isVisible()) {
             JOptionPane.showMessageDialog(null, "debe llenar todos los campos con asteriscos");
         }else{
             
-            Usuario userr = new Usuario(iduser, nombreusuario, pass, id_perfil);
-            Persona person = new Persona(id_persona,rut,nombre,apellidos,sexo,fechaNac,telefono,correo,nacionalidad,iduser,nombreusuario,pass,tipo);
+            Usuario userr = new Usuario(iduser, nombreusuario, pass, id_perfil, estado_cuenta);
+            //Persona person = new Persona(id_persona,rut,nombre,apellidos,sexo,fechaNac,telefono,correo,nacionalidad,iduser,nombreusuario,pass,tipo);
+            Persona person = new Persona(id_persona,rut,nombre,apellidos,sexo,fechaNac,telefono,correo,nacionalidad,iduser,nombreusuario,pass,tipo,estado_cuenta);
+            
             Administrar_Personas admp = new Administrar_Personas();
             Administrar_Usuarios usr = new Administrar_Usuarios();
             
@@ -612,6 +631,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresar;
     private javax.swing.JComboBox<String> cboAnio;
     private javax.swing.JComboBox<String> cboDia;
+    private javax.swing.JComboBox<String> cboEstado;
     private javax.swing.JComboBox<String> cboMes;
     private javax.swing.JComboBox<String> cboNacionalidad;
     private javax.swing.JComboBox<String> cboRol;
@@ -623,6 +643,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -26,8 +26,7 @@ public class Persona extends Usuario {
     public Persona() {
     }
 
-    public Persona(int id_persona, String rut, String nombre, String apellidos, char sexo, String fecha_nacimiento, String telefono, String correo, String nacionalidad, int id_usuario, String usuario, String pass, int id_tipo) {
-        super(id_usuario, usuario, pass, id_tipo);
+    public Persona(int id_persona, String rut, String nombre, String apellidos, char sexo, String fecha_nacimiento, String telefono, String correo, String nacionalidad) {
         this.id_persona = id_persona;
         this.rut = rut;
         this.nombre = nombre;
@@ -38,6 +37,21 @@ public class Persona extends Usuario {
         this.correo = correo;
         this.nacionalidad = nacionalidad;
     }
+
+    public Persona(int id_persona, String rut, String nombre, String apellidos, char sexo, String fecha_nacimiento, String telefono, String correo, String nacionalidad, int id_usuario, String usuario, String pass, int id_tipo, String estado_usuario) {
+        super(id_usuario, usuario, pass, id_tipo, estado_usuario);
+        this.id_persona = id_persona;
+        this.rut = rut;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.sexo = sexo;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.nacionalidad = nacionalidad;
+    }
+
+    
 
     public int getId_persona() {
         return id_persona;

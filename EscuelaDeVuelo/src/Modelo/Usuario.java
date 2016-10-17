@@ -9,15 +9,20 @@ public class Usuario {
     private String pass;
     
     private int id_tipo;
+    
+    private String estado_usuario;
 
-    public Usuario(int id_usuario, String usuario, String pass, int id_tipo) {
+    public Usuario() {
+    }
+    
+    
+
+    public Usuario(int id_usuario, String usuario, String pass, int id_tipo, String estado_usuario) {
         this.id_usuario = id_usuario;
         this.usuario = usuario;
         this.pass = pass;
         this.id_tipo = id_tipo;
-    }
-
-    public Usuario() {
+        this.estado_usuario = estado_usuario;
     }
 
     public int getId_usuario() {
@@ -51,6 +56,16 @@ public class Usuario {
     public void setId_tipo(int id_tipo) {
         this.id_tipo = id_tipo;
     }
+
+    public String getEstado_usuario() {
+        return estado_usuario;
+    }
+
+    public void setEstado_usuario(String estado_usuario) {
+        this.estado_usuario = estado_usuario;
+    }
+
+    
     
 
    

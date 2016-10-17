@@ -31,9 +31,10 @@ public class Administrar_Usuarios {
             String nombreUsuario = nuevoUsuario.getUsuario();
             String pass = nuevoUsuario.getPass();
             int idtipo = nuevoUsuario.getId_tipo();
+            String estado_cuenta = nuevoUsuario.getEstado_usuario();
             Conexion conec = new Conexion();
             conec.conectar();
-            String sql = "INSERT INTO usuarios  VALUES ((select (max(id)+1)from usuarios),'"+nombreUsuario+"','"+pass+"','"+idtipo+"')";
+            String sql = "INSERT INTO usuarios  VALUES ((select (max(id)+1)from usuarios),'"+nombreUsuario+"','"+pass+"','"+idtipo+"','"+estado_cuenta+"')";
             
             
            
@@ -65,6 +66,7 @@ public class Administrar_Usuarios {
                 usuario.setUsuario(rs.getString(2));
                 usuario.setPass(rs.getString(3));
                 usuario.setId_tipo(rs.getInt(4));
+                usuario.setEstado_usuario(rs.getString(5));
                
             }
             if (fila==0) {
@@ -123,9 +125,10 @@ public class Administrar_Usuarios {
             String nombreUsuario = nuevoUsuario.getUsuario();
             String pass = nuevoUsuario.getPass();
             int idtipo = nuevoUsuario.getId_tipo();
+            String estado_cuenta = nuevoUsuario.getEstado_usuario();
             Conexion conec = new Conexion();
             conec.conectar();
-            String sql = "update usuarios set pass = '"+pass+"', perfiles_usuarios_id = "+idtipo+" where id = "+id;
+            String sql = "update usuarios set pass = '"+pass+"', perfiles_usuarios_id = "+idtipo+", estado_cuenta = '"+estado_cuenta+"' where id = "+id;
             
             
            
