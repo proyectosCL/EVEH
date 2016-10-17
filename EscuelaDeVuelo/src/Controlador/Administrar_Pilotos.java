@@ -16,10 +16,11 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
             int dias_vuelo = npiloto.getDias_vuelo();
             Date vencimiento_medicina = npiloto.getVencimiento_medicina();
             Date fecha_ultimo_vuelo = npiloto.getFecha_ultimo_vuelo();
+            int persona = npiloto.getId_persona();
              
             Conexion conec = new Conexion();
             conec.conectar();
-            String sql = "INSERT INTO usuarios  VALUES ((select (max(id)+1)from usuarios),')";
+            String sql = "INSERT INTO pilotos  VALUES ((select (max(id)+1)from pilotos),"+horas_vuelo+","+dias_vuelo+",'"+vencimiento_medicina+"','"+fecha_ultimo_vuelo+"',"+persona+")";
             conec.escribir(sql);
             
             
@@ -37,10 +38,10 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
              
             Conexion conec = new Conexion();
             conec.conectar();
-            String sql = "update usuarios set horas_vuelo= ,"
-                    + " dias_vuelo = ,"
-                    + " vencimiento_medicina= ,"
-                    + "ultimo_vuelo_realizado";
+            String sql = "update piloto set horas_vuelo= "+horas_vuelo+","
+                    + " dias_vuelo = "+dias_vuelo+","
+                    + " vencimiento_medicina= "+vencimiento_medicina+" ,"
+                    + "ultimo_vuelo_realizado"+fecha_ultimo_vuelo;
             conec.escribir(sql);
             
             
@@ -62,6 +63,7 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
             JOptionPane.showMessageDialog(null, "Eliminado correctamente");
             
         } catch (HeadlessException e) {
+            
         }
     }
 
