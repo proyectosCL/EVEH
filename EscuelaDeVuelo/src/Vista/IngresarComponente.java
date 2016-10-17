@@ -5,6 +5,11 @@
  */
 package Vista;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
+import Controlador.Administrar_Componente;
+import Database.Conexion;
+import Modelo.Componente;
+import javax.swing.JOptionPane;
 /**
  *
  * @author pcbla
@@ -16,6 +21,11 @@ public class IngresarComponente extends javax.swing.JFrame {
      */
     public IngresarComponente() {
         initComponents();
+        
+        RestrictedTextField descripcionLimit = new RestrictedTextField(txtDesc);
+        descripcionLimit.setLimit(40);
+        RestrictedTextField fabricanteLimit = new RestrictedTextField(txtFabricante);
+        descripcionLimit.setLimit(25);
     }
 
     /**
@@ -27,21 +37,178 @@ public class IngresarComponente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtDesc = new javax.swing.JTextField();
+        txtFabricante = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        spinHorasVuelo = new javax.swing.JSpinner();
+        spinDiasVuelo = new javax.swing.JSpinner();
+        cbxTipoNave = new javax.swing.JComboBox<>();
+        btnGuardarNuevoComponente = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setText("Ingresar componente");
+
+        jLabel2.setText("Descripcion");
+
+        txtDesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Fabricante");
+
+        jLabel4.setText("Horas de Vuelo");
+
+        jLabel5.setText("Dias de Vuelo");
+
+        jLabel6.setText("Tipo de Componente");
+
+        cbxTipoNave.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fuselaje", "Alas", "Empenaje", "Controles y Frenos", "Tren de Aterrizaje", "Equipos", "Motor", "Cabina" }));
+
+        btnGuardarNuevoComponente.setText("Guardar");
+        btnGuardarNuevoComponente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarNuevoComponenteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addGap(45, 45, 45)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtFabricante, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                        .addComponent(txtDesc, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(spinDiasVuelo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                        .addComponent(spinHorasVuelo, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(cbxTipoNave, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(210, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGuardarNuevoComponente)
+                .addGap(293, 293, 293))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(spinHorasVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(spinDiasVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(cbxTipoNave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnGuardarNuevoComponente)
+                .addContainerGap(116, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescActionPerformed
+        // TODO addfdf your handling code here:
+    }//GEN-LAST:event_txtDescActionPerformed
+
+    private void btnGuardarNuevoComponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarNuevoComponenteActionPerformed
+        // TODO add your handling code here:
+        
+        Conexion con = new Conexion();
+        con.conectar();
+        Administrar_Componente ingresarCompte = new Administrar_Componente();
+        int id = 0;
+        String desc = txtDesc.getText();
+        String fabricte = txtFabricante.getText();
+        Float horasVuelo = Float.parseFloat(spinHorasVuelo.getValue().toString());
+        int diasVuelo = Integer.parseInt(spinDiasVuelo.getValue().toString());
+        int tipoCompte=0;
+        switch (cbxTipoNave.getSelectedIndex()+1){
+            
+            case 1 :  tipoCompte = 1;
+            break;
+            
+            case 2 :  tipoCompte = 2;
+            break;
+            
+            case 3 : tipoCompte = 3;
+            break;
+            
+            case 4 :  tipoCompte =4;
+            break;
+            
+            case 5 :  tipoCompte = 5;
+            break;
+            
+            case 6 : tipoCompte = 6;
+            break;
+            
+            case 7 :  tipoCompte = 7;
+            break;
+            
+            case 8 : tipoCompte = 8;
+            break;
+        
+        }
+         
+        
+        Componente nvoCompte = new Componente(id, desc, fabricte, horasVuelo, diasVuelo, tipoCompte);
+         ingresarCompte.ingresarNuevoComponente(nvoCompte);
+        
+        
+    }//GEN-LAST:event_btnGuardarNuevoComponenteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -76,8 +243,26 @@ public class IngresarComponente extends javax.swing.JFrame {
                 new IngresarComponente().setVisible(true);
             }
         });
+        
+        
+        
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGuardarNuevoComponente;
+    private javax.swing.JComboBox<String> cbxTipoNave;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSpinner spinDiasVuelo;
+    private javax.swing.JSpinner spinHorasVuelo;
+    private javax.swing.JTextField txtDesc;
+    private javax.swing.JTextField txtFabricante;
     // End of variables declaration//GEN-END:variables
 }

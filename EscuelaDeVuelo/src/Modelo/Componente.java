@@ -21,14 +21,18 @@ public class Componente {
     public Componente() {
     }
 
-    public Componente(int id, String descripcion, String fabricante, Float horas_vuelo, int dias_vuelo) {
+    public Componente(int id, String descripcion, String fabricante, Float horas_vuelo, int dias_vuelo, int tipo_componente_id) {
         this.id = id;
         this.descripcion = descripcion;
         this.fabricante = fabricante;
         this.horas_vuelo = horas_vuelo;
         this.dias_vuelo = dias_vuelo;
+        this.tipo_componente_id = tipo_componente_id;
     }
 
+    
+    
+   
     public int getId() {
         return id;
     }
