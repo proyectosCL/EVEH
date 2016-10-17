@@ -2,6 +2,8 @@ package Controlador;
 
 import Database.Conexion;
 import Modelo.Aerodromo;
+import Modelo.Aeronave;
+import Modelo.Piloto;
 import Modelo.Vuelo;
 import Vista.ListarVuelo;
 import java.sql.ResultSet;
@@ -51,9 +53,50 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
             }
 
         } catch (Exception e) {
-
         }
         return listaAerodromo;
+    }
+
+    //Metodo para llenar la lista de aeronaves.
+    public ArrayList<Aeronave> listarAeronave() {
+        ArrayList listaAeronave = new ArrayList();
+        Aeronave aeronave;
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM aeronaves");
+            while (rs.next()) {
+                aeronave = new Aeronave();
+                aeronave.setId(rs.getString("id"));
+                aeronave.setMatricula(rs.getString("matricula"));
+                listaAeronave.add(aeronave);
+            }
+
+        } catch (Exception e) {
+        }
+        return listaAeronave;
+    }
+
+    //Metodo para llenar el combobox y la lista de pilotos.
+    public ArrayList<Piloto> listarPiloto() {
+        ArrayList listaPiloto = new ArrayList();
+        Piloto piloto;
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM pilotos JOIN personas ON pilotos.personas_id = personas.id");
+            while (rs.next()) {
+                piloto = new Piloto();
+                piloto.setId(rs.getInt("id"));
+                piloto.setRut(rs.getString("rut"));
+                piloto.setNombre(rs.getString("nombre"));
+                piloto.setApellidos(rs.getString("apellidos"));
+                listaPiloto.add(piloto);
+            }
+
+        } catch (Exception e) {
+        }
+        return listaPiloto;
     }
 
     //Metodo para llenar la tabla de vuelos.
@@ -81,24 +124,5 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
 
         }
         return listaVuelo;
-    }
-
-    public static void main(String[] args) {
-        ArrayList listaAerodromo = new ArrayList();
-        Aerodromo aerodromo;
-        try {
-            Conexion dbconn = new Conexion();
-            dbconn.conectar();
-            ResultSet rs = dbconn.consultar("SELECT * FROM aerodromos");
-            while (rs.next()) {
-                aerodromo = new Aerodromo();
-                System.out.print(rs.getInt("id"));
-                System.out.print(rs.getString("descripcion"));
-                System.out.println(rs.getString("ciudad"));
-            }
-
-        } catch (Exception e) {
-
-        }
     }
 }

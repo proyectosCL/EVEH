@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class Piloto extends Persona {
 
+    private int id;
+
     private Float horas_vuelo;
 
     private int dias_vuelo;
@@ -11,7 +13,9 @@ public class Piloto extends Persona {
     private Date vencimiento_medicina;
 
     private Date fecha_ultimo_vuelo;
-    
+
+    public Piloto() {
+    }
 
     public Piloto(Float horas_vuelo, int dias_vuelo, Date vencimiento_medicina, Date fecha_ultimo_vuelo) {
         this.horas_vuelo = horas_vuelo;
@@ -27,8 +31,14 @@ public class Piloto extends Persona {
         this.vencimiento_medicina = vencimiento_medicina;
         this.fecha_ultimo_vuelo = fecha_ultimo_vuelo;
     }
-    
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Float getHoras_vuelo() {
         return horas_vuelo;
@@ -62,7 +72,4 @@ public class Piloto extends Persona {
         this.fecha_ultimo_vuelo = fecha_ultimo_vuelo;
     }
 
-    
-
-    
 }
