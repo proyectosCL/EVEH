@@ -2,9 +2,9 @@ package Modelo;
 
 import java.util.Date;
 
-public class Licencia {
+public class Licencia extends Tipo_licencia{
 
-    private int id;
+    private int id_licencia;
 
     private int numero;
 
@@ -12,20 +12,26 @@ public class Licencia {
 
     private Date fecha_vencimiento;
 
-    public Licencia(int id, int numero, int dias_vuelo, Date fecha_vencimiento) {
-        this.id = id;
+    public Licencia(int id_licencia, int numero, int dias_vuelo, Date fecha_vencimiento, int id) {
+        super(id);
+        this.id_licencia = id;
         this.numero = numero;
         this.dias_vuelo = dias_vuelo;
         this.fecha_vencimiento = fecha_vencimiento;
     }
 
-    public int getId() {
-        return id;
+    public int getId_licencia() {
+        return id_licencia;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_licencia(int id_licencia) {
+        this.id_licencia = id_licencia;
     }
+    
+    
+    
+
+    
 
     public int getNumero() {
         return numero;
