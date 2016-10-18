@@ -167,5 +167,25 @@ public class Administrar_Personas {
         
         
     }
+    
+    public int buscaridpersona(int rut){
+        
+        
+         Conexion con = new Conexion();
+        try {
+            con.conectar();
+            Connection myconnection = con.getConexion();
+            PreparedStatement myStatement = myconnection.prepareStatement("SELECT * FROM personas where rut like '"+rut+"'");
+            ResultSet rs = myStatement.executeQuery();
+            while(rs.next()){
+                persona = new Persona();
+                persona.setId_persona(rs.getInt(1));
+            }
+        
+            
+        } catch (Exception e) {
+        }
+        return persona.getId_persona();
+    }
 
 }

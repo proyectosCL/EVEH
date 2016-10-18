@@ -7,7 +7,10 @@ package Controlador;
 
 import Database.Conexion;
 import Modelo.Licencia;
+import Modelo.Tipo_licencia;
 import java.awt.HeadlessException;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -22,25 +25,26 @@ public class Administrar_Licencia {
     public void ingresarLicencia(Licencia nlicencia){
         try{
            int numero =  nlicencia.getNumero();
-           int tipo_licencia = nlicencia.getId_licencia();
-           Date fecha_vencimiento = nlicencia.getFecha_vencimiento();
+           int tipo_licencia = nlicencia.getId();
+           String fecha_vencimiento = nlicencia.getFecha_vencimiento();
            int dias_vuelo = nlicencia.getDias_vuelo();
+           int horas_vuelo = nlicencia.getHoras_vuelo();
            
            Conexion conec = new Conexion();
             conec.conectar();
-            String sql = "INSERT INTO licencias  VALUES ((select (max(id)+1)from licencias),"+numero+","+tipo_licencia+",'"+fecha_vencimiento+"',"+dias_vuelo+")";
-            conec.escribir(sql);
-            
+            String sql = "INSERT INTO licencias  VALUES ((select (max(id)+1)from licencias),"+numero+","+tipo_licencia+",'"+fecha_vencimiento+"',"+dias_vuelo+","+horas_vuelo+")";
+//            conec.escribir(sql);
+            System.out.println(sql);
         }catch(Exception ex){
             
         }
     }
     
-    public void modeificarLicencia(Licencia nlicencia){
+    public void modificarLicencia(Licencia nlicencia){
         try{
          int numero =  nlicencia.getNumero();
            int tipo_licencia = nlicencia.getId_licencia();
-           Date fecha_vencimiento = nlicencia.getFecha_vencimiento();
+           String fecha_vencimiento = nlicencia.getFecha_vencimiento();
            int dias_vuelo = nlicencia.getDias_vuelo();
            
            Conexion conec = new Conexion();
@@ -70,5 +74,24 @@ public class Administrar_Licencia {
         } catch (HeadlessException e) {
             
         }
+    }
+    
+     public ArrayList<Tipo_licencia> listarTipoLicencia() {
+        ArrayList lista = new ArrayList();
+        Tipo_licencia tipoLicencia;
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM tipos_licencias");
+            while (rs.next()) {
+                tipoLicencia = new Tipo_licencia();
+                tipoLicencia.setId(rs.getInt("id"));
+                tipoLicencia.setDescripcion(rs.getString("descripcion"));;
+                lista.add(tipoLicencia);
+            }
+
+        } catch (Exception e) {
+        }
+        return lista;
     }
 }
