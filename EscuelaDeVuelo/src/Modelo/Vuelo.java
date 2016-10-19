@@ -6,7 +6,11 @@ public class Vuelo {
 
     private int id;
 
+    private int id_aerodromo_origen;
+
     private String aerodromo_origen;
+
+    private int id_aerodromo_destino;
 
     private String aerodromo_destino;
 
@@ -18,19 +22,24 @@ public class Vuelo {
 
     private Date fecha_vuelo;
 
+    private int id_aeronave;
+
     private String aeronave;
 
     public Vuelo() {
     }
 
-    public Vuelo(int id, String aerodromo_origen, String aerodromo_destino, Float horas_vuelo, char condicion_vuelo, String mision_vuelo, Date fecha_vuelo, String aeronave) {
+    public Vuelo(int id, int id_aerodromo_origen, String aerodromo_origen, int id_aerodromo_destino, String aerodromo_destino, Float horas_vuelo, char condicion_vuelo, String mision_vuelo, Date fecha_vuelo, int id_aeronave, String aeronave) {
         this.id = id;
+        this.id_aerodromo_origen = id_aerodromo_origen;
         this.aerodromo_origen = aerodromo_origen;
+        this.id_aerodromo_destino = id_aerodromo_destino;
         this.aerodromo_destino = aerodromo_destino;
         this.horas_vuelo = horas_vuelo;
         this.condicion_vuelo = condicion_vuelo;
         this.mision_vuelo = mision_vuelo;
         this.fecha_vuelo = fecha_vuelo;
+        this.id_aeronave = id_aeronave;
         this.aeronave = aeronave;
     }
 
@@ -42,12 +51,28 @@ public class Vuelo {
         this.id = id;
     }
 
+    public int getId_aerodromo_origen() {
+        return id_aerodromo_origen;
+    }
+
+    public void setId_aerodromo_origen(int id_aerodromo_origen) {
+        this.id_aerodromo_origen = id_aerodromo_origen;
+    }
+
     public String getAerodromo_origen() {
         return aerodromo_origen;
     }
 
     public void setAerodromo_origen(String aerodromo_origen) {
         this.aerodromo_origen = aerodromo_origen;
+    }
+
+    public int getId_aerodromo_destino() {
+        return id_aerodromo_destino;
+    }
+
+    public void setId_aerodromo_destino(int id_aerodromo_destino) {
+        this.id_aerodromo_destino = id_aerodromo_destino;
     }
 
     public String getAerodromo_destino() {
@@ -88,6 +113,14 @@ public class Vuelo {
 
     public void setFecha_vuelo(Date fecha_vuelo) {
         this.fecha_vuelo = fecha_vuelo;
+    }
+
+    public int getId_aeronave() {
+        return id_aeronave;
+    }
+
+    public void setId_aeronave(int id_aeronave) {
+        this.id_aeronave = id_aeronave;
     }
 
     public String getAeronave() {

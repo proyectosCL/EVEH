@@ -5,12 +5,14 @@
  */
 package Vista;
 
+import Controlador.Administrar_Aeronave;
 import Controlador.Administrar_Vuelo;
 import Modelo.Aerodromo;
 import Modelo.Aeronave;
 import Modelo.Piloto;
 import Modelo.Vuelo;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 
@@ -20,57 +22,31 @@ import javax.swing.DefaultListModel;
  */
 public class IngresarVuelo extends javax.swing.JFrame {
 
-    /**
-     * Creates new form IngresarVuelo
-     */
+    class ComboItem {
+
+        private String key;
+        private String value;
+
+        public ComboItem(String key, String value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return key;
+        }
+
+        public String getKey() {
+            return key;
+        }
+
+        public String getValue() {
+            return value;
+        }
+    }
+
     public IngresarVuelo() {
-        class ComboItem {
-
-            private String key;
-            private String value;
-
-            public ComboItem(String key, String value) {
-                this.key = key;
-                this.value = value;
-            }
-
-            @Override
-            public String toString() {
-                return key;
-            }
-
-            public String getKey() {
-                return key;
-            }
-
-            public String getValue() {
-                return value;
-            }
-        }
-
-        class Component {
-
-            private String key;
-            private String value;
-
-            public Component(String key, String value) {
-                this.key = key;
-                this.value = value;
-            }
-
-            @Override
-            public String toString() {
-                return key;
-            }
-
-            public String getKey() {
-                return key;
-            }
-
-            public String getValue() {
-                return value;
-            }
-        }
 
         initComponents();
 
@@ -90,17 +66,17 @@ public class IngresarVuelo extends javax.swing.JFrame {
         num = listaPiloto.size();
         for (int i = 0; i < num; i++) {
             this.jComboBoxPiloto.addItem(new ComboItem(listaPiloto.get(i).getRut() + " | " + listaPiloto.get(i).getNombre() + " " + listaPiloto.get(i).getApellidos(), String.valueOf(listaPiloto.get(i).getId())));
-            
+
         }
         DefaultListModel model = new DefaultListModel();
-            Object[] items = new Object[20];
-            for(int i = 0; i < items.length; i++) {
-                items[i] = listaPiloto.get(i).getRut();   
-            }
-            for(int i = 0; i < items.length; i++) {
-                model.add(i, items[i]);
-            }
-            this.jListPasajeros.setModel(model);
+        Object[] items = new Object[20];
+        for (int i = 0; i < items.length; i++) {
+            items[i] = listaPiloto.get(i).getRut();
+        }
+        for (int i = 0; i < items.length; i++) {
+            model.add(i, items[i]);
+        }
+        this.jListPasajeros.setModel(model);
         //Aeronave
         ArrayList<Aeronave> listaAeronave = av.listarAeronave();
         num = listaAeronave.size();
@@ -127,9 +103,9 @@ public class IngresarVuelo extends javax.swing.JFrame {
         jTextFieldMision = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jComboBoxAeronave = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
+        jButtonVolver = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        jButtonIngresar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListPasajeros = new javax.swing.JList();
@@ -165,14 +141,19 @@ public class IngresarVuelo extends javax.swing.JFrame {
 
         jComboBoxAeronave.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
 
-        jButton1.setText("< Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonVolver.setText("< Volver");
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonVolverActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Ingresar");
+        jButtonIngresar.setText("Ingresar");
+        jButtonIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIngresarActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Pasajeros");
 
@@ -194,7 +175,7 @@ public class IngresarVuelo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jButton1))
+                        .addComponent(jButtonVolver))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -208,28 +189,31 @@ public class IngresarVuelo extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
                                 .addComponent(jLabel1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jComboBoxOrigen, 0, 134, Short.MAX_VALUE)
-                                .addComponent(jTextFieldMision)
-                                .addComponent(jTextField2)
-                                .addComponent(jComboBoxCondicion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBoxPiloto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBoxAeronave, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBoxDestino, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(199, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBoxOrigen, 0, 216, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldMision)
+                                    .addComponent(jTextField2)
+                                    .addComponent(jComboBoxCondicion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxPiloto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxAeronave, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxDestino, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(155, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(jButtonIngresar)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jButton1)
+                .addComponent(jButtonVolver)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -263,7 +247,7 @@ public class IngresarVuelo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                        .addComponent(jButtonIngresar))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -277,10 +261,34 @@ public class IngresarVuelo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxDestinoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         new MenuPrincipalAdministrador().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonVolverActionPerformed
+
+    private void jButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarActionPerformed
+
+        Administrar_Vuelo av = new Administrar_Vuelo();
+        Vuelo vuelo = new Vuelo();
+        ComboItem item_aerodromo_origen = (ComboItem) this.jComboBoxOrigen.getSelectedItem();
+        vuelo.setId_aerodromo_origen(Integer.parseInt(item_aerodromo_origen.getValue()));
+        
+        ComboItem item_aerodromo_destino = (ComboItem) this.jComboBoxDestino.getSelectedItem();
+        vuelo.setId_aerodromo_destino(Integer.parseInt(item_aerodromo_destino.getValue()));
+        
+        ComboItem item_condicion_vuelo = (ComboItem) this.jComboBoxCondicion.getSelectedItem();
+        vuelo.setCondicion_vuelo(item_condicion_vuelo.getValue().charAt(0));
+        
+        vuelo.setMision_vuelo(this.jTextFieldMision.getText());
+        
+        vuelo.setFecha_vuelo(new Date());
+        
+        ComboItem item_aeronave = (ComboItem) this.jComboBoxAeronave.getSelectedItem();
+        vuelo.setId_aeronave(Integer.parseInt(item_aeronave.getValue()));
+
+        
+        av.ingresarVuelo(vuelo);
+    }//GEN-LAST:event_jButtonIngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,8 +326,8 @@ public class IngresarVuelo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonIngresar;
+    private javax.swing.JButton jButtonVolver;
     private javax.swing.JComboBox jComboBoxAeronave;
     private javax.swing.JComboBox jComboBoxCondicion;
     private javax.swing.JComboBox jComboBoxDestino;

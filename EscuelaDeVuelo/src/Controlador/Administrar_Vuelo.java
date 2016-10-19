@@ -12,15 +12,15 @@ import javax.swing.JTable;
 
 public class Administrar_Vuelo implements administrar_horas_vuelo {
 
-    public void ingresarVuelo(Vuelo vuelo) {
-
+    public boolean ingresarVuelo(Vuelo vuelo) {
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
-            dbconn.escribir("INSERT INTO vuelos VALUES ((select (max(id)+1)from vuelos),'" + vuelo.getAerodromo_origen() + "','" + vuelo.getAerodromo_destino() + "','" + vuelo.getHoras_vuelo() + "','" + vuelo.getCondicion_vuelo() + "','" + vuelo.getMision_vuelo() + "','" + vuelo.getFecha_vuelo() + "','" + vuelo.getAeronave() + "')");
-            dbconn.escribir("INSERT INTO tripulacion VALUES (select (max(id)) from vuelos)");
+            dbconn.escribir("INSERT INTO vuelos VALUES ((SELECT (MAX(id)+1)from vuelos),"+vuelo.getId_aerodromo_origen()+","+vuelo.getId_aerodromo_destino()+","+null+",'"+vuelo.getCondicion_vuelo()+"','"+vuelo.getMision_vuelo()+"','21/09/2016',"+vuelo.getId_aeronave()+")");
+            //dbconn.escribir("INSERT INTO tripulacion VALUES (select (max(id)) from vuelos)");
+            return true;
         } catch (Exception e) {
-
+            return false;
         }
 
     }
