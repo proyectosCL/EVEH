@@ -26,7 +26,8 @@ public class AgregarComponente extends javax.swing.JFrame {
         initComponents();
         cargarTablaFuselaje();
         cargarTablaAlas();
-
+        cargarTablaEmpenaje();
+        cargarTablaControlesFrenos();
         
     }
 
@@ -46,7 +47,13 @@ public class AgregarComponente extends javax.swing.JFrame {
         jScrollPane9 = new javax.swing.JScrollPane();
         tablaAlas = new javax.swing.JTable();
         jScrollPane10 = new javax.swing.JScrollPane();
+        tablaEmpenaje = new javax.swing.JTable();
+        jScrollPane11 = new javax.swing.JScrollPane();
         tablaFuselaje = new javax.swing.JTable();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        tablaControlesFrenos = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +77,19 @@ public class AgregarComponente extends javax.swing.JFrame {
         ));
         jScrollPane9.setViewportView(tablaAlas);
 
+        tablaEmpenaje.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane10.setViewportView(tablaEmpenaje);
+
         tablaFuselaje.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -81,33 +101,61 @@ public class AgregarComponente extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane10.setViewportView(tablaFuselaje);
+        jScrollPane11.setViewportView(tablaFuselaje);
+
+        tablaControlesFrenos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane12.setViewportView(tablaControlesFrenos);
+
+        jLabel4.setText("Empenaje");
+
+        jLabel5.setText("Controles y Frenos Aerodinamicos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(114, 114, 114)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(688, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(290, 290, 290)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addGap(179, 179, 179))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(285, 285, 285)
-                        .addComponent(jLabel2))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(271, 271, 271)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(90, 90, 90))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(285, 285, 285)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(335, 335, 335))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(62, Short.MAX_VALUE)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(55, 55, 55)))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(62, 62, 62)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(626, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,17 +163,25 @@ public class AgregarComponente extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(254, 254, 254)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4))
+                .addGap(15, 15, 15)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(134, 134, 134)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(264, Short.MAX_VALUE)))
+                    .addGap(129, 129, 129)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(277, Short.MAX_VALUE)))
         );
 
         pack();
@@ -158,6 +214,8 @@ public class AgregarComponente extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -169,8 +227,13 @@ public class AgregarComponente extends javax.swing.JFrame {
 
     private void cargarTablaFuselaje() {
         //Definición de nombres y tamaño de las columnas al iniciar la ventana.
-        DefaultTableModel modelo = new DefaultTableModel();
+        DefaultTableModel modelo = new DefaultTableModel() {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         tablaFuselaje.setModel(modelo);
+        tablaFuselaje.getTableHeader().setReorderingAllowed(false);
         //.:Nombres de columnas:.
         modelo.addColumn("ID");
         modelo.addColumn("DESCRIPCION");
@@ -186,7 +249,7 @@ public class AgregarComponente extends javax.swing.JFrame {
         columnModel.getColumn(3).setPreferredWidth(120);
         columnModel.getColumn(4).setPreferredWidth(100);
         Administrar_Componente ac = new Administrar_Componente();
-        ArrayList<Componente> listaFuselaje = ac.listarFuselaje();
+        ArrayList<Componente> listaFuselaje = ac.listarFiltro(1);
         Object[] fila = new Object[8];
         int num = listaFuselaje.size();
         for (int i = 0; i < num; i++) {
@@ -203,8 +266,13 @@ public class AgregarComponente extends javax.swing.JFrame {
 
     private void cargarTablaAlas() {
         //Definición de nombres y tamaño de las columnas al iniciar la ventana.
-        DefaultTableModel modelo = new DefaultTableModel();
+        DefaultTableModel modelo = new DefaultTableModel() {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         tablaAlas.setModel(modelo);
+        tablaAlas.getTableHeader().setReorderingAllowed(false);
         //.:Nombres de columnas:.
         modelo.addColumn("ID");
         modelo.addColumn("DESCRIPCION");
@@ -220,7 +288,7 @@ public class AgregarComponente extends javax.swing.JFrame {
         columnModel.getColumn(3).setPreferredWidth(120);
         columnModel.getColumn(4).setPreferredWidth(100);
         Administrar_Componente ac = new Administrar_Componente();
-        ArrayList<Componente> listaAlas = ac.listarAlas();
+        ArrayList<Componente> listaAlas = ac.listarFiltro(2);
         Object[] fila = new Object[8];
         int num = listaAlas.size();
         for (int i = 0; i < num; i++) {
@@ -235,15 +303,101 @@ public class AgregarComponente extends javax.swing.JFrame {
 
     }
 
+    private void cargarTablaEmpenaje() {
+        //Definición de nombres y tamaño de las columnas al iniciar la ventana.
+        DefaultTableModel modelo = new DefaultTableModel() {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        tablaEmpenaje.setModel(modelo);
+        tablaEmpenaje.getTableHeader().setReorderingAllowed(false);
+        //.:Nombres de columnas:.
+        modelo.addColumn("ID");
+        modelo.addColumn("DESCRIPCION");
+        modelo.addColumn("FABRICANTE");
+        modelo.addColumn("HORAS DE VUELO");
+        modelo.addColumn("DIAS DE VUELO");
+        //.:Tamaño de columnas:.
+        tablaEmpenaje.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        TableColumnModel columnModel = tablaEmpenaje.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(30);
+        columnModel.getColumn(1).setPreferredWidth(140);
+        columnModel.getColumn(2).setPreferredWidth(125);
+        columnModel.getColumn(3).setPreferredWidth(120);
+        columnModel.getColumn(4).setPreferredWidth(100);
+        Administrar_Componente ac = new Administrar_Componente();
+        ArrayList<Componente> listaEmpenaje = ac.listarFiltro(3);
+        Object[] fila = new Object[8];
+        int num = listaEmpenaje.size();
+        for (int i = 0; i < num; i++) {
+            fila[0] = listaEmpenaje.get(i).getId();
+            fila[1] = listaEmpenaje.get(i).getDescripcion();
+            fila[2] = listaEmpenaje.get(i).getFabricante();
+            fila[3] = listaEmpenaje.get(i).getHoras_vuelo();
+            fila[4] = listaEmpenaje.get(i).getDias_vuelo();
+            modelo.addRow(fila);
+        }
+        tablaEmpenaje.updateUI();
+
+    }
+
+    private void cargarTablaControlesFrenos() {
+        //Definición de nombres y tamaño de las columnas al iniciar la ventana.
+        DefaultTableModel modelo = new DefaultTableModel() {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        tablaControlesFrenos.setModel(modelo);
+        tablaControlesFrenos.getTableHeader().setReorderingAllowed(false);
+        //.:Nombres de columnas:.
+        modelo.addColumn("ID");
+        modelo.addColumn("DESCRIPCION");
+        modelo.addColumn("FABRICANTE");
+        modelo.addColumn("HORAS DE VUELO");
+        modelo.addColumn("DIAS DE VUELO");
+        //.:Tamaño de columnas:.
+        tablaControlesFrenos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        TableColumnModel columnModel = tablaControlesFrenos.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(30);
+        columnModel.getColumn(1).setPreferredWidth(140);
+        columnModel.getColumn(2).setPreferredWidth(125);
+        columnModel.getColumn(3).setPreferredWidth(120);
+        columnModel.getColumn(4).setPreferredWidth(100);
+        Administrar_Componente ac = new Administrar_Componente();
+        ArrayList<Componente> listaControlesFrenos = ac.listarFiltro(4);
+        Object[] fila = new Object[8];
+        int num = listaControlesFrenos.size();
+        for (int i = 0; i < num; i++) {
+            fila[0] = listaControlesFrenos.get(i).getId();
+            fila[1] = listaControlesFrenos.get(i).getDescripcion();
+            fila[2] = listaControlesFrenos.get(i).getFabricante();
+            fila[3] = listaControlesFrenos.get(i).getHoras_vuelo();
+            fila[4] = listaControlesFrenos.get(i).getDias_vuelo();
+            modelo.addRow(fila);
+        }
+        tablaControlesFrenos.updateUI();
+
+    }
+
+   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable tablaAlas;
+    private javax.swing.JTable tablaControlesFrenos;
+    private javax.swing.JTable tablaEmpenaje;
     private javax.swing.JTable tablaFuselaje;
     // End of variables declaration//GEN-END:variables
 }
