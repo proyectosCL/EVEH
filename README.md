@@ -5,12 +5,12 @@
 Script: http://www.mediafire.com/file/cty2fw5e6zgzcxu/db_escuela_aviacion.ddl (18-10-2016)
 
 * 30-09-2016
-  Se cambio 'user' a 'cuenta' dentro de la tabla USUARIOS.
+  * Se cambio 'user' a 'cuenta' dentro de la tabla USUARIOS.
 * 18-10-2016
   * Se elimino UNIQUE INDEX licencias de la tabla LICENCIAS.
-   * Se elimino UNIQUE INDEX vuelos_origen de la tabla VUELOS.
-   * Se elimino UNIQUE INDEX vuelos_destino de la tabla VUELOS.
-   * Ahora horas_vuelo de la tabla VUELOS puede ser null.
+  * Se elimino UNIQUE INDEX vuelos_origen de la tabla VUELOS.
+  * Se elimino UNIQUE INDEX vuelos_destino de la tabla VUELOS.
+  * Ahora horas_vuelo de la tabla VUELOS puede ser null.
 
 # Conectarse a la base de datos
 1. Nueva conección.
