@@ -29,14 +29,16 @@ public class Administrar_Licencia {
            String fecha_vencimiento = nlicencia.getFecha_vencimiento();
            int dias_vuelo = nlicencia.getDias_vuelo();
            int horas_vuelo = nlicencia.getHoras_vuelo();
+           int id_piloto = nlicencia.getId_piloto();
            
            Conexion conec = new Conexion();
             conec.conectar();
-            String sql = "INSERT INTO licencias  VALUES ((select (max(id)+1)from licencias),"+numero+","+tipo_licencia+",'"+fecha_vencimiento+"',"+dias_vuelo+","+horas_vuelo+")";
-//            conec.escribir(sql);
+            String sql = "INSERT INTO licencias  VALUES ((select (max(id)+1)from licencias),"+numero+","+tipo_licencia+",'"+fecha_vencimiento+"',"+dias_vuelo+","+horas_vuelo+","+id_piloto+")";
             System.out.println(sql);
-        }catch(Exception ex){
+            conec.escribir(sql);
             
+        }catch(Exception ex){
+            System.out.println(ex);
         }
     }
     

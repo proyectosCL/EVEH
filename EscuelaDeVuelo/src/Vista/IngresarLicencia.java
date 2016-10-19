@@ -7,6 +7,7 @@ package Vista;
 
 import Controlador.Administrar_Licencia;
 import Controlador.Administrar_Personas;
+import Controlador.Administrar_Pilotos;
 import Modelo.Licencia;
 import Modelo.Tipo_licencia;
 import java.text.SimpleDateFormat;
@@ -306,23 +307,25 @@ public class IngresarLicencia extends javax.swing.JFrame {
         int tipo_licencia = Integer.parseInt(((ComboItem)item).getValue());
         
         int id_licencia = 0;
-        int rut = Integer.parseInt(jTextFieldRut.getText());
+        String rut = jTextFieldRut.getText();
         int numero_licencia = Integer.parseInt(jTextFieldNumeroLicencia.getText());
         String fecha_vencimiento = cboDia.getSelectedItem()+"/"+(cboMes.getSelectedIndex()+1)+"/"+cboAnio.getSelectedItem();
         int horas = Integer.parseInt(jTextFieldHoras.getText());
         int dias = Integer.parseInt(jTextFieldDias.getText());
         
+        
+        Administrar_Licencia al = new Administrar_Licencia();
+        Administrar_Pilotos ap = new Administrar_Pilotos();
         int id_piloto = 0;
+        id_piloto = ap.buscarIdPiloto(rut);
+       
+//        JOptionPane.showMessageDialog(null,"._."+id_piloto);
         
 
-        
-//        JOptionPane.showMessageDialog(null,"._."+);
-        
+                Licencia userr = new Licencia(id_licencia,numero_licencia,dias, horas, fecha_vencimiento, tipo_licencia,id_piloto);
 
-//                Licencia userr = new Licencia(id_licencia,numero_licencia,dias, horas, fecha_vencimiento, tipo_licencia);
-
-                Administrar_Licencia al = new Administrar_Licencia();
-//                al.ingresarLicencia(userr);
+                
+               al.ingresarLicencia(userr);
 
 //                    if (usr.buscarUsuario(userr.getUsuario())) {
 //                            JOptionPane.showMessageDialog(null, "el nombre de usuario ya esta registrado, por favor seleccione otro");

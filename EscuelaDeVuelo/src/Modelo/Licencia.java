@@ -23,6 +23,7 @@ public class Licencia extends Tipo_licencia{
         this.id_licencia = id_licencia;
         this.numero = numero;
         this.dias_vuelo = dias_vuelo;
+        this.horas_vuelo = horas_vuelo;
         this.fecha_vencimiento = fecha_vencimiento;
         this.id_piloto = id_piloto;
     }
