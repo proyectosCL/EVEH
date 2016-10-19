@@ -105,10 +105,16 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <Component id="jScrollPane3" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jScrollPane3" min="-2" pref="131" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="lblhorasvuelito" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jScrollPane2" min="-2" pref="131" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="lbldiasvuelito" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                       <Component id="btningresar" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -192,7 +198,10 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="lblhorasvuelo" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="jScrollPane3" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="lblhorasvuelito" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -202,7 +211,10 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btningresar" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="btningresar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbldiasvuelito" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="jScrollPane2" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -544,6 +556,16 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblusuario">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="*"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblhorasvuelito">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="*"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbldiasvuelito">
       <Properties>
         <Property name="text" type="java.lang.String" value="*"/>
       </Properties>

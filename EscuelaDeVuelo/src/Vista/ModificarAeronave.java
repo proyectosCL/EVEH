@@ -61,6 +61,8 @@ public class ModificarAeronave extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         btncargar = new javax.swing.JButton();
         lblusuario = new javax.swing.JLabel();
+        lblhorasvuelito = new javax.swing.JLabel();
+        lbldiasvuelito = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -165,6 +167,10 @@ public class ModificarAeronave extends javax.swing.JFrame {
 
         lblusuario.setText("*");
 
+        lblhorasvuelito.setText("*");
+
+        lbldiasvuelito.setText("*");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -232,10 +238,15 @@ public class ModificarAeronave extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(txtanual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(txtaero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lblhorasvuelito))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(74, 74, 74)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lbldiasvuelito)
+                                        .addGap(30, 30, 30)
                                         .addComponent(btningresar))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(43, 43, 43)
@@ -297,7 +308,9 @@ public class ModificarAeronave extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblhorasvuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblhorasvuelito)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(11, 11, 11)
@@ -305,7 +318,9 @@ public class ModificarAeronave extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btningresar)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btningresar)
+                                .addComponent(lbldiasvuelito))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -316,9 +331,9 @@ public class ModificarAeronave extends javax.swing.JFrame {
     private void txtmatriculaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtmatriculaFocusLost
         if(txtmatricula.getText().equals("")){
             //JOptionPane.showMessageDialog(null, "La matricula no puede estar vacia");
-            lblmatricula.setEnabled(true);
+            lblusuario.setEnabled(true);
 
-        }else{lblmatricula.setEnabled(false);
+        }else{lblusuario.setEnabled(false);
         }
         
     
@@ -333,17 +348,17 @@ public class ModificarAeronave extends javax.swing.JFrame {
         if(txthorasvuelo.getText().equals("")){
             //JOptionPane.showMessageDialog(null, "Las horas vuelo no puede estar vacio");
             // lblhorasvuelo.setVisible(true);
-            lblhorasvuelo.setEnabled(true);
+            lblhorasvuelito.setEnabled(true);
 
-        }else{lblhorasvuelo.setEnabled(false);
+        }else{lblhorasvuelito.setEnabled(false);
 
     }//GEN-LAST:event_txthorasvueloFocusLost
     }
     private void txtdiasvueloFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtdiasvueloFocusLost
         if(txtdiasvuelo.getText().equals("")){
             //JOptionPane.showMessageDialog(null, "Los dias de vuelo no puede estar vacio");
-            lbldiasvuelo.setEnabled(true);
-        }else{lbldiasvuelo.setEnabled(false);}// TODO add your handling code here:
+            lbldiasvuelito.setEnabled(true);
+        }else{lbldiasvuelito.setEnabled(false);}// TODO add your handling code here:
     }//GEN-LAST:event_txtdiasvueloFocusLost
 
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
@@ -381,7 +396,7 @@ public class ModificarAeronave extends javax.swing.JFrame {
             break;
         }
 
-        if (lblmatricula.isEnabled()||lbldiasvuelo.isEnabled()||lblhorasvuelo.isEnabled()) {
+        if (lblusuario.isEnabled()||lbldiasvuelo.isEnabled()||lblhorasvuelito.isEnabled()) {
             JOptionPane.showMessageDialog(null, "debe llenar todos los campos ");
         }else {
             Aeronave nueva = new Aeronave(id_persona,matricula,tiponave,estado,fechaaero,fechainsp,horasvuelo,diasvuelo);
@@ -520,8 +535,10 @@ public class ModificarAeronave extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lbldiasvuelito;
     private javax.swing.JLabel lbldiasvuelo;
     private javax.swing.JLabel lblestado;
+    private javax.swing.JLabel lblhorasvuelito;
     private javax.swing.JLabel lblhorasvuelo;
     private javax.swing.JLabel lblmatricula;
     private javax.swing.JLabel lbltiponave;
