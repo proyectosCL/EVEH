@@ -281,7 +281,7 @@ public class IngresarLicencia extends javax.swing.JFrame {
         }
         
         
-        int horas = Integer.parseInt(jTextFieldHoras.getText());
+        float horas = Integer.parseInt(jTextFieldHoras.getText());
         int dias = Integer.parseInt(jTextFieldDias.getText());
         
         

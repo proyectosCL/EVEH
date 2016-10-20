@@ -12,13 +12,13 @@ public class Licencia extends Tipo_licencia{
 
     private int dias_vuelo;
     
-    private int horas_vuelo;
+    private float horas_vuelo;
 
     private String fecha_vencimiento;
     
     private int id_piloto;
 
-    public Licencia(int id_licencia, int numero, int dias_vuelo,int horas_vuelo,String fecha_vencimiento, int id,int id_piloto) {
+    public Licencia(int id_licencia, int numero, int dias_vuelo,float horas_vuelo,String fecha_vencimiento, int id,int id_piloto) {
         super(id);
         this.id_licencia = id_licencia;
         this.numero = numero;
@@ -27,6 +27,11 @@ public class Licencia extends Tipo_licencia{
         this.fecha_vencimiento = fecha_vencimiento;
         this.id_piloto = id_piloto;
     }
+
+    public Licencia() {
+    }
+    
+    
 
     public int getId_piloto() {
         return id_piloto;
@@ -37,11 +42,11 @@ public class Licencia extends Tipo_licencia{
     }
 
     
-    public int getHoras_vuelo() {
+    public float getHoras_vuelo() {
         return horas_vuelo;
     }
 
-    public void setHoras_vuelo(int horas_vuelo) {
+    public void setHoras_vuelo(float horas_vuelo) {
         this.horas_vuelo = horas_vuelo;
     }
 

@@ -131,4 +131,21 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
             }
             return lista;
         }
+    
+    public String buscarRutPiloto(int id){
+        Piloto piloto;
+        piloto = new Piloto();
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT personas.rut FROM personas  join pilotos on personas.id = pilotos.PERSONAS_ID where pilotos.id = "+id);
+            while (rs.next()) {
+                
+                piloto.setFecha_ultimo_vuelo(rs.getString(1));
+            }
+
+        } catch (Exception e) {
+        }
+        return piloto.getFecha_ultimo_vuelo();
+    }
 }

@@ -74,6 +74,7 @@ public class ListarPiloto extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,12 +87,17 @@ public class ListarPiloto extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Listar Pilotos");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(154, 154, 154)
                 .addComponent(jButton1)
                 .addContainerGap())
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
@@ -100,9 +106,11 @@ public class ListarPiloto extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(7, 7, 7)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
         );
 
         pack();
@@ -111,24 +119,29 @@ public class ListarPiloto extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
         Clear_Table();
-        Administrar_Pilotos ap = new Administrar_Pilotos();
-       Administrar_Licencia al = new Administrar_Licencia();
-       
-        ArrayList<Piloto> lista = ap.listarPiloto();
-        Object[] fila = new Object[9];
-        int num = lista.size();
-        for (int i = 0; i < num; i++) {
-            fila[0] = lista.get(i).getId();
-            fila[1] = lista.get(i).getRut();
-            fila[2] = lista.get(i).getNombre()+" "+lista.get(i).getApellidos();
-            fila[3] = lista.get(i).getHoras_vuelo();
-            fila[4] = lista.get(i).getDias_vuelo();
-            fila[5] = lista.get(i).getVencimiento_medicina();
-            fila[6] = lista.get(i).getFecha_ultimo_vuelo();
-            fila[7] = "";
-            modelo.addRow(fila);
+        try{
+            Administrar_Pilotos ap = new Administrar_Pilotos();
+            Administrar_Licencia al = new Administrar_Licencia();
+
+             ArrayList<Piloto> lista = ap.listarPiloto();
+             Object[] fila = new Object[9];
+             int num = lista.size();
+             for (int i = 0; i < num; i++) {
+                 fila[0] = lista.get(i).getId();
+                 fila[1] = lista.get(i).getRut();
+                 fila[2] = lista.get(i).getNombre()+" "+lista.get(i).getApellidos();
+                 fila[3] = lista.get(i).getHoras_vuelo();
+                 fila[4] = lista.get(i).getDias_vuelo();
+                 fila[5] = lista.get(i).getVencimiento_medicina();
+                 fila[6] = lista.get(i).getFecha_ultimo_vuelo();
+                 fila[7] = "";
+                 modelo.addRow(fila);
+             }
+             jTable1.updateUI();
+        }catch(Exception ex){
+            System.out.println(ex);
         }
-        jTable1.updateUI();
+        
         
         
         
@@ -172,6 +185,7 @@ public class ListarPiloto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

@@ -10,8 +10,9 @@ import Modelo.Licencia;
 import Modelo.Tipo_licencia;
 import java.awt.HeadlessException;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,7 +29,7 @@ public class Administrar_Licencia {
            int tipo_licencia = nlicencia.getId();
            String fecha_vencimiento = nlicencia.getFecha_vencimiento();
            int dias_vuelo = nlicencia.getDias_vuelo();
-           int horas_vuelo = nlicencia.getHoras_vuelo();
+           float horas_vuelo = nlicencia.getHoras_vuelo();
            int id_piloto = nlicencia.getId_piloto();
            
            Conexion conec = new Conexion();
@@ -96,5 +97,71 @@ public class Administrar_Licencia {
         }
         return lista;
     }
+     public ArrayList<Licencia> listarLicencia(){
+         ArrayList lista = new ArrayList();
+         Licencia licencia;
+         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+         
+         
+         try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM licencias join tipos_licencias on tipos_licencias_id = tipos_licencias.id");
+            while (rs.next()) {
+                licencia = new Licencia();
+                licencia.setId(rs.getInt("id"));
+                licencia.setNumero(rs.getInt("numero"));
+                try {
+                        licencia.setFecha_vencimiento(df.format(rs.getDate("fecha_vencimiento")));
+                    } catch (Exception ex) {
+                        System.out.println(ex);
+                    }
+                
+                licencia.setHoras_vuelo(rs.getFloat("horas_vuelo"));
+                licencia.setDias_vuelo(rs.getInt("dias_vuelo"));
+                licencia.setDescripcion(rs.getString("descripcion"));
+                licencia.setId_piloto(rs.getInt("pilotos_id"));
+                lista.add(licencia);
+            }
+
+        } catch (Exception e) {
+             System.out.println(e);
+        }
+         
+         return lista;
+     }
      
+      public ArrayList<Licencia> listarLicencia2(String rut){
+         ArrayList lista = new ArrayList();
+         Licencia licencia;
+         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+         
+         
+         try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM licencias join tipos_licencias on tipos_licencias_id = tipos_licencias.id join pilotos on pilotos.id = licencias.pilotos_id join personas on personas.id = pilotos.personas_id where personas.rut = '"+rut+"'");
+            while (rs.next()) {
+                licencia = new Licencia();
+                licencia.setId(rs.getInt("id"));
+                licencia.setNumero(rs.getInt("numero"));
+                try {
+                        licencia.setFecha_vencimiento(df.format(rs.getDate("fecha_vencimiento")));
+                    } catch (Exception ex) {
+                        System.out.println(ex);
+                    }
+                
+                licencia.setHoras_vuelo(rs.getFloat("horas_vuelo"));
+                licencia.setDias_vuelo(rs.getInt("dias_vuelo"));
+                licencia.setDescripcion(rs.getString("descripcion"));
+                licencia.setId_piloto(rs.getInt("pilotos_id"));
+                lista.add(licencia);
+            }
+
+        } catch (Exception e) {
+             System.out.println(e);
+        }
+         
+         return lista;
+     }
 }
