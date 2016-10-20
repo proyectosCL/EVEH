@@ -15,7 +15,7 @@ import javax.swing.JTable;
 
 public class Administrar_Vuelo implements administrar_horas_vuelo {
 
-    public boolean ingresarVuelo(Vuelo vuelo) {
+    public boolean ingresarVuelo(Vuelo vuelo, int piloto, String[] tripulacion) {
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
@@ -23,7 +23,12 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
             DateFormat df2 = new SimpleDateFormat("HH:mm:ss");
             String date = df1.format(vuelo.getFecha_vuelo()) + ":" + df2.format(vuelo.getFecha_vuelo());
             dbconn.escribir("INSERT INTO vuelos VALUES ((SELECT (MAX(id)+1) FROM vuelos)," + vuelo.getId_aerodromo_origen() + "," + vuelo.getId_aerodromo_destino() + "," + null + ",'" + vuelo.getCondicion_vuelo() + "','" + vuelo.getMision_vuelo() + "',to_date('" + date + "','dd/MM/yyyy:hh24:mi:ss')," + vuelo.getId_aeronave() + ")");
-            //dbconn.escribir("INSERT INTO tripulacion VALUES (select (max(id)) from vuelos)");
+            dbconn.escribir("INSERT INTO tripulacion VALUES ((SELECT (MAX(id)) FROM vuelos)," + piloto + ")");
+            for (int i = 0; i < tripulacion.length; i++) {
+                System.out.println(tripulacion[i]);
+                System.out.println(buscarPiloto(tripulacion[i]));
+                dbconn.escribir("INSERT INTO tripulacion VALUES ((SELECT (MAX(id)) FROM vuelos)," + buscarPiloto(tripulacion[i]) + ")");
+            }
             return true;
         } catch (Exception e) {
             return false;
@@ -38,6 +43,7 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
+            dbconn.escribir("DELETE FROM tripulacion WHERE vuelos_id = " + id);
             dbconn.escribir("DELETE FROM vuelos WHERE id = " + id);
             return true;
         } catch (Exception e) {
@@ -94,6 +100,22 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
         return listaAeronave;
     }
 
+    //Metodo para ingresar un piloto a la tripulacion
+    public int buscarPiloto(String rut) {
+        Piloto piloto = new Piloto();
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM pilotos JOIN personas ON pilotos.personas_id = personas.id WHERE rut = '" + rut + "'");
+            while (rs.next()) {
+                piloto.setId(rs.getInt("id"));
+                piloto.setRut(rs.getString("rut"));
+            }
+        } catch (Exception e) {
+        }
+        return piloto.getId();
+    }
+
     //Metodo para llenar el combobox y la lista de pilotos.
     public ArrayList<Piloto> listarPiloto() {
         ArrayList listaPiloto = new ArrayList();
@@ -142,4 +164,5 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
         }
         return listaVuelo;
     }
+
 }
