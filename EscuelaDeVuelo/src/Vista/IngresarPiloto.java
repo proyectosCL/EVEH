@@ -181,7 +181,7 @@ public class IngresarPiloto extends javax.swing.JFrame {
         Date fecha_ultimo = JDateMedicina.getDate();
         String fecha_medicina = null;
         String fecha_ultimo_vuelo = null;
-        DateFormat df = new SimpleDateFormat("dd/mm/yyyyy");
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         
         try {
             fecha_medicina = df.format(fecha);

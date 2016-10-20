@@ -4,6 +4,9 @@ import Database.Conexion;
 import Modelo.Piloto;
 import java.awt.HeadlessException;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -90,4 +93,42 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
         }
         return piloto.getId_persona();
     }
+    
+    public ArrayList<Piloto> listarPiloto() {
+        ArrayList lista = new ArrayList();
+        Piloto piloto;
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM pilotos join personas on personas.id = personas_id ");
+            int cantidad =0;
+            
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            
+                while (rs.next()) {
+                    piloto = new Piloto();
+                    piloto.setId(rs.getInt("id"));
+                    piloto.setDias_vuelo(rs.getInt("dias_vuelo"));
+                    piloto.setHoras_vuelo(rs.getFloat("horas_vuelo"));
+                    try {
+                        piloto.setVencimiento_medicina(df.format(rs.getDate("vencimiento_medicina")));
+                    } catch (Exception ex) {
+                        System.out.println(ex);
+                    }
+                    try {
+                        piloto.setFecha_ultimo_vuelo(df.format(rs.getDate("ultimo_vuelo_realizado")));
+                    } catch (Exception ex) {
+                        System.out.println(ex);
+                    }
+                    piloto.setRut(rs.getString("rut"));
+                    piloto.setId_persona(rs.getInt("personas_id"));
+                    piloto.setNombre(rs.getString("nombre"));
+                    piloto.setApellidos(rs.getString("apellidos"));
+                    lista.add(piloto);
+                }
+
+            } catch (Exception e) {
+            }
+            return lista;
+        }
 }

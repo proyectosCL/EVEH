@@ -273,7 +273,7 @@ public class IngresarLicencia extends javax.swing.JFrame {
         
         Date fecha = JDateVencimiento.getDate();
         String fecha_vencimiento = null;
-        DateFormat df = new SimpleDateFormat("dd/mm/yyyyy");
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         try {
             fecha_vencimiento = df.format(fecha);
         } catch (Exception ex) {
