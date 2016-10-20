@@ -34,3 +34,9 @@ Script: http://www.mediafire.com/file/cty2fw5e6zgzcxu/db_escuela_aviacion.ddl (1
 http://serprogramador.es/limitando-el-numero-de-elementos-en-un-jtextfield-restrictedtextfield/
 
 Ayuda a limitar la cantidad de caracteres que se pueden ingresar a un textField, asi se ahorra tiempo mostrando mensajes de error y esas cosas. Yo le pongo de limite la cantidad que permite la bd.
+
+# Libreria para Jcalendar
+
+http://www.mediafire.com/file/lu2owl9h184n4o2/jcalendar-1.3.3.jar
+
+Se agrega al netbeans en herramienta, paleta, swing y seleciona el jar con sus componente que uieras agregar
