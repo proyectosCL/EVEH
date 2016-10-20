@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import Controlador.Administrar_Personas;
+import Controlador.Administrar_Pilotos;
+import Modelo.Piloto;
 import static java.lang.String.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -86,9 +89,9 @@ public class IngresarPiloto extends javax.swing.JFrame {
             }
         });
 
-        JDateMedicina.setDateFormatString("dd/mm/yyyy");
+        JDateMedicina.setDateFormatString("dd/MMMM/yyyy");
 
-        JDateUltimoVuelo.setDateFormatString("dd/mm/yyyy");
+        JDateUltimoVuelo.setDateFormatString("dd/MMMM/yyyy");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -196,13 +199,20 @@ public class IngresarPiloto extends javax.swing.JFrame {
         
         
          String rut = jTextFieldRut.getText();
-         int horas = Integer.parseInt(jTextFieldHoras.getText());
+         float horas = Float.parseFloat(jTextFieldHoras.getText());
          int dias = Integer.parseInt(jTextFieldDias.getText());
          
+         Administrar_Pilotos ap = new Administrar_Pilotos();
+         Administrar_Personas aper = new Administrar_Personas();
+         int id_persona = 0;
+         id_persona = aper.buscaridpersona(rut);
          
          
-        System.out.println(fecha_medicina);
-
+        System.out.println(id_persona);
+        
+        Piloto piloto = new Piloto(id_piloto, horas, dias, fecha_medicina, fecha_ultimo_vuelo, id_persona);
+        
+        ap.ingresarPiloto(piloto);
 
     }//GEN-LAST:event_btnIngresarActionPerformed
 

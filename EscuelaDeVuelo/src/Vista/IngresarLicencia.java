@@ -162,7 +162,7 @@ public class IngresarLicencia extends javax.swing.JFrame {
             }
         });
 
-        JDateVencimiento.setDateFormatString("dd/mm/yyyy");
+        JDateVencimiento.setDateFormatString("dd/MMMM/yyyy");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -293,10 +293,10 @@ public class IngresarLicencia extends javax.swing.JFrame {
 //        JOptionPane.showMessageDialog(null,"._."+id_piloto);
         
 
-                Licencia userr = new Licencia(id_licencia,numero_licencia,dias, horas, fecha_vencimiento, tipo_licencia,id_piloto);
+                Licencia licencia = new Licencia(id_licencia,numero_licencia,dias, horas, fecha_vencimiento, tipo_licencia,id_piloto);
 
                 
-               al.ingresarLicencia(userr);
+               al.ingresarLicencia(licencia);
 
 //                    if (usr.buscarUsuario(userr.getUsuario())) {
 //                            JOptionPane.showMessageDialog(null, "el nombre de usuario ya esta registrado, por favor seleccione otro");

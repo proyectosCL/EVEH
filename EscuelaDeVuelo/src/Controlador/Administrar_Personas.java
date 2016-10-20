@@ -168,7 +168,7 @@ public class Administrar_Personas {
         
     }
     
-    public int buscaridpersona(int rut){
+    public int buscaridpersona(String rut){
         
         
          Conexion con = new Conexion();

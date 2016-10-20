@@ -1,6 +1,6 @@
 package Modelo;
 
-import java.util.Date;
+
 
 public class Piloto extends Persona {
 
@@ -10,16 +10,16 @@ public class Piloto extends Persona {
 
     private int dias_vuelo;
 
-    private Date vencimiento_medicina;
+    private String vencimiento_medicina;
 
-    private Date fecha_ultimo_vuelo;
+    private String fecha_ultimo_vuelo;
     
     private int id_persona;
 
     public Piloto() {
     }
 
-    public Piloto(int id, Float horas_vuelo, int dias_vuelo, Date vencimiento_medicina, Date fecha_ultimo_vuelo, int id_persona) {
+    public Piloto(int id, Float horas_vuelo, int dias_vuelo, String vencimiento_medicina, String fecha_ultimo_vuelo, int id_persona) {
         this.id = id;
         this.horas_vuelo = horas_vuelo;
         this.dias_vuelo = dias_vuelo;
@@ -63,19 +63,19 @@ public class Piloto extends Persona {
         this.dias_vuelo = dias_vuelo;
     }
 
-    public Date getVencimiento_medicina() {
+    public String getVencimiento_medicina() {
         return vencimiento_medicina;
     }
 
-    public void setVencimiento_medicina(Date vencimiento_medicina) {
+    public void setVencimiento_medicina(String vencimiento_medicina) {
         this.vencimiento_medicina = vencimiento_medicina;
     }
 
-    public Date getFecha_ultimo_vuelo() {
+    public String getFecha_ultimo_vuelo() {
         return fecha_ultimo_vuelo;
     }
 
-    public void setFecha_ultimo_vuelo(Date fecha_ultimo_vuelo) {
+    public void setFecha_ultimo_vuelo(String fecha_ultimo_vuelo) {
         this.fecha_ultimo_vuelo = fecha_ultimo_vuelo;
     }
 

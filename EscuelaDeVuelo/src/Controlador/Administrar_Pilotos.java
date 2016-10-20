@@ -15,8 +15,8 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
          try {
             Float horas_vuelo = npiloto.getHoras_vuelo();
             int dias_vuelo = npiloto.getDias_vuelo();
-            Date vencimiento_medicina = npiloto.getVencimiento_medicina();
-            Date fecha_ultimo_vuelo = npiloto.getFecha_ultimo_vuelo();
+            String vencimiento_medicina = npiloto.getVencimiento_medicina();
+            String fecha_ultimo_vuelo = npiloto.getFecha_ultimo_vuelo();
             int persona = npiloto.getId_persona();
              
             Conexion conec = new Conexion();
@@ -34,8 +34,8 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
          try {
             Float horas_vuelo = npiloto.getHoras_vuelo();
             int dias_vuelo = npiloto.getDias_vuelo();
-            Date vencimiento_medicina = npiloto.getVencimiento_medicina();
-            Date fecha_ultimo_vuelo = npiloto.getFecha_ultimo_vuelo();
+            String vencimiento_medicina = npiloto.getVencimiento_medicina();
+            String fecha_ultimo_vuelo = npiloto.getFecha_ultimo_vuelo();
              
             Conexion conec = new Conexion();
             conec.conectar();
