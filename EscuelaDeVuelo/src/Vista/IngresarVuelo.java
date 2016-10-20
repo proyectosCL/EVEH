@@ -11,8 +11,14 @@ import Modelo.Aerodromo;
 import Modelo.Aeronave;
 import Modelo.Piloto;
 import Modelo.Vuelo;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 
@@ -50,6 +56,17 @@ public class IngresarVuelo extends javax.swing.JFrame {
 
         initComponents();
 
+        //Horas, Minutos, Segundos
+        this.jComboBoxHora.removeAllItems();
+        this.jComboBoxMinuto.removeAllItems();
+        this.jComboBoxSegundo.removeAllItems();
+        for (int i = 0; i < 24 + 1; i++) {
+            this.jComboBoxHora.addItem(new ComboItem(String.valueOf(i), String.valueOf(i)));
+        }
+        for (int i = 0; i < 60 + 1; i++) {
+            this.jComboBoxMinuto.addItem(new ComboItem(String.valueOf(i), String.valueOf(i)));
+            this.jComboBoxSegundo.addItem(new ComboItem(String.valueOf(i), String.valueOf(i)));
+        }
         //Origen y Destino
         Administrar_Vuelo av = new Administrar_Vuelo();
         ArrayList<Aerodromo> listaAerodromo = av.listarAerodromo();
@@ -104,11 +121,15 @@ public class IngresarVuelo extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jComboBoxAeronave = new javax.swing.JComboBox();
         jButtonVolver = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
         jButtonIngresar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListPasajeros = new javax.swing.JList();
+        jDateFecha = new com.toedter.calendar.JDateChooser();
+        jComboBoxHora = new javax.swing.JComboBox();
+        jComboBoxMinuto = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
+        jComboBoxSegundo = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -166,6 +187,16 @@ public class IngresarVuelo extends javax.swing.JFrame {
         jListPasajeros.setToolTipText("");
         jScrollPane1.setViewportView(jListPasajeros);
 
+        jDateFecha.setDateFormatString("dd/mm/yyyy");
+
+        jComboBoxHora.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBoxMinuto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel9.setText("Hora");
+
+        jComboBoxSegundo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -182,28 +213,33 @@ public class IngresarVuelo extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addComponent(jLabel3)
                                 .addComponent(jLabel4)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel8))
+                                .addComponent(jLabel8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel9)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
-                                .addComponent(jLabel1)))
+                                .addComponent(jLabel1))
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxAeronave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jComboBoxOrigen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextFieldMision)
+                                .addComponent(jComboBoxCondicion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBoxPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBoxDestino, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jDateFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBoxOrigen, 0, 216, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldMision)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jComboBoxCondicion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxPiloto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxAeronave, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxDestino, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(155, Short.MAX_VALUE))
+                                .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxSegundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(136, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonIngresar)
@@ -231,25 +267,32 @@ public class IngresarVuelo extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jTextFieldMision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxAeronave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
                         .addComponent(jButtonIngresar))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
+                            .addComponent(jComboBoxSegundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxAeronave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -267,27 +310,40 @@ public class IngresarVuelo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarActionPerformed
-
         Administrar_Vuelo av = new Administrar_Vuelo();
         Vuelo vuelo = new Vuelo();
-        ComboItem item_aerodromo_origen = (ComboItem) this.jComboBoxOrigen.getSelectedItem();
-        vuelo.setId_aerodromo_origen(Integer.parseInt(item_aerodromo_origen.getValue()));
-        
-        ComboItem item_aerodromo_destino = (ComboItem) this.jComboBoxDestino.getSelectedItem();
-        vuelo.setId_aerodromo_destino(Integer.parseInt(item_aerodromo_destino.getValue()));
-        
-        ComboItem item_condicion_vuelo = (ComboItem) this.jComboBoxCondicion.getSelectedItem();
-        vuelo.setCondicion_vuelo(item_condicion_vuelo.getValue().charAt(0));
-        
-        vuelo.setMision_vuelo(this.jTextFieldMision.getText());
-        
-        vuelo.setFecha_vuelo(new Date());
-        
-        ComboItem item_aeronave = (ComboItem) this.jComboBoxAeronave.getSelectedItem();
-        vuelo.setId_aeronave(Integer.parseInt(item_aeronave.getValue()));
+        if (this.jComboBoxOrigen.getSelectedIndex() != 0 && this.jComboBoxDestino.getSelectedIndex() != 0
+                && this.jComboBoxCondicion.getSelectedIndex() != 0 && this.jComboBoxPiloto.getSelectedIndex() != 0
+                && this.jComboBoxAeronave.getSelectedIndex() != 0
+                && this.jDateFecha.getDate() != null) {
+            ComboItem item_aerodromo_origen = (ComboItem) this.jComboBoxOrigen.getSelectedItem();
+            vuelo.setId_aerodromo_origen(Integer.parseInt(item_aerodromo_origen.getValue()));
 
-        
-        av.ingresarVuelo(vuelo);
+            ComboItem item_aerodromo_destino = (ComboItem) this.jComboBoxDestino.getSelectedItem();
+            vuelo.setId_aerodromo_destino(Integer.parseInt(item_aerodromo_destino.getValue()));
+
+            ComboItem item_condicion_vuelo = (ComboItem) this.jComboBoxCondicion.getSelectedItem();
+            vuelo.setCondicion_vuelo(item_condicion_vuelo.getValue().charAt(0));
+
+            vuelo.setMision_vuelo(this.jTextFieldMision.getText());
+
+            DateFormat df1 = new SimpleDateFormat("dd-MM-yyyy");
+            DateFormat df2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+            String date1 = df1.format(this.jDateFecha.getDate());
+            Date date2 = null;
+            try {
+                date2 = df2.parse(date1 + " " + String.format("%02d", this.jComboBoxHora.getSelectedIndex()) + ":" + String.format("%02d", this.jComboBoxMinuto.getSelectedIndex()) + ":" + String.format("%02d", this.jComboBoxSegundo.getSelectedIndex()));
+            } catch (Exception ex) {
+                System.out.println("huehuehue");
+            }
+            vuelo.setFecha_vuelo(date2);
+
+            ComboItem item_aeronave = (ComboItem) this.jComboBoxAeronave.getSelectedItem();
+            vuelo.setId_aeronave(Integer.parseInt(item_aeronave.getValue()));
+
+            av.ingresarVuelo(vuelo);
+        }
     }//GEN-LAST:event_jButtonIngresarActionPerformed
 
     /**
@@ -331,8 +387,12 @@ public class IngresarVuelo extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBoxAeronave;
     private javax.swing.JComboBox jComboBoxCondicion;
     private javax.swing.JComboBox jComboBoxDestino;
+    private javax.swing.JComboBox jComboBoxHora;
+    private javax.swing.JComboBox jComboBoxMinuto;
     private javax.swing.JComboBox jComboBoxOrigen;
     private javax.swing.JComboBox jComboBoxPiloto;
+    private javax.swing.JComboBox jComboBoxSegundo;
+    private com.toedter.calendar.JDateChooser jDateFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -341,9 +401,9 @@ public class IngresarVuelo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JList jListPasajeros;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldMision;
     // End of variables declaration//GEN-END:variables
 }

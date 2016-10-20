@@ -7,7 +7,10 @@ import Modelo.Piloto;
 import Modelo.Vuelo;
 import Vista.ListarVuelo;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JTable;
 
 public class Administrar_Vuelo implements administrar_horas_vuelo {
@@ -16,7 +19,10 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
-            dbconn.escribir("INSERT INTO vuelos VALUES ((SELECT (MAX(id)+1)from vuelos),"+vuelo.getId_aerodromo_origen()+","+vuelo.getId_aerodromo_destino()+","+null+",'"+vuelo.getCondicion_vuelo()+"','"+vuelo.getMision_vuelo()+"','21/09/2016',"+vuelo.getId_aeronave()+")");
+            DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy");
+            DateFormat df2 = new SimpleDateFormat("HH:mm:ss");
+            String date = df1.format(vuelo.getFecha_vuelo()) + ":" + df2.format(vuelo.getFecha_vuelo());
+            dbconn.escribir("INSERT INTO vuelos VALUES ((SELECT (MAX(id)+1) FROM vuelos)," + vuelo.getId_aerodromo_origen() + "," + vuelo.getId_aerodromo_destino() + "," + null + ",'" + vuelo.getCondicion_vuelo() + "','" + vuelo.getMision_vuelo() + "',to_date('" + date + "','dd/MM/yyyy:hh24:mi:ss')," + vuelo.getId_aeronave() + ")");
             //dbconn.escribir("INSERT INTO tripulacion VALUES (select (max(id)) from vuelos)");
             return true;
         } catch (Exception e) {
@@ -26,6 +32,17 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
     }
 
     public void modificarVuelo() {
+    }
+
+    public boolean eliminarVuelo(int id) {
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            dbconn.escribir("DELETE FROM vuelos WHERE id = " + id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
@@ -106,7 +123,7 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
-            ResultSet rs = dbconn.consultar("SELECT * FROM vuelos JOIN aerodromos ON vuelos.aerodromos_id_origen = aerodromos.id JOIN aerodromos ON vuelos.aerodromos_id_destino = aerodromos.id JOIN aeronaves ON vuelos.aeronaves_id = aeronaves.id");
+            ResultSet rs = dbconn.consultar("SELECT * FROM vuelos JOIN aerodromos ON vuelos.aerodromos_id_origen = aerodromos.id JOIN aerodromos ON vuelos.aerodromos_id_destino = aerodromos.id JOIN aeronaves ON vuelos.aeronaves_id = aeronaves.id ORDER BY vuelos.id");
             while (rs.next()) {
                 vuelo = new Vuelo();
                 vuelo.setId(rs.getInt("id"));

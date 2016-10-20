@@ -14,16 +14,15 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author Diego S.
  */
 public class ListarVuelo extends javax.swing.JFrame {
-    
-    public class Render extends DefaultTableCellRenderer{
-            
-        }
+
+    public class Render extends DefaultTableCellRenderer {
+
+    }
 
     public ListarVuelo() {
 
@@ -34,7 +33,7 @@ public class ListarVuelo extends javax.swing.JFrame {
                 return false;
             }
         };
-        jTable1.setModel(modelo);
+        jTableVuelos.setModel(modelo);
         //.:Nombres de columnas:.
         modelo.addColumn("ID");
         modelo.addColumn("ORIGEN");
@@ -45,8 +44,8 @@ public class ListarVuelo extends javax.swing.JFrame {
         modelo.addColumn("FECHA");
         modelo.addColumn("AERONAVE");
         modelo.addColumn("PILOTOS");
-        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        TableColumnModel columnModel = jTable1.getColumnModel();
+        jTableVuelos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        TableColumnModel columnModel = jTableVuelos.getColumnModel();
         //.:Tamaño de columnas:.
         columnModel.getColumn(0).setPreferredWidth(40);
         columnModel.getColumn(1).setPreferredWidth(140);
@@ -57,7 +56,7 @@ public class ListarVuelo extends javax.swing.JFrame {
         columnModel.getColumn(6).setPreferredWidth(60);
         columnModel.getColumn(7).setPreferredWidth(80);
         columnModel.getColumn(8).setPreferredWidth(80);
-        jTable1.updateUI();
+        jTableVuelos.updateUI();
 
     }
 
@@ -65,26 +64,34 @@ public class ListarVuelo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jButtonListar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        jTableVuelos = new javax.swing.JTable();
+        jButtonVolver = new javax.swing.JButton();
+        jButtonEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Listar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonListar.setText("Listar");
+        jButtonListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonListarActionPerformed(evt);
             }
         });
 
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(jTableVuelos);
 
-        jButton2.setText("< Volver");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonVolver.setText("< Volver");
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonVolverActionPerformed(evt);
+            }
+        });
+
+        jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
             }
         });
 
@@ -96,10 +103,13 @@ public class ListarVuelo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(jButtonVolver)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE))
+                        .addComponent(jButtonListar))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonEliminar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -107,24 +117,26 @@ public class ListarVuelo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButtonListar)
+                    .addComponent(jButtonVolver))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonEliminar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         Administrar_Vuelo av = new Administrar_Vuelo();
         DefaultTableModel modelo = new DefaultTableModel() {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-        jTable1.setModel(modelo);
+        jTableVuelos.setModel(modelo);
         //.:Nombres de columnas:.
         modelo.addColumn("ID");
         modelo.addColumn("ORIGEN");
@@ -135,8 +147,8 @@ public class ListarVuelo extends javax.swing.JFrame {
         modelo.addColumn("FECHA");
         modelo.addColumn("AERONAVE");
         modelo.addColumn("PILOTOS");
-        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        TableColumnModel columnModel = jTable1.getColumnModel();
+        jTableVuelos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        TableColumnModel columnModel = jTableVuelos.getColumnModel();
         //.:Tamaño de columnas:.
         columnModel.getColumn(0).setPreferredWidth(40);
         columnModel.getColumn(1).setPreferredWidth(140);
@@ -164,13 +176,22 @@ public class ListarVuelo extends javax.swing.JFrame {
             fila[8] = "aa";
             modelo.addRow(fila);
         }
-        jTable1.updateUI();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        jTableVuelos.updateUI();
+    }//GEN-LAST:event_jButtonListarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         new MenuPrincipalAdministrador().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonVolverActionPerformed
+
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        Administrar_Vuelo av = new Administrar_Vuelo();
+        if (this.jTableVuelos.getSelectedRow() != -1) {
+            jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0).toString();
+            av.eliminarVuelo(Integer.parseInt(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0).toString()));
+            this.jButtonListar.doClick();
+        }
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,10 +230,11 @@ public class ListarVuelo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonEliminar;
+    public javax.swing.JButton jButtonListar;
+    private javax.swing.JButton jButtonVolver;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableVuelos;
     // End of variables declaration//GEN-END:variables
 
 }
