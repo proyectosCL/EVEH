@@ -5,6 +5,7 @@ import Modelo.Aeronave;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class Administrar_Aeronave implements administrar_horas_vuelo {
 
@@ -122,7 +123,33 @@ public class Administrar_Aeronave implements administrar_horas_vuelo {
         }
 
     }
+public ArrayList<Aeronave> listarAeronave() {
 
+        ArrayList listaComponentes = new ArrayList();
+        Aeronave lista;
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("select * from aeronaves ");
+            while (rs.next()) {
+                lista = new Aeronave();
+                lista.setId(rs.getString(1));
+                lista.setMatricula(rs.getString(2));
+                lista.setTiponave(rs.getString(3));
+                lista.setEstado(rs.getString(4));
+                lista.setFecha_aeronavegavilidad(rs.getString(5));
+                lista.setFecha_ultima_inspeccion_anual(rs.getString(6));
+                lista.setHoras_vuelo(rs.getString(7));
+                lista.setDias_vuelo(rs.getString(8));
+                listaComponentes.add(lista);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return listaComponentes;
+
+    }
     @Override
     public void sumarHoras() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
