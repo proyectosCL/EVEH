@@ -28,6 +28,7 @@ public class AgregarComponente extends javax.swing.JFrame {
      */
     public AgregarComponente() {
         initComponents();
+
         JOptionPane.showMessageDialog(null, "Seleccione un componente de cada tipo");
         cargarTablaFuselaje();
         cargarTablaAlas();
@@ -42,6 +43,7 @@ public class AgregarComponente extends javax.swing.JFrame {
         lblEmpenaje.setText("Seleccione algun componente de la tabla Empenaje");
         lblEmpenaje.setForeground(Color.red);
         btnAvanzar.setEnabled(false);
+
     }
 
     /**
@@ -180,6 +182,10 @@ public class AgregarComponente extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(396, 396, 396))
             .addGroup(layout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,10 +209,6 @@ public class AgregarComponente extends javax.swing.JFrame {
                                     .addComponent(lblControlesYFrenos)))))
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 209, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(396, 396, 396))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -268,12 +270,29 @@ public class AgregarComponente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    String matriculaNave = "";
     private void btnAvanzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvanzarActionPerformed
         // TODO add your handling code here:
-         
 
-        new AgregarComponente2().setVisible(true);
-        this.dispose();
+        int idFuselaje = Integer.parseInt(tablaFuselaje.getValueAt(tablaFuselaje.getSelectedRow(), 0).toString());
+        int idEmpenaje = Integer.parseInt(tablaEmpenaje.getValueAt(tablaEmpenaje.getSelectedRow(), 0).toString());
+        int idAlas = Integer.parseInt(tablaAlas.getValueAt(tablaAlas.getSelectedRow(), 0).toString());
+        int idControlesFrenos = Integer.parseInt(tablaControlesFrenos.getValueAt(tablaControlesFrenos.getSelectedRow(), 0).toString());
+
+        JOptionPane.showMessageDialog(null,"la matricula que viene es:"+ matriculaNave);
+
+        Administrar_Componente ac = new Administrar_Componente();
+        ac.asociarAeronave(idFuselaje, matriculaNave);
+        ac.asociarAeronave(idEmpenaje, matriculaNave);
+        ac.asociarAeronave(idAlas, matriculaNave);
+        ac.asociarAeronave(idControlesFrenos, matriculaNave);
+        
+        AgregarComponente2 ventanaComponente2 = new AgregarComponente2();
+                ventanaComponente2.matriculaNave2 = matriculaNave;
+                ventanaComponente2.setVisible(true);
+                this.dispose();
+
+      
 
 
     }//GEN-LAST:event_btnAvanzarActionPerformed
@@ -287,6 +306,7 @@ public class AgregarComponente extends javax.swing.JFrame {
         if (lblFuselaje.getForeground().equals(Color.GREEN) && lblAlas.getForeground().equals(Color.GREEN) && lblControlesYFrenos.getForeground().equals(Color.GREEN) && lblEmpenaje.getForeground().equals(Color.GREEN)) {
             btnAvanzar.setEnabled(true);
         }
+
 
     }//GEN-LAST:event_tablaFuselajeMouseClicked
 
@@ -395,15 +415,20 @@ public class AgregarComponente extends javax.swing.JFrame {
         ArrayList<Componente> listaFuselaje = ac.listarFiltro(1);
         Object[] fila = new Object[8];
         int num = listaFuselaje.size();
-        for (int i = 0; i < num; i++) {
-            fila[0] = listaFuselaje.get(i).getId();
-            fila[1] = listaFuselaje.get(i).getDescripcion();
-            fila[2] = listaFuselaje.get(i).getFabricante();
-            fila[3] = listaFuselaje.get(i).getHoras_vuelo();
-            fila[4] = listaFuselaje.get(i).getDias_vuelo();
-            modelo.addRow(fila);
+        if (listaFuselaje.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay disponibilidad de componentes");
+            System.exit(-1);
+        } else {
+            for (int i = 0; i < num; i++) {
+                fila[0] = listaFuselaje.get(i).getId();
+                fila[1] = listaFuselaje.get(i).getDescripcion();
+                fila[2] = listaFuselaje.get(i).getFabricante();
+                fila[3] = listaFuselaje.get(i).getHoras_vuelo();
+                fila[4] = listaFuselaje.get(i).getDias_vuelo();
+                modelo.addRow(fila);
+            }
+            tablaFuselaje.updateUI();
         }
-        tablaFuselaje.updateUI();
 
     }
 
@@ -432,17 +457,23 @@ public class AgregarComponente extends javax.swing.JFrame {
         columnModel.getColumn(4).setPreferredWidth(100);
         Administrar_Componente ac = new Administrar_Componente();
         ArrayList<Componente> listaAlas = ac.listarFiltro(2);
-        Object[] fila = new Object[8];
         int num = listaAlas.size();
-        for (int i = 0; i < num; i++) {
-            fila[0] = listaAlas.get(i).getId();
-            fila[1] = listaAlas.get(i).getDescripcion();
-            fila[2] = listaAlas.get(i).getFabricante();
-            fila[3] = listaAlas.get(i).getHoras_vuelo();
-            fila[4] = listaAlas.get(i).getDias_vuelo();
-            modelo.addRow(fila);
+        if (listaAlas.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay disponibilidad de componentes");
+            System.exit(-1);
+        } else {
+            Object[] fila = new Object[8];
+
+            for (int i = 0; i < num; i++) {
+                fila[0] = listaAlas.get(i).getId();
+                fila[1] = listaAlas.get(i).getDescripcion();
+                fila[2] = listaAlas.get(i).getFabricante();
+                fila[3] = listaAlas.get(i).getHoras_vuelo();
+                fila[4] = listaAlas.get(i).getDias_vuelo();
+                modelo.addRow(fila);
+            }
+            tablaAlas.updateUI();
         }
-        tablaAlas.updateUI();
 
     }
 
@@ -472,16 +503,22 @@ public class AgregarComponente extends javax.swing.JFrame {
         Administrar_Componente ac = new Administrar_Componente();
         ArrayList<Componente> listaEmpenaje = ac.listarFiltro(3);
         Object[] fila = new Object[8];
+
         int num = listaEmpenaje.size();
-        for (int i = 0; i < num; i++) {
-            fila[0] = listaEmpenaje.get(i).getId();
-            fila[1] = listaEmpenaje.get(i).getDescripcion();
-            fila[2] = listaEmpenaje.get(i).getFabricante();
-            fila[3] = listaEmpenaje.get(i).getHoras_vuelo();
-            fila[4] = listaEmpenaje.get(i).getDias_vuelo();
-            modelo.addRow(fila);
+        if (listaEmpenaje.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay disponibilidad de componentes");
+            System.exit(-1);
+        } else {
+            for (int i = 0; i < num; i++) {
+                fila[0] = listaEmpenaje.get(i).getId();
+                fila[1] = listaEmpenaje.get(i).getDescripcion();
+                fila[2] = listaEmpenaje.get(i).getFabricante();
+                fila[3] = listaEmpenaje.get(i).getHoras_vuelo();
+                fila[4] = listaEmpenaje.get(i).getDias_vuelo();
+                modelo.addRow(fila);
+            }
+            tablaEmpenaje.updateUI();
         }
-        tablaEmpenaje.updateUI();
 
     }
 
@@ -512,16 +549,20 @@ public class AgregarComponente extends javax.swing.JFrame {
         ArrayList<Componente> listaControlesFrenos = ac.listarFiltro(4);
         Object[] fila = new Object[8];
         int num = listaControlesFrenos.size();
-        for (int i = 0; i < num; i++) {
-            fila[0] = listaControlesFrenos.get(i).getId();
-            fila[1] = listaControlesFrenos.get(i).getDescripcion();
-            fila[2] = listaControlesFrenos.get(i).getFabricante();
-            fila[3] = listaControlesFrenos.get(i).getHoras_vuelo();
-            fila[4] = listaControlesFrenos.get(i).getDias_vuelo();
-            modelo.addRow(fila);
+        if (listaControlesFrenos.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay disponibilidad de componentes");
+            System.exit(-1);
+        } else {
+            for (int i = 0; i < num; i++) {
+                fila[0] = listaControlesFrenos.get(i).getId();
+                fila[1] = listaControlesFrenos.get(i).getDescripcion();
+                fila[2] = listaControlesFrenos.get(i).getFabricante();
+                fila[3] = listaControlesFrenos.get(i).getHoras_vuelo();
+                fila[4] = listaControlesFrenos.get(i).getDias_vuelo();
+                modelo.addRow(fila);
+            }
+            tablaControlesFrenos.updateUI();
         }
-        tablaControlesFrenos.updateUI();
-
     }
 
 

@@ -89,63 +89,57 @@ public class Administrar_Componente implements administrar_horas_vuelo {
     public String definirTipoCompte(int id_tipo) {
 
         String tipoCompte = "";
-        
-        switch(id_tipo){
-            case 1 : tipoCompte ="Fuselaje";
-            break;
-            case 2 : tipoCompte ="Alas";
-            break;
-            case 3 : tipoCompte ="Empenaje";
-            break;
-            case 4 : tipoCompte ="Controles y Frenos aerodinamicos";
-            break;
-            case 5 : tipoCompte ="Tren de Aterrizaje";
-            break;
-            case 6 : tipoCompte ="Equipos";
-            break;
-            case 7 : tipoCompte ="Motor";
-            break;
-            case 8 : tipoCompte ="Cabina";
-            break;
+
+        switch (id_tipo) {
+            case 1:
+                tipoCompte = "Fuselaje";
+                break;
+            case 2:
+                tipoCompte = "Alas";
+                break;
+            case 3:
+                tipoCompte = "Empenaje";
+                break;
+            case 4:
+                tipoCompte = "Controles y Frenos aerodinamicos";
+                break;
+            case 5:
+                tipoCompte = "Tren de Aterrizaje";
+                break;
+            case 6:
+                tipoCompte = "Equipos";
+                break;
+            case 7:
+                tipoCompte = "Motor";
+                break;
+            case 8:
+                tipoCompte = "Cabina";
+                break;
         }
 
-        /*try {
-            Conexion dbconn = new Conexion();
-            dbconn.conectar();
-            ResultSet rs = dbconn.consultar("select DESCRIPCION from TIPOS_COMPONENTES where ID=" + id_tipo + "");
-            while (rs.next()) {
-                tipoCompte = rs.getString(0);
-            }
-        } catch (Exception e) {
-
-        }*/
         return tipoCompte;
 
     }
 
-    public int asociarAeronave() {
-        
-        
-        int id_nave=0;
-                
+    public void asociarAeronave(int idCompte, String matriculaNave) {
+
         try {
-            Conexion dbconn = new Conexion();
-            dbconn.conectar();
-            ResultSet rs = dbconn.consultar("select ID from AERONAVES where ID = (select MAX (ID) from aeronaves");
-            while (rs.next()) {
-                
-                
-                id_nave = rs.getInt("id");
-               
-            }
+           
+
+            Conexion conec = new Conexion();
+            conec.conectar();
+            String sql = "update componentes set aeronaves_id = (select AERONAVES.ID from AERONAVES where AERONAVES.MATRICULA='" + matriculaNave + "' ) where ID=" + idCompte + "";
+            conec.escribir(sql);
+            
+          //  JOptionPane.showMessageDialog(null, "actualizacion de id componente existosa");
 
         } catch (Exception e) {
-
+            JOptionPane.showMessageDialog(null, "actualizacion de id componente fallida");
         }
-        return id_nave;
-        
-    }
 
+    }
+    
+   
     public void asociarSubcomponente() {
     }
 

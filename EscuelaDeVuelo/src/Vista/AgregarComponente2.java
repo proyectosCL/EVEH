@@ -29,10 +29,10 @@ public class AgregarComponente2 extends javax.swing.JFrame {
     public AgregarComponente2() {
         initComponents();
         JOptionPane.showMessageDialog(null, "Seleccione un componente de cada tipo");
-        cargarTablaFuselaje();
-        cargarTablaAlas();
-        cargarTablaEmpenaje();
-        cargarTablaControlesFrenos();
+        cargarTablaCabina();
+        cargarTablaEquipos();
+        cargarTablaMotor();
+        cargarTablaTrenAterrizaje();
         lblTrenAterrizaje.setText("Seleccione algun componente de la tabla Tren de Aterrizaje");
         lblTrenAterrizaje.setForeground(Color.red);
         lblEquipos.setText("Seleccione algun componente de la tabla Equipos");
@@ -267,14 +267,26 @@ public class AgregarComponente2 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+String matriculaNave2 = "";
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
 
+        int idTrenAterrizaje = Integer.parseInt(tablaTrenAterrizaje.getValueAt(tablaTrenAterrizaje.getSelectedRow(), 0).toString());
+        int idEquipos = Integer.parseInt(tablaEquipos.getValueAt(tablaEquipos.getSelectedRow(), 0).toString());
+        int idMotor = Integer.parseInt(tablaMotor.getValueAt(tablaMotor.getSelectedRow(),0).toString());
+        int idCabina = Integer.parseInt(tablaCabina.getValueAt(tablaCabina.getSelectedRow(),0).toString());
+        
+        JOptionPane.showMessageDialog(null,"la matricula que viene es:"+ matriculaNave2);
+        
         Administrar_Componente ac = new Administrar_Componente();
-        int id_nave = ac.asociarAeronave();
+        ac.asociarAeronave(idCabina, matriculaNave2);
+        ac.asociarAeronave(idEquipos, matriculaNave2);
+        ac.asociarAeronave(idMotor, matriculaNave2);
+        ac.asociarAeronave(idTrenAterrizaje, matriculaNave2);
+        
+        this.dispose();
 
-
+       
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void tablaTrenAterrizajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaTrenAterrizajeMouseClicked
@@ -292,8 +304,8 @@ public class AgregarComponente2 extends javax.swing.JFrame {
     private void tablaEquiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEquiposMouseClicked
         // TODO add your handling code here:}
         if (tablaEquipos.getSelectedRow() >= 0) {
-            lblMotor.setText("Componente Empenaje seleccionado");
-            lblMotor.setForeground(Color.GREEN);
+            lblEquipos.setText("Componente Equipos seleccionado");
+            lblEquipos.setForeground(Color.GREEN);
         }
         if (lblTrenAterrizaje.getForeground().equals(Color.GREEN) && lblEquipos.getForeground().equals(Color.GREEN) && lblCabina.getForeground().equals(Color.GREEN) && lblMotor.getForeground().equals(Color.GREEN)) {
             btnGuardar.setEnabled(true);
@@ -304,8 +316,8 @@ public class AgregarComponente2 extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         if (tablaMotor.getSelectedRow() >= 0) {
-            lblEquipos.setText("Componente Alas seleccionado");
-            lblEquipos.setForeground(Color.GREEN);
+            lblMotor.setText("Componente Motor seleccionado");
+            lblMotor.setForeground(Color.GREEN);
         }
         if (lblTrenAterrizaje.getForeground().equals(Color.GREEN) && lblEquipos.getForeground().equals(Color.GREEN) && lblCabina.getForeground().equals(Color.GREEN) && lblMotor.getForeground().equals(Color.GREEN)) {
             btnGuardar.setEnabled(true);
@@ -375,7 +387,7 @@ public class AgregarComponente2 extends javax.swing.JFrame {
         });
     }
 
-    private void cargarTablaFuselaje() {
+    private void cargarTablaTrenAterrizaje() {
         //Definición de nombres y tamaño de las columnas al iniciar la ventana.
         DefaultTableModel modelo = new DefaultTableModel() {
             public boolean isCellEditable(int row, int column) {
@@ -399,22 +411,22 @@ public class AgregarComponente2 extends javax.swing.JFrame {
         columnModel.getColumn(3).setPreferredWidth(120);
         columnModel.getColumn(4).setPreferredWidth(100);
         Administrar_Componente ac = new Administrar_Componente();
-        ArrayList<Componente> listaFuselaje = ac.listarFiltro(1);
+        ArrayList<Componente> listaTren = ac.listarFiltro(5);
         Object[] fila = new Object[8];
-        int num = listaFuselaje.size();
+        int num = listaTren.size();
         for (int i = 0; i < num; i++) {
-            fila[0] = listaFuselaje.get(i).getId();
-            fila[1] = listaFuselaje.get(i).getDescripcion();
-            fila[2] = listaFuselaje.get(i).getFabricante();
-            fila[3] = listaFuselaje.get(i).getHoras_vuelo();
-            fila[4] = listaFuselaje.get(i).getDias_vuelo();
+            fila[0] = listaTren.get(i).getId();
+            fila[1] = listaTren.get(i).getDescripcion();
+            fila[2] = listaTren.get(i).getFabricante();
+            fila[3] = listaTren.get(i).getHoras_vuelo();
+            fila[4] = listaTren.get(i).getDias_vuelo();
             modelo.addRow(fila);
         }
         tablaTrenAterrizaje.updateUI();
 
     }
 
-    private void cargarTablaAlas() {
+    private void cargarTablaMotor() {
         //Definición de nombres y tamaño de las columnas al iniciar la ventana.
         DefaultTableModel modelo = new DefaultTableModel() {
             public boolean isCellEditable(int row, int column) {
@@ -438,22 +450,22 @@ public class AgregarComponente2 extends javax.swing.JFrame {
         columnModel.getColumn(3).setPreferredWidth(120);
         columnModel.getColumn(4).setPreferredWidth(100);
         Administrar_Componente ac = new Administrar_Componente();
-        ArrayList<Componente> listaAlas = ac.listarFiltro(2);
+        ArrayList<Componente> listaMotor = ac.listarFiltro(7);
         Object[] fila = new Object[8];
-        int num = listaAlas.size();
+        int num = listaMotor.size();
         for (int i = 0; i < num; i++) {
-            fila[0] = listaAlas.get(i).getId();
-            fila[1] = listaAlas.get(i).getDescripcion();
-            fila[2] = listaAlas.get(i).getFabricante();
-            fila[3] = listaAlas.get(i).getHoras_vuelo();
-            fila[4] = listaAlas.get(i).getDias_vuelo();
+            fila[0] = listaMotor.get(i).getId();
+            fila[1] = listaMotor.get(i).getDescripcion();
+            fila[2] = listaMotor.get(i).getFabricante();
+            fila[3] = listaMotor.get(i).getHoras_vuelo();
+            fila[4] = listaMotor.get(i).getDias_vuelo();
             modelo.addRow(fila);
         }
         tablaMotor.updateUI();
 
     }
 
-    private void cargarTablaEmpenaje() {
+    private void cargarTablaEquipos() {
         //Definición de nombres y tamaño de las columnas al iniciar la ventana.
         DefaultTableModel modelo = new DefaultTableModel() {
             public boolean isCellEditable(int row, int column) {
@@ -477,22 +489,22 @@ public class AgregarComponente2 extends javax.swing.JFrame {
         columnModel.getColumn(3).setPreferredWidth(120);
         columnModel.getColumn(4).setPreferredWidth(100);
         Administrar_Componente ac = new Administrar_Componente();
-        ArrayList<Componente> listaEmpenaje = ac.listarFiltro(3);
+        ArrayList<Componente> listaEquipos = ac.listarFiltro(6);
         Object[] fila = new Object[8];
-        int num = listaEmpenaje.size();
+        int num = listaEquipos.size();
         for (int i = 0; i < num; i++) {
-            fila[0] = listaEmpenaje.get(i).getId();
-            fila[1] = listaEmpenaje.get(i).getDescripcion();
-            fila[2] = listaEmpenaje.get(i).getFabricante();
-            fila[3] = listaEmpenaje.get(i).getHoras_vuelo();
-            fila[4] = listaEmpenaje.get(i).getDias_vuelo();
+            fila[0] = listaEquipos.get(i).getId();
+            fila[1] = listaEquipos.get(i).getDescripcion();
+            fila[2] = listaEquipos.get(i).getFabricante();
+            fila[3] = listaEquipos.get(i).getHoras_vuelo();
+            fila[4] = listaEquipos.get(i).getDias_vuelo();
             modelo.addRow(fila);
         }
         tablaEquipos.updateUI();
 
     }
 
-    private void cargarTablaControlesFrenos() {
+    private void cargarTablaCabina() {
         //Definición de nombres y tamaño de las columnas al iniciar la ventana.
         DefaultTableModel modelo = new DefaultTableModel() {
             public boolean isCellEditable(int row, int column) {
@@ -516,15 +528,15 @@ public class AgregarComponente2 extends javax.swing.JFrame {
         columnModel.getColumn(3).setPreferredWidth(120);
         columnModel.getColumn(4).setPreferredWidth(100);
         Administrar_Componente ac = new Administrar_Componente();
-        ArrayList<Componente> listaControlesFrenos = ac.listarFiltro(4);
+        ArrayList<Componente> listaCabina = ac.listarFiltro(8);
         Object[] fila = new Object[8];
-        int num = listaControlesFrenos.size();
+        int num = listaCabina.size();
         for (int i = 0; i < num; i++) {
-            fila[0] = listaControlesFrenos.get(i).getId();
-            fila[1] = listaControlesFrenos.get(i).getDescripcion();
-            fila[2] = listaControlesFrenos.get(i).getFabricante();
-            fila[3] = listaControlesFrenos.get(i).getHoras_vuelo();
-            fila[4] = listaControlesFrenos.get(i).getDias_vuelo();
+            fila[0] = listaCabina.get(i).getId();
+            fila[1] = listaCabina.get(i).getDescripcion();
+            fila[2] = listaCabina.get(i).getFabricante();
+            fila[3] = listaCabina.get(i).getHoras_vuelo();
+            fila[4] = listaCabina.get(i).getDias_vuelo();
             modelo.addRow(fila);
         }
         tablaCabina.updateUI();
