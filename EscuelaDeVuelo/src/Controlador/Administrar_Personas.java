@@ -5,6 +5,7 @@ import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class Administrar_Personas {
@@ -187,5 +188,39 @@ public class Administrar_Personas {
         }
         return persona.getId_persona();
     }
+     public ArrayList<Persona> listarPersonas() {
+        ArrayList listaPersonas = new ArrayList();
+        Persona persona;
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM personas INNER JOIN usuarios ON personas.usuarios_id = usuarios.id order by personas.usuarios_id");
+            while (rs.next()) {
+                persona = new Persona();
+                persona.setId_persona(rs.getInt("id"));
+                persona.setRut(rs.getString("rut"));
+                persona.setNombre(rs.getString("nombre"));
+                persona.setApellidos(rs.getString("apellidos"));
+                persona.setSexo(rs.getString("sexo").charAt(0));
+                persona.setFecha_nacimiento(rs.getString("fecha_nacimiento"));
+                persona.setTelefono(rs.getString("telefono"));
+                persona.setCorreo(rs.getString("correo"));
+                persona.setNacionalidad(rs.getString("nacionalidad"));
+                persona.setId_usuario(rs.getInt("usuarios_id"));
+                persona.setUsuario(rs.getString("cuenta"));
+                persona.setPass(rs.getString("pass"));
+                persona.setId_tipo(rs.getInt("perfiles_usuarios_id"));
+                persona.setEstado_usuario(rs.getString("estado_cuenta"));
+                
+               
+                listaPersonas.add(persona);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return listaPersonas;
+    }
+    
 
 }
