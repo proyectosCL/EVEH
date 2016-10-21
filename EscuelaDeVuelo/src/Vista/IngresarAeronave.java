@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
@@ -32,6 +33,13 @@ public class IngresarAeronave extends javax.swing.JFrame {
      */
     public IngresarAeronave() {
         initComponents();
+ RestrictedTextField descripcionLimit = new RestrictedTextField(txtmatricula);
+ descripcionLimit.setLimit(5);
+ descripcionLimit.setOnlyText(true);
+ RestrictedTextField descripcionNUMERO = new RestrictedTextField(txtdiasvuelo);
+ descripcionNUMERO.setOnlyNums(true);
+  RestrictedTextField descripcionNUMERO2 = new RestrictedTextField(txthorasvuelo);
+ descripcionNUMERO2.setOnlyNums(true);
     }
 
     /**
@@ -45,36 +53,33 @@ public class IngresarAeronave extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         lbltiponave = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtmatricula = new javax.swing.JTextPane();
         lblestado = new javax.swing.JLabel();
-        cmbestado = new javax.swing.JComboBox<>();
+        cmbestado = new javax.swing.JComboBox<String>();
         jLabel5 = new javax.swing.JLabel();
         lblhorasvuelo = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         lbldiasvuelo = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txthorasvuelo = new javax.swing.JTextPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        txtdiasvuelo = new javax.swing.JTextPane();
         btningresar = new javax.swing.JButton();
-        cmbtiponave = new javax.swing.JComboBox<>();
-        cboMes = new javax.swing.JComboBox<>();
-        cboDia = new javax.swing.JComboBox<>();
+        cmbtiponave = new javax.swing.JComboBox<String>();
+        cboMes = new javax.swing.JComboBox<String>();
+        cboDia = new javax.swing.JComboBox<String>();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        cboDia1 = new javax.swing.JComboBox<>();
+        cboDia1 = new javax.swing.JComboBox<String>();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        cboMes1 = new javax.swing.JComboBox<>();
+        cboMes1 = new javax.swing.JComboBox<String>();
         txtaero = new javax.swing.JTextField();
         txtanual = new javax.swing.JTextField();
         lblmatriculac = new javax.swing.JLabel();
         lblhorasvuelito = new javax.swing.JLabel();
         lbldiasvuelito = new javax.swing.JLabel();
         lblmatriculita = new javax.swing.JLabel();
+        txtmatricula = new javax.swing.JTextField();
+        txtdiasvuelo = new javax.swing.JTextField();
+        txthorasvuelo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,17 +89,10 @@ public class IngresarAeronave extends javax.swing.JFrame {
         lbltiponave.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbltiponave.setText("Tipo Aeronave");
 
-        txtmatricula.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtmatriculaFocusLost(evt);
-            }
-        });
-        jScrollPane1.setViewportView(txtmatricula);
-
         lblestado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblestado.setText("Estado");
 
-        cmbestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione:", "Disponible", "No Disponible" }));
+        cmbestado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponible", "No Disponible" }));
         cmbestado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbestadoActionPerformed(evt);
@@ -113,20 +111,6 @@ public class IngresarAeronave extends javax.swing.JFrame {
         lbldiasvuelo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbldiasvuelo.setText("Días de Vuelo");
 
-        txthorasvuelo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txthorasvueloFocusLost(evt);
-            }
-        });
-        jScrollPane2.setViewportView(txthorasvuelo);
-
-        txtdiasvuelo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtdiasvueloFocusLost(evt);
-            }
-        });
-        jScrollPane3.setViewportView(txtdiasvuelo);
-
         btningresar.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
         btningresar.setText("Ingresar Aeronave");
         btningresar.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +119,7 @@ public class IngresarAeronave extends javax.swing.JFrame {
             }
         });
 
-        cmbtiponave.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione:", "Helicoptero", "Aeronave" }));
+        cmbtiponave.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Helicoptero", "Aeronave" }));
         cmbtiponave.setToolTipText("");
         cmbtiponave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,9 +127,9 @@ public class IngresarAeronave extends javax.swing.JFrame {
             }
         });
 
-        cboMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        cboMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
-        cboDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cboDia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         jLabel13.setText("Día");
 
@@ -153,7 +137,7 @@ public class IngresarAeronave extends javax.swing.JFrame {
 
         jLabel15.setText("Año");
 
-        cboDia1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cboDia1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         jLabel16.setText("Día");
 
@@ -161,7 +145,7 @@ public class IngresarAeronave extends javax.swing.JFrame {
 
         jLabel18.setText("Año");
 
-        cboMes1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        cboMes1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
         txtaero.setText("2016");
 
@@ -243,21 +227,25 @@ public class IngresarAeronave extends javax.swing.JFrame {
                                                     .addComponent(txtanual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(txtaero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lblhorasvuelito, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lbldiasvuelito, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(45, 45, 45)
-                                        .addComponent(btningresar))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txthorasvuelo, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                                            .addComponent(txtdiasvuelo))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(lblhorasvuelito, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGap(57, 57, 57)
+                                                .addComponent(lbldiasvuelito, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(45, 45, 45)
+                                                .addComponent(btningresar))))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(43, 43, 43)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmbestado, 0, 131, Short.MAX_VALUE)
-                                    .addComponent(cmbtiponave, 0, 131, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(cmbestado, 0, 131, Short.MAX_VALUE)
+                                        .addComponent(cmbtiponave, 0, 131, Short.MAX_VALUE))
+                                    .addComponent(txtmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lblmatriculac, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(101, Short.MAX_VALUE))
@@ -268,13 +256,13 @@ public class IngresarAeronave extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
+                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblmatriculac)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(8, 8, 8)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lbltiponave, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cmbtiponave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -309,22 +297,24 @@ public class IngresarAeronave extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblhorasvuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblhorasvuelito)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblhorasvuelito)
+                            .addComponent(txtdiasvuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(5, 5, 5)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(11, 11, 11)
-                        .addComponent(lbldiasvuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbldiasvuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txthorasvuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btningresar)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btningresar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(lbldiasvuelito)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         pack();
@@ -336,11 +326,10 @@ public class IngresarAeronave extends javax.swing.JFrame {
 
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
 
-        Conexion con = new Conexion();
-        con.conectar();
+
         Administrar_Aeronave ingresar = new Administrar_Aeronave();
         String id = "0";
-        String matricula = txtmatricula.getText();
+        String matricula = txtmatricula.getText().toUpperCase();
         String horasvuelo = txthorasvuelo.getText();
         String diasvuelo = txtdiasvuelo.getText();
         String tiponave = "" + cmbtiponave.getSelectedItem();
@@ -357,14 +346,11 @@ public class IngresarAeronave extends javax.swing.JFrame {
         }
 
         switch (estado) {
-            case "Seleccione:":
-
-                JOptionPane.showMessageDialog(null, "Seleccione estado!!!", "Ventana Error Datos", JOptionPane.ERROR_MESSAGE);
-                break;
+           
             case "Disponible":
                 estado = "V";
                 break;
-            default:
+            case "No Disponible":
                 estado = "M";
                 break;
         }
@@ -411,33 +397,6 @@ public class IngresarAeronave extends javax.swing.JFrame {
     private void cmbtiponaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbtiponaveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbtiponaveActionPerformed
-
-    private void txtmatriculaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtmatriculaFocusLost
-        if (txtmatricula.getText().equals("")) {
-            //JOptionPane.showMessageDialog(null, "La matricula no puede estar vacia");
-            lblmatriculac.setEnabled(true);
-
-          
-                }else{lblmatriculac.setEnabled(false);}    }//GEN-LAST:event_txtmatriculaFocusLost
-
-    private void txtdiasvueloFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtdiasvueloFocusLost
-        if (txtdiasvuelo.getText().equals("")) {
-            //JOptionPane.showMessageDialog(null, "Los dias de vuelo no puede estar vacio");
-            lbldiasvuelito.setEnabled(true);
-        } else {
-            lbldiasvuelito.setEnabled(false);
-        }// TODO add your handling code here:
-    }//GEN-LAST:event_txtdiasvueloFocusLost
-
-    private void txthorasvueloFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txthorasvueloFocusLost
-        if (txthorasvuelo.getText().equals("")) {
-            //JOptionPane.showMessageDialog(null, "Las horas vuelo no puede estar vacio");
-            // lblhorasvuelo.setVisible(true);
-            lblhorasvuelito.setEnabled(true);
-
-        } else {
-            lblhorasvuelito.setEnabled(false);
- }    }//GEN-LAST:event_txthorasvueloFocusLost
 
     /**
      * @param args the command line arguments
@@ -492,9 +451,6 @@ public class IngresarAeronave extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lbldiasvuelito;
     private javax.swing.JLabel lbldiasvuelo;
     private javax.swing.JLabel lblestado;
@@ -505,8 +461,8 @@ public class IngresarAeronave extends javax.swing.JFrame {
     private javax.swing.JLabel lbltiponave;
     private javax.swing.JTextField txtaero;
     private javax.swing.JTextField txtanual;
-    private javax.swing.JTextPane txtdiasvuelo;
-    private javax.swing.JTextPane txthorasvuelo;
-    private javax.swing.JTextPane txtmatricula;
+    private javax.swing.JTextField txtdiasvuelo;
+    private javax.swing.JTextField txthorasvuelo;
+    private javax.swing.JTextField txtmatricula;
     // End of variables declaration//GEN-END:variables
 }
