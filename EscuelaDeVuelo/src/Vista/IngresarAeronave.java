@@ -388,6 +388,8 @@ public class IngresarAeronave extends javax.swing.JFrame {
             if(dialogResult == 0) {
                       
                 // codigo para cerrar y abrir la ventana componentes
+                new AgregarComponente().setVisible(true);
+                this.dispose();
             } else {
               JOptionPane.showMessageDialog(null, "no se ingresaron componentes");
             }

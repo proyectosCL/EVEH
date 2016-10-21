@@ -21,27 +21,27 @@ import javax.swing.table.TableColumnModel;
  *
  * @author pcbla
  */
-public class AgregarComponente extends javax.swing.JFrame {
+public class AgregarComponente2 extends javax.swing.JFrame {
 
     /**
      * Creates new form IngresarComponente
      */
-    public AgregarComponente() {
+    public AgregarComponente2() {
         initComponents();
         JOptionPane.showMessageDialog(null, "Seleccione un componente de cada tipo");
         cargarTablaFuselaje();
         cargarTablaAlas();
         cargarTablaEmpenaje();
         cargarTablaControlesFrenos();
-        lblFuselaje.setText("Seleccione algun componente de la tabla Fuselaje");
-        lblFuselaje.setForeground(Color.red);
-        lblAlas.setText("Seleccione algun componente de la tabla Alas");
-        lblAlas.setForeground(Color.red);
-        lblControlesYFrenos.setText("Seleccione algun componente de la tabla Controles y Frenos");
-        lblControlesYFrenos.setForeground(Color.red);
-        lblEmpenaje.setText("Seleccione algun componente de la tabla Empenaje");
-        lblEmpenaje.setForeground(Color.red);
-        btnAvanzar.setEnabled(false);
+        lblTrenAterrizaje.setText("Seleccione algun componente de la tabla Tren de Aterrizaje");
+        lblTrenAterrizaje.setForeground(Color.red);
+        lblEquipos.setText("Seleccione algun componente de la tabla Equipos");
+        lblEquipos.setForeground(Color.red);
+        lblCabina.setText("Seleccione algun componente de la tabla Cabina");
+        lblCabina.setForeground(Color.red);
+        lblMotor.setText("Seleccione algun componente de la tabla Motor");
+        lblMotor.setForeground(Color.red);
+        btnGuardar.setEnabled(false);
     }
 
     /**
@@ -58,32 +58,32 @@ public class AgregarComponente extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
-        tablaAlas = new javax.swing.JTable();
+        tablaMotor = new javax.swing.JTable();
         jScrollPane10 = new javax.swing.JScrollPane();
-        tablaEmpenaje = new javax.swing.JTable();
+        tablaEquipos = new javax.swing.JTable();
         jScrollPane11 = new javax.swing.JScrollPane();
-        tablaFuselaje = new javax.swing.JTable();
+        tablaTrenAterrizaje = new javax.swing.JTable();
         jScrollPane12 = new javax.swing.JScrollPane();
-        tablaControlesFrenos = new javax.swing.JTable();
+        tablaCabina = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        lblFuselaje = new javax.swing.JLabel();
-        lblAlas = new javax.swing.JLabel();
-        lblEmpenaje = new javax.swing.JLabel();
-        lblControlesYFrenos = new javax.swing.JLabel();
-        btnAvanzar = new javax.swing.JButton();
+        lblTrenAterrizaje = new javax.swing.JLabel();
+        lblEquipos = new javax.swing.JLabel();
+        lblMotor = new javax.swing.JLabel();
+        lblCabina = new javax.swing.JLabel();
+        btnGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Agregar componentes");
 
-        jLabel2.setText("Fuselaje");
+        jLabel2.setText("Tren de Aterrizaje");
 
-        jLabel3.setText("Alas");
+        jLabel3.setText("Motor");
 
-        tablaAlas.setModel(new javax.swing.table.DefaultTableModel(
+        tablaMotor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -94,14 +94,14 @@ public class AgregarComponente extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tablaAlas.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaMotor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaAlasMouseClicked(evt);
+                tablaMotorMouseClicked(evt);
             }
         });
-        jScrollPane9.setViewportView(tablaAlas);
+        jScrollPane9.setViewportView(tablaMotor);
 
-        tablaEmpenaje.setModel(new javax.swing.table.DefaultTableModel(
+        tablaEquipos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -112,14 +112,14 @@ public class AgregarComponente extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tablaEmpenaje.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaEquipos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaEmpenajeMouseClicked(evt);
+                tablaEquiposMouseClicked(evt);
             }
         });
-        jScrollPane10.setViewportView(tablaEmpenaje);
+        jScrollPane10.setViewportView(tablaEquipos);
 
-        tablaFuselaje.setModel(new javax.swing.table.DefaultTableModel(
+        tablaTrenAterrizaje.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -130,14 +130,14 @@ public class AgregarComponente extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tablaFuselaje.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaTrenAterrizaje.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaFuselajeMouseClicked(evt);
+                tablaTrenAterrizajeMouseClicked(evt);
             }
         });
-        jScrollPane11.setViewportView(tablaFuselaje);
+        jScrollPane11.setViewportView(tablaTrenAterrizaje);
 
-        tablaControlesFrenos.setModel(new javax.swing.table.DefaultTableModel(
+        tablaCabina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -148,31 +148,31 @@ public class AgregarComponente extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tablaControlesFrenos.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaCabina.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaControlesFrenosMouseClicked(evt);
+                tablaCabinaMouseClicked(evt);
             }
         });
-        jScrollPane12.setViewportView(tablaControlesFrenos);
+        jScrollPane12.setViewportView(tablaCabina);
 
-        jLabel4.setText("Empenaje");
+        jLabel4.setText("Equipos");
 
-        jLabel5.setText("Controles y Frenos Aerodinamicos");
+        jLabel5.setText("Cabina");
 
         jLabel6.setText("Componentes seleccionados");
 
-        lblFuselaje.setText("jLabel7");
+        lblTrenAterrizaje.setText("jLabel7");
 
-        lblAlas.setText("jLabel8");
+        lblEquipos.setText("jLabel8");
 
-        lblEmpenaje.setText("jLabel9");
+        lblMotor.setText("jLabel9");
 
-        lblControlesYFrenos.setText("jLabel10");
+        lblCabina.setText("jLabel10");
 
-        btnAvanzar.setText("Avanzar");
-        btnAvanzar.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setText("Guardar cambios");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAvanzarActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
@@ -190,19 +190,19 @@ public class AgregarComponente extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(137, 137, 137)
-                                .addComponent(btnAvanzar))
+                                .addComponent(btnGuardar))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(96, 96, 96)
                                 .addComponent(jLabel6))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(57, 57, 57)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblAlas)
-                                    .addComponent(lblFuselaje)
-                                    .addComponent(lblEmpenaje)
-                                    .addComponent(lblControlesYFrenos)))))
+                                    .addComponent(lblEquipos)
+                                    .addComponent(lblTrenAterrizaje)
+                                    .addComponent(lblMotor)
+                                    .addComponent(lblCabina)))))
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 209, Short.MAX_VALUE))
+                .addGap(0, 190, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,13 +241,13 @@ public class AgregarComponente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(49, 49, 49)
-                        .addComponent(lblFuselaje)
+                        .addComponent(lblTrenAterrizaje)
                         .addGap(18, 18, 18)
-                        .addComponent(lblAlas)
+                        .addComponent(lblEquipos)
                         .addGap(18, 18, 18)
-                        .addComponent(lblEmpenaje)
+                        .addComponent(lblMotor)
                         .addGap(18, 18, 18)
-                        .addComponent(lblControlesYFrenos)))
+                        .addComponent(lblCabina)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -256,7 +256,7 @@ public class AgregarComponente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAvanzar))
+                    .addComponent(btnGuardar))
                 .addContainerGap(68, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -268,63 +268,62 @@ public class AgregarComponente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAvanzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvanzarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-         
 
-        new AgregarComponente2().setVisible(true);
-        this.dispose();
+        Administrar_Componente ac = new Administrar_Componente();
+        int id_nave = ac.asociarAeronave();
 
 
-    }//GEN-LAST:event_btnAvanzarActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void tablaFuselajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaFuselajeMouseClicked
+    private void tablaTrenAterrizajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaTrenAterrizajeMouseClicked
         // TODO add your handling code here:
-        if (tablaFuselaje.getSelectedRow() >= 0) {
-            lblFuselaje.setText("Componente Fuselaje seleccionado");
-            lblFuselaje.setForeground(Color.GREEN);
+        if (tablaTrenAterrizaje.getSelectedRow() >= 0) {
+            lblTrenAterrizaje.setText("Componente Tren de Aterrizaje seleccionado");
+            lblTrenAterrizaje.setForeground(Color.GREEN);
         }
-        if (lblFuselaje.getForeground().equals(Color.GREEN) && lblAlas.getForeground().equals(Color.GREEN) && lblControlesYFrenos.getForeground().equals(Color.GREEN) && lblEmpenaje.getForeground().equals(Color.GREEN)) {
-            btnAvanzar.setEnabled(true);
+        if (lblTrenAterrizaje.getForeground().equals(Color.GREEN) && lblEquipos.getForeground().equals(Color.GREEN) && lblCabina.getForeground().equals(Color.GREEN) && lblMotor.getForeground().equals(Color.GREEN)) {
+            btnGuardar.setEnabled(true);
         }
 
-    }//GEN-LAST:event_tablaFuselajeMouseClicked
+    }//GEN-LAST:event_tablaTrenAterrizajeMouseClicked
 
-    private void tablaEmpenajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEmpenajeMouseClicked
+    private void tablaEquiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEquiposMouseClicked
         // TODO add your handling code here:}
-        if (tablaEmpenaje.getSelectedRow() >= 0) {
-            lblEmpenaje.setText("Componente Empenaje seleccionado");
-            lblEmpenaje.setForeground(Color.GREEN);
+        if (tablaEquipos.getSelectedRow() >= 0) {
+            lblMotor.setText("Componente Empenaje seleccionado");
+            lblMotor.setForeground(Color.GREEN);
         }
-        if (lblFuselaje.getForeground().equals(Color.GREEN) && lblAlas.getForeground().equals(Color.GREEN) && lblControlesYFrenos.getForeground().equals(Color.GREEN) && lblEmpenaje.getForeground().equals(Color.GREEN)) {
-            btnAvanzar.setEnabled(true);
+        if (lblTrenAterrizaje.getForeground().equals(Color.GREEN) && lblEquipos.getForeground().equals(Color.GREEN) && lblCabina.getForeground().equals(Color.GREEN) && lblMotor.getForeground().equals(Color.GREEN)) {
+            btnGuardar.setEnabled(true);
         }
-    }//GEN-LAST:event_tablaEmpenajeMouseClicked
+    }//GEN-LAST:event_tablaEquiposMouseClicked
 
-    private void tablaAlasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaAlasMouseClicked
+    private void tablaMotorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMotorMouseClicked
         // TODO add your handling code here:
 
-        if (tablaAlas.getSelectedRow() >= 0) {
-            lblAlas.setText("Componente Alas seleccionado");
-            lblAlas.setForeground(Color.GREEN);
+        if (tablaMotor.getSelectedRow() >= 0) {
+            lblEquipos.setText("Componente Alas seleccionado");
+            lblEquipos.setForeground(Color.GREEN);
         }
-        if (lblFuselaje.getForeground().equals(Color.GREEN) && lblAlas.getForeground().equals(Color.GREEN) && lblControlesYFrenos.getForeground().equals(Color.GREEN) && lblEmpenaje.getForeground().equals(Color.GREEN)) {
-            btnAvanzar.setEnabled(true);
+        if (lblTrenAterrizaje.getForeground().equals(Color.GREEN) && lblEquipos.getForeground().equals(Color.GREEN) && lblCabina.getForeground().equals(Color.GREEN) && lblMotor.getForeground().equals(Color.GREEN)) {
+            btnGuardar.setEnabled(true);
         }
 
-    }//GEN-LAST:event_tablaAlasMouseClicked
+    }//GEN-LAST:event_tablaMotorMouseClicked
 
-    private void tablaControlesFrenosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaControlesFrenosMouseClicked
+    private void tablaCabinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCabinaMouseClicked
         // TODO add your handling code here:
-        if (tablaControlesFrenos.getSelectedRow() >= 0) {
-            lblControlesYFrenos.setText("Componente Controles y Frenos seleccionado");
-            lblControlesYFrenos.setForeground(Color.GREEN);
+        if (tablaCabina.getSelectedRow() >= 0) {
+            lblCabina.setText("Componente Controles y Frenos seleccionado");
+            lblCabina.setForeground(Color.GREEN);
         }
-        if (lblFuselaje.getForeground().equals(Color.GREEN) && lblAlas.getForeground().equals(Color.GREEN) && lblControlesYFrenos.getForeground().equals(Color.GREEN) && lblEmpenaje.getForeground().equals(Color.GREEN)) {
-            btnAvanzar.setEnabled(true);
+        if (lblTrenAterrizaje.getForeground().equals(Color.GREEN) && lblEquipos.getForeground().equals(Color.GREEN) && lblCabina.getForeground().equals(Color.GREEN) && lblMotor.getForeground().equals(Color.GREEN)) {
+            btnGuardar.setEnabled(true);
         }
 
-    }//GEN-LAST:event_tablaControlesFrenosMouseClicked
+    }//GEN-LAST:event_tablaCabinaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -343,14 +342,22 @@ public class AgregarComponente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarComponente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarComponente2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarComponente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarComponente2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarComponente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarComponente2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarComponente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarComponente2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -363,7 +370,7 @@ public class AgregarComponente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AgregarComponente().setVisible(true);
+                new AgregarComponente2().setVisible(true);
             }
         });
     }
@@ -375,8 +382,8 @@ public class AgregarComponente extends javax.swing.JFrame {
                 return false;
             }
         };
-        tablaFuselaje.setModel(modelo);
-        tablaFuselaje.getTableHeader().setReorderingAllowed(false);
+        tablaTrenAterrizaje.setModel(modelo);
+        tablaTrenAterrizaje.getTableHeader().setReorderingAllowed(false);
         //.:Nombres de columnas:.
         modelo.addColumn("ID");
         modelo.addColumn("DESCRIPCION");
@@ -384,8 +391,8 @@ public class AgregarComponente extends javax.swing.JFrame {
         modelo.addColumn("HORAS DE VUELO");
         modelo.addColumn("DIAS DE VUELO");
         //.:Tamaño de columnas:.
-        tablaFuselaje.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        TableColumnModel columnModel = tablaFuselaje.getColumnModel();
+        tablaTrenAterrizaje.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        TableColumnModel columnModel = tablaTrenAterrizaje.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(30);
         columnModel.getColumn(1).setPreferredWidth(140);
         columnModel.getColumn(2).setPreferredWidth(125);
@@ -403,7 +410,7 @@ public class AgregarComponente extends javax.swing.JFrame {
             fila[4] = listaFuselaje.get(i).getDias_vuelo();
             modelo.addRow(fila);
         }
-        tablaFuselaje.updateUI();
+        tablaTrenAterrizaje.updateUI();
 
     }
 
@@ -414,8 +421,8 @@ public class AgregarComponente extends javax.swing.JFrame {
                 return false;
             }
         };
-        tablaAlas.setModel(modelo);
-        tablaAlas.getTableHeader().setReorderingAllowed(false);
+        tablaMotor.setModel(modelo);
+        tablaMotor.getTableHeader().setReorderingAllowed(false);
         //.:Nombres de columnas:.
         modelo.addColumn("ID");
         modelo.addColumn("DESCRIPCION");
@@ -423,8 +430,8 @@ public class AgregarComponente extends javax.swing.JFrame {
         modelo.addColumn("HORAS DE VUELO");
         modelo.addColumn("DIAS DE VUELO");
         //.:Tamaño de columnas:.
-        tablaAlas.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        TableColumnModel columnModel = tablaAlas.getColumnModel();
+        tablaMotor.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        TableColumnModel columnModel = tablaMotor.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(30);
         columnModel.getColumn(1).setPreferredWidth(140);
         columnModel.getColumn(2).setPreferredWidth(125);
@@ -442,7 +449,7 @@ public class AgregarComponente extends javax.swing.JFrame {
             fila[4] = listaAlas.get(i).getDias_vuelo();
             modelo.addRow(fila);
         }
-        tablaAlas.updateUI();
+        tablaMotor.updateUI();
 
     }
 
@@ -453,8 +460,8 @@ public class AgregarComponente extends javax.swing.JFrame {
                 return false;
             }
         };
-        tablaEmpenaje.setModel(modelo);
-        tablaEmpenaje.getTableHeader().setReorderingAllowed(false);
+        tablaEquipos.setModel(modelo);
+        tablaEquipos.getTableHeader().setReorderingAllowed(false);
         //.:Nombres de columnas:.
         modelo.addColumn("ID");
         modelo.addColumn("DESCRIPCION");
@@ -462,8 +469,8 @@ public class AgregarComponente extends javax.swing.JFrame {
         modelo.addColumn("HORAS DE VUELO");
         modelo.addColumn("DIAS DE VUELO");
         //.:Tamaño de columnas:.
-        tablaEmpenaje.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        TableColumnModel columnModel = tablaEmpenaje.getColumnModel();
+        tablaEquipos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        TableColumnModel columnModel = tablaEquipos.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(30);
         columnModel.getColumn(1).setPreferredWidth(140);
         columnModel.getColumn(2).setPreferredWidth(125);
@@ -481,7 +488,7 @@ public class AgregarComponente extends javax.swing.JFrame {
             fila[4] = listaEmpenaje.get(i).getDias_vuelo();
             modelo.addRow(fila);
         }
-        tablaEmpenaje.updateUI();
+        tablaEquipos.updateUI();
 
     }
 
@@ -492,8 +499,8 @@ public class AgregarComponente extends javax.swing.JFrame {
                 return false;
             }
         };
-        tablaControlesFrenos.setModel(modelo);
-        tablaControlesFrenos.getTableHeader().setReorderingAllowed(false);
+        tablaCabina.setModel(modelo);
+        tablaCabina.getTableHeader().setReorderingAllowed(false);
         //.:Nombres de columnas:.
         modelo.addColumn("ID");
         modelo.addColumn("DESCRIPCION");
@@ -501,8 +508,8 @@ public class AgregarComponente extends javax.swing.JFrame {
         modelo.addColumn("HORAS DE VUELO");
         modelo.addColumn("DIAS DE VUELO");
         //.:Tamaño de columnas:.
-        tablaControlesFrenos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        TableColumnModel columnModel = tablaControlesFrenos.getColumnModel();
+        tablaCabina.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        TableColumnModel columnModel = tablaCabina.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(30);
         columnModel.getColumn(1).setPreferredWidth(140);
         columnModel.getColumn(2).setPreferredWidth(125);
@@ -520,13 +527,13 @@ public class AgregarComponente extends javax.swing.JFrame {
             fila[4] = listaControlesFrenos.get(i).getDias_vuelo();
             modelo.addRow(fila);
         }
-        tablaControlesFrenos.updateUI();
+        tablaCabina.updateUI();
 
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAvanzar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -538,13 +545,13 @@ public class AgregarComponente extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JLabel lblAlas;
-    private javax.swing.JLabel lblControlesYFrenos;
-    private javax.swing.JLabel lblEmpenaje;
-    private javax.swing.JLabel lblFuselaje;
-    private javax.swing.JTable tablaAlas;
-    private javax.swing.JTable tablaControlesFrenos;
-    private javax.swing.JTable tablaEmpenaje;
-    private javax.swing.JTable tablaFuselaje;
+    private javax.swing.JLabel lblCabina;
+    private javax.swing.JLabel lblEquipos;
+    private javax.swing.JLabel lblMotor;
+    private javax.swing.JLabel lblTrenAterrizaje;
+    private javax.swing.JTable tablaCabina;
+    private javax.swing.JTable tablaEquipos;
+    private javax.swing.JTable tablaMotor;
+    private javax.swing.JTable tablaTrenAterrizaje;
     // End of variables declaration//GEN-END:variables
 }

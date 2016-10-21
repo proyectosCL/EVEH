@@ -37,7 +37,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
-                              <Component id="btnAvanzar" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
@@ -46,17 +46,17 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblAlas" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblFuselaje" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblEmpenaje" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblControlesYFrenos" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblEquipos" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTrenAterrizaje" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMotor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCabina" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
                   <Component id="jScrollPane12" min="-2" pref="524" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="0" pref="209" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="190" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
@@ -105,13 +105,13 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                      <Component id="lblFuselaje" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblTrenAterrizaje" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="lblAlas" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblEquipos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="lblEmpenaje" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblMotor" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="lblControlesYFrenos" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCabina" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -123,7 +123,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane9" min="-2" pref="225" max="-2" attributes="0"/>
                   <Component id="jScrollPane12" min="-2" pref="225" max="-2" attributes="0"/>
-                  <Component id="btnAvanzar" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="68" max="32767" attributes="0"/>
           </Group>
@@ -148,12 +148,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fuselaje"/>
+        <Property name="text" type="java.lang.String" value="Tren de Aterrizaje"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Alas"/>
+        <Property name="text" type="java.lang.String" value="Motor"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane9">
@@ -163,7 +163,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tablaAlas">
+        <Component class="javax.swing.JTable" name="tablaMotor">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
@@ -175,7 +175,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaAlasMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaMotorMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
@@ -187,7 +187,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tablaEmpenaje">
+        <Component class="javax.swing.JTable" name="tablaEquipos">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
@@ -199,7 +199,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaEmpenajeMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaEquiposMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
@@ -211,7 +211,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tablaFuselaje">
+        <Component class="javax.swing.JTable" name="tablaTrenAterrizaje">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
@@ -223,7 +223,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaFuselajeMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaTrenAterrizajeMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
@@ -235,7 +235,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tablaControlesFrenos">
+        <Component class="javax.swing.JTable" name="tablaCabina">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
@@ -247,19 +247,19 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaControlesFrenosMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaCabinaMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Empenaje"/>
+        <Property name="text" type="java.lang.String" value="Equipos"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Controles y Frenos Aerodinamicos"/>
+        <Property name="text" type="java.lang.String" value="Cabina"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
@@ -267,32 +267,32 @@
         <Property name="text" type="java.lang.String" value="Componentes seleccionados"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblFuselaje">
+    <Component class="javax.swing.JLabel" name="lblTrenAterrizaje">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel7"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblAlas">
+    <Component class="javax.swing.JLabel" name="lblEquipos">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel8"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblEmpenaje">
+    <Component class="javax.swing.JLabel" name="lblMotor">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel9"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblControlesYFrenos">
+    <Component class="javax.swing.JLabel" name="lblCabina">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel10"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnAvanzar">
+    <Component class="javax.swing.JButton" name="btnGuardar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Avanzar"/>
+        <Property name="text" type="java.lang.String" value="Guardar cambios"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAvanzarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

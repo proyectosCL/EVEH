@@ -37,7 +37,7 @@ public class Administrar_Componente implements administrar_horas_vuelo {
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
-            ResultSet rs = dbconn.consultar("SELECT * FROM componentes WHERE tipos_componentes_id = " + tipoCompte + " ");
+            ResultSet rs = dbconn.consultar("SELECT * FROM componentes WHERE tipos_componentes_id = " + tipoCompte + " AND aeronaves_ID IS null ");
             while (rs.next()) {
                 filtro = new Componente();
                 filtro.setId(rs.getInt("id"));
@@ -123,7 +123,27 @@ public class Administrar_Componente implements administrar_horas_vuelo {
 
     }
 
-    public void asociarAeronave() {
+    public int asociarAeronave() {
+        
+        
+        int id_nave=0;
+                
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("select ID from AERONAVES where ID = (select MAX (ID) from aeronaves");
+            while (rs.next()) {
+                
+                
+                id_nave = rs.getInt("id");
+               
+            }
+
+        } catch (Exception e) {
+
+        }
+        return id_nave;
+        
     }
 
     public void asociarSubcomponente() {
