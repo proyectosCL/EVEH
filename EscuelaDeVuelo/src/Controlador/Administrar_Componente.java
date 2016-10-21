@@ -2,6 +2,7 @@ package Controlador;
 
 import Database.Conexion;
 import Modelo.Componente;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -121,25 +122,60 @@ public class Administrar_Componente implements administrar_horas_vuelo {
 
     }
 
+    public void eliminarComponente(int id) {
+        try {
+            Conexion con = new Conexion();
+            con.conectar();
+
+            String sql = "delete from COMPONENTES where id = '" + id + "'";
+            System.out.println(sql);
+            con.escribir(sql);
+            JOptionPane.showMessageDialog(null, "Eliminado correctamente");
+
+        } catch (HeadlessException e) {
+
+        }
+    }
+
+    public void modificarComponente(Componente nuevoComponente) {
+        try {
+            int id = nuevoComponente.getId();
+            String desc = nuevoComponente.getDescripcion();
+            String fabricte = nuevoComponente.getFabricante();
+            Float horasVuelo = nuevoComponente.getHoras_vuelo();
+            int diasVuelo = nuevoComponente.getDias_vuelo();
+            int tpoCompteId = nuevoComponente.getTipo_componente_id();
+
+            Conexion conec = new Conexion();
+            conec.conectar();
+            String sql = " update COMPONENTES set DESCRIPCION= '" + desc + "',"
+                    + " FABRICANTE = '" + fabricte + "'," 
+                    + "HORAS_VUELO = " +horasVuelo+ ","
+                    + "DIAS_VUELO =  " +diasVuelo+  ","
+                    + "TIPOS_COMPONENTES_ID = " + tpoCompteId+" where ID=" + id + "";
+            conec.escribir(sql);
+            System.out.println(sql);
+
+        } catch (Exception ex) {
+
+        }
+    }
+
     public void asociarAeronave(int idCompte, String matriculaNave) {
 
         try {
-           
 
             Conexion conec = new Conexion();
             conec.conectar();
             String sql = "update componentes set aeronaves_id = (select AERONAVES.ID from AERONAVES where AERONAVES.MATRICULA='" + matriculaNave + "' ) where ID=" + idCompte + "";
             conec.escribir(sql);
-            
-          //  JOptionPane.showMessageDialog(null, "actualizacion de id componente existosa");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "actualizacion de id componente fallida");
         }
 
     }
-    
-   
+
     public void asociarSubcomponente() {
     }
 

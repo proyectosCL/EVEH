@@ -7,6 +7,7 @@ package Vista;
 
 import Controlador.Administrar_Componente;
 import Modelo.Componente;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -25,6 +26,10 @@ public class ListarComponente extends javax.swing.JFrame {
     public ListarComponente() {
         initComponents();
         cargarTablaComponentes();
+        btnEliminarCompte.setEnabled(false);
+        btnModificarCompte.setEnabled(false);
+        lblComponenteSeleccionado.setText("Seleccione un componente para Eliminar/Modificar");
+        lblComponenteSeleccionado.setForeground(Color.red);
     }
 
     /**
@@ -39,6 +44,9 @@ public class ListarComponente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaComponentes = new javax.swing.JTable();
+        btnEliminarCompte = new javax.swing.JButton();
+        btnModificarCompte = new javax.swing.JButton();
+        lblComponenteSeleccionado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,19 +64,50 @@ public class ListarComponente extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaComponentes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaComponentesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaComponentes);
+
+        btnEliminarCompte.setText("Eliminar Componente");
+        btnEliminarCompte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarCompteActionPerformed(evt);
+            }
+        });
+
+        btnModificarCompte.setText("Modificar Componente");
+        btnModificarCompte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarCompteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(293, 293, 293)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(334, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(293, 293, 293)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(256, 256, 256)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblComponenteSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnEliminarCompte)
+                                        .addGap(230, 230, 230)
+                                        .addComponent(btnModificarCompte)))))
+                        .addGap(0, 268, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -78,11 +117,57 @@ public class ListarComponente extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblComponenteSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEliminarCompte)
+                    .addComponent(btnModificarCompte))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tablaComponentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaComponentesMouseClicked
+        // TODO add your handling code here:
+
+        btnEliminarCompte.setEnabled(true);
+        btnModificarCompte.setEnabled(true);
+
+        lblComponenteSeleccionado.setText("Componente seleccionado");
+        lblComponenteSeleccionado.setForeground(Color.green);
+
+    }//GEN-LAST:event_tablaComponentesMouseClicked
+
+    private void btnEliminarCompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCompteActionPerformed
+        // TODO add your handling code here:
+        int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar el componente seleccionado?");
+        if (JOptionPane.OK_OPTION == resp) {
+            int idCompte = Integer.parseInt(tablaComponentes.getValueAt(tablaComponentes.getSelectedRow(), 0).toString());
+            Administrar_Componente ac = new Administrar_Componente();
+            ac.eliminarComponente(idCompte);
+            cargarTablaComponentes();
+        } else {
+            cargarTablaComponentes();
+        }
+
+
+    }//GEN-LAST:event_btnEliminarCompteActionPerformed
+
+    private void btnModificarCompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCompteActionPerformed
+        // TODO add your handling code here:
+        int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea modificar el componente seleccionado?");
+        if (JOptionPane.OK_OPTION == resp) {
+            int idCompte = Integer.parseInt(tablaComponentes.getValueAt(tablaComponentes.getSelectedRow(), 0).toString());
+            ModificarComponente modCompte= new ModificarComponente();
+            modCompte.idCompteMod = idCompte;
+            modCompte.setVisible(true);
+            this.dispose();
+        } else {
+            cargarTablaComponentes();
+        }
+    }//GEN-LAST:event_btnModificarCompteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,8 +212,8 @@ public class ListarComponente extends javax.swing.JFrame {
                 return false;
             }
         };
-        String tipo_componente = "";
-        int tipo = 0;
+        String tipo_componente, asociacionAeronave = "";
+        int tipoCompte, tipoAsociacion = 0;
         tablaComponentes.setModel(modelo);
         tablaComponentes.getTableHeader().setReorderingAllowed(false);
         //.:Nombres de columnas:.
@@ -161,11 +246,18 @@ public class ListarComponente extends javax.swing.JFrame {
             fila[2] = listaComponente.get(i).getFabricante();
             fila[3] = listaComponente.get(i).getHoras_vuelo();
             fila[4] = listaComponente.get(i).getDias_vuelo();
-            tipo = listaComponente.get(i).getTipo_componente_id();
-            tipo_componente = ac.definirTipoCompte(tipo);
+            tipoCompte = listaComponente.get(i).getTipo_componente_id();
+            tipo_componente = ac.definirTipoCompte(tipoCompte);
             fila[5] = tipo_componente;
             fila[6] = listaComponente.get(i).getComponente_id();
-            fila[7] = listaComponente.get(i).getAeronave_id();
+            tipoAsociacion = listaComponente.get(i).getAeronave_id();
+            if (tipoAsociacion == 0) {
+                asociacionAeronave = "Componente libre";
+                fila[7] = asociacionAeronave;
+            } else {
+                fila[7] = listaComponente.get(i).getAeronave_id();
+            }
+
             modelo.addRow(fila);
         }
         tablaComponentes.updateUI();
@@ -174,8 +266,11 @@ public class ListarComponente extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminarCompte;
+    private javax.swing.JButton btnModificarCompte;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblComponenteSeleccionado;
     private javax.swing.JTable tablaComponentes;
     // End of variables declaration//GEN-END:variables
 }
