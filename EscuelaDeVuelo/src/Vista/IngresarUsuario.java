@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Vista;
+import Atxy2k.CustomTextField.RestrictedTextField;
 import Controlador.Administrar_Personas;
 import Controlador.Administrar_Usuarios;
 import Database.Conexion;
@@ -26,12 +27,14 @@ public class IngresarUsuario extends javax.swing.JFrame {
      */
     public IngresarUsuario() {
         initComponents();
-//        lblapellido.setVisible(false);
-//        lblconfirmar.setVisible(false);
-//        lblnombre.setVisible(false);
-//        lblpass.setVisible(false);
-//        lblrut.setVisible(false);
-//        lblusuario.setVisible(false);
+        
+        RestrictedTextField rutlimite = new RestrictedTextField(txtRut);
+        rutlimite.setLimit(8);
+        
+        rutlimite.setOnlyNums(true);
+        
+        
+        
         
     }
 
