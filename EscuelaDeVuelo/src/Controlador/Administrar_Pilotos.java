@@ -26,7 +26,7 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
             conec.conectar();
             String sql = "INSERT INTO pilotos  VALUES ((select (max(id)+1)from pilotos),"+horas_vuelo+","+dias_vuelo+",'"+vencimiento_medicina+"','"+fecha_ultimo_vuelo+"',"+persona+")";
             conec.escribir(sql);
-            
+            JOptionPane.showMessageDialog(null, "Ingresado Correctamente");
             
         } catch (Exception e) {
         }
@@ -47,7 +47,7 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
                     + " vencimiento_medicina= "+vencimiento_medicina+" ,"
                     + "ultimo_vuelo_realizado"+fecha_ultimo_vuelo;
             conec.escribir(sql);
-            
+            JOptionPane.showMessageDialog(null, "Modificado Correctamente");
             
         } catch (Exception e) {
         }  
@@ -100,7 +100,7 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
-            ResultSet rs = dbconn.consultar("SELECT * FROM pilotos join personas on personas.id = personas_id ");
+            ResultSet rs = dbconn.consultar("SELECT * FROM pilotos join personas on personas.id = personas_id order by rut");
             int cantidad =0;
             
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");

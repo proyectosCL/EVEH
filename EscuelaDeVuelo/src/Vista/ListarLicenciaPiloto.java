@@ -9,6 +9,7 @@ import Controlador.Administrar_Licencia;
 import Controlador.Administrar_Pilotos;
 import Modelo.Licencia;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -58,6 +59,8 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
         jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
         jTable1.updateUI();
+        
+        listarTodo();
     }
 
     /**
@@ -73,9 +76,11 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         ListarPiloto = new javax.swing.JButton();
-        ListarTodo = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTextRut = new javax.swing.JTextField();
+        btnModificarLicencia = new javax.swing.JButton();
+        btnEliminarLicencia = new javax.swing.JButton();
+        txtPilotoSeleccionado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,35 +96,51 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
             }
         });
 
-        ListarTodo.setText("Listar Todo");
-        ListarTodo.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setText("Rut del Piloto");
+
+        btnModificarLicencia.setText("Modificar Licencia");
+        btnModificarLicencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ListarTodoActionPerformed(evt);
+                btnModificarLicenciaActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Rut del Piloto");
+        btnEliminarLicencia.setText("Eliminar Licencia");
+        btnEliminarLicencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarLicenciaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ListarPiloto)
-                        .addGap(18, 18, 18)
-                        .addComponent(ListarTodo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextRut)))
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ListarPiloto)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextRut, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnEliminarLicencia)
+                                .addGap(97, 97, 97)
+                                .addComponent(btnModificarLicencia)
+                                .addGap(113, 113, 113))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(txtPilotoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(60, 60, 60))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,15 +152,17 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jTextRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ListarTodo)
-                            .addComponent(ListarPiloto)))
+                        .addComponent(ListarPiloto))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(265, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 64, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtPilotoSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnModificarLicencia)
+                    .addComponent(btnEliminarLicencia))
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -175,8 +198,7 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_ListarPilotoActionPerformed
 
-    private void ListarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarTodoActionPerformed
-        Clear_Table();
+    public void listarTodo(){
         try{
             Administrar_Licencia al = new Administrar_Licencia();
 
@@ -198,7 +220,35 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
         }catch(Exception ex){
             System.out.println(ex);
         }
-    }//GEN-LAST:event_ListarTodoActionPerformed
+    }
+    
+    private void btnModificarLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarLicenciaActionPerformed
+        // TODO add your handling code here:
+        int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea modificar la licencia seleccionado?");
+        if (JOptionPane.OK_OPTION == resp) {
+            int id = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+           // ModificarLicencia modLicencia = new ModificarLicencia();
+           // modLicencia.id= id;
+            //modLicencia.setVisible(true);
+            this.dispose();
+        } else {
+            listarTodo();
+        }
+    }//GEN-LAST:event_btnModificarLicenciaActionPerformed
+
+    private void btnEliminarLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarLicenciaActionPerformed
+        // TODO add your handling code here:
+        int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar la licencia seleccionada?");
+        if (JOptionPane.OK_OPTION == resp) {
+            int id = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+            Administrar_Licencia al = new Administrar_Licencia();
+            al.eliminarLicencia(id);
+            listarTodo();
+        } else {
+            listarTodo();
+        }
+
+    }//GEN-LAST:event_btnEliminarLicenciaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,11 +287,13 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton ListarPiloto;
-    public javax.swing.JButton ListarTodo;
+    private javax.swing.JButton btnEliminarLicencia;
+    private javax.swing.JButton btnModificarLicencia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextRut;
+    private javax.swing.JLabel txtPilotoSeleccionado;
     // End of variables declaration//GEN-END:variables
 }
