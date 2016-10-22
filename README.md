@@ -2,7 +2,7 @@
 
 # Base de datos
 
-Script: http://www.mediafire.com/file/cty2fw5e6zgzcxu/db_escuela_aviacion.ddl (18-10-2016)
+Script: http://www.mediafire.com/file/e78gw8uw69ezcre/db_escuela_aviacion.ddl (22-10-2016)
 
 * 30-09-2016
   * Se cambio 'user' a 'cuenta' dentro de la tabla USUARIOS.
