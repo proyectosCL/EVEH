@@ -91,6 +91,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
         lblrut = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         cboEstado = new javax.swing.JComboBox<>();
+        jLabel17 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -253,16 +254,13 @@ public class IngresarUsuario extends javax.swing.JFrame {
         cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "activado", "desactivado" }));
         cboEstado.setFocusable(false);
 
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel17.setText("Ingresar Persona");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addComponent(btnIngresar)
-                .addGap(55, 55, 55)
-                .addComponent(btnCancelar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,11 +323,24 @@ public class IngresarUsuario extends javax.swing.JFrame {
                                     .addComponent(lblrut, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(btnIngresar)
+                        .addGap(55, 55, 55)
+                        .addComponent(btnCancelar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(jLabel17)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel17)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -432,6 +443,9 @@ public class IngresarUsuario extends javax.swing.JFrame {
         // persona
         //validaciones
        
+        btnIngresar.setEnabled(false);
+        btnIngresar.setText("en curso...");
+        
         
         int id_persona = 0;
         String rut = txtRut.getText();
@@ -472,6 +486,51 @@ public class IngresarUsuario extends javax.swing.JFrame {
         
         String estado_cuenta = cboEstado.getSelectedItem()+"";
         
+//        if (lblconfirmar.isVisible()||lblnombre.isVisible()||lblapellido.isVisible()||lblpass.isVisible()||lblrut.isVisible()||lblusuario.isVisible()) {
+//            JOptionPane.showMessageDialog(null, "debe llenar todos los campos con asteriscos");
+//        }else{
+//            
+//            Usuario userr = new Usuario(iduser, nombreusuario, pass, id_perfil, estado_cuenta);
+//            //Persona person = new Persona(id_persona,rut,nombre,apellidos,sexo,fechaNac,telefono,correo,nacionalidad,iduser,nombreusuario,pass,tipo);
+//            Persona person = new Persona(id_persona,rut,nombre,apellidos,sexo,fechaNac,telefono,correo,nacionalidad,iduser,nombreusuario,pass,tipo,estado_cuenta);
+//            
+//            Administrar_Personas admp = new Administrar_Personas();
+//            Administrar_Usuarios usr = new Administrar_Usuarios();
+//            
+//            if (usr.buscarUsuario(userr.getUsuario())) {
+//                JOptionPane.showMessageDialog(null, "el nombre de usuario ya esta registrado, por favor seleccione otro");
+//                txtUsuario.requestFocus();
+//             
+//            } else {
+//                
+//                if (admp.buscarPersona(person.getRut())) {
+//                    JOptionPane.showMessageDialog(null, "El Rut Ya esta registrado");
+//                    txtRut.requestFocus();
+//                    
+//                } else {
+//                    
+//                    
+//                    
+//                    int dialogButton = JOptionPane.YES_NO_OPTION;
+//                    int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar al sistema?", "confirmacion", dialogButton);
+//                    if(dialogResult == 0) {
+//                        
+//                      if (usr.ingresarUsuario(userr)&&admp.ingresarPersona(person)) {
+//                                JOptionPane.showMessageDialog(null, "Se ingreso correctamente");
+//                            }
+//                    } else {
+//                      JOptionPane.showMessageDialog(null, "no se puedo ingresar");
+//                    }
+//                    
+//                    
+//                    
+//                }
+//                
+//                
+//            }
+//            
+//            
+//        }
         if (lblconfirmar.isVisible()||lblnombre.isVisible()||lblapellido.isVisible()||lblpass.isVisible()||lblrut.isVisible()||lblusuario.isVisible()) {
             JOptionPane.showMessageDialog(null, "debe llenar todos los campos con asteriscos");
         }else{
@@ -482,42 +541,29 @@ public class IngresarUsuario extends javax.swing.JFrame {
             
             Administrar_Personas admp = new Administrar_Personas();
             Administrar_Usuarios usr = new Administrar_Usuarios();
-            
-            if (usr.buscarUsuario(userr.getUsuario())) {
-                JOptionPane.showMessageDialog(null, "el nombre de usuario ya esta registrado, por favor seleccione otro");
-                txtUsuario.requestFocus();
-             
-            } else {
-                
-                if (admp.buscarPersona(person.getRut())) {
-                    JOptionPane.showMessageDialog(null, "El Rut Ya esta registrado");
-                    txtRut.requestFocus();
-                    
-                } else {
-                    
-                    
-                    
-                    int dialogButton = JOptionPane.YES_NO_OPTION;
-                    int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar al sistema?", "confirmacion", dialogButton);
-                    if(dialogResult == 0) {
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar al sistema?", "confirmacion", dialogButton);
+            if(dialogResult == 0) {
                         
-                      if (usr.ingresarUsuario(userr)&&admp.ingresarPersona(person)) {
-                                JOptionPane.showMessageDialog(null, "Se ingreso correctamente");
-                            }
-                    } else {
-                      JOptionPane.showMessageDialog(null, "no se puedo ingresar");
-                    }
-                    
-                    
-                    
+                if (usr.ingresarUsuario(userr)&&admp.ingresarPersona(person)) {
+                    JOptionPane.showMessageDialog(null, "Se ingreso correctamente");
+                } else {
+                    JOptionPane.showMessageDialog(null, "no se puedo ingresar");
                 }
-                
-                
             }
-            
+            else {
+                    JOptionPane.showMessageDialog(null, "no se guardaron los cambios");
+                } 
+           
+           btnIngresar.setEnabled(true);        
+           btnIngresar.setText("Ingresar");         
+                    
+                
+                
+                
+                        
             
         }
-        
  
         
            
@@ -549,7 +595,16 @@ public class IngresarUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
                 if(txtRut.getText().equals("")){
                     lblrut.setVisible(true);
-                }else{lblrut.setVisible(false);}
+                }else{
+                    lblrut.setVisible(false);
+                    
+                    Administrar_Personas admp = new Administrar_Personas();
+                    if (admp.buscarPersona(txtRut.getText())) {
+                    JOptionPane.showMessageDialog(null, "El Rut Ya esta registrado");
+                    txtRut.requestFocus();
+                    
+                }
+                }
 
     }//GEN-LAST:event_txtRutFocusLost
 
@@ -560,7 +615,19 @@ public class IngresarUsuario extends javax.swing.JFrame {
                     //JOptionPane.showMessageDialog(null, "Usuario puede estar vacio");
                     lblusuario.setVisible(true);
                     
-                }else{lblusuario.setVisible(false);}
+                }else{
+            
+            lblusuario.setVisible(false);
+            
+            //aqui
+             Administrar_Usuarios usr = new Administrar_Usuarios();
+            if (usr.buscarUsuario(txtUsuario.getText())) {
+                JOptionPane.showMessageDialog(null, "el nombre de usuario ya esta registrado, por favor seleccione otro");
+                txtUsuario.requestFocus();
+             
+            }
+            
+        }
     }//GEN-LAST:event_txtUsuarioFocusLost
 
     private void txtPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusLost
@@ -596,38 +663,38 @@ public class IngresarUsuario extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-////        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-////        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-////         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-////         */
-////        try {
-////            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-////                if ("Nimbus".equals(info.getName())) {
-////                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-////                    break;
-////                }
-////            }
-////        } catch (ClassNotFoundException ex) {
-////            java.util.logging.Logger.getLogger(IngresarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-////        } catch (InstantiationException ex) {
-////            java.util.logging.Logger.getLogger(IngresarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-////        } catch (IllegalAccessException ex) {
-////            java.util.logging.Logger.getLogger(IngresarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-////        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-////            java.util.logging.Logger.getLogger(IngresarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-////        }
-////        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new IngresarUsuario().setVisible(true);
-//                
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
 //            }
-//        });
-//    }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(IngresarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(IngresarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(IngresarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(IngresarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new IngresarUsuario().setVisible(true);
+                
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
@@ -647,6 +714,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

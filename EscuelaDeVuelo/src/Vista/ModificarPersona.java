@@ -24,14 +24,22 @@ public class ModificarPersona extends javax.swing.JFrame {
     /**
      * Creates new form IngresarUsuario
      */
+    private String varRut;
+    
+    
+    public ModificarPersona(String rut) {
+        initComponents();
+        txtRut.setText(rut);
+        
+        cargar();
+        lblrut.setVisible(false);
+    
+        
+    }
     public ModificarPersona() {
         initComponents();
-//        lblapellido.setVisible(false);
-//        lblconfirmar.setVisible(false);
-//        lblnombre.setVisible(false);
-//        lblpass.setVisible(false);
-//        lblrut.setVisible(false);
-//        lblusuario.setVisible(false);
+        
+    
         
     }
 
@@ -583,10 +591,7 @@ public class ModificarPersona extends javax.swing.JFrame {
                     lblapellido.setVisible(true);
                 }else{lblapellido.setVisible(false);}
     }//GEN-LAST:event_txtApellidoFocusLost
-
-    private void btncargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncargarActionPerformed
-        // TODO add your handling code here:
-        
+    public void cargar(){
         Administrar_Personas admper = new Administrar_Personas();
         Persona person = admper.cargarPersona(txtRut.getText());
         
@@ -649,6 +654,11 @@ public class ModificarPersona extends javax.swing.JFrame {
             //System.out.println(dia+"/"+mes+"/"+año+" fehc");
             
         }
+    }
+    private void btncargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncargarActionPerformed
+        // TODO add your handling code here:
+        cargar();
+        
         
     }//GEN-LAST:event_btncargarActionPerformed
 
@@ -736,4 +746,12 @@ public class ModificarPersona extends javax.swing.JFrame {
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    public String getVarRut() {
+        return varRut;
+    }
+
+    public void setVarRut(String varRut) {
+        this.varRut = varRut;
+    }
 }
