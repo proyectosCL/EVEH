@@ -10,7 +10,10 @@ Script: http://www.mediafire.com/file/cty2fw5e6zgzcxu/db_escuela_aviacion.ddl (1
   * Se elimino UNIQUE INDEX licencias de la tabla LICENCIAS.
   * Se elimino UNIQUE INDEX vuelos_origen de la tabla VUELOS.
   * Se elimino UNIQUE INDEX vuelos_destino de la tabla VUELOS.
-  * Ahora horas_vuelo de la tabla VUELOS puede ser null.
+  * Ahora 'horas_vuelo' de la tabla VUELOS puede ser null.
+* 22-10-2016
+  * Se añadio 'tipo' CHAR(1) a la tabla TRIPULACION.
+  * Se modifico 'condicion_vuelo' de CHAR(1) a CHAR(3) de la tabla VUELOS.
 
 # Conectarse a la base de datos
 1. Nueva conección.
