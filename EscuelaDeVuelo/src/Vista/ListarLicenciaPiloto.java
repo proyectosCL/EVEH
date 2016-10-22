@@ -8,6 +8,7 @@ package Vista;
 import Controlador.Administrar_Licencia;
 import Controlador.Administrar_Pilotos;
 import Modelo.Licencia;
+import Modelo.Piloto;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -23,6 +24,36 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
     /**
      * Creates new form ListarLicenciaPiloto
      */
+    
+    class ComboItem {
+
+            
+         String key;
+         String value;
+
+        public ComboItem(String key, String value)
+        {
+            this.key = key;
+            this.value = value;
+        }
+
+        @Override
+        public String toString()
+        {
+            return key;
+        }
+
+        public String getKey()
+        {
+            return key;
+        }
+
+        public String getValue()
+        {
+            return value;
+        }
+    
+}
     private void Clear_Table(){
        for (int i = 0; i < jTable1.getRowCount(); i++) {
            modelo.removeRow(i);
@@ -35,8 +66,9 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
                 return false;
             }
         };
+    private String dato;
     
-    public ListarLicenciaPiloto() {
+    public ListarLicenciaPiloto(String dato){
         initComponents();
         
         jTable1.setModel(modelo);
@@ -60,7 +92,49 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
         
         jTable1.updateUI();
         
-        listarTodo();
+        Administrar_Pilotos ap = new Administrar_Pilotos();
+        ArrayList<Piloto> listaPiloto = ap.listarPiloto();
+        
+        for (int i = 0; i < listaPiloto.size(); i++) {
+            this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut()+" : "+listaPiloto.get(i).getNombre()+" "+listaPiloto.get(i).getApellidos(),listaPiloto.get(i).getRut()));
+        }
+        
+        listarPiloto(dato);
+    }
+    public ListarLicenciaPiloto() {
+        
+        initComponents();
+        
+        jTable1.setModel(modelo);
+        
+        modelo.addColumn("ID");
+        modelo.addColumn("NUMERO");
+        modelo.addColumn("TIPO DE LICENCIA");
+        modelo.addColumn("FECHA VENCIMIENTO");
+        modelo.addColumn("HORAS DE VUELO");
+        modelo.addColumn("DIAS DE VUELO");
+        modelo.addColumn("ID DEL PILOTO");
+        TableColumnModel columnModel = jTable1.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(30);
+        columnModel.getColumn(1).setPreferredWidth(75);
+        columnModel.getColumn(2).setPreferredWidth(140);
+        columnModel.getColumn(3).setPreferredWidth(140);
+        columnModel.getColumn(4).setPreferredWidth(110);
+        columnModel.getColumn(5).setPreferredWidth(110);
+        columnModel.getColumn(6).setPreferredWidth(100);
+        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+        jTable1.updateUI();
+        
+        Administrar_Pilotos ap = new Administrar_Pilotos();
+        ArrayList<Piloto> listaPiloto = ap.listarPiloto();
+        
+        for (int i = 0; i < listaPiloto.size(); i++) {
+            this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut()+" : "+listaPiloto.get(i).getNombre()+" "+listaPiloto.get(i).getApellidos(),listaPiloto.get(i).getRut()));
+        }
+            listarTodo();
+            
+        
     }
 
     /**
@@ -77,10 +151,10 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         ListarPiloto = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextRut = new javax.swing.JTextField();
         btnModificarLicencia = new javax.swing.JButton();
         btnEliminarLicencia = new javax.swing.JButton();
-        txtPilotoSeleccionado = new javax.swing.JLabel();
+        txtLicenciaSeleccionado = new javax.swing.JLabel();
+        cbRut = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +186,8 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
             }
         });
 
+        cbRut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,47 +198,49 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
+                        .addGap(79, 79, 79)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ListarPiloto)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextRut, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cbRut, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ListarPiloto)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnEliminarLicencia)
-                                .addGap(97, 97, 97)
+                                .addGap(48, 48, 48)
                                 .addComponent(btnModificarLicencia)
-                                .addGap(113, 113, 113))
+                                .addGap(169, 169, 169))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(txtPilotoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtLicenciaSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(60, 60, 60))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ListarPiloto))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(cbRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ListarPiloto)))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(txtLicenciaSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtPilotoSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificarLicencia)
                     .addComponent(btnEliminarLicencia))
-                .addGap(33, 33, 33))
+                .addGap(37, 37, 37))
         );
 
         pack();
@@ -171,9 +249,20 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
     private void ListarPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarPilotoActionPerformed
              Clear_Table();
              
-             String rut = jTextRut.getText();
+             if (cbRut.getSelectedItem().equals("Seleccione")) {
+                JOptionPane.showMessageDialog(null, "Seleccione un Piloto");
+                return;
+            }
+             Object item2 = cbRut.getSelectedItem();
+             String rut = ((ComboItem)item2).getValue();
              
-             try{
+            listarPiloto(rut);
+        
+
+    }//GEN-LAST:event_ListarPilotoActionPerformed
+
+    public void listarPiloto(String rut){
+         try{
                     Administrar_Licencia al = new Administrar_Licencia();
 
                     ArrayList<Licencia>lista = al.listarLicencia2(rut);
@@ -194,10 +283,7 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
         }catch(Exception ex){
             System.out.println(ex);
         }
-        
-
-    }//GEN-LAST:event_ListarPilotoActionPerformed
-
+    }
     public void listarTodo(){
         try{
             Administrar_Licencia al = new Administrar_Licencia();
@@ -289,11 +375,11 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
     public javax.swing.JButton ListarPiloto;
     private javax.swing.JButton btnEliminarLicencia;
     private javax.swing.JButton btnModificarLicencia;
+    public javax.swing.JComboBox cbRut;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextRut;
-    private javax.swing.JLabel txtPilotoSeleccionado;
+    private javax.swing.JLabel txtLicenciaSeleccionado;
     // End of variables declaration//GEN-END:variables
 }
