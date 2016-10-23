@@ -51,7 +51,7 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
 
     @Override
     public void sumarHoras() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("aa");
     }
 
     ListarVuelo vistaListarVuelo = new ListarVuelo();
