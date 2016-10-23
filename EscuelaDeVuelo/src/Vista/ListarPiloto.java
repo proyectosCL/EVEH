@@ -171,6 +171,17 @@ public class ListarPiloto extends javax.swing.JFrame {
 
     private void btnModificarPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPilotoActionPerformed
         // TODO add your handling code here:
+        int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea modificar el piloto seleccionado?");
+        if (JOptionPane.OK_OPTION == resp) {
+            int id  = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+            
+            ModificarPiloto modificar = new ModificarPiloto(id);
+            modificar.setVisible(true);
+           
+            this.dispose();
+        } else {
+            listarTodo();
+        }
     }//GEN-LAST:event_btnModificarPilotoActionPerformed
 
     private void btnVerLicenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerLicenciasActionPerformed

@@ -105,10 +105,10 @@ public class Administrar_Licencia {
          try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
-            ResultSet rs = dbconn.consultar("SELECT * FROM licencias join tipos_licencias on tipos_licencias_id = tipos_licencias.id order by licencias.id");
+            ResultSet rs = dbconn.consultar("SELECT * FROM licencias join tipos_licencias on tipos_licencias_id = tipos_licencias.id order by licencias.numero");
             while (rs.next()) {
                 licencia = new Licencia();
-                licencia.setId(rs.getInt("id"));
+                licencia.setId_licencia(rs.getInt("id"));
                 licencia.setNumero(rs.getInt("numero"));
                 try {
                         licencia.setFecha_vencimiento(df.format(rs.getDate("fecha_vencimiento")));
@@ -142,7 +142,7 @@ public class Administrar_Licencia {
             ResultSet rs = dbconn.consultar("SELECT * FROM licencias join tipos_licencias on tipos_licencias_id = tipos_licencias.id join pilotos on pilotos.id = licencias.pilotos_id join personas on personas.id = pilotos.personas_id where personas.rut = '"+rut+"'");
             while (rs.next()) {
                 licencia = new Licencia();
-                licencia.setId(rs.getInt("id"));
+                licencia.setId_licencia(rs.getInt("id"));
                 licencia.setNumero(rs.getInt("numero"));
                 try {
                         licencia.setFecha_vencimiento(df.format(rs.getDate("fecha_vencimiento")));
@@ -180,4 +180,39 @@ public class Administrar_Licencia {
           
           return valido;
       }
+      
+      public ArrayList<Licencia> listarLicenciaID(int id){
+         ArrayList lista = new ArrayList();
+         Licencia licencia;
+         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+         
+         
+         try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM licencias join tipos_licencias on tipos_licencias_id = tipos_licencias.id  where licencias.id = "+id+ " order by licencias.numero");
+            while (rs.next()) {
+                licencia = new Licencia();
+                licencia.setId_licencia(rs.getInt("id"));
+                licencia.setId(rs.getInt("tipos_licencias_id"));
+                licencia.setNumero(rs.getInt("numero"));
+                try {
+                        licencia.setFecha_vencimiento(df.format(rs.getDate("fecha_vencimiento")));
+                    } catch (Exception ex) {
+                        System.out.println(ex);
+                    }
+                
+                licencia.setHoras_vuelo(rs.getFloat("horas_vuelo"));
+                licencia.setDias_vuelo(rs.getInt("dias_vuelo"));
+                licencia.setDescripcion(rs.getString("descripcion"));
+                licencia.setId_piloto(rs.getInt("pilotos_id"));
+                lista.add(licencia);
+            }
+
+        } catch (Exception e) {
+             System.out.println(e);
+        }
+         
+         return lista;
+     } 
 }

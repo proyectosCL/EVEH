@@ -270,7 +270,7 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
                     Object[] fila = new Object[9];
                     int num = lista.size();
                     for (int i = 0; i < num; i++) {
-                        fila[0] = lista.get(i).getId();
+                        fila[0] = lista.get(i).getId_licencia();
                         fila[1] = lista.get(i).getNumero();
                         fila[2] = lista.get(i).getDescripcion();
                         fila[3] = lista.get(i).getFecha_vencimiento();
@@ -293,7 +293,7 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
             Object[] fila = new Object[9];
             int num = lista.size();
             for (int i = 0; i < num; i++) {
-                fila[0] = lista.get(i).getId();
+                fila[0] = lista.get(i).getId_licencia();
                 fila[1] = lista.get(i).getNumero();
                 fila[2] = lista.get(i).getDescripcion();
                 fila[3] = lista.get(i).getFecha_vencimiento();
@@ -310,12 +310,11 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
     
     private void btnModificarLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarLicenciaActionPerformed
         // TODO add your handling code here:
-        int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea modificar la licencia seleccionado?");
+        int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea modificar la licencia seleccionada?");
         if (JOptionPane.OK_OPTION == resp) {
-            int id = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
-           // ModificarLicencia modLicencia = new ModificarLicencia();
-           // modLicencia.id= id;
-            //modLicencia.setVisible(true);
+            int id =Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+            ModificarLicencia modLicencia = new ModificarLicencia(id);
+            modLicencia.setVisible(true);
             this.dispose();
         } else {
             listarTodo();

@@ -5,7 +5,6 @@
  */
 package Vista;
 
-import Atxy2k.CustomTextField.RestrictedTextField;
 import Controlador.Administrar_Licencia;
 import Controlador.Administrar_Personas;
 import Controlador.Administrar_Pilotos;
@@ -17,13 +16,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Celso
  */
-public class IngresarLicencia extends javax.swing.JFrame {
+public class ModificarLicencia extends javax.swing.JFrame {
 
     /**
      * Creates new form IngresarLicencia
@@ -59,29 +59,52 @@ public class IngresarLicencia extends javax.swing.JFrame {
     
 }
      
-    public IngresarLicencia() {
-    
-        
-        
-       
+    public ModificarLicencia(int id) {
         initComponents();
-            
-            
+
         Administrar_Licencia al = new Administrar_Licencia();
         Administrar_Pilotos ap = new Administrar_Pilotos();
+        //licencia a modificar
+        ArrayList<Licencia> listaLicencia = al.listarLicenciaID(id);
         
+        //combos
         ArrayList<Tipo_licencia> lista = al.listarTipoLicencia();
         
+        ComboItem selectTipo = null;
         for (int i = 0; i < lista.size(); i++) {
             this.jComboBoxTipoLicencia.addItem(new ComboItem(lista.get(i).getDescripcion(),String.valueOf(lista.get(i).getId())));
+            if (lista.get(i).getId() == listaLicencia.get(0).getId()) {
+                selectTipo = new ComboItem(lista.get(i).getDescripcion(),String.valueOf(lista.get(i).getId()));
+            }
         }
         
         ArrayList<Piloto> listaPiloto = ap.listarPiloto();
         
+        ComboItem select = null;
         for (int i = 0; i < listaPiloto.size(); i++) {
             this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut()+" : "+listaPiloto.get(i).getNombre()+" "+listaPiloto.get(i).getApellidos(),String.valueOf(listaPiloto.get(i).getId())));
+            if (listaPiloto.get(i).getId() == listaLicencia.get(0).getId_piloto()) {
+               select = new ComboItem(listaPiloto.get(i).getRut()+" : "+listaPiloto.get(i).getNombre()+" "+listaPiloto.get(i).getApellidos(),String.valueOf(listaPiloto.get(i).getId()));
+            }
         }
         
+        //datos
+        this.cbRut.getModel().setSelectedItem(select);
+        jTextFieldNumeroLicencia.setText(String.valueOf(listaLicencia.get(0).getNumero()));
+        jComboBoxTipoLicencia.getModel().setSelectedItem(selectTipo);
+        jTextFieldHoras.setText(String.valueOf(listaLicencia.get(0).getHoras_vuelo()));
+        jTextFieldDias.setText(String.valueOf(listaLicencia.get(0).getDias_vuelo()));
+        
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date fecha = null;
+        try{
+             fecha = df.parse(listaLicencia.get(0).getFecha_vencimiento());
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+        
+        JDateVencimiento.setDate(fecha);
+                
         
     }
 
@@ -113,7 +136,7 @@ public class IngresarLicencia extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Ingresar Licencia");
+        jLabel1.setText("Modificar Licencia");
 
         jLabel3.setText("Numero de Licencia");
 
@@ -168,7 +191,7 @@ public class IngresarLicencia extends javax.swing.JFrame {
             }
         });
 
-        btnIngresar.setText("Ingresar");
+        btnIngresar.setText("Modificar Licencia");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarActionPerformed(evt);
@@ -182,7 +205,7 @@ public class IngresarLicencia extends javax.swing.JFrame {
             }
         });
 
-        JDateVencimiento.setDateFormatString("dd/MMMM/yyyy");
+        JDateVencimiento.setDateFormatString("dd/MM/yyyy");
 
         cbRut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
 
@@ -203,7 +226,7 @@ public class IngresarLicencia extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnIngresar)
-                        .addGap(0, 243, Short.MAX_VALUE))
+                        .addGap(0, 201, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(JDateVencimiento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -397,20 +420,21 @@ public class IngresarLicencia extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IngresarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IngresarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IngresarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IngresarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IngresarLicencia().setVisible(true);
+                new ModificarLicencia(2).setVisible(true);
             }
         });
     }
@@ -419,7 +443,7 @@ public class IngresarLicencia extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser JDateVencimiento;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JComboBox cbRut;
+    public javax.swing.JComboBox cbRut;
     private javax.swing.JComboBox jComboBoxTipoLicencia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -430,6 +454,6 @@ public class IngresarLicencia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextFieldDias;
     private javax.swing.JTextField jTextFieldHoras;
-    private javax.swing.JTextField jTextFieldNumeroLicencia;
+    public javax.swing.JTextField jTextFieldNumeroLicencia;
     // End of variables declaration//GEN-END:variables
 }

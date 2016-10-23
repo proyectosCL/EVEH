@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  *
  * @author Celso
  */
-public class IngresarPiloto extends javax.swing.JFrame {
+public class ModificarPiloto extends javax.swing.JFrame {
 
     /**
      * Creates new form IngresarPiloto
@@ -56,17 +56,47 @@ public class IngresarPiloto extends javax.swing.JFrame {
     
 }
  
-    public IngresarPiloto() {
+    public ModificarPiloto(int id) {
         initComponents();
         
         Administrar_Pilotos ap = new Administrar_Pilotos();
+        //piloto a modificra
+        ArrayList<Piloto> piloto = ap.listarPilotoID(id);
+        
+        //combo
         ArrayList<Piloto> listaPiloto = ap.listarPiloto();
         
+        ComboItem select = null;
         for (int i = 0; i < listaPiloto.size(); i++) {
             this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut()+" : "+listaPiloto.get(i).getNombre()+" "+listaPiloto.get(i).getApellidos(),String.valueOf(listaPiloto.get(i).getId_persona())));
+            if (listaPiloto.get(i).getId_persona() == piloto.get(0).getId_persona()) {
+                select = new ComboItem(listaPiloto.get(i).getRut()+" : "+listaPiloto.get(i).getNombre()+" "+listaPiloto.get(i).getApellidos(),String.valueOf(listaPiloto.get(i).getId_persona()));
+            }
         }
 
+        //datos
+        jTextFieldDias.setText(String.valueOf(piloto.get(0).getDias_vuelo()));
+        jTextFieldHoras.setText(String.valueOf(piloto.get(0).getHoras_vuelo()));
+        cbRut.getModel().setSelectedItem(select);
         
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date medicina = null;
+        Date ultimo_vuelo = null;
+        
+        try{
+             medicina = df.parse(piloto.get(0).getVencimiento_medicina());
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+        
+        try{
+            ultimo_vuelo = df.parse(piloto.get(0).getFecha_ultimo_vuelo());
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+        
+        JDateMedicina.setDate(medicina);
+        JDateUltimoVuelo.setDate(ultimo_vuelo);
     }
 
     /**
@@ -133,9 +163,9 @@ public class IngresarPiloto extends javax.swing.JFrame {
             }
         });
 
-        JDateMedicina.setDateFormatString("dd/MMMM/yyyy");
+        JDateMedicina.setDateFormatString("dd/MM/yyyy");
 
-        JDateUltimoVuelo.setDateFormatString("dd/MMMM/yyyy");
+        JDateUltimoVuelo.setDateFormatString("dd/MM/yyyy");
 
         cbRut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
 
@@ -320,20 +350,21 @@ public class IngresarPiloto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IngresarPiloto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarPiloto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IngresarPiloto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarPiloto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IngresarPiloto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarPiloto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IngresarPiloto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarPiloto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IngresarPiloto().setVisible(true);
+                new ModificarPiloto(3).setVisible(true);
             }
         });
     }
