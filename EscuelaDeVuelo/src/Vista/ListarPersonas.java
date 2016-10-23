@@ -5,11 +5,14 @@
  */
 package Vista;
 
+import Controlador.Administrar_Componente;
 import Controlador.Administrar_Personas;
+import Controlador.Administrar_Usuarios;
 import Controlador.Administrar_Vuelo;
 import Modelo.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.JTable;
@@ -29,44 +32,48 @@ public class ListarPersonas extends javax.swing.JFrame {
     public ListarPersonas() {
 
         initComponents();
+        cargarTablaComponentes();
+        btnEliminarCompte.setEnabled(false);
+        btnModificarCompte.setEnabled(false);
 
-        DefaultTableModel modelo = new DefaultTableModel() {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-        jTable1.setModel(modelo);
-        //.:Nombres de columnas:.
-        modelo.addColumn("ID");
-        modelo.addColumn("RUT");
-        modelo.addColumn("NOMBRE");
-        modelo.addColumn("APELLIDOS");
-        modelo.addColumn("SEXO");
-        modelo.addColumn("FECHA NACIMIENTO");
-        modelo.addColumn("TELEFONO");
-        modelo.addColumn("CORREO");
-        modelo.addColumn("NACIONALIDAD");
-        modelo.addColumn("ID USUARIO");
-        modelo.addColumn("CUENTA");
-        modelo.addColumn("PASS");
-        
-        modelo.addColumn("PERFIL");
-        modelo.addColumn("ESTADO CUENTA");
-        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        TableColumnModel columnModel = jTable1.getColumnModel();
-        //.:Tamaño de columnas:.
-//        columnModel.getColumn(0).setPreferredWidth(40);
-//        columnModel.getColumn(1).setPreferredWidth(140);
-//        columnModel.getColumn(2).setPreferredWidth(140);
-//        columnModel.getColumn(3).setPreferredWidth(55);
-//        columnModel.getColumn(4).setPreferredWidth(90);
-//        columnModel.getColumn(5).setPreferredWidth(120);
-//        columnModel.getColumn(6).setPreferredWidth(60);
-//        columnModel.getColumn(7).setPreferredWidth(80);
-//        columnModel.getColumn(8).setPreferredWidth(80);
-        jTable1.updateUI();
+//        DefaultTableModel modelo = new DefaultTableModel() {
+//            public boolean isCellEditable(int row, int column) {
+//                return false;
+//            }
+//        };
+//        jTable1.setModel(modelo);
+//        //.:Nombres de columnas:.
+//        modelo.addColumn("ID");
+//        modelo.addColumn("RUT");
+//        modelo.addColumn("NOMBRE");
+//        modelo.addColumn("APELLIDOS");
+//        modelo.addColumn("SEXO");
+//        modelo.addColumn("FECHA NACIMIENTO");
+//        modelo.addColumn("TELEFONO");
+//        modelo.addColumn("CORREO");
+//        modelo.addColumn("NACIONALIDAD");
+//        modelo.addColumn("ID USUARIO");
+//        modelo.addColumn("CUENTA");
+//        modelo.addColumn("PASS");
+//        
+//        modelo.addColumn("PERFIL");
+//        modelo.addColumn("ESTADO CUENTA");
+//        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+//        TableColumnModel columnModel = jTable1.getColumnModel();
+//        //.:Tamaño de columnas:.
+////        columnModel.getColumn(0).setPreferredWidth(40);
+////        columnModel.getColumn(1).setPreferredWidth(140);
+////        columnModel.getColumn(2).setPreferredWidth(140);
+////        columnModel.getColumn(3).setPreferredWidth(55);
+////        columnModel.getColumn(4).setPreferredWidth(90);
+////        columnModel.getColumn(5).setPreferredWidth(120);
+////        columnModel.getColumn(6).setPreferredWidth(60);
+////        columnModel.getColumn(7).setPreferredWidth(80);
+////        columnModel.getColumn(8).setPreferredWidth(80);
+//        jTable1.updateUI();
 
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -76,6 +83,8 @@ public class ListarPersonas extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
+        btnEliminarCompte = new javax.swing.JButton();
+        btnModificarCompte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,12 +95,34 @@ public class ListarPersonas extends javax.swing.JFrame {
             }
         });
 
+        jTable1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTable1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTable1FocusLost(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
         jButton2.setText("< Volver");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        btnEliminarCompte.setText("Eliminar Persona");
+        btnEliminarCompte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarCompteActionPerformed(evt);
+            }
+        });
+
+        btnModificarCompte.setText("Modificar Persona");
+        btnModificarCompte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarCompteActionPerformed(evt);
             }
         });
 
@@ -108,6 +139,12 @@ public class ListarPersonas extends javax.swing.JFrame {
                         .addComponent(jButton1))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1070, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(240, 240, 240)
+                .addComponent(btnEliminarCompte)
+                .addGap(230, 230, 230)
+                .addComponent(btnModificarCompte)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +155,11 @@ public class ListarPersonas extends javax.swing.JFrame {
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEliminarCompte)
+                    .addComponent(btnModificarCompte))
+                .addGap(29, 29, 29))
         );
 
         pack();
@@ -206,6 +247,54 @@ public class ListarPersonas extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void btnEliminarCompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCompteActionPerformed
+        // TODO add your handling code here:
+        int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar el componente seleccionado?");
+        if (JOptionPane.OK_OPTION == resp) {
+            Administrar_Personas admp = new Administrar_Personas();
+            Administrar_Usuarios usr = new Administrar_Usuarios();
+            
+            String rut = jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();
+            String cuenta = jTable1.getValueAt(jTable1.getSelectedRow(), 10).toString();
+           
+            admp.eliminarPersona(rut);
+            usr.eliminarUsuario(cuenta);
+            JOptionPane.showMessageDialog(null, "se elimino correctamente");
+            cargarTablaComponentes();
+            
+        } else {
+            cargarTablaComponentes();
+        }
+
+    }//GEN-LAST:event_btnEliminarCompteActionPerformed
+
+    private void btnModificarCompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCompteActionPerformed
+        // TODO add your handling code here:
+        int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea modificar el componente seleccionado?");
+        if (JOptionPane.OK_OPTION == resp) {
+            String rut = jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();// aqui vot
+            ModificarPersona modCompte= new ModificarPersona(rut);
+//            modCompte.setVarRut(rut);
+//            System.out.println("rut de listar"+rut);
+            modCompte.setVisible(true);
+            //modCompte.cargar();
+            this.dispose();
+        } else {
+            cargarTablaComponentes();
+        }
+    }//GEN-LAST:event_btnModificarCompteActionPerformed
+
+    private void jTable1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusLost
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTable1FocusLost
+
+    private void jTable1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusGained
+        // TODO add your handling code here:
+        btnEliminarCompte.setEnabled(true);
+        btnModificarCompte.setEnabled(true);
+    }//GEN-LAST:event_jTable1FocusGained
+
     /**
      * @param args the command line arguments
      */
@@ -244,8 +333,91 @@ public class ListarPersonas extends javax.swing.JFrame {
             }
         });
     }
+    
+     private void cargarTablaComponentes() {
+        //Definición de nombres y tamaño de las columnas al iniciar la ventana.
+        Administrar_Personas per = new Administrar_Personas();
+        DefaultTableModel modelo = new DefaultTableModel() {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        jTable1.setModel(modelo);
+        //.:Nombres de columnas:.
+        modelo.addColumn("ID");
+        modelo.addColumn("RUT");
+        modelo.addColumn("NOMBRE");
+        modelo.addColumn("APELLIDOS");
+        modelo.addColumn("SEXO");
+        modelo.addColumn("FECHA NACIMIENTO");
+        modelo.addColumn("TELEFONO");
+        modelo.addColumn("CORREO");
+        modelo.addColumn("NACIONALIDAD");
+        modelo.addColumn("ID USUARIO");
+        modelo.addColumn("CUENTA");
+        modelo.addColumn("PASS");
+        
+        modelo.addColumn("PERFIL");
+        modelo.addColumn("ESTADO CUENTA");
+        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        TableColumnModel columnModel = jTable1.getColumnModel();
+        //.:Tamaño de columnas:.
+//        columnModel.getColumn(0).setPreferredWidth(40);
+//        columnModel.getColumn(1).setPreferredWidth(140);
+//        columnModel.getColumn(2).setPreferredWidth(140);
+//        columnModel.getColumn(3).setPreferredWidth(55);
+//        columnModel.getColumn(4).setPreferredWidth(90);
+//        columnModel.getColumn(5).setPreferredWidth(120);
+//        columnModel.getColumn(6).setPreferredWidth(60);
+//        columnModel.getColumn(7).setPreferredWidth(80);
+//        columnModel.getColumn(8).setPreferredWidth(80);
+
+        ArrayList<Persona> listaPersonas = per.listarPersonas();
+       
+        Object[] fila = new Object[14];
+        int num = listaPersonas.size();
+        for (int i = 0; i < num; i++) {
+            
+            fila[0] = listaPersonas.get(i).getId_persona();
+            fila[1] = listaPersonas.get(i).getRut();
+            fila[2] = listaPersonas.get(i).getNombre();
+            fila[3] = listaPersonas.get(i).getApellidos();
+            fila[4] = listaPersonas.get(i).getSexo();
+            fila[5] = listaPersonas.get(i).getFecha_nacimiento();
+            fila[6] = listaPersonas.get(i).getTelefono();
+            fila[7] = listaPersonas.get(i).getCorreo();
+            fila[8] = listaPersonas.get(i).getNacionalidad();
+            fila[9] = listaPersonas.get(i).getId_usuario();
+            fila[10] = listaPersonas.get(i).getUsuario();
+            fila[11] = listaPersonas.get(i).getPass();
+            switch(listaPersonas.get(i).getId_tipo()){
+                case 1 :  fila[12] = "administrador";
+                break;
+
+                case 2 :  fila[12] = "operador";
+                break;
+
+                case 3 : fila[12] = "piloto";
+                break;
+
+                case 4 :  fila[12] ="inspector";
+                break;
+
+            }
+            
+            fila[13] = listaPersonas.get(i).getEstado_usuario();
+            
+            modelo.addRow(fila);
+        }
+        jTable1.updateUI();
+               
+
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminarCompte;
+    private javax.swing.JButton btnModificarCompte;
     public javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane2;

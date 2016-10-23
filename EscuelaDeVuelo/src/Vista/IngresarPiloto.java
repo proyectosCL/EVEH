@@ -5,14 +5,17 @@
  */
 package Vista;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import Controlador.Administrar_Personas;
 import Controlador.Administrar_Pilotos;
 import Modelo.Piloto;
 import static java.lang.String.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,11 +26,48 @@ public class IngresarPiloto extends javax.swing.JFrame {
     /**
      * Creates new form IngresarPiloto
      */
+    class ComboItem {
+
+            
+         String key;
+         String value;
+
+        public ComboItem(String key, String value)
+        {
+            this.key = key;
+            this.value = value;
+        }
+
+        @Override
+        public String toString()
+        {
+            return key;
+        }
+
+        public String getKey()
+        {
+            return key;
+        }
+
+        public String getValue()
+        {
+            return value;
+        }
     
+}
  
     public IngresarPiloto() {
         initComponents();
         
+        Administrar_Pilotos ap = new Administrar_Pilotos();
+        ArrayList<Piloto> listaPiloto = ap.listarPiloto();
+        
+        for (int i = 0; i < listaPiloto.size(); i++) {
+            this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut()+" : "+listaPiloto.get(i).getNombre()+" "+listaPiloto.get(i).getApellidos(),String.valueOf(listaPiloto.get(i).getId_persona())));
+        }
+        
+        RestrictedTextField diaVuelo = new RestrictedTextField(jTextFieldDias);
+        diaVuelo.setOnlyNums(true);
         
     }
 
@@ -46,13 +86,13 @@ public class IngresarPiloto extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextFieldRut = new javax.swing.JTextField();
         jTextFieldHoras = new javax.swing.JTextField();
         jTextFieldDias = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         JDateMedicina = new com.toedter.calendar.JDateChooser();
         JDateUltimoVuelo = new com.toedter.calendar.JDateChooser();
+        cbRut = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,7 +101,7 @@ public class IngresarPiloto extends javax.swing.JFrame {
 
         jLabel2.setText("Horas de vuelo");
 
-        jLabel3.setText("Rut del usuario");
+        jLabel3.setText("Usuario");
 
         jLabel4.setText("Dias de vuelo");
 
@@ -69,9 +109,9 @@ public class IngresarPiloto extends javax.swing.JFrame {
 
         jLabel6.setText("Ultimo vuelo realizado");
 
-        jTextFieldRut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldRutActionPerformed(evt);
+        jTextFieldHoras.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldHorasKeyTyped(evt);
             }
         });
 
@@ -93,55 +133,58 @@ public class IngresarPiloto extends javax.swing.JFrame {
 
         JDateUltimoVuelo.setDateFormatString("dd/MMMM/yyyy");
 
+        cbRut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JDateMedicina, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jTextFieldDias, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextFieldHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextFieldRut, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldHoras)
+                            .addComponent(JDateMedicina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(jLabel1))
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbRut, 0, 261, Short.MAX_VALUE)
+                            .addComponent(jTextFieldDias)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel6)
                         .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnIngresar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(40, 40, 40)
                                 .addComponent(btnCancelar))
-                            .addComponent(JDateUltimoVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                            .addComponent(JDateUltimoVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))))
+                .addGap(80, 80, 80))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(168, 168, 168)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextFieldRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,52 +210,70 @@ public class IngresarPiloto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldRutActionPerformed
-
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        // persona
-        //validaciones
 
-        int id_piloto = 0;
+
+
         
-        Date fecha = JDateMedicina.getDate();
-        Date fecha_ultimo = JDateMedicina.getDate();
-        String fecha_medicina = null;
-        String fecha_ultimo_vuelo = null;
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        
-        try {
-            fecha_medicina = df.format(fecha);
-        } catch (Exception ex) {
+        try{
+            //vali combo
+            if (cbRut.getSelectedItem().equals("Seleccione")) {
+                JOptionPane.showMessageDialog(null, "Seleccione un Usuario");
+                return;
+            }
+            
+            //vali campos vacios
+            if (jTextFieldHoras.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese las horas del piloto");
+                return;
+            }
+            if (jTextFieldDias.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese los dias del piloto");
+                return;
+            }
+            //vali fecha
+            String fecha_medicina = null;
+            String fecha_ultimo_vuelo = null;
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            
+            try{
+                Date fecha = JDateMedicina.getDate();
+                fecha_medicina = df.format(fecha);
+            }catch(Exception ex){
+                System.out.println(ex);
+                JOptionPane.showMessageDialog(null, "Fecha de la Medicina mal ingresada");
+                return;
+            }
+            
+            try{
+                Date fecha_ultimo = JDateUltimoVuelo.getDate();
+                fecha_ultimo_vuelo = df.format(fecha_ultimo);
+            }catch(Exception ex){
+                System.out.println(ex);
+                JOptionPane.showMessageDialog(null, "Fecha del ultimo vuelo mal ingresado");
+                return;
+            }
+            //datos
+            Object item2 = cbRut.getSelectedItem();
+            int id_persona = Integer.parseInt(((IngresarLicencia.ComboItem)item2).getValue());
+            int id_piloto =0;
+            float horas = Float.parseFloat(jTextFieldHoras.getText());
+            int dias = Integer.parseInt(jTextFieldDias.getText());
+            
+            Administrar_Pilotos ap = new Administrar_Pilotos();
+            
+            // validacion piloto repetido
+            if (ap.buscarPilotoR(id_persona)) {
+                JOptionPane.showMessageDialog(null, "Piloto ya ingresado");
+                return;
+            }
+            //ibgresar
+            Piloto piloto = new Piloto(id_piloto, horas, dias, fecha_medicina, fecha_ultimo_vuelo, id_persona);
+            ap.ingresarPiloto(piloto);
+            
+        }catch(Exception ex){
             System.out.println(ex);
         }
-        
-        try {
-            fecha_ultimo_vuelo = df.format(fecha);
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        
-        
-        
-        
-         String rut = jTextFieldRut.getText();
-         float horas = Float.parseFloat(jTextFieldHoras.getText());
-         int dias = Integer.parseInt(jTextFieldDias.getText());
-         
-         Administrar_Pilotos ap = new Administrar_Pilotos();
-         Administrar_Personas aper = new Administrar_Personas();
-         int id_persona = 0;
-         id_persona = aper.buscaridpersona(rut);
-         
-         
-        System.out.println(id_persona);
-        
-        Piloto piloto = new Piloto(id_piloto, horas, dias, fecha_medicina, fecha_ultimo_vuelo, id_persona);
-        
-        ap.ingresarPiloto(piloto);
 
     }//GEN-LAST:event_btnIngresarActionPerformed
 
@@ -221,6 +282,15 @@ public class IngresarPiloto extends javax.swing.JFrame {
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void jTextFieldHorasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldHorasKeyTyped
+       if (!Character.isDigit(evt.getKeyChar())&&evt.getKeyChar()!='.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar()=='.'&&jTextFieldHoras.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldHorasKeyTyped
 
     /**
      * @param args the command line arguments
@@ -262,6 +332,7 @@ public class IngresarPiloto extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser JDateUltimoVuelo;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnIngresar;
+    private javax.swing.JComboBox cbRut;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -270,6 +341,5 @@ public class IngresarPiloto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jTextFieldDias;
     private javax.swing.JTextField jTextFieldHoras;
-    private javax.swing.JTextField jTextFieldRut;
     // End of variables declaration//GEN-END:variables
 }

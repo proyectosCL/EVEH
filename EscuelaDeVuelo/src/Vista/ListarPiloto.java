@@ -9,6 +9,7 @@ import Controlador.Administrar_Licencia;
 import Controlador.Administrar_Pilotos;
 import Modelo.Piloto;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -46,7 +47,7 @@ public class ListarPiloto extends javax.swing.JFrame {
         modelo.addColumn("DIAS VUELO");
         modelo.addColumn("VENC. MEDICINA");
         modelo.addColumn("ULTIMO VUELO");
-        modelo.addColumn("LICENCIA");
+        modelo.addColumn("CANTIDAD DE LICENCIA");
         TableColumnModel columnModel = jTable1.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(30);
         columnModel.getColumn(1).setPreferredWidth(80);
@@ -55,11 +56,12 @@ public class ListarPiloto extends javax.swing.JFrame {
         columnModel.getColumn(4).setPreferredWidth(80);
         columnModel.getColumn(5).setPreferredWidth(120);
         columnModel.getColumn(6).setPreferredWidth(100);
-        columnModel.getColumn(7).setPreferredWidth(80);
+        columnModel.getColumn(7).setPreferredWidth(160);
         jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
         jTable1.updateUI();
         
+        listarTodo();
     }
 
     /**
@@ -73,80 +75,117 @@ public class ListarPiloto extends javax.swing.JFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnEliminarPiloto = new javax.swing.JButton();
+        btnModificarPiloto = new javax.swing.JButton();
+        txtPilotoSeleccionado = new javax.swing.JLabel();
+        btnVerLicencias = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jScrollPane2.setViewportView(jTable1);
 
-        jButton1.setText("Listar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Listar Pilotos");
+
+        btnEliminarPiloto.setText("Eliminar Piloto");
+        btnEliminarPiloto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnEliminarPilotoActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Listar Pilotos");
+        btnModificarPiloto.setText("Modificar Piloto");
+        btnModificarPiloto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarPilotoActionPerformed(evt);
+            }
+        });
+
+        btnVerLicencias.setText("Ver las licencias del Piloto");
+        btnVerLicencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerLicenciasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(154, 154, 154)
-                .addComponent(jButton1)
-                .addContainerGap())
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(263, 263, 263)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(138, 138, 138)
+                        .addComponent(btnEliminarPiloto)
+                        .addGap(51, 51, 51)
+                        .addComponent(btnModificarPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(btnVerLicencias)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(193, Short.MAX_VALUE)
+                    .addComponent(txtPilotoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(177, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(7, 7, 7)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
+                    .addComponent(btnEliminarPiloto)
+                    .addComponent(btnModificarPiloto)
+                    .addComponent(btnVerLicencias))
+                .addGap(59, 59, 59))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(285, Short.MAX_VALUE)
+                    .addComponent(txtPilotoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(93, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-        Clear_Table();
-        try{
+    private void btnEliminarPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPilotoActionPerformed
+        // TODO add your handling code here:
+        int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar el piloto seleccionado?");
+        if (JOptionPane.OK_OPTION == resp) {
+            int id = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
             Administrar_Pilotos ap = new Administrar_Pilotos();
-            Administrar_Licencia al = new Administrar_Licencia();
-
-             ArrayList<Piloto> lista = ap.listarPiloto();
-             Object[] fila = new Object[9];
-             int num = lista.size();
-             for (int i = 0; i < num; i++) {
-                 fila[0] = lista.get(i).getId();
-                 fila[1] = lista.get(i).getRut();
-                 fila[2] = lista.get(i).getNombre()+" "+lista.get(i).getApellidos();
-                 fila[3] = lista.get(i).getHoras_vuelo();
-                 fila[4] = lista.get(i).getDias_vuelo();
-                 fila[5] = lista.get(i).getVencimiento_medicina();
-                 fila[6] = lista.get(i).getFecha_ultimo_vuelo();
-                 fila[7] = "";
-                 modelo.addRow(fila);
-             }
-             jTable1.updateUI();
-        }catch(Exception ex){
-            System.out.println(ex);
+            ap.eliminarPiloto(id);
+            listarTodo();
+        } else {
+            listarTodo();
         }
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnEliminarPilotoActionPerformed
+
+    private void btnModificarPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPilotoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarPilotoActionPerformed
+
+    private void btnVerLicenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerLicenciasActionPerformed
+        // TODO add your handling code here:
+        int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea ver las licencias del piloto seleccionado?");
+        if (JOptionPane.OK_OPTION == resp) {
+            String rut = jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();
+            ListarLicenciaPiloto listLicencia = new ListarLicenciaPiloto(rut);
+            listLicencia.setVisible(true);
+           
+            this.dispose();
+        } else {
+            listarTodo();
+        }
+    }//GEN-LAST:event_btnVerLicenciasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,9 +223,36 @@ public class ListarPiloto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButton1;
+    private javax.swing.JButton btnEliminarPiloto;
+    private javax.swing.JButton btnModificarPiloto;
+    private javax.swing.JButton btnVerLicencias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel txtPilotoSeleccionado;
     // End of variables declaration//GEN-END:variables
+
+    private void listarTodo() {
+        try{
+            Administrar_Pilotos ap = new Administrar_Pilotos();
+
+             ArrayList<Piloto> lista = ap.listarPilotoMasCantidadLicencia();
+             Object[] fila = new Object[9];
+             int num = lista.size();
+             for (int i = 0; i < num; i++) {
+                 fila[0] = lista.get(i).getId();
+                 fila[1] = lista.get(i).getRut();
+                 fila[2] = lista.get(i).getNombre()+" "+lista.get(i).getApellidos();
+                 fila[3] = lista.get(i).getHoras_vuelo();
+                 fila[4] = lista.get(i).getDias_vuelo();
+                 fila[5] = lista.get(i).getVencimiento_medicina();
+                 fila[6] = lista.get(i).getFecha_ultimo_vuelo();
+                 fila[7] = lista.get(i).getId_persona();
+                 modelo.addRow(fila);
+             }
+             jTable1.updateUI();
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+    }
 }

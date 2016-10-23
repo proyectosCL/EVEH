@@ -5,10 +5,12 @@
  */
 package Vista;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import Controlador.Administrar_Licencia;
 import Controlador.Administrar_Personas;
 import Controlador.Administrar_Pilotos;
 import Modelo.Licencia;
+import Modelo.Piloto;
 import Modelo.Tipo_licencia;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -62,16 +64,30 @@ public class IngresarLicencia extends javax.swing.JFrame {
         
         
        
-            initComponents();
+        initComponents();
             
             
         Administrar_Licencia al = new Administrar_Licencia();
+        Administrar_Pilotos ap = new Administrar_Pilotos();
+        
         ArrayList<Tipo_licencia> lista = al.listarTipoLicencia();
         
-        int num = lista.size();
-        for (int i = 0; i < num; i++) {
+        for (int i = 0; i < lista.size(); i++) {
             this.jComboBoxTipoLicencia.addItem(new ComboItem(lista.get(i).getDescripcion(),String.valueOf(lista.get(i).getId())));
         }
+        
+        ArrayList<Piloto> listaPiloto = ap.listarPiloto();
+        
+        for (int i = 0; i < listaPiloto.size(); i++) {
+            this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut()+" : "+listaPiloto.get(i).getNombre()+" "+listaPiloto.get(i).getApellidos(),String.valueOf(listaPiloto.get(i).getId())));
+        }
+        
+        
+        RestrictedTextField numeroLicencia = new RestrictedTextField(jTextFieldNumeroLicencia);
+        numeroLicencia.setOnlyNums(true);
+        
+        RestrictedTextField diaVuelo = new RestrictedTextField(jTextFieldDias);
+        diaVuelo.setOnlyNums(true);
         
     }
 
@@ -86,7 +102,6 @@ public class IngresarLicencia extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldRut = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jComboBoxTipoLicencia = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
@@ -99,6 +114,7 @@ public class IngresarLicencia extends javax.swing.JFrame {
         btnIngresar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         JDateVencimiento = new com.toedter.calendar.JDateChooser();
+        cbRut = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,14 +123,9 @@ public class IngresarLicencia extends javax.swing.JFrame {
 
         jLabel3.setText("Numero de Licencia");
 
-        jTextFieldRut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldRutActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("Tipo de Licencia");
 
+        jComboBoxTipoLicencia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
         jComboBoxTipoLicencia.setToolTipText("");
         jComboBoxTipoLicencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +135,7 @@ public class IngresarLicencia extends javax.swing.JFrame {
 
         jLabel5.setText("Fecha de Vencimiento");
 
-        jLabel8.setText("Rut del Piloto");
+        jLabel8.setText("Piloto");
 
         jTextFieldNumeroLicencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,6 +148,11 @@ public class IngresarLicencia extends javax.swing.JFrame {
         jTextFieldHoras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldHorasActionPerformed(evt);
+            }
+        });
+        jTextFieldHoras.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldHorasKeyTyped(evt);
             }
         });
 
@@ -164,20 +180,12 @@ public class IngresarLicencia extends javax.swing.JFrame {
 
         JDateVencimiento.setDateFormatString("dd/MMMM/yyyy");
 
+        cbRut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCancelar)))
-                .addGap(61, 61, 61))
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -191,29 +199,36 @@ public class IngresarLicencia extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnIngresar)
-                        .addGap(0, 165, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JDateVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldRut)
-                            .addComponent(jComboBoxTipoLicencia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldNumeroLicencia)
-                            .addComponent(jTextFieldHoras)
-                            .addComponent(jTextFieldDias))
+                        .addGap(0, 243, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(JDateVencimiento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbRut, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxTipoLicencia, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldNumeroLicencia, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldHoras, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldDias, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(61, 61, 61))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnCancelar)
+                        .addGap(61, 61, 61))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(150, 150, 150))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(jTextFieldRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                    .addComponent(cbRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldNumeroLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -237,15 +252,11 @@ public class IngresarLicencia extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIngresar)
                     .addComponent(btnCancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextFieldRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldRutActionPerformed
 
     private void jTextFieldNumeroLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroLicenciaActionPerformed
         // TODO add your handling code here:
@@ -263,65 +274,73 @@ public class IngresarLicencia extends javax.swing.JFrame {
         // persona
         //validaciones
 
-        
-        Object item = jComboBoxTipoLicencia.getSelectedItem();
-        int tipo_licencia = Integer.parseInt(((ComboItem)item).getValue());
-        
-        int id_licencia = 0;
-        String rut = jTextFieldRut.getText();
-        int numero_licencia = Integer.parseInt(jTextFieldNumeroLicencia.getText());
-        
-        Date fecha = JDateVencimiento.getDate();
-        String fecha_vencimiento = null;
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            fecha_vencimiento = df.format(fecha);
-        } catch (Exception ex) {
+        try{
+            //validacion combos
+            if (jComboBoxTipoLicencia.getSelectedItem().equals("Seleccione")) {
+                JOptionPane.showMessageDialog(null, "Seleccione un tipo de licencia");
+                return;
+            }
+             if (cbRut.getSelectedItem().equals("Seleccione")) {
+                JOptionPane.showMessageDialog(null, "Seleccione un Piloto");
+                return;
+            }
+            //vali campos vacios
+            if (jTextFieldNumeroLicencia.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese un numero de licencia");
+                return;
+            }
+            if (jTextFieldHoras.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese las horas de la licencia");
+                return;
+            }
+            if (jTextFieldDias.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese los dias de la licencia");
+                return;
+            }
+             
+            //vali fecha
+            String fecha_vencimiento = null;
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            
+            try{
+                Date fecha = JDateVencimiento.getDate();
+                fecha_vencimiento = df.format(fecha);
+            }catch(Exception ex){
+                System.out.println(ex);
+                JOptionPane.showMessageDialog(null, "Fecha mal ingresada");
+                return;
+            }
+           
+            
+            
+            //datos
+            Object item = jComboBoxTipoLicencia.getSelectedItem();
+            int tipo_licencia = Integer.parseInt(((ComboItem)item).getValue());
+            Object item2 = cbRut.getSelectedItem();
+            int id_piloto = Integer.parseInt(((ComboItem)item2).getValue());
+            
+            int numero_licencia = Integer.parseInt(jTextFieldNumeroLicencia.getText());
+            float horas = Integer.parseInt(jTextFieldHoras.getText());
+            int dias = Integer.parseInt(jTextFieldDias.getText());
+            int id_licencia=0;
+               
+
+            Administrar_Licencia al = new Administrar_Licencia();
+
+            //vali numero licenci arepetido
+            if (al.buscarNumeroLicencia(numero_licencia)) {
+                JOptionPane.showMessageDialog(null, "Numero de licencia ya ingresado");
+                return;
+            }
+            
+            Licencia licencia = new Licencia(id_licencia,numero_licencia,dias, horas, fecha_vencimiento, tipo_licencia,id_piloto);
+
+
+            al.ingresarLicencia(licencia);
+            
+        }catch(Exception ex){
             System.out.println(ex);
         }
-        
-        
-        float horas = Integer.parseInt(jTextFieldHoras.getText());
-        int dias = Integer.parseInt(jTextFieldDias.getText());
-        
-        
-        Administrar_Licencia al = new Administrar_Licencia();
-        Administrar_Pilotos ap = new Administrar_Pilotos();
-        int id_piloto = 0;
-        id_piloto = ap.buscarIdPiloto(rut);
-       
-//        JOptionPane.showMessageDialog(null,"._."+id_piloto);
-        
-
-                Licencia licencia = new Licencia(id_licencia,numero_licencia,dias, horas, fecha_vencimiento, tipo_licencia,id_piloto);
-
-                
-               al.ingresarLicencia(licencia);
-
-//                    if (usr.buscarUsuario(userr.getUsuario())) {
-//                            JOptionPane.showMessageDialog(null, "el nombre de usuario ya esta registrado, por favor seleccione otro");
-//                            txtUsuario.requestFocus();
-//
-//                        } else {
-//            
-//                            if (admp.buscarPersona(person.getRut())) {
-//                                    JOptionPane.showMessageDialog(null, "El Rut Ya esta registrado");
-//                                    txtRut.requestFocus();
-//
-//                                } else {
-//                
-//                                    int dialogButton = JOptionPane.YES_NO_OPTION;
-//                                    int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar al sistema?", "confirmacion", dialogButton);
-//                                    if(dialogResult == 0) {
-//                    
-//                                            if (usr.ingresarUsuario(userr)&&admp.ingresarPersona(person)) {
-//                                                    JOptionPane.showMessageDialog(null, "Se ingreso correctamente");
-//                                                }
-//                                        } else {
-//                                            JOptionPane.showMessageDialog(null, "no se puedo ingresar");
-//                                        }
-//
-//                JOptionPane.showMessageDialog(null, id_persona+rut+nombre+apellidos+sexo+fechaNac+telefono+correo+nacionalidad+iduser+nombreusuario+pass+tipo);
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -333,6 +352,15 @@ public class IngresarLicencia extends javax.swing.JFrame {
     private void jComboBoxTipoLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoLicenciaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxTipoLicenciaActionPerformed
+
+    private void jTextFieldHorasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldHorasKeyTyped
+        if (!Character.isDigit(evt.getKeyChar())&&evt.getKeyChar()!='.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar()=='.'&&jTextFieldHoras.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldHorasKeyTyped
 
     /**
      * @param args the command line arguments
@@ -373,6 +401,7 @@ public class IngresarLicencia extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser JDateVencimiento;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnIngresar;
+    private javax.swing.JComboBox cbRut;
     private javax.swing.JComboBox jComboBoxTipoLicencia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -384,6 +413,5 @@ public class IngresarLicencia extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldDias;
     private javax.swing.JTextField jTextFieldHoras;
     private javax.swing.JTextField jTextFieldNumeroLicencia;
-    private javax.swing.JTextField jTextFieldRut;
     // End of variables declaration//GEN-END:variables
 }

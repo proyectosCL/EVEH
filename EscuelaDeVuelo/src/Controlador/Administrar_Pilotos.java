@@ -26,7 +26,7 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
             conec.conectar();
             String sql = "INSERT INTO pilotos  VALUES ((select (max(id)+1)from pilotos),"+horas_vuelo+","+dias_vuelo+",'"+vencimiento_medicina+"','"+fecha_ultimo_vuelo+"',"+persona+")";
             conec.escribir(sql);
-            
+            JOptionPane.showMessageDialog(null, "Ingresado Correctamente");
             
         } catch (Exception e) {
         }
@@ -47,7 +47,7 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
                     + " vencimiento_medicina= "+vencimiento_medicina+" ,"
                     + "ultimo_vuelo_realizado"+fecha_ultimo_vuelo;
             conec.escribir(sql);
-            
+            JOptionPane.showMessageDialog(null, "Modificado Correctamente");
             
         } catch (Exception e) {
         }  
@@ -100,7 +100,7 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
-            ResultSet rs = dbconn.consultar("SELECT * FROM pilotos join personas on personas.id = personas_id ");
+            ResultSet rs = dbconn.consultar("SELECT * FROM pilotos join personas on personas.id = personas_id order by rut");
             int cantidad =0;
             
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -148,4 +148,67 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
         }
         return piloto.getFecha_ultimo_vuelo();
     }
+    
+    public boolean buscarPilotoR(int id_persona){
+        boolean valido = false;
+        
+        try{
+             Conexion dbconn = new Conexion();
+                dbconn.conectar();
+                ResultSet rs = dbconn.consultar("SELECT * FROM pilotos where personas_id = "+id_persona);
+                while (rs.next()) {
+                    valido = true;
+                }
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+        
+        return valido;
+    }
+    
+    public ArrayList<Piloto> listarPilotoMasCantidadLicencia() {
+        ArrayList lista = new ArrayList();
+        Piloto piloto;
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("select pilotos.ID,pilotos.HORAS_VUELO,pilotos.DIAS_VUELO, "
+                    + "pilotos.VENCIMIENTO_MEDICINA ,pilotos.ULTIMO_VUELO_REALIZADO,personas.rut,personas.nombre,"
+                    + "personas.apellidos, count(*) as licencias"
+                    + " from pilotos  join licencias  on pilotos.id = licencias.PILOTOS_ID "
+                    + "join personas on pilotos.PERSONAS_ID = personas.id "
+                    + "group by pilotos.ID,pilotos.HORAS_VUELO,pilotos.DIAS_VUELO,pilotos.VENCIMIENTO_MEDICINA, "
+                    + "pilotos.ULTIMO_VUELO_REALIZADO,personas.rut,personas.nombre,personas.apellidos");
+            int cantidad =0;
+            
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            
+                while (rs.next()) {
+                    piloto = new Piloto();
+                    piloto.setId(rs.getInt(1));
+                    piloto.setDias_vuelo(rs.getInt(3));
+                    piloto.setHoras_vuelo(rs.getFloat(2));
+                    try {
+                        piloto.setVencimiento_medicina(df.format(rs.getDate(4)));
+                    } catch (Exception ex) {
+                        System.out.println(ex);
+                    }
+                    try {
+                        piloto.setFecha_ultimo_vuelo(df.format(rs.getDate(5)));
+                    } catch (Exception ex) {
+                        System.out.println(ex);
+                    }
+                    piloto.setRut(rs.getString(6));
+                    piloto.setId_persona(rs.getInt(9));
+                    piloto.setNombre(rs.getString("nombre"));
+                    piloto.setApellidos(rs.getString("apellidos"));
+                    piloto.setId_usuario(rs.getInt("licencias"));
+                    lista.add(piloto);
+                }
+
+            } catch (Exception e) {
+            }
+            return lista;
+        }
+    
 }

@@ -35,9 +35,8 @@ public class Administrar_Licencia {
            Conexion conec = new Conexion();
             conec.conectar();
             String sql = "INSERT INTO licencias  VALUES ((select (max(id)+1)from licencias),"+numero+","+tipo_licencia+",'"+fecha_vencimiento+"',"+dias_vuelo+","+horas_vuelo+","+id_piloto+")";
-            System.out.println(sql);
             conec.escribir(sql);
-            
+            JOptionPane.showMessageDialog(null, "Ingresado Correctamente");
         }catch(Exception ex){
             System.out.println(ex);
         }
@@ -57,7 +56,7 @@ public class Administrar_Licencia {
                     + " fecha_vencimiento= "+fecha_vencimiento+","
                     + "dias_vuelo = "+dias_vuelo;
             conec.escribir(sql);
-            
+            JOptionPane.showMessageDialog(null, "Modificado correctamente");
             
         }catch(Exception ex){
             
@@ -106,7 +105,7 @@ public class Administrar_Licencia {
          try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
-            ResultSet rs = dbconn.consultar("SELECT * FROM licencias join tipos_licencias on tipos_licencias_id = tipos_licencias.id");
+            ResultSet rs = dbconn.consultar("SELECT * FROM licencias join tipos_licencias on tipos_licencias_id = tipos_licencias.id order by licencias.id");
             while (rs.next()) {
                 licencia = new Licencia();
                 licencia.setId(rs.getInt("id"));
@@ -164,4 +163,21 @@ public class Administrar_Licencia {
          
          return lista;
      }
+      
+      public boolean buscarNumeroLicencia(int numero){
+          boolean valido = false;
+          
+            try {
+                Conexion dbconn = new Conexion();
+                dbconn.conectar();
+                ResultSet rs = dbconn.consultar("SELECT * FROM licencias where numero = "+numero);
+                while (rs.next()) {
+                    valido = true;
+                }
+
+            } catch (Exception e) {
+            }
+          
+          return valido;
+      }
 }

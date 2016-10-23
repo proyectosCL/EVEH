@@ -30,9 +30,9 @@ public class Administrar_Personas {
             //cambiar el 32 por el id del user
             String sql = "INSERT INTO personas VALUES ((select (max(id)+1) from personas),'"+rut+"','"+nombre+"','"+apellidos+"','"+sexo+"','"+fecha_nacimiento+"','"+telefono+"','"+correo+"','"+nacionalidad+"', (select max(id) from usuarios))";
             //JOptionPane.showMessageDialog(null, "intentando insertar: "+sql);
-            System.out.println(sql);
+            //System.out.println(sql);
             con.escribir(sql);
-            JOptionPane.showMessageDialog(null, "Insertado correctamente");
+            //JOptionPane.showMessageDialog(null, "Insertado correctamente");
             return true;
                 
                 
@@ -71,6 +71,7 @@ public class Administrar_Personas {
             
             
         } catch (Exception e) {
+            System.out.println("error:"+e);
             return false;
         }
          
