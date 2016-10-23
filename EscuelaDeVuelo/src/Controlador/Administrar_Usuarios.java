@@ -153,7 +153,7 @@ public class Administrar_Usuarios {
             //JOptionPane.showMessageDialog(null, "intentando insertar: "+sql);
             System.out.println(sql);
             con.escribir(sql);
-            JOptionPane.showMessageDialog(null, "Eliminado correctamente");
+            //JOptionPane.showMessageDialog(null, "Eliminado correctamente");
             return true;
             
         } catch (HeadlessException e) {

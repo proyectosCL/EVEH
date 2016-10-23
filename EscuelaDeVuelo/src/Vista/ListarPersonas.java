@@ -79,7 +79,7 @@ public class ListarPersonas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
@@ -89,10 +89,10 @@ public class ListarPersonas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Actualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
 
@@ -142,7 +142,7 @@ public class ListarPersonas extends javax.swing.JFrame {
                         .addGap(185, 185, 185)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(btnActualizar))
                     .addComponent(jScrollPane2))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -159,7 +159,7 @@ public class ListarPersonas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
+                            .addComponent(btnActualizar)
                             .addComponent(jButton2))
                         .addGap(30, 30, 30))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -176,12 +176,17 @@ public class ListarPersonas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        btnActualizar.setText("En curso...");
+        btnActualizar.setEnabled(false);
         btnEliminarCompte.setEnabled(false);
         btnModificarCompte.setEnabled(false);
-        cargarTablaComponentes();
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+        cargarTablaComponentes();
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setEnabled(true);
+        
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new MenuPrincipalAdministrador().setVisible(true);
@@ -190,8 +195,14 @@ public class ListarPersonas extends javax.swing.JFrame {
 
     private void btnEliminarCompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCompteActionPerformed
         // TODO add your handling code here:
+        
+        btnEliminarCompte.setEnabled(false);
+        btnEliminarCompte.setText("en curso...");
         int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar el componente seleccionado?");
+        
         if (JOptionPane.OK_OPTION == resp) {
+            
+            
             Administrar_Personas admp = new Administrar_Personas();
             Administrar_Usuarios usr = new Administrar_Usuarios();
             
@@ -203,15 +214,18 @@ public class ListarPersonas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "se elimino correctamente");
             cargarTablaComponentes();
             
+            
         } else {
-            cargarTablaComponentes();
+           // cargarTablaComponentes();
         }
+        btnEliminarCompte.setText("Eliminar");
+        btnEliminarCompte.setEnabled(true);
 
     }//GEN-LAST:event_btnEliminarCompteActionPerformed
 
     private void btnModificarCompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCompteActionPerformed
         // TODO add your handling code here:
-        int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea modificar el componente seleccionado?");
+        int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea modificar el Usuario seleccionado?");
         if (JOptionPane.OK_OPTION == resp) {
             String rut = jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();// aqui vot
             ModificarPersona modCompte= new ModificarPersona(rut);
@@ -376,9 +390,9 @@ public class ListarPersonas extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnEliminarCompte;
     private javax.swing.JButton btnModificarCompte;
-    public javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;

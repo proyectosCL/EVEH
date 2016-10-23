@@ -107,7 +107,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
 
         jLabel5.setText("Apellidos:");
 
-        jLabel6.setText("Rut (Sin DV):");
+        jLabel6.setText("Rut:");
 
         txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -277,27 +277,27 @@ public class IngresarUsuario extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addComponent(jLabel16)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(cboDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cboMes, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabel13)
                                 .addGap(31, 31, 31)
-                                .addComponent(jLabel14)))
+                                .addComponent(jLabel14))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cboDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cboMes, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
+                                .addGap(5, 5, 5)
                                 .addComponent(jLabel15))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(cboAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(62, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -322,7 +322,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
                                     .addComponent(lblapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblrut, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 43, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -576,32 +576,36 @@ public class IngresarUsuario extends javax.swing.JFrame {
             lblrut.setVisible(true);
         } else {
 
-            Administrar_Personas admp = new Administrar_Personas();
-            if (admp.buscarPersona(txtRut.getText())) {
-                JOptionPane.showMessageDialog(null, "El Rut Ya esta registrado");
-                txtRut.requestFocus();
-
-            } else {
+            
                 String rut = formatearRut(txtRut.getText());
                 
                 if (validarRut(rut)) {
-                    txtRut.setText("");
-                    JOptionPane.showMessageDialog(null, rut + " rut con formato");
-                    txtRut.setText(rut);
-                    txtRut.setEnabled(false);
-                    lblrut.setVisible(false);
+                    //txtRut.setText("");
+                    //JOptionPane.showMessageDialog(null, rut + " rut con formato");
+                    Administrar_Personas admp = new Administrar_Personas();
+                    if (admp.buscarPersona(txtRut.getText())) {
+                        JOptionPane.showMessageDialog(null, "El Rut Ya esta registrado");
+                        txtRut.requestFocus();
+
+                    }else{
+                        txtRut.setText(rut);
+                        //txtRut.setEnabled(false);
+                        lblrut.setVisible(false);
+                    }
+                    
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "Ingrese un rut valido");
                     txtRut.requestFocus();
                 }
-            }
+            
         }
 
 
     }//GEN-LAST:event_txtRutFocusLost
 
     public String formatearRut(String rut) {
-        JOptionPane.showMessageDialog(null, rut + " rut sin formato");
+        //JOptionPane.showMessageDialog(null, rut + " rut sin formato");
 
         int cont = 0;
         String format;
