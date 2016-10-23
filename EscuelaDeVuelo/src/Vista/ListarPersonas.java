@@ -185,6 +185,8 @@ public class ListarPersonas extends javax.swing.JFrame {
         cargarTablaComponentes();
         btnActualizar.setText("Actualizar");
         btnActualizar.setEnabled(true);
+        btnEliminarCompte.setEnabled(false);
+        btnModificarCompte.setEnabled(false);
         
     }//GEN-LAST:event_btnActualizarActionPerformed
 
@@ -197,6 +199,7 @@ public class ListarPersonas extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         btnEliminarCompte.setEnabled(false);
+        btnModificarCompte.setEnabled(false);
         btnEliminarCompte.setText("en curso...");
         int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar el componente seleccionado?");
         
@@ -211,15 +214,17 @@ public class ListarPersonas extends javax.swing.JFrame {
            
             admp.eliminarPersona(rut);
             usr.eliminarUsuario(cuenta);
-            JOptionPane.showMessageDialog(null, "se elimino correctamente");
+            
             cargarTablaComponentes();
+            JOptionPane.showMessageDialog(null, "se elimino correctamente");
             
             
         } else {
            // cargarTablaComponentes();
         }
         btnEliminarCompte.setText("Eliminar");
-        btnEliminarCompte.setEnabled(true);
+        //btnEliminarCompte.setEnabled(true);
+        //btnModificarCompte.setEnabled(true);
 
     }//GEN-LAST:event_btnEliminarCompteActionPerformed
 
@@ -235,7 +240,7 @@ public class ListarPersonas extends javax.swing.JFrame {
             //modCompte.cargar();
             this.dispose();
         } else {
-            cargarTablaComponentes();
+            //cargarTablaComponentes();
         }
     }//GEN-LAST:event_btnModificarCompteActionPerformed
 
