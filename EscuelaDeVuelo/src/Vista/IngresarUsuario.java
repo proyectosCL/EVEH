@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Vista;
+
 import Atxy2k.CustomTextField.RestrictedTextField;
 import Controlador.Administrar_Personas;
 import Controlador.Administrar_Usuarios;
@@ -16,6 +17,8 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import jdk.nashorn.internal.runtime.regexp.joni.Regex;
+
 /**
  *
  * @author Diego
@@ -27,15 +30,12 @@ public class IngresarUsuario extends javax.swing.JFrame {
      */
     public IngresarUsuario() {
         initComponents();
-        
+
         RestrictedTextField rutlimite = new RestrictedTextField(txtRut);
-        rutlimite.setLimit(8);
-        
-        rutlimite.setOnlyNums(true);
-        
-        
-        
-        
+        rutlimite.setLimit(9);
+
+        //rutlimite.setOnlyNums(true);
+
     }
 
     /**
@@ -107,7 +107,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
 
         jLabel5.setText("Apellidos:");
 
-        jLabel6.setText("Rut:");
+        jLabel6.setText("Rut (Sin DV):");
 
         txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -269,14 +269,14 @@ public class IngresarUsuario extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8)
                     .addComponent(jLabel12)
                     .addComponent(jLabel10)
                     .addComponent(jLabel9)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel16))
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -442,50 +442,44 @@ public class IngresarUsuario extends javax.swing.JFrame {
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // persona
         //validaciones
-       
+
         btnIngresar.setEnabled(false);
         btnIngresar.setText("en curso...");
-        
-        
+
         int id_persona = 0;
         String rut = txtRut.getText();
-        
+
         String nombre = txtNombre.getText();
-       
+
         String apellidos = txtApellido.getText();
-        
+
         char sexo;
         if (rbnHombre.isSelected()) {
-            sexo='M';
-            
-        } else {
-            sexo='F';
-        }
-        
-        
-        
-  
-        
-        String fechaNac = cboDia.getSelectedItem()+"/"+(cboMes.getSelectedIndex()+1)+"/"+cboAnio.getSelectedItem();
+            sexo = 'M';
 
-       
-        String telefono=txtTelefono.getText();
-        
-        String correo=txtCorreo.getText();
-        
-        String nacionalidad=cboNacionalidad.getSelectedItem()+"";
-       
+        } else {
+            sexo = 'F';
+        }
+
+        String fechaNac = cboDia.getSelectedItem() + "/" + (cboMes.getSelectedIndex() + 1) + "/" + cboAnio.getSelectedItem();
+
+        String telefono = txtTelefono.getText();
+
+        String correo = txtCorreo.getText();
+
+        String nacionalidad = cboNacionalidad.getSelectedItem() + "";
+
         int tipo = cboRol.getSelectedIndex();
         //usuario
         int iduser = 0;
         String nombreusuario = txtUsuario.getText();
-        
-        String pass=txtPass.getText();
-       
-        int id_perfil=cboRol.getSelectedIndex()+1;
-        
-        String estado_cuenta = cboEstado.getSelectedItem()+"";
-        
+
+        String pass = txtPass.getText();
+
+        int id_perfil = cboRol.getSelectedIndex() + 1;
+
+        String estado_cuenta = cboEstado.getSelectedItem() + "";
+
 //        if (lblconfirmar.isVisible()||lblnombre.isVisible()||lblapellido.isVisible()||lblpass.isVisible()||lblrut.isVisible()||lblusuario.isVisible()) {
 //            JOptionPane.showMessageDialog(null, "debe llenar todos los campos con asteriscos");
 //        }else{
@@ -531,53 +525,36 @@ public class IngresarUsuario extends javax.swing.JFrame {
 //            
 //            
 //        }
-        if (lblconfirmar.isVisible()||lblnombre.isVisible()||lblapellido.isVisible()||lblpass.isVisible()||lblrut.isVisible()||lblusuario.isVisible()) {
+        if (lblconfirmar.isVisible() || lblnombre.isVisible() || lblapellido.isVisible() || lblpass.isVisible() || lblrut.isVisible() || lblusuario.isVisible()) {
             JOptionPane.showMessageDialog(null, "debe llenar todos los campos con asteriscos");
-        }else{
-            
+        } else {
+
             Usuario userr = new Usuario(iduser, nombreusuario, pass, id_perfil, estado_cuenta);
             //Persona person = new Persona(id_persona,rut,nombre,apellidos,sexo,fechaNac,telefono,correo,nacionalidad,iduser,nombreusuario,pass,tipo);
-            Persona person = new Persona(id_persona,rut,nombre,apellidos,sexo,fechaNac,telefono,correo,nacionalidad,iduser,nombreusuario,pass,tipo,estado_cuenta);
-            
+            Persona person = new Persona(id_persona, rut, nombre, apellidos, sexo, fechaNac, telefono, correo, nacionalidad, iduser, nombreusuario, pass, tipo, estado_cuenta);
+
             Administrar_Personas admp = new Administrar_Personas();
             Administrar_Usuarios usr = new Administrar_Usuarios();
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar al sistema?", "confirmacion", dialogButton);
-            if(dialogResult == 0) {
-                        
-                if (usr.ingresarUsuario(userr)&&admp.ingresarPersona(person)) {
+            if (dialogResult == 0) {
+
+                if (usr.ingresarUsuario(userr) && admp.ingresarPersona(person)) {
                     JOptionPane.showMessageDialog(null, "Se ingreso correctamente");
                 } else {
                     JOptionPane.showMessageDialog(null, "no se puedo ingresar");
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "no se guardaron los cambios");
             }
-            else {
-                    JOptionPane.showMessageDialog(null, "no se guardaron los cambios");
-                } 
-           
-           btnIngresar.setEnabled(true);        
-           btnIngresar.setText("Ingresar");         
-                    
-                
-                
-                
-                        
-            
+
+            btnIngresar.setEnabled(true);
+            btnIngresar.setText("Ingresar");
+
         }
- 
-        
-           
-  
-        
-        
-        
-        
-        
-        
-        
-        
+
         //JOptionPane.showMessageDialog(null, id_persona+rut+nombre+apellidos+sexo+fechaNac+telefono+correo+nacionalidad+iduser+nombreusuario+pass+tipo);
-        
+
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void txtConfirmarPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmarPassFocusLost
@@ -587,73 +564,140 @@ public class IngresarUsuario extends javax.swing.JFrame {
             txtConfirmarPass.setText("");
             lblconfirmar.setVisible(true);
             txtPass.requestFocus();
-           
-        }else{lblconfirmar.setVisible(false);}
+
+        } else {
+            lblconfirmar.setVisible(false);
+        }
     }//GEN-LAST:event_txtConfirmarPassFocusLost
 
     private void txtRutFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRutFocusLost
         // TODO add your handling code here:
-                if(txtRut.getText().equals("")){
-                    lblrut.setVisible(true);
-                }else{
+        if (txtRut.getText().equals("")) {
+            lblrut.setVisible(true);
+        } else {
+
+            Administrar_Personas admp = new Administrar_Personas();
+            if (admp.buscarPersona(txtRut.getText())) {
+                JOptionPane.showMessageDialog(null, "El Rut Ya esta registrado");
+                txtRut.requestFocus();
+
+            } else {
+                String rut = formatearRut(txtRut.getText());
+                
+                if (validarRut(rut)) {
+                    txtRut.setText("");
+                    JOptionPane.showMessageDialog(null, rut + " rut con formato");
+                    txtRut.setText(rut);
+                    txtRut.setEnabled(false);
                     lblrut.setVisible(false);
-                    
-                    Administrar_Personas admp = new Administrar_Personas();
-                    if (admp.buscarPersona(txtRut.getText())) {
-                    JOptionPane.showMessageDialog(null, "El Rut Ya esta registrado");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ingrese un rut valido");
                     txtRut.requestFocus();
-                    
                 }
-                }
+            }
+        }
+
 
     }//GEN-LAST:event_txtRutFocusLost
 
+    public String formatearRut(String rut) {
+        JOptionPane.showMessageDialog(null, rut + " rut sin formato");
+
+        int cont = 0;
+        String format;
+        rut = rut.replace(".", "");
+        rut = rut.replace("-", "");
+        format = "-" + rut.substring(rut.length() - 1);
+        for (int i = rut.length() - 2; i >= 0; i--) {
+            format = rut.substring(i, i + 1) + format;
+            cont++;
+            if (cont == 3 && i != 0) {
+                format = "." + format;
+                cont = 0;
+            }
+        }
+
+        return format;
+    }
+
+    public static boolean validarRut(String rut) {
+
+        boolean validacion = false;
+        try {
+            rut = rut.toUpperCase();
+            rut = rut.replace(".", "");
+            rut = rut.replace("-", "");
+            int rutAux = Integer.parseInt(rut.substring(0, rut.length() - 1));
+
+            char dv = rut.charAt(rut.length() - 1);
+
+            int m = 0, s = 1;
+            for (; rutAux != 0; rutAux /= 10) {
+                s = (s + rutAux % 10 * (9 - m++ % 6)) % 11;
+            }
+            if (dv == (char) (s != 0 ? s + 47 : 75)) {
+                validacion = true;
+            }
+
+        } catch (java.lang.NumberFormatException e) {
+        } catch (Exception e) {
+        }
+        return validacion;
+    }
+
+
     private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
         // TODO add your handling code here:
-        
-        if(txtUsuario.getText().equals("")){
-                    //JOptionPane.showMessageDialog(null, "Usuario puede estar vacio");
-                    lblusuario.setVisible(true);
-                    
-                }else{
-            
+
+        if (txtUsuario.getText().equals("")) {
+            //JOptionPane.showMessageDialog(null, "Usuario puede estar vacio");
+            lblusuario.setVisible(true);
+
+        } else {
+
             lblusuario.setVisible(false);
-            
+
             //aqui
-             Administrar_Usuarios usr = new Administrar_Usuarios();
+            Administrar_Usuarios usr = new Administrar_Usuarios();
             if (usr.buscarUsuario(txtUsuario.getText())) {
                 JOptionPane.showMessageDialog(null, "el nombre de usuario ya esta registrado, por favor seleccione otro");
                 txtUsuario.requestFocus();
-             
+
             }
-            
+
         }
     }//GEN-LAST:event_txtUsuarioFocusLost
 
     private void txtPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusLost
         // TODO add your handling code here:
-        
-            if(txtPass.getText().equals("")){
-                    //JOptionPane.showMessageDialog(null, "Contraseña puede estar vacio");
-                    lblpass.setVisible(true);
-                }else{lblpass.setVisible(false);}
-        
-        
+
+        if (txtPass.getText().equals("")) {
+            //JOptionPane.showMessageDialog(null, "Contraseña puede estar vacio");
+            lblpass.setVisible(true);
+        } else {
+            lblpass.setVisible(false);
+        }
+
+
     }//GEN-LAST:event_txtPassFocusLost
 
     private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
         // TODO add your handling code here:
-        if(txtNombre.getText().equals("")){
-                    //JOptionPane.showMessageDialog(null, "Nombre puede estar vacio");
-                    lblnombre.setVisible(true);
-                }else{lblnombre.setVisible(false);}
+        if (txtNombre.getText().equals("")) {
+            //JOptionPane.showMessageDialog(null, "Nombre puede estar vacio");
+            lblnombre.setVisible(true);
+        } else {
+            lblnombre.setVisible(false);
+        }
     }//GEN-LAST:event_txtNombreFocusLost
 
     private void txtApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoFocusLost
-        if(txtApellido.getText().equals("")){
-                    //JOptionPane.showMessageDialog(null, "Apellido puede estar vacio");
-                    lblapellido.setVisible(true);
-                }else{lblapellido.setVisible(false);}
+        if (txtApellido.getText().equals("")) {
+            //JOptionPane.showMessageDialog(null, "Apellido puede estar vacio");
+            lblapellido.setVisible(true);
+        } else {
+            lblapellido.setVisible(false);
+        }
     }//GEN-LAST:event_txtApellidoFocusLost
 
     private void txtRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutActionPerformed
@@ -691,7 +735,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new IngresarUsuario().setVisible(true);
-                
+
             }
         });
     }
