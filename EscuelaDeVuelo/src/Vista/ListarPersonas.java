@@ -85,10 +85,11 @@ public class ListarPersonas extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         btnEliminarCompte = new javax.swing.JButton();
         btnModificarCompte = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Listar");
+        jButton1.setText("Actualizar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -126,6 +127,9 @@ public class ListarPersonas extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setText("Listar Personas");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -135,27 +139,34 @@ public class ListarPersonas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2)
+                        .addGap(185, 185, 185)
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1070, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(240, 240, 240)
                 .addComponent(btnEliminarCompte)
                 .addGap(230, 230, 230)
                 .addComponent(btnModificarCompte)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(389, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2))
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminarCompte)
                     .addComponent(btnModificarCompte))
@@ -166,80 +177,10 @@ public class ListarPersonas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Administrar_Personas per = new Administrar_Personas();
-        DefaultTableModel modelo = new DefaultTableModel() {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-        jTable1.setModel(modelo);
-        //.:Nombres de columnas:.
-        modelo.addColumn("ID");
-        modelo.addColumn("RUT");
-        modelo.addColumn("NOMBRE");
-        modelo.addColumn("APELLIDOS");
-        modelo.addColumn("SEXO");
-        modelo.addColumn("FECHA NACIMIENTO");
-        modelo.addColumn("TELEFONO");
-        modelo.addColumn("CORREO");
-        modelo.addColumn("NACIONALIDAD");
-        modelo.addColumn("ID USUARIO");
-        modelo.addColumn("CUENTA");
-        modelo.addColumn("PASS");
+        btnEliminarCompte.setEnabled(false);
+        btnModificarCompte.setEnabled(false);
+        cargarTablaComponentes();
         
-        modelo.addColumn("PERFIL");
-        modelo.addColumn("ESTADO CUENTA");
-        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        TableColumnModel columnModel = jTable1.getColumnModel();
-        //.:Tamaño de columnas:.
-//        columnModel.getColumn(0).setPreferredWidth(40);
-//        columnModel.getColumn(1).setPreferredWidth(140);
-//        columnModel.getColumn(2).setPreferredWidth(140);
-//        columnModel.getColumn(3).setPreferredWidth(55);
-//        columnModel.getColumn(4).setPreferredWidth(90);
-//        columnModel.getColumn(5).setPreferredWidth(120);
-//        columnModel.getColumn(6).setPreferredWidth(60);
-//        columnModel.getColumn(7).setPreferredWidth(80);
-//        columnModel.getColumn(8).setPreferredWidth(80);
-
-        ArrayList<Persona> listaPersonas = per.listarPersonas();
-       
-        Object[] fila = new Object[14];
-        int num = listaPersonas.size();
-        for (int i = 0; i < num; i++) {
-            
-            fila[0] = listaPersonas.get(i).getId_persona();
-            fila[1] = listaPersonas.get(i).getRut();
-            fila[2] = listaPersonas.get(i).getNombre();
-            fila[3] = listaPersonas.get(i).getApellidos();
-            fila[4] = listaPersonas.get(i).getSexo();
-            fila[5] = listaPersonas.get(i).getFecha_nacimiento();
-            fila[6] = listaPersonas.get(i).getTelefono();
-            fila[7] = listaPersonas.get(i).getCorreo();
-            fila[8] = listaPersonas.get(i).getNacionalidad();
-            fila[9] = listaPersonas.get(i).getId_usuario();
-            fila[10] = listaPersonas.get(i).getUsuario();
-            fila[11] = listaPersonas.get(i).getPass();
-            switch(listaPersonas.get(i).getId_tipo()){
-                case 1 :  fila[12] = "administrador";
-                break;
-
-                case 2 :  fila[12] = "operador";
-                break;
-
-                case 3 : fila[12] = "piloto";
-                break;
-
-                case 4 :  fila[12] ="inspector";
-                break;
-
-            }
-            
-            fila[13] = listaPersonas.get(i).getEstado_usuario();
-            
-            modelo.addRow(fila);
-        }
-        jTable1.updateUI();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -325,6 +266,10 @@ public class ListarPersonas extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -382,8 +327,23 @@ public class ListarPersonas extends javax.swing.JFrame {
             fila[1] = listaPersonas.get(i).getRut();
             fila[2] = listaPersonas.get(i).getNombre();
             fila[3] = listaPersonas.get(i).getApellidos();
-            fila[4] = listaPersonas.get(i).getSexo();
-            fila[5] = listaPersonas.get(i).getFecha_nacimiento();
+            
+            
+            char sex = listaPersonas.get(i).getSexo();
+            String sexo = ""+sex;
+            if (sexo.equals("F")) {
+                fila[4] = "Femenino";
+            } else {
+                fila[4] = "Masculino";
+            }
+            
+            
+            //cortar fecha 
+            String fecha = listaPersonas.get(i).getFecha_nacimiento();
+            
+            fila[5] = fecha.substring(0, 10);
+            
+            
             fila[6] = listaPersonas.get(i).getTelefono();
             fila[7] = listaPersonas.get(i).getCorreo();
             fila[8] = listaPersonas.get(i).getNacionalidad();
@@ -420,6 +380,7 @@ public class ListarPersonas extends javax.swing.JFrame {
     private javax.swing.JButton btnModificarCompte;
     public javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
