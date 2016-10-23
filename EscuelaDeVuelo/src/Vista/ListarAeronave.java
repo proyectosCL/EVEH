@@ -8,6 +8,8 @@ package Vista;
 import Controlador.Administrar_Aeronave;
 import Modelo.Aeronave;
 import java.awt.Color;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -127,31 +129,37 @@ public class ListarAeronave extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaComponentesMouseClicked
 
     private void btnEliminarCompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCompteActionPerformed
-        // TODO add your handling code here:
-       /* int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar el componente seleccionado?");
+     int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar la aeronave seleccionada?");
         if (JOptionPane.OK_OPTION == resp) {
-            int idCompte = Integer.parseInt(tablaComponentes.getValueAt(tablaComponentes.getSelectedRow(), 0).toString());
-            Administrar_Componente ac = new Administrar_Componente();
-            ac.eliminarComponente(idCompte);
+            Administrar_Aeronave admp = new Administrar_Aeronave();
+           
+            
+            String id = tablaComponentes.getValueAt(tablaComponentes.getSelectedRow(), 0).toString();
+          
+           
+            admp.eliminarAeronave(id);
+           
+            
             cargarTablaComponentes();
+            
         } else {
             cargarTablaComponentes();
         }
-*/
+
     }//GEN-LAST:event_btnEliminarCompteActionPerformed
 
     private void btnModificarCompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCompteActionPerformed
         // TODO add your handling code here:
-      /*  int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea modificar el componente seleccionado?");
+        int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea modificar la aeronave seleccionada?");
         if (JOptionPane.OK_OPTION == resp) {
             int idCompte = Integer.parseInt(tablaComponentes.getValueAt(tablaComponentes.getSelectedRow(), 0).toString());
-            ModificarComponente modCompte= new ModificarComponente();
+            ModificarAeronave modCompte= new ModificarAeronave();
             modCompte.idCompteMod = idCompte;
             modCompte.setVisible(true);
             this.dispose();
         } else {
             cargarTablaComponentes();
-        }*/
+        }
     }//GEN-LAST:event_btnModificarCompteActionPerformed
 
     /**
@@ -226,17 +234,27 @@ private void cargarTablaComponentes() {
         ArrayList<Aeronave> listaComponente = ac.listarAeronave();
         Object[] fila = new Object[8];
         int num = listaComponente.size();
+        
+         
         for (int i = 0; i < num; i++) {
             fila[0] = listaComponente.get(i).getId();
             fila[1] = listaComponente.get(i).getMatricula();
-            fila[2] = listaComponente.get(i).getTiponave();
-            fila[3] = listaComponente.get(i).getEstado();
+    
             fila[4] = listaComponente.get(i).getFecha_aeronavegavilidad();
         
             fila[5] = listaComponente.get(i).getFecha_ultima_inspeccion_anual();
             fila[6] = listaComponente.get(i).getHoras_vuelo();
              fila[7] = listaComponente.get(i).getDias_vuelo();
-            
+             if (listaComponente.get(i).getTiponave().matches("1")){
+                  fila[2] = "Helicoptero";
+             }else {
+                     fila[2] = "Aeronave"  ;   
+                          }
+            if (listaComponente.get(i).getEstado().matches("V")){
+                  fila[3] = "Disponible";
+             }else {
+                     fila[3] = "No Disponible"  ;   
+                          }
             modelo.addRow(fila);
         }
         tablaComponentes.updateUI();

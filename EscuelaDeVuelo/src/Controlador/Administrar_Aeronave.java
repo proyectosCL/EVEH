@@ -2,10 +2,16 @@ package Controlador;
 
 import Database.Conexion;
 import Modelo.Aeronave;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class Administrar_Aeronave implements administrar_horas_vuelo {
 
@@ -57,14 +63,35 @@ public class Administrar_Aeronave implements administrar_horas_vuelo {
         }
 
     }
-
+ public boolean eliminarAeronave(String id) {
+        try {
+            
+            Conexion con = new Conexion();
+            con.conectar();
+            //cambiar el 32 por el id del user
+            String sql1 = "update componentes set AERONAVES_ID=null where AERONAVES_ID= '"+id+"'";
+           con.escribir(sql1);
+         
+            
+            String sql = "delete from aeronaves where id = '"+id+"'";
+        
+            System.out.println(sql);
+            con.escribir(sql);
+            JOptionPane.showMessageDialog(null, "Eliminado correctamente");
+            return true;
+            
+        } catch (HeadlessException e) {
+            return false;
+        }
+        
+    }
     public void asociarComponentes() {
     }
 
     public void alertarAeronave() {
     }
 
-    public Aeronave cargarAeronave(String matricula) {
+    public Aeronave cargarAeronave(int matricula) {
 
         Aeronave aeronavesita = new Aeronave();
 
@@ -72,7 +99,7 @@ public class Administrar_Aeronave implements administrar_horas_vuelo {
         try {
             con.conectar();
             Connection myconnection = con.getConexion();
-            PreparedStatement myStatement = myconnection.prepareStatement("SELECT * FROM aeronaves where matricula like '" + matricula + "'");
+            PreparedStatement myStatement = myconnection.prepareStatement("SELECT * FROM aeronaves where id like '" + matricula + "'");
             ResultSet rs = myStatement.executeQuery();
             int fila = 0;
             while (rs.next()) {
@@ -127,18 +154,20 @@ public ArrayList<Aeronave> listarAeronave() {
 
         ArrayList listaComponentes = new ArrayList();
         Aeronave lista;
+         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
             ResultSet rs = dbconn.consultar("select * from aeronaves ");
             while (rs.next()) {
+             
                 lista = new Aeronave();
                 lista.setId(rs.getString(1));
                 lista.setMatricula(rs.getString(2));
                 lista.setTiponave(rs.getString(3));
                 lista.setEstado(rs.getString(4));
-                lista.setFecha_aeronavegavilidad(rs.getString(5));
-                lista.setFecha_ultima_inspeccion_anual(rs.getString(6));
+                lista.setFecha_aeronavegavilidad(df.format(rs.getDate(5)));
+                lista.setFecha_ultima_inspeccion_anual(df.format(rs.getDate(6)));
                 lista.setHoras_vuelo(rs.getString(7));
                 lista.setDias_vuelo(rs.getString(8));
                 listaComponentes.add(lista);

@@ -110,17 +110,14 @@
                                           <Component id="txthorasvuelo" pref="84" max="32767" attributes="0"/>
                                           <Component id="txtdiasvuelo" max="32767" attributes="0"/>
                                       </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="lblhorasvuelito" min="-2" pref="23" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
                                               <Component id="lbldiasvuelito" min="-2" pref="19" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
                                               <Component id="btningresar" min="-2" max="-2" attributes="0"/>
                                           </Group>
+                                          <Component id="lblhorasvuelito" min="-2" pref="23" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -217,15 +214,12 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbldiasvuelo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="txthorasvuelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbldiasvuelito" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btningresar" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="lbldiasvuelito" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="78" max="32767" attributes="0"/>

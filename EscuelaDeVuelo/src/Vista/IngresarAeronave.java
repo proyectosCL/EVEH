@@ -54,23 +54,23 @@ public class IngresarAeronave extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lbltiponave = new javax.swing.JLabel();
         lblestado = new javax.swing.JLabel();
-        cmbestado = new javax.swing.JComboBox<String>();
+        cmbestado = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         lblhorasvuelo = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         lbldiasvuelo = new javax.swing.JLabel();
         btningresar = new javax.swing.JButton();
-        cmbtiponave = new javax.swing.JComboBox<String>();
-        cboMes = new javax.swing.JComboBox<String>();
-        cboDia = new javax.swing.JComboBox<String>();
+        cmbtiponave = new javax.swing.JComboBox<>();
+        cboMes = new javax.swing.JComboBox<>();
+        cboDia = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        cboDia1 = new javax.swing.JComboBox<String>();
+        cboDia1 = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        cboMes1 = new javax.swing.JComboBox<String>();
+        cboMes1 = new javax.swing.JComboBox<>();
         txtaero = new javax.swing.JTextField();
         txtanual = new javax.swing.JTextField();
         lblmatriculac = new javax.swing.JLabel();
@@ -92,7 +92,7 @@ public class IngresarAeronave extends javax.swing.JFrame {
         lblestado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblestado.setText("Estado");
 
-        cmbestado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponible", "No Disponible" }));
+        cmbestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "No Disponible" }));
         cmbestado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbestadoActionPerformed(evt);
@@ -119,7 +119,7 @@ public class IngresarAeronave extends javax.swing.JFrame {
             }
         });
 
-        cmbtiponave.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Helicoptero", "Aeronave" }));
+        cmbtiponave.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Helicoptero", "Aeronave" }));
         cmbtiponave.setToolTipText("");
         cmbtiponave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,9 +127,9 @@ public class IngresarAeronave extends javax.swing.JFrame {
             }
         });
 
-        cboMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        cboMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
-        cboDia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cboDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         jLabel13.setText("Día");
 
@@ -137,7 +137,7 @@ public class IngresarAeronave extends javax.swing.JFrame {
 
         jLabel15.setText("Año");
 
-        cboDia1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cboDia1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         jLabel16.setText("Día");
 
@@ -145,7 +145,7 @@ public class IngresarAeronave extends javax.swing.JFrame {
 
         jLabel18.setText("Año");
 
-        cboMes1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        cboMes1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
         txtaero.setText("2016");
 
@@ -230,15 +230,13 @@ public class IngresarAeronave extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(txthorasvuelo, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                                             .addComponent(txtdiasvuelo))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(lblhorasvuelito, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addGap(57, 57, 57)
                                                 .addComponent(lbldiasvuelito, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(45, 45, 45)
-                                                .addComponent(btningresar))))))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(btningresar))
+                                            .addComponent(lblhorasvuelito, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(43, 43, 43)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,13 +305,11 @@ public class IngresarAeronave extends javax.swing.JFrame {
                         .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbldiasvuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txthorasvuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txthorasvuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbldiasvuelito)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btningresar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(lbldiasvuelito)))
+                        .addComponent(btningresar)))
                 .addContainerGap(78, Short.MAX_VALUE))
         );
 

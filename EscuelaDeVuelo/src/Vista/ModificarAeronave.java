@@ -75,7 +75,7 @@ public class ModificarAeronave extends javax.swing.JFrame {
         lbltiponave.setText("Tipo Aeronave");
 
         lblmatricula.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblmatricula.setText("Ingrese Matrícula");
+        lblmatricula.setText("Matrícula");
 
         txtmatricula.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -158,7 +158,7 @@ public class ModificarAeronave extends javax.swing.JFrame {
 
         jLabel18.setText("Año");
 
-        btncargar.setText("buscar");
+        btncargar.setText("Cargar Datos");
         btncargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncargarActionPerformed(evt);
@@ -327,18 +327,8 @@ public class ModificarAeronave extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+int idCompteMod=0;
 
-    private void txtmatriculaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtmatriculaFocusLost
-        if(txtmatricula.getText().equals("")){
-            //JOptionPane.showMessageDialog(null, "La matricula no puede estar vacia");
-            lblusuario.setEnabled(true);
-
-        }else{lblusuario.setEnabled(false);
-        }
-        
-    
-    
-    }//GEN-LAST:event_txtmatriculaFocusLost
 
     private void cmbestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbestadoActionPerformed
         // TODO add your handling code here:
@@ -396,7 +386,7 @@ public class ModificarAeronave extends javax.swing.JFrame {
             break;
         }
 
-        if (lblusuario.isEnabled()||lbldiasvuelo.isEnabled()||lblhorasvuelito.isEnabled()) {
+        if (lblusuario.isEnabled()||lbldiasvuelito.isEnabled()||lblhorasvuelito.isEnabled()) {
             JOptionPane.showMessageDialog(null, "debe llenar todos los campos ");
         }else {
             Aeronave nueva = new Aeronave(id_persona,matricula,tiponave,estado,fechaaero,fechainsp,horasvuelo,diasvuelo);
@@ -404,7 +394,7 @@ public class ModificarAeronave extends javax.swing.JFrame {
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea guardar los cambios?", "confirmacion", dialogButton);
             if(dialogResult == 0) {
-                        // JOptionPane.showMessageDialog(null, "DA"+id_persona+"DA"+matricula+"DA"+tiponave+"DA"+estado+"DA"+fechaaero+"DA"+fechainsp+"DA"+horasvuelo+"DA"+diasvuelo);
+                      
 
                 if (ingresar.modificarAeronave(nueva)) {
                         JOptionPane.showMessageDialog(null, "Aeronave Actualizada");
@@ -429,19 +419,19 @@ public class ModificarAeronave extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         Administrar_Aeronave admper = new Administrar_Aeronave();
-        Aeronave person = admper.cargarAeronave(txtmatricula.getText());
+        Aeronave person = admper.cargarAeronave(idCompteMod);
 
         if (person==null) {
             JOptionPane.showMessageDialog(null, "No se encontró la aeronave matricula:"+txtmatricula.getText());
         } else {
             txtmatricula.setText(person.getMatricula());
-            lblmatricula.setVisible(false);
+            lblusuario.setVisible(false);
             lblusuario.setText(person.getId());
             txthorasvuelo.setText(person.getHoras_vuelo());
-            lblhorasvuelo.setVisible(false);
+            lblhorasvuelito.setVisible(false);
 
             txtdiasvuelo.setText(person.getDias_vuelo());
-            lbldiasvuelo.setVisible(false);
+            lbldiasvuelito.setVisible(false);
 
             
         if(person.getTiponave().equals("1")){
@@ -478,6 +468,16 @@ public class ModificarAeronave extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btncargarActionPerformed
+
+    private void txtmatriculaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtmatriculaFocusLost
+        if(txtmatricula.getText().equals("")){
+            //JOptionPane.showMessageDialog(null, "La matricula no puede estar vacia");
+            lblusuario.setEnabled(true);
+
+        }else{lblusuario.setEnabled(false);
+        }
+
+    }//GEN-LAST:event_txtmatriculaFocusLost
 
     /**
      * @param args the command line arguments
