@@ -22,11 +22,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
-/**
- *
- * @author Pandemonium
- */
 public class IngresarVuelo extends javax.swing.JFrame {
 
     class ComboItem {
@@ -34,16 +34,20 @@ public class IngresarVuelo extends javax.swing.JFrame {
         private String key;
         private String value;
         private String rut;
+        private String nombre;
+        private String apellido;
 
         public ComboItem(String key, String value) {
             this.key = key;
             this.value = value;
         }
 
-        public ComboItem(String key, String value, String rut) {
+        public ComboItem(String key, String value, String rut, String nombre, String apellido) {
             this.key = key;
             this.value = value;
             this.rut = rut;
+            this.nombre = nombre;
+            this.apellido = apellido;
         }
 
         @Override
@@ -59,6 +63,22 @@ public class IngresarVuelo extends javax.swing.JFrame {
             this.rut = rut;
         }
 
+        public String getNombre() {
+            return nombre;
+        }
+
+        public void setNombre(String nombre) {
+            this.nombre = nombre;
+        }
+
+        public String getApellido() {
+            return apellido;
+        }
+
+        public void setApellido(String apellido) {
+            this.apellido = apellido;
+        }
+
         public String getKey() {
             return key;
         }
@@ -66,16 +86,48 @@ public class IngresarVuelo extends javax.swing.JFrame {
         public String getValue() {
             return value;
         }
+
+    }
+
+    DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+
+    private void Clear_Table() {
+        for (int i = 0; i < jTablePasajeros.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i -= 1;
+        }
+    }
+
+    public void Formato() {
+        this.jTablePasajeros.setModel(modelo);
+        modelo.addColumn("ID");
+        modelo.addColumn("RUT");
+        modelo.addColumn("NOMBRE COMPLETO");
+        TableColumnModel columnModel = jTablePasajeros.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(30);
+        columnModel.getColumn(1).setPreferredWidth(80);
+        columnModel.getColumn(2).setPreferredWidth(140);
+        this.jTablePasajeros.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        jTablePasajeros.updateUI();
     }
 
     public IngresarVuelo() {
 
         initComponents();
+        Formato();
 
+        //TABLA
+        //COMBOBOXs
         //Horas, Minutos, Segundos
+        //Limpiar
         this.jComboBoxHora.removeAllItems();
         this.jComboBoxMinuto.removeAllItems();
         this.jComboBoxSegundo.removeAllItems();
+        //Llenar
         for (int i = 0; i < 24; i++) {
             this.jComboBoxHora.addItem(new ComboItem(String.format("%02d", i), String.valueOf(i)));
         }
@@ -92,24 +144,15 @@ public class IngresarVuelo extends javax.swing.JFrame {
             this.jComboBoxDestino.addItem(new ComboItem(listaAerodromo.get(i).getDescripcion(), String.valueOf(listaAerodromo.get(i).getId())));
         }
         //Condición
-        this.jComboBoxCondicion.addItem(new ComboItem("I", "I"));
-        this.jComboBoxCondicion.addItem(new ComboItem("V", "V"));
+        this.jComboBoxCondicion.addItem(new ComboItem("IFR", "IFR"));
+        this.jComboBoxCondicion.addItem(new ComboItem("VFR", "VFR"));
         //Piloto
         ArrayList<Piloto> listaPiloto = av.listarPiloto();
         num = listaPiloto.size();
         for (int i = 0; i < num; i++) {
-            this.jComboBoxPiloto.addItem(new ComboItem(listaPiloto.get(i).getRut() + " | " + listaPiloto.get(i).getNombre() + " " + listaPiloto.get(i).getApellidos(), String.valueOf(listaPiloto.get(i).getId()), listaPiloto.get(i).getRut()));
-
+            this.jComboBoxPiloto.addItem(new ComboItem(listaPiloto.get(i).getRut() + " | " + listaPiloto.get(i).getNombre() + " " + listaPiloto.get(i).getApellidos(), String.valueOf(listaPiloto.get(i).getId())));
+            this.jComboBoxPasajero.addItem(new ComboItem(listaPiloto.get(i).getRut() + " | " + listaPiloto.get(i).getNombre() + " " + listaPiloto.get(i).getApellidos(), String.valueOf(listaPiloto.get(i).getId()), listaPiloto.get(i).getRut(), listaPiloto.get(i).getNombre(), listaPiloto.get(i).getApellidos()));
         }
-        DefaultListModel model = new DefaultListModel();
-        Object[] items = new Object[20];
-        for (int i = 0; i < items.length; i++) {
-            items[i] = listaPiloto.get(i).getRut();
-        }
-        for (int i = 0; i < items.length; i++) {
-            model.add(i, items[i]);
-        }
-        this.jListPasajeros.setModel(model);
         //Aeronave
         ArrayList<Aeronave> listaAeronave = av.listarAeronave();
         num = listaAeronave.size();
@@ -123,63 +166,50 @@ public class IngresarVuelo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jComboBoxOrigen = new javax.swing.JComboBox();
+        jComboBoxDestino = new javax.swing.JComboBox();
+        jComboBoxCondicion = new javax.swing.JComboBox();
+        jComboBoxPiloto = new javax.swing.JComboBox();
+        jTextFieldMision = new javax.swing.JTextField();
+        jComboBoxAeronave = new javax.swing.JComboBox();
+        jButtonVolver = new javax.swing.JButton();
+        jButtonIngresar = new javax.swing.JButton();
+        jDateFecha = new com.toedter.calendar.JDateChooser();
+        jComboBoxHora = new javax.swing.JComboBox();
+        jComboBoxMinuto = new javax.swing.JComboBox();
+        jComboBoxSegundo = new javax.swing.JComboBox();
+        jComboBoxPasajero = new javax.swing.JComboBox();
+        jButtonAñadir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBoxOrigen = new javax.swing.JComboBox();
-        jComboBoxDestino = new javax.swing.JComboBox();
-        jComboBoxCondicion = new javax.swing.JComboBox();
-        jComboBoxPiloto = new javax.swing.JComboBox();
-        jTextFieldMision = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jComboBoxAeronave = new javax.swing.JComboBox();
-        jButtonVolver = new javax.swing.JButton();
-        jButtonIngresar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListPasajeros = new javax.swing.JList();
-        jDateFecha = new com.toedter.calendar.JDateChooser();
-        jComboBoxHora = new javax.swing.JComboBox();
-        jComboBoxMinuto = new javax.swing.JComboBox();
-        jLabel9 = new javax.swing.JLabel();
-        jComboBoxSegundo = new javax.swing.JComboBox();
-        jLabelAvisoPasajeros = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTablePasajeros = new javax.swing.JTable();
+        jButtonCode = new javax.swing.JButton();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Origen");
-
-        jLabel2.setText("Destino");
-
-        jLabel3.setText("Condición");
-
-        jLabel4.setText("Misión");
-
-        jLabel5.setText("Fecha");
-
-        jLabel6.setText("Aeronave");
-
-        jComboBoxOrigen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
-
-        jComboBoxDestino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
-        jComboBoxDestino.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxDestinoActionPerformed(evt);
-            }
-        });
-
-        jComboBoxCondicion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
-
-        jComboBoxPiloto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
-
-        jLabel7.setText("Piloto");
-
-        jComboBoxAeronave.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
-
-        jButtonVolver.setText("< Volver");
+        jButtonVolver.setText("Volver");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVolverActionPerformed(evt);
@@ -193,27 +223,47 @@ public class IngresarVuelo extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("Pasajeros");
+        jDateFecha.setDateFormatString("dd/MM/yyyy");
 
-        jListPasajeros.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+        jComboBoxHora.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00" }));
+
+        jComboBoxMinuto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00" }));
+
+        jComboBoxSegundo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00" }));
+
+        jButtonAñadir.setText("Añadir");
+        jButtonAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAñadirActionPerformed(evt);
+            }
         });
-        jListPasajeros.setToolTipText("");
-        jScrollPane1.setViewportView(jListPasajeros);
 
-        jDateFecha.setDateFormatString("dd/mm/yyyy");
+        jLabel1.setText("Origen:");
 
-        jComboBoxHora.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel2.setText("Destino:");
 
-        jComboBoxMinuto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel3.setText("Condición:");
 
-        jLabel9.setText("Hora");
+        jLabel4.setText("Misión:");
 
-        jComboBoxSegundo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel5.setText("Piloto:");
 
-        jLabelAvisoPasajeros.setText("jLabel10");
+        jLabel6.setText("Aeronave:");
+
+        jLabel7.setText("Pasajeros:");
+
+        jLabel8.setText("Fecha:");
+
+        jTablePasajeros.setModel(new javax.swing.table.DefaultTableModel(
+        ));
+        jScrollPane2.setViewportView(jTablePasajeros);
+
+        jButtonCode.setText("Clear");
+        jButtonCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCodeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -223,110 +273,103 @@ public class IngresarVuelo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jButtonVolver))
+                        .addComponent(jButtonVolver)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonCode)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonIngresar))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
                                     .addComponent(jLabel5)
-                                    .addComponent(jLabel9)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jLabel1))
-                            .addComponent(jLabel6))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jComboBoxOrigen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jTextFieldMision)
                                     .addComponent(jComboBoxCondicion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBoxDestino, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jDateFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
                                     .addComponent(jComboBoxPiloto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jDateFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jComboBoxMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jComboBoxSegundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jComboBoxAeronave, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelAvisoPasajeros)))
-                .addContainerGap(92, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonIngresar)
+                                    .addComponent(jComboBoxAeronave, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jComboBoxPasajero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButtonAñadir)))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap()
                 .addComponent(jButtonVolver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBoxOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBoxDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBoxCondicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxCondicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextFieldMision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldMision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
-                        .addComponent(jButtonIngresar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxSegundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
-                            .addComponent(jComboBoxSegundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxAeronave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelAvisoPasajeros))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel8))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxAeronave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxPasajero)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7)
+                        .addComponent(jButtonAñadir)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonIngresar)
+                    .addComponent(jButtonCode))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jComboBoxDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDestinoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxDestinoActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         new MenuPrincipalAdministrador().setVisible(true);
@@ -336,53 +379,29 @@ public class IngresarVuelo extends javax.swing.JFrame {
     private void jButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarActionPerformed
         Administrar_Vuelo av = new Administrar_Vuelo();
         Vuelo vuelo = new Vuelo();
-        
-        //Validación de PILOTO y PASAJEROS (NO DUPLICADO)
         int count = 0;
-        String rut_piloto = null;
-        if (this.jComboBoxPiloto.getSelectedIndex() != 0) {
-            ComboItem item_piloto_validacion = (ComboItem) this.jComboBoxPiloto.getSelectedItem();
-            rut_piloto = item_piloto_validacion.getRut();
-
-            for (int i = 0; i < this.jListPasajeros.getSelectedValues().length; i++) {
-                if (String.valueOf(this.jListPasajeros.getSelectedValues()[i]).equals(rut_piloto)) {
-                    count++;
-                }
-            }
-        }
-
-        if (count != 0) {
-            this.jLabelAvisoPasajeros.setText("No puede seleccionar un pasajero que ya esta siendo de piloto.");
-        } else {
-            this.jLabelAvisoPasajeros.setText("");
-        }
-        
-        //Validación de COMBOBOXs (NO SELECCIONE)
-        if (this.jComboBoxOrigen.getSelectedIndex() != 0
-                && this.jComboBoxDestino.getSelectedIndex() != 0
-                && this.jComboBoxCondicion.getSelectedIndex() != 0
-                && this.jComboBoxPiloto.getSelectedIndex() != 0
-                && this.jComboBoxAeronave.getSelectedIndex() != 0
-                && this.jDateFecha.getDate() != null
-                && this.jTextFieldMision != null
-                && count == 0) {
-
-            count = 0;
-
-            ComboItem item_aerodromo_origen = (ComboItem) this.jComboBoxOrigen.getSelectedItem();
-            vuelo.setId_aerodromo_origen(Integer.parseInt(item_aerodromo_origen.getValue()));
-
-            ComboItem item_aerodromo_destino = (ComboItem) this.jComboBoxDestino.getSelectedItem();
-            vuelo.setId_aerodromo_destino(Integer.parseInt(item_aerodromo_destino.getValue()));
-
-            ComboItem item_condicion_vuelo = (ComboItem) this.jComboBoxCondicion.getSelectedItem();
-            vuelo.setCondicion_vuelo(item_condicion_vuelo.getValue().charAt(0));
-
+        //GET COMBOXs
+        //Origen
+        ComboItem item_aerodromo_origen = (ComboItem) this.jComboBoxOrigen.getSelectedItem();
+        vuelo.setId_aerodromo_origen(Integer.parseInt(item_aerodromo_origen.getValue()));
+        //Destino
+        ComboItem item_aerodromo_destino = (ComboItem) this.jComboBoxDestino.getSelectedItem();
+        vuelo.setId_aerodromo_destino(Integer.parseInt(item_aerodromo_destino.getValue()));
+        //Condición de vuelo
+        ComboItem item_condicion_vuelo = (ComboItem) this.jComboBoxCondicion.getSelectedItem();
+        vuelo.setCondicion_vuelo(item_condicion_vuelo.getValue().charAt(2));
+        //Misión de vuelo
+        if (this.jTextFieldMision.getText() != null) {
             vuelo.setMision_vuelo(this.jTextFieldMision.getText());
+        } else {
+            count++;
+            JOptionPane.showMessageDialog(null, "No puedes dejar la misión en blanco.");
+        }
+        //Fecha de vuelo
 
+        if (this.jDateFecha.getDate() != null) {
             DateFormat df1 = new SimpleDateFormat("dd-MM-yyyy");
             DateFormat df2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-
             String date1 = df1.format(this.jDateFecha.getDate());
             Date date2 = null;
             try {
@@ -391,21 +410,65 @@ public class IngresarVuelo extends javax.swing.JFrame {
                 System.out.println(ex);
             }
             vuelo.setFecha_vuelo(date2);
+        } else {
+            count++;
+            System.out.println("Debe seleccionar una fecha.");
+        }
 
-            ComboItem item_piloto = (ComboItem) this.jComboBoxPiloto.getSelectedItem();
-            int piloto = Integer.parseInt(item_piloto.getValue());
-
-            ComboItem item_aeronave = (ComboItem) this.jComboBoxAeronave.getSelectedItem();
-            vuelo.setId_aeronave(Integer.parseInt(item_aeronave.getValue()));
-
-            String[] tripulacion = new String[this.jListPasajeros.getSelectedValues().length];
-            for (int i = 0; i < this.jListPasajeros.getSelectedValues().length; i++) {
-                tripulacion[i] = String.valueOf(this.jListPasajeros.getSelectedValues()[i]);
+        //Piloto
+        ComboItem item_piloto = (ComboItem) this.jComboBoxPiloto.getSelectedItem();
+        int piloto = Integer.parseInt(item_piloto.getValue());
+        //Aeronave
+        ComboItem item_aeronave = (ComboItem) this.jComboBoxAeronave.getSelectedItem();
+        vuelo.setId_aeronave(Integer.parseInt(item_aeronave.getValue()));
+        //Pilotos
+        String[] tripulacion = new String[this.jTablePasajeros.getRowCount()];
+        for (int i = 0; i < this.jTablePasajeros.getRowCount(); i++) {
+            tripulacion[i] = String.valueOf(this.jTablePasajeros.getValueAt(i, 0));
+        }
+        //Eliminar pasajero piloto
+        for (int i = 0; i < this.jTablePasajeros.getRowCount(); i++) {
+            if (item_piloto.getValue().equals(String.valueOf(this.jTablePasajeros.getValueAt(i, 0)))) {
+                modelo.removeRow(i);
             }
+        }
 
+        if (count == 0) {
             av.ingresarVuelo(vuelo, piloto, tripulacion);
         }
+
     }//GEN-LAST:event_jButtonIngresarActionPerformed
+
+    private void jButtonCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCodeActionPerformed
+        Clear_Table();
+    }//GEN-LAST:event_jButtonCodeActionPerformed
+
+    private void jButtonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAñadirActionPerformed
+        ComboItem item_piloto = (ComboItem) this.jComboBoxPiloto.getSelectedItem();
+        ComboItem item_pasajero = (ComboItem) this.jComboBoxPasajero.getSelectedItem();
+
+        int count = 0;
+        //Validación
+        //PASAJERO NO IGUAL A PILOTO SELECCIONADO
+        if (item_piloto.getValue().equals(item_pasajero.getValue())) {
+            count++;
+            System.out.println("El pasajero ya esta seleccionado como piloto.");
+        }
+
+        //NO PUEDEN REPETIRCE PASAJEROS
+        for (int i = 0; i < this.jTablePasajeros.getRowCount(); i++) {
+            if (this.jTablePasajeros.getValueAt(i, 0).equals(item_pasajero.getValue())) {
+                count++;
+                System.out.println("El pasajero ya se encuentra en la lista.");
+            }
+        }
+
+        if (count == 0) {
+            modelo.addRow(new Object[]{item_pasajero.getValue(), item_pasajero.getRut(), item_pasajero.getNombre() + " " + item_pasajero.getApellido()});
+        }
+
+
+    }//GEN-LAST:event_jButtonAñadirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -443,6 +506,8 @@ public class IngresarVuelo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAñadir;
+    private javax.swing.JButton jButtonCode;
     private javax.swing.JButton jButtonIngresar;
     private javax.swing.JButton jButtonVolver;
     private javax.swing.JComboBox jComboBoxAeronave;
@@ -451,6 +516,7 @@ public class IngresarVuelo extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBoxHora;
     private javax.swing.JComboBox jComboBoxMinuto;
     private javax.swing.JComboBox jComboBoxOrigen;
+    private javax.swing.JComboBox jComboBoxPasajero;
     private javax.swing.JComboBox jComboBoxPiloto;
     private javax.swing.JComboBox jComboBoxSegundo;
     private com.toedter.calendar.JDateChooser jDateFecha;
@@ -462,10 +528,10 @@ public class IngresarVuelo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabelAvisoPasajeros;
-    private javax.swing.JList jListPasajeros;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTablePasajeros;
     private javax.swing.JTextField jTextFieldMision;
     // End of variables declaration//GEN-END:variables
 }

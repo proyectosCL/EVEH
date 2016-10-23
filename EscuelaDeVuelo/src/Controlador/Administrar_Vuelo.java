@@ -23,11 +23,9 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
             DateFormat df2 = new SimpleDateFormat("HH:mm:ss");
             String date = df1.format(vuelo.getFecha_vuelo()) + ":" + df2.format(vuelo.getFecha_vuelo());
             dbconn.escribir("INSERT INTO vuelos VALUES ((SELECT (MAX(id)+1) FROM vuelos)," + vuelo.getId_aerodromo_origen() + "," + vuelo.getId_aerodromo_destino() + "," + null + ",'" + vuelo.getCondicion_vuelo() + "','" + vuelo.getMision_vuelo() + "',to_date('" + date + "','dd/MM/yyyy:hh24:mi:ss')," + vuelo.getId_aeronave() + ")");
-            dbconn.escribir("INSERT INTO tripulacion VALUES ((SELECT (MAX(id)) FROM vuelos)," + piloto + ")");
+            dbconn.escribir("INSERT INTO tripulacion VALUES ((SELECT (MAX(id)) FROM vuelos)," + piloto + ",'P')");
             for (int i = 0; i < tripulacion.length; i++) {
-                System.out.println(tripulacion[i]);
-                System.out.println(buscarPiloto(tripulacion[i]));
-                dbconn.escribir("INSERT INTO tripulacion VALUES ((SELECT (MAX(id)) FROM vuelos)," + buscarPiloto(tripulacion[i]) + ")");
+                dbconn.escribir("INSERT INTO tripulacion VALUES ((SELECT (MAX(id)) FROM vuelos)," + tripulacion[i] + ",'T')");
             }
             return true;
         } catch (Exception e) {
@@ -146,6 +144,32 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
             ResultSet rs = dbconn.consultar("SELECT * FROM vuelos JOIN aerodromos ON vuelos.aerodromos_id_origen = aerodromos.id JOIN aerodromos ON vuelos.aerodromos_id_destino = aerodromos.id JOIN aeronaves ON vuelos.aeronaves_id = aeronaves.id ORDER BY vuelos.id");
+            while (rs.next()) {
+                vuelo = new Vuelo();
+                vuelo.setId(rs.getInt("id"));
+                vuelo.setAerodromo_origen(rs.getString(11)); //El 11 es el numero de la columna dentro de la BD.
+                vuelo.setAerodromo_destino(rs.getString(14));
+                vuelo.setHoras_vuelo(rs.getFloat("horas_vuelo"));
+                vuelo.setCondicion_vuelo(rs.getString("condicion_vuelo").charAt(0));
+                vuelo.setMision_vuelo(rs.getString("mision_vuelo"));
+                vuelo.setFecha_vuelo(rs.getDate("fecha_vuelo"));
+                vuelo.setAeronave(rs.getString("matricula"));
+                listaVuelo.add(vuelo);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return listaVuelo;
+    }
+
+    public ArrayList<Vuelo> listarVueloNoTerminado() {
+        ArrayList listaVuelo = new ArrayList();
+        Vuelo vuelo;
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM vuelos JOIN aerodromos ON vuelos.aerodromos_id_origen = aerodromos.id JOIN aerodromos ON vuelos.aerodromos_id_destino = aerodromos.id JOIN aeronaves ON vuelos.aeronaves_id = aeronaves.id WHERE vuelos.horas_vuelo IS NULL ORDER BY vuelos.id");
             while (rs.next()) {
                 vuelo = new Vuelo();
                 vuelo.setId(rs.getInt("id"));
