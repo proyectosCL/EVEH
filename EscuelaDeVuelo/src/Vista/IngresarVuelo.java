@@ -24,6 +24,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -112,6 +113,7 @@ public class IngresarVuelo extends javax.swing.JFrame {
         columnModel.getColumn(1).setPreferredWidth(80);
         columnModel.getColumn(2).setPreferredWidth(140);
         this.jTablePasajeros.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        this.jTablePasajeros.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jTablePasajeros.updateUI();
     }
 
@@ -258,7 +260,7 @@ public class IngresarVuelo extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTablePasajeros);
 
-        jButtonCode.setText("Clear");
+        jButtonCode.setText("Limpiar");
         jButtonCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCodeActionPerformed(evt);
@@ -389,10 +391,17 @@ public class IngresarVuelo extends javax.swing.JFrame {
         vuelo.setId_aerodromo_destino(Integer.parseInt(item_aerodromo_destino.getValue()));
         //Condición de vuelo
         ComboItem item_condicion_vuelo = (ComboItem) this.jComboBoxCondicion.getSelectedItem();
-        vuelo.setCondicion_vuelo(item_condicion_vuelo.getValue().charAt(2));
+        vuelo.setCondicion_vuelo(item_condicion_vuelo.getValue());
         //Misión de vuelo
+        System.out.println(this.jTextFieldMision.getText());
         if (this.jTextFieldMision.getText() != null) {
-            vuelo.setMision_vuelo(this.jTextFieldMision.getText());
+            if (this.jTextFieldMision.getText().equals("")) {
+                count++;
+                JOptionPane.showMessageDialog(null, "No puedes dejar la misión en blanco.");
+            } else {
+                vuelo.setMision_vuelo(this.jTextFieldMision.getText());
+            }
+
         } else {
             count++;
             JOptionPane.showMessageDialog(null, "No puedes dejar la misión en blanco.");
@@ -412,7 +421,7 @@ public class IngresarVuelo extends javax.swing.JFrame {
             vuelo.setFecha_vuelo(date2);
         } else {
             count++;
-            System.out.println("Debe seleccionar una fecha.");
+            JOptionPane.showMessageDialog(null, "No puedes dejar la fecha en blanco.");
         }
 
         //Piloto
@@ -429,7 +438,9 @@ public class IngresarVuelo extends javax.swing.JFrame {
         //Eliminar pasajero piloto
         for (int i = 0; i < this.jTablePasajeros.getRowCount(); i++) {
             if (item_piloto.getValue().equals(String.valueOf(this.jTablePasajeros.getValueAt(i, 0)))) {
-                modelo.removeRow(i);
+                count++;
+                JOptionPane.showMessageDialog(null, "No puedes ingresar a la misma persona como piloto y pasajero.");
+                //modelo.removeRow(i);
             }
         }
 
@@ -452,22 +463,20 @@ public class IngresarVuelo extends javax.swing.JFrame {
         //PASAJERO NO IGUAL A PILOTO SELECCIONADO
         if (item_piloto.getValue().equals(item_pasajero.getValue())) {
             count++;
-            System.out.println("El pasajero ya esta seleccionado como piloto.");
+            JOptionPane.showMessageDialog(null, "La persona ya esta seleccionada como piloto.");
         }
 
         //NO PUEDEN REPETIRCE PASAJEROS
         for (int i = 0; i < this.jTablePasajeros.getRowCount(); i++) {
             if (this.jTablePasajeros.getValueAt(i, 0).equals(item_pasajero.getValue())) {
                 count++;
-                System.out.println("El pasajero ya se encuentra en la lista.");
+                JOptionPane.showMessageDialog(null, "La persona seleccionada ya se encuentra en la lista de pasajeros.");
             }
         }
 
         if (count == 0) {
             modelo.addRow(new Object[]{item_pasajero.getValue(), item_pasajero.getRut(), item_pasajero.getNombre() + " " + item_pasajero.getApellido()});
         }
-
-
     }//GEN-LAST:event_jButtonAñadirActionPerformed
 
     /**

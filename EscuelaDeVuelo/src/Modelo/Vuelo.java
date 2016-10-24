@@ -16,7 +16,7 @@ public class Vuelo {
 
     private Float horas_vuelo;
 
-    private char condicion_vuelo;
+    private String condicion_vuelo;
 
     private String mision_vuelo;
 
@@ -29,7 +29,7 @@ public class Vuelo {
     public Vuelo() {
     }
 
-    public Vuelo(int id, int id_aerodromo_origen, String aerodromo_origen, int id_aerodromo_destino, String aerodromo_destino, Float horas_vuelo, char condicion_vuelo, String mision_vuelo, Date fecha_vuelo, int id_aeronave, String aeronave) {
+    public Vuelo(int id, int id_aerodromo_origen, String aerodromo_origen, int id_aerodromo_destino, String aerodromo_destino, Float horas_vuelo, String condicion_vuelo, String mision_vuelo, Date fecha_vuelo, int id_aeronave, String aeronave) {
         this.id = id;
         this.id_aerodromo_origen = id_aerodromo_origen;
         this.aerodromo_origen = aerodromo_origen;
@@ -91,11 +91,11 @@ public class Vuelo {
         this.horas_vuelo = horas_vuelo;
     }
 
-    public char getCondicion_vuelo() {
+    public String getCondicion_vuelo() {
         return condicion_vuelo;
     }
 
-    public void setCondicion_vuelo(char condicion_vuelo) {
+    public void setCondicion_vuelo(String condicion_vuelo) {
         this.condicion_vuelo = condicion_vuelo;
     }
 

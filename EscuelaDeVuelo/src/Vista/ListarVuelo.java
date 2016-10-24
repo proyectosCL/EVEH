@@ -8,12 +8,18 @@ package Vista;
 import Controlador.Administrar_Vuelo;
 import Modelo.Vuelo;
 import com.toedter.calendar.JDateChooser;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,6 +33,8 @@ public class ListarVuelo extends javax.swing.JFrame {
             return false;
         }
     };
+    
+    
 
     public void Formato() {
         jTableVuelos.setModel(modelo);
@@ -47,10 +55,11 @@ public class ListarVuelo extends javax.swing.JFrame {
         columnModel.getColumn(3).setPreferredWidth(55);
         columnModel.getColumn(4).setPreferredWidth(90);
         columnModel.getColumn(5).setPreferredWidth(160);
-        columnModel.getColumn(6).setPreferredWidth(70);
+        columnModel.getColumn(6).setPreferredWidth(140);
         columnModel.getColumn(7).setPreferredWidth(80);
         columnModel.getColumn(8).setPreferredWidth(80);
         jTableVuelos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        jTableVuelos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jTableVuelos.updateUI();
     }
 
@@ -58,7 +67,7 @@ public class ListarVuelo extends javax.swing.JFrame {
         Administrar_Vuelo av = new Administrar_Vuelo();
 
         ArrayList<Vuelo> listaVuelo = (!check) ? av.listarVuelo() : av.listarVueloNoTerminado();
-        SimpleDateFormat DateFormat = new SimpleDateFormat("dd/MM/yy");
+        SimpleDateFormat DateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Object[] fila = new Object[9];
         int num = listaVuelo.size();
         for (int i = 0; i < num; i++) {
@@ -75,7 +84,7 @@ public class ListarVuelo extends javax.swing.JFrame {
         }
     }
 
-    private void Clear_Table() {
+    public void Clear_Table() {
         for (int i = 0; i < this.jTableVuelos.getRowCount(); i++) {
             modelo.removeRow(i);
             i -= 1;
@@ -101,6 +110,7 @@ public class ListarVuelo extends javax.swing.JFrame {
         jButtonEliminar = new javax.swing.JButton();
         jCheckBoxTerminado = new javax.swing.JCheckBox();
         jButtonTerminar = new javax.swing.JButton();
+        jButtonVer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,6 +129,7 @@ public class ListarVuelo extends javax.swing.JFrame {
 
             }
         ));
+        jTableVuelos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(jTableVuelos);
 
         jButtonVolver.setText("Volver");
@@ -144,6 +155,8 @@ public class ListarVuelo extends javax.swing.JFrame {
             }
         });
 
+        jButtonVer.setText("Ver");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,7 +172,8 @@ public class ListarVuelo extends javax.swing.JFrame {
                         .addComponent(jButtonListar))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonVer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonTerminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonEliminar)))
@@ -178,7 +192,8 @@ public class ListarVuelo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEliminar)
-                    .addComponent(jButtonTerminar))
+                    .addComponent(jButtonTerminar)
+                    .addComponent(jButtonVer))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -201,7 +216,8 @@ public class ListarVuelo extends javax.swing.JFrame {
         if (this.jTableVuelos.getSelectedRow() != -1 && R == 0) {
             jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0).toString();
             av.eliminarVuelo(Integer.parseInt(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0).toString()));
-            this.jButtonListar.doClick();
+            Clear_Table();
+            CargarTabla(this.jCheckBoxTerminado.isSelected());
         }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
@@ -209,8 +225,27 @@ public class ListarVuelo extends javax.swing.JFrame {
         if (jTableVuelos.getSelectedRow() != -1) {
             if (Double.parseDouble(String.valueOf(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 3))) == 0.0) {
                 TerminarVuelo VentanaTerminarVuelo = new TerminarVuelo();
+                Vuelo vuelo = new Vuelo();
+                vuelo.setId(Integer.parseInt(String.valueOf(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0))));
+                vuelo.setAeronave(String.valueOf(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 7)));
+                vuelo.setHoras_vuelo(0.0F);
+
+                DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                String dateString = null;
+                dateString = String.valueOf(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 6));
+                Date date = null;
+                try {
+                    date = df.parse(dateString);
+                } catch (ParseException ex) {
+                    Logger.getLogger(ListarVuelo.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                vuelo.setFecha_vuelo(date);
+                
+                this.setEnabled(false);
                 VentanaTerminarVuelo.setVisible(true);
-                VentanaTerminarVuelo.setId_vuelo(String.valueOf(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0)));
+                VentanaTerminarVuelo.setVuelo(vuelo);
+                VentanaTerminarVuelo.jLabelMatricula.setText(vuelo.getAeronave());
+                VentanaTerminarVuelo.jLabelFechaInicio.setText(df.format(date));
                 VentanaTerminarVuelo.setVentanaListarVuelo(this);
             } else {
                 JOptionPane.showMessageDialog(null, "El vuelo seleccionado ya está terminado.");
@@ -258,8 +293,9 @@ public class ListarVuelo extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEliminar;
     public javax.swing.JButton jButtonListar;
     private javax.swing.JButton jButtonTerminar;
+    private javax.swing.JButton jButtonVer;
     private javax.swing.JButton jButtonVolver;
-    private javax.swing.JCheckBox jCheckBoxTerminado;
+    public javax.swing.JCheckBox jCheckBoxTerminado;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableVuelos;
     // End of variables declaration//GEN-END:variables

@@ -8,28 +8,30 @@ import Modelo.Vuelo;
 import Vista.ListarVuelo;
 import java.sql.ResultSet;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 public class Administrar_Vuelo implements administrar_horas_vuelo {
 
-    public boolean ingresarVuelo(Vuelo vuelo, int piloto, String[] tripulacion) {
+    public void ingresarVuelo(Vuelo vuelo, int piloto, String[] tripulacion) {
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
             DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy");
             DateFormat df2 = new SimpleDateFormat("HH:mm:ss");
             String date = df1.format(vuelo.getFecha_vuelo()) + ":" + df2.format(vuelo.getFecha_vuelo());
-            dbconn.escribir("INSERT INTO vuelos VALUES ((SELECT (MAX(id)+1) FROM vuelos)," + vuelo.getId_aerodromo_origen() + "," + vuelo.getId_aerodromo_destino() + "," + null + ",'" + vuelo.getCondicion_vuelo() + "','" + vuelo.getMision_vuelo() + "',to_date('" + date + "','dd/MM/yyyy:hh24:mi:ss')," + vuelo.getId_aeronave() + ")");
+            dbconn.escribir("INSERT INTO vuelos VALUES ((SELECT (MAX(id)+1) FROM vuelos)," + vuelo.getId_aerodromo_origen() + "," + vuelo.getId_aerodromo_destino() + ",0.0,'" + vuelo.getCondicion_vuelo() + "','" + vuelo.getMision_vuelo() + "',to_date('" + date + "','dd/MM/yyyy:hh24:mi:ss')," + vuelo.getId_aeronave() + ")");
             dbconn.escribir("INSERT INTO tripulacion VALUES ((SELECT (MAX(id)) FROM vuelos)," + piloto + ",'P')");
             for (int i = 0; i < tripulacion.length; i++) {
                 dbconn.escribir("INSERT INTO tripulacion VALUES ((SELECT (MAX(id)) FROM vuelos)," + tripulacion[i] + ",'T')");
             }
-            return true;
-        } catch (Exception e) {
-            return false;
+            JOptionPane.showMessageDialog(null, "El vuelo ha sido ingresado correctamente.");
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
 
     }
@@ -51,7 +53,26 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
 
     @Override
     public void sumarHoras() {
-        System.out.println("aa");
+
+    }
+
+    public boolean sumarHoras2(int id, String matricula, Date fecha_inicio, Date fecha_termino) {
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            int calculo_fecha = (int) ((fecha_termino.getTime() - fecha_inicio.getTime()) / 1000);
+            float num1 = calculo_fecha;
+            float num2 = 3600;
+            float horas = num1 / num2;
+            DecimalFormat def = new DecimalFormat("0.00000");
+            String horasString = def.format(horas);
+            dbconn.escribir("UPDATE vuelos SET horas_vuelo = (horas_vuelo + " + horasString.replace(',', '.') + ")  WHERE id = " + id);
+            dbconn.escribir("UPDATE aeronaves SET horas_vuelo = (horas_vuelo + " + horasString.replace(',', '.') + ") WHERE matricula = '"+matricula+"'");
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     ListarVuelo vistaListarVuelo = new ListarVuelo();
@@ -150,9 +171,10 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
                 vuelo.setAerodromo_origen(rs.getString(11)); //El 11 es el numero de la columna dentro de la BD.
                 vuelo.setAerodromo_destino(rs.getString(14));
                 vuelo.setHoras_vuelo(rs.getFloat("horas_vuelo"));
-                vuelo.setCondicion_vuelo(rs.getString("condicion_vuelo").charAt(0));
+                vuelo.setCondicion_vuelo(rs.getString("condicion_vuelo"));
                 vuelo.setMision_vuelo(rs.getString("mision_vuelo"));
-                vuelo.setFecha_vuelo(rs.getDate("fecha_vuelo"));
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                vuelo.setFecha_vuelo(df.parse(rs.getString("fecha_vuelo")));
                 vuelo.setAeronave(rs.getString("matricula"));
                 listaVuelo.add(vuelo);
             }
@@ -176,9 +198,10 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
                 vuelo.setAerodromo_origen(rs.getString(11)); //El 11 es el numero de la columna dentro de la BD.
                 vuelo.setAerodromo_destino(rs.getString(14));
                 vuelo.setHoras_vuelo(rs.getFloat("horas_vuelo"));
-                vuelo.setCondicion_vuelo(rs.getString("condicion_vuelo").charAt(0));
+                vuelo.setCondicion_vuelo(rs.getString("condicion_vuelo"));
                 vuelo.setMision_vuelo(rs.getString("mision_vuelo"));
-                vuelo.setFecha_vuelo(rs.getDate("fecha_vuelo"));
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                vuelo.setFecha_vuelo(df.parse(rs.getString("fecha_vuelo")));
                 vuelo.setAeronave(rs.getString("matricula"));
                 listaVuelo.add(vuelo);
             }

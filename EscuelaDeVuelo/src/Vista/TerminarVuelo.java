@@ -6,6 +6,13 @@
 package Vista;
 
 import Controlador.Administrar_Vuelo;
+import Modelo.Vuelo;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,15 +21,15 @@ import javax.swing.JOptionPane;
  */
 public class TerminarVuelo extends javax.swing.JFrame {
 
-    String id_vuelo;
     ListarVuelo VentanaListarVuelo;
+    Vuelo vuelo;
 
-    public String getId_vuelo() {
-        return id_vuelo;
+    public Vuelo getVuelo() {
+        return vuelo;
     }
 
-    public void setId_vuelo(String id_vuelo) {
-        this.id_vuelo = id_vuelo;
+    public void setVuelo(Vuelo vuelo) {
+        this.vuelo = vuelo;
     }
 
     public ListarVuelo getVentanaListarVuelo() {
@@ -33,8 +40,51 @@ public class TerminarVuelo extends javax.swing.JFrame {
         this.VentanaListarVuelo = VentanaListarVuelo;
     }
 
+    class ComboItem {
+
+        private String key;
+        private String value;
+
+        public ComboItem(String key, String value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return key;
+        }
+
+        public String getKey() {
+            return key;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+    }
+
+    DateFormat df1 = new SimpleDateFormat("dd-MM-yyyy");
+    DateFormat df2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
     public TerminarVuelo() {
         initComponents();
+
+        //Limpiar
+        this.jComboBoxHora.removeAllItems();
+        this.jComboBoxMinuto.removeAllItems();
+        this.jComboBoxSegundo.removeAllItems();
+        //Llenar
+        for (int i = 0; i < 24; i++) {
+            this.jComboBoxHora.addItem(new ComboItem(String.format("%02d", i), String.valueOf(i)));
+        }
+        for (int i = 0; i < 60; i++) {
+            this.jComboBoxMinuto.addItem(new ComboItem(String.format("%02d", i), String.valueOf(i)));
+            this.jComboBoxSegundo.addItem(new ComboItem(String.format("%02d", i), String.valueOf(i)));
+        }
+
+        this.jLabelFechaInicio.setText("");
     }
 
     /**
@@ -48,10 +98,15 @@ public class TerminarVuelo extends javax.swing.JFrame {
 
         jButtonAceptar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        jDateFecha = new com.toedter.calendar.JDateChooser();
+        jDateFechaTermino = new com.toedter.calendar.JDateChooser();
         jComboBoxHora = new javax.swing.JComboBox();
         jComboBoxMinuto = new javax.swing.JComboBox();
         jComboBoxSegundo = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        jLabelFechaInicio = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabelAeronave = new javax.swing.JLabel();
+        jLabelMatricula = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,13 +124,23 @@ public class TerminarVuelo extends javax.swing.JFrame {
             }
         });
 
-        jDateFecha.setDateFormatString("dd/MM/yyyy");
+        jDateFechaTermino.setDateFormatString("dd/MM/yyyy");
 
         jComboBoxHora.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00" }));
 
         jComboBoxMinuto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00" }));
 
         jComboBoxSegundo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00" }));
+
+        jLabel1.setText("Fecha de inicio:");
+
+        jLabelFechaInicio.setText("Inicio");
+
+        jLabel3.setText("Fecha de termino:");
+
+        jLabelAeronave.setText("Aeronave:");
+
+        jLabelMatricula.setText("Matricula");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,55 +149,111 @@ public class TerminarVuelo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonAceptar)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCancelar))
+                        .addComponent(jButtonAceptar)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxSegundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelFechaInicio))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jDateFechaTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxSegundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelAeronave)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelMatricula)))
+                        .addGap(0, 10, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelAeronave)
+                    .addComponent(jLabelMatricula))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabelFechaInicio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jDateFechaTermino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jComboBoxMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jComboBoxSegundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonCancelar)
-                    .addComponent(jButtonAceptar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAceptar)
+                    .addComponent(jButtonCancelar))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        this.getVentanaListarVuelo().setEnabled(true);
         this.dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-        System.out.println(this.getId_vuelo());
-        int R = JOptionPane.showConfirmDialog(null, "¿Seguro?", "¡Alerta!", JOptionPane.YES_NO_OPTION, 0, null);
-        if (R == 0) {
-            
-            Administrar_Vuelo av = new Administrar_Vuelo();
-            av.sumarHoras();
-            this.getVentanaListarVuelo().jButtonListar.doClick();
-            this.dispose();
+        int count = 0;
+        Date fecha1 = null;
+        try {
+            fecha1 = df2.parse(this.jLabelFechaInicio.getText());
+        } catch (ParseException ex) {
+            Logger.getLogger(TerminarVuelo.class.getName()).log(Level.SEVERE, null, ex);
         }
+        Date date2 = null;
+
+        if (this.jDateFechaTermino.getDate() == null) {
+            count++;
+            JOptionPane.showMessageDialog(null, "No puedes dejar la fecha en blanco.");
+        } else {
+            String date1 = df1.format(this.jDateFechaTermino.getDate());
+
+            try {
+                date2 = df2.parse(date1 + " " + String.format("%02d", this.jComboBoxHora.getSelectedIndex()) + ":" + String.format("%02d", this.jComboBoxMinuto.getSelectedIndex()) + ":" + String.format("%02d", this.jComboBoxSegundo.getSelectedIndex()));
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+
+            if (date2.getTime() <= fecha1.getTime()) {
+                JOptionPane.showMessageDialog(null, "La fecha de termino no puede ser menor o igual a la fecha de inicio.");
+                count++;
+            }
+
+        }
+        System.out.println(this.jDateFechaTermino.getDate().getTime());
+        System.out.println(this.getVuelo().getFecha_vuelo().getTime());
+
+        if (count == 0) {
+            int R = JOptionPane.showConfirmDialog(null, "¿Seguro?", "¡Alerta!", JOptionPane.YES_NO_OPTION, 0, null);
+            if (R == 0) {
+                Administrar_Vuelo av = new Administrar_Vuelo();
+
+                av.sumarHoras2(this.getVuelo().getId(), this.getVuelo().getAeronave(), fecha1, date2);
+                this.getVentanaListarVuelo().Clear_Table();
+                this.getVentanaListarVuelo().CargarTabla(this.getVentanaListarVuelo().jCheckBoxTerminado.isSelected());
+                this.getVentanaListarVuelo().setEnabled(true);
+                this.dispose();
+            }
+        }
+
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     /**
@@ -176,6 +297,11 @@ public class TerminarVuelo extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBoxHora;
     private javax.swing.JComboBox jComboBoxMinuto;
     private javax.swing.JComboBox jComboBoxSegundo;
-    private com.toedter.calendar.JDateChooser jDateFecha;
+    private com.toedter.calendar.JDateChooser jDateFechaTermino;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabelAeronave;
+    public javax.swing.JLabel jLabelFechaInicio;
+    public javax.swing.JLabel jLabelMatricula;
     // End of variables declaration//GEN-END:variables
 }
