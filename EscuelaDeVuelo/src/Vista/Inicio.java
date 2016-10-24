@@ -22,7 +22,8 @@ public class Inicio extends javax.swing.JFrame {
     public Inicio() {
         initComponents();
         
-        
+        Image icon = new ImageIcon(getClass().getResource("../Imagenes/icono.jpg")).getImage();
+        setIconImage(icon);
     }
 
     /**
@@ -122,11 +123,10 @@ public class Inicio extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public  void main(String args[]) {
+    public static void main(String args[]) {
  
         
-        Image icon = new ImageIcon(getClass().getResource("../Imagenes/icono.jpg")).getImage();
-        setIconImage(icon);
+        
         
         try {
              UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
