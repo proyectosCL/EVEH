@@ -48,13 +48,15 @@ public class Administrar_Licencia {
            int tipo_licencia = nlicencia.getId_licencia();
            String fecha_vencimiento = nlicencia.getFecha_vencimiento();
            int dias_vuelo = nlicencia.getDias_vuelo();
+           int id = nlicencia.getId();
            
            Conexion conec = new Conexion();
             conec.conectar();
             String sql = "update licencias set numero= "+numero+","
                     + " tipo_licencia = "+tipo_licencia+","
                     + " fecha_vencimiento= "+fecha_vencimiento+","
-                    + "dias_vuelo = "+dias_vuelo;
+                    + "dias_vuelo = "+dias_vuelo
+                    + "where id = "+id;
             conec.escribir(sql);
             JOptionPane.showMessageDialog(null, "Modificado correctamente");
             

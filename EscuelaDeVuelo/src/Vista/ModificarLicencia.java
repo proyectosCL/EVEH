@@ -363,7 +363,7 @@ public class ModificarLicencia extends javax.swing.JFrame {
             Licencia licencia = new Licencia(id_licencia,numero_licencia,dias, horas, fecha_vencimiento, tipo_licencia,id_piloto);
 
 
-            al.ingresarLicencia(licencia);
+            al.modificarLicencia(licencia);
             
         }catch(Exception ex){
             System.out.println(ex);

@@ -39,13 +39,15 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
             int dias_vuelo = npiloto.getDias_vuelo();
             String vencimiento_medicina = npiloto.getVencimiento_medicina();
             String fecha_ultimo_vuelo = npiloto.getFecha_ultimo_vuelo();
-             
+             int id =npiloto.getId();
+                     
             Conexion conec = new Conexion();
             conec.conectar();
-            String sql = "update piloto set horas_vuelo= "+horas_vuelo+","
+            String sql = "update pilotos set horas_vuelo= "+horas_vuelo+","
                     + " dias_vuelo = "+dias_vuelo+","
-                    + " vencimiento_medicina= "+vencimiento_medicina+" ,"
-                    + "ultimo_vuelo_realizado"+fecha_ultimo_vuelo;
+                    + " vencimiento_medicina = '"+vencimiento_medicina+"' ,"
+                    + "ultimo_vuelo_realizado = '"+fecha_ultimo_vuelo+"' "
+                    + "where id = "+id;
             conec.escribir(sql);
             JOptionPane.showMessageDialog(null, "Modificado Correctamente");
             

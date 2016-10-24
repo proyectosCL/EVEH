@@ -5,8 +5,7 @@
  */
 package Vista;
 
-import Atxy2k.CustomTextField.RestrictedTextField;
-import Controlador.Administrar_Personas;
+
 import Controlador.Administrar_Pilotos;
 import Modelo.Piloto;
 import static java.lang.String.*;
@@ -116,7 +115,7 @@ public class ModificarPiloto extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextFieldHoras = new javax.swing.JTextField();
         jTextFieldDias = new javax.swing.JTextField();
-        btnIngresar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         JDateMedicina = new com.toedter.calendar.JDateChooser();
         JDateUltimoVuelo = new com.toedter.calendar.JDateChooser();
@@ -149,10 +148,10 @@ public class ModificarPiloto extends javax.swing.JFrame {
             }
         });
 
-        btnIngresar.setText("Ingresar");
-        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.setText("Modificar Piloto");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresarActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
 
@@ -198,7 +197,7 @@ public class ModificarPiloto extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnIngresar)
+                                .addComponent(btnModificar)
                                 .addGap(40, 40, 40)
                                 .addComponent(btnCancelar))
                             .addComponent(JDateUltimoVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))))
@@ -236,15 +235,15 @@ public class ModificarPiloto extends javax.swing.JFrame {
                     .addComponent(JDateUltimoVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIngresar)
-                    .addComponent(btnCancelar))
+                    .addComponent(btnCancelar)
+                    .addComponent(btnModificar))
                 .addGap(37, 37, 37))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 
 
 
@@ -296,20 +295,15 @@ public class ModificarPiloto extends javax.swing.JFrame {
             
             Administrar_Pilotos ap = new Administrar_Pilotos();
             
-            // validacion piloto repetido
-            if (ap.buscarPilotoR(id_persona)) {
-                JOptionPane.showMessageDialog(null, "Piloto ya ingresado");
-                return;
-            }
             //ibgresar
             Piloto piloto = new Piloto(id_piloto, horas, dias, fecha_medicina, fecha_ultimo_vuelo, id_persona);
-            ap.ingresarPiloto(piloto);
+            ap.modificarPiloto(piloto);
             
         }catch(Exception ex){
             System.out.println(ex);
         }
 
-    }//GEN-LAST:event_btnIngresarActionPerformed
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         MenuPrincipalAdministrador menu = new MenuPrincipalAdministrador();
@@ -373,7 +367,7 @@ public class ModificarPiloto extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser JDateMedicina;
     private com.toedter.calendar.JDateChooser JDateUltimoVuelo;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JComboBox cbRut;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
