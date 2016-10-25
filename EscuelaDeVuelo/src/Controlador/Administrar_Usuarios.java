@@ -115,8 +115,17 @@ public class Administrar_Usuarios {
          
         
     }
-    public boolean autenticarUsuario() {
-        return false;
+    public boolean autenticarUsuario(String usuario,String pass) {
+        try{
+            Conexion conec = new Conexion();
+            conec.conectar();
+            String sql = "select * from usuarios where cuenta like '"+usuario+"' and pass like '"+pass+"'";
+            
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+        
     }
 
     public boolean modificarUsuario(Usuario nuevoUsuario) {
