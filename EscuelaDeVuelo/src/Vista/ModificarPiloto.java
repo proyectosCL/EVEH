@@ -77,6 +77,7 @@ public class ModificarPiloto extends javax.swing.JFrame {
         jTextFieldDias.setText(String.valueOf(piloto.get(0).getDias_vuelo()));
         jTextFieldHoras.setText(String.valueOf(piloto.get(0).getHoras_vuelo()));
         cbRut.getModel().setSelectedItem(select);
+        cbRut.setEnabled(false);
         
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         Date medicina = null;
@@ -167,6 +168,8 @@ public class ModificarPiloto extends javax.swing.JFrame {
         JDateUltimoVuelo.setDateFormatString("dd/MM/yyyy");
 
         cbRut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
+        cbRut.setEnabled(false);
+        cbRut.setOpaque(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -271,6 +274,11 @@ public class ModificarPiloto extends javax.swing.JFrame {
             
             try{
                 Date fecha = JDateMedicina.getDate();
+                Date hoy = new Date();
+                if (fecha.before(hoy)) {
+                    JOptionPane.showMessageDialog(null, "La fecha del vencimiento de la medicina no puede ser antes a la de hoy");
+                    return;
+                }
                 fecha_medicina = df.format(fecha);
             }catch(Exception ex){
                 System.out.println(ex);
@@ -280,6 +288,11 @@ public class ModificarPiloto extends javax.swing.JFrame {
             
             try{
                 Date fecha_ultimo = JDateUltimoVuelo.getDate();
+                Date hoy = new Date();
+                if (fecha_ultimo.after(hoy)) {
+                     JOptionPane.showMessageDialog(null, "La fecha delultimo vuelo realizado no puede ser mayor a la de hoy");
+                    return;
+                }
                 fecha_ultimo_vuelo = df.format(fecha_ultimo);
             }catch(Exception ex){
                 System.out.println(ex);

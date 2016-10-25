@@ -5,15 +5,11 @@
  */
 package Vista;
 
-import Atxy2k.CustomTextField.RestrictedTextField;
-import Controlador.Administrar_Personas;
 import Controlador.Administrar_Pilotos;
 import Modelo.Piloto;
-import static java.lang.String.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -134,6 +130,11 @@ public class IngresarPiloto extends javax.swing.JFrame {
         });
 
         JDateMedicina.setDateFormatString("dd/MMMM/yyyy");
+        JDateMedicina.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                JDateMedicinaKeyTyped(evt);
+            }
+        });
 
         JDateUltimoVuelo.setDateFormatString("dd/MMMM/yyyy");
 
@@ -242,6 +243,11 @@ public class IngresarPiloto extends javax.swing.JFrame {
             
             try{
                 Date fecha = JDateMedicina.getDate();
+                Date hoy = new Date();
+                if (fecha.before(hoy)) {
+                    JOptionPane.showMessageDialog(null, "La fecha del vencimiento de la medicina no puede ser antes a la de hoy");
+                    return;
+                }
                 fecha_medicina = df.format(fecha);
             }catch(Exception ex){
                 System.out.println(ex);
@@ -251,6 +257,11 @@ public class IngresarPiloto extends javax.swing.JFrame {
             
             try{
                 Date fecha_ultimo = JDateUltimoVuelo.getDate();
+                Date hoy = new Date();
+                if (fecha_ultimo.after(hoy)) {
+                     JOptionPane.showMessageDialog(null, "La fecha delultimo vuelo realizado no puede ser mayor a la de hoy");
+                    return;
+                }
                 fecha_ultimo_vuelo = df.format(fecha_ultimo);
             }catch(Exception ex){
                 System.out.println(ex);
@@ -259,7 +270,7 @@ public class IngresarPiloto extends javax.swing.JFrame {
             }
             //datos
             Object item2 = cbRut.getSelectedItem();
-            int id_persona = Integer.parseInt(((IngresarLicencia.ComboItem)item2).getValue());
+            int id_persona = Integer.parseInt(((ComboItem)item2).getValue());
             int id_piloto =0;
             float horas = Float.parseFloat(jTextFieldHoras.getText());
             int dias = Integer.parseInt(jTextFieldDias.getText());
@@ -302,6 +313,11 @@ public class IngresarPiloto extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldDiasKeyTyped
+
+    private void JDateMedicinaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JDateMedicinaKeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_JDateMedicinaKeyTyped
 
     /**
      * @param args the command line arguments

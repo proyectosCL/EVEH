@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class Administrar_Pilotos implements administrar_horas_vuelo {
@@ -55,8 +54,7 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
         }  
     }
 
-    public void asignarLicencia() {
-    }
+    
 
     public void eliminarPiloto(int id) {
          try {
@@ -92,6 +90,7 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
             }
 
         } catch (Exception e) {
+            System.out.println(e);
         }
         return piloto.getId_persona();
     }

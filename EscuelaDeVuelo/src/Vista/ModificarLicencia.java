@@ -208,6 +208,7 @@ public class ModificarLicencia extends javax.swing.JFrame {
         JDateVencimiento.setDateFormatString("dd/MM/yyyy");
 
         cbRut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
+        cbRut.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
