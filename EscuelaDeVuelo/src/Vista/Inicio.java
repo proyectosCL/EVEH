@@ -5,10 +5,13 @@
  */
 package Vista;
 
+import Controlador.Administrar_Usuarios;
+import Modelo.Usuario;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import jdk.nashorn.internal.runtime.regexp.joni.EncodingHelper;
 
 /**
  *
@@ -108,11 +111,45 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        String usuario = txtUsuario.getText();
-        String pass = txtPass.getText();
+        try{
+            //vali campos vacios
+            if (txtUsuario.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese un usuario");
+                return;
+            }
+            if (txtUsuario.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese una contraseña");
+                return;
+            }
+            String usuario = txtUsuario.getText();
+            String pass = txtPass.getText();
+            
+            Administrar_Usuarios au = new Administrar_Usuarios();
+            Usuario user = au.autenticarUsuario(usuario, pass);
+            
+            if (user.getUsuario() != null) {
+                switch(user.getId_tipo()){
+                    case 1:
+                        new MenuPrincipalAdministrador().setVisible(true);
+                        this.dispose();
+                        break;
+                    case 2:
+                        new MenuPrincipalOperador().setVisible(true);
+                        this.dispose();
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "Esta cuenta no puede ingresar");
+                        break;
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Usuario o contraseña mal ingresada");
+            }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al autentificar");
+        }
+        
         //JOptionPane.showInputDialog(texto);
-        new MenuPrincipalAdministrador().setVisible(true);
-        this.dispose();
+        
         
     }//GEN-LAST:event_btnAceptarActionPerformed
 

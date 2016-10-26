@@ -115,18 +115,29 @@ public class Administrar_Usuarios {
          
         
     }
-    public boolean autenticarUsuario(String usuario,String pass) {
+    public Usuario autenticarUsuario(String usuario,String pass) {
+        Usuario nusuario = new Usuario();
+        
         try{
             Conexion conec = new Conexion();
             conec.conectar();
-            String sql = "select * from usuarios where cuenta like '"+usuario+"' and pass like '"+pass+"'";
-            
-            return true;
+             Connection myconnection = conec.getConexion();
+              ResultSet rs = conec.consultar("select * from usuarios where cuenta like '"+usuario+"' and pass like '"+pass+"'");
+            while (rs.next()) {
+                nusuario.setEstado_usuario(rs.getString("estado_cuenta"));
+                nusuario.setId_tipo(rs.getInt("perfiles_usuarios_id"));
+                nusuario.setPass(rs.getString("pass"));
+                nusuario.setUsuario(rs.getString("cuenta"));
+            }
+       
         }catch(Exception e){
-            return false;
+            System.out.println(e);
         }
         
+        return nusuario;
     }
+
+
 
     public boolean modificarUsuario(Usuario nuevoUsuario) {
         try {
