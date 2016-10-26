@@ -3,6 +3,7 @@ package Controlador;
 import Database.Conexion;
 import Modelo.Aerodromo;
 import Modelo.Aeronave;
+import Modelo.Persona;
 import Modelo.Piloto;
 import Modelo.Vuelo;
 import Vista.ListarVuelo;
@@ -68,7 +69,8 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
             DecimalFormat def = new DecimalFormat("0.00000");
             String horasString = def.format(horas);
             dbconn.escribir("UPDATE vuelos SET horas_vuelo = (horas_vuelo + " + horasString.replace(',', '.') + ")  WHERE id = " + id);
-            dbconn.escribir("UPDATE aeronaves SET horas_vuelo = (horas_vuelo + " + horasString.replace(',', '.') + ") WHERE matricula = '"+matricula+"'");
+            dbconn.escribir("UPDATE aeronaves SET horas_vuelo = (horas_vuelo + " + horasString.replace(',', '.') + ") WHERE matricula = '" + matricula + "'");
+            dbconn.escribir("UPDATE pilotos SET pilotos.horas_vuelo = (pilotos.horas_vuelo + " + horasString.replace(',', '.') + ") WHERE pilotos.id = (SELECT pilotos_id FROM tripulacion WHERE tripulacion.vuelos_id = "+id+" AND tripulacion.pilotos_id = pilotos.id)");
             return true;
         } catch (Exception e) {
             return false;
@@ -210,6 +212,28 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
 
         }
         return listaVuelo;
+    }
+    
+    public ArrayList<Piloto> listarPilotoID(int id) {
+        ArrayList listaPiloto = new ArrayList();
+        Piloto piloto;
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM tripulacion JOIN pilotos ON tripulacion.pilotos_id = pilotos.id JOIN personas ON pilotos.personas_id = personas.id WHERE tripulacion.vuelos_id = "+id);
+            while (rs.next()) {
+                piloto = new Piloto();
+                piloto.setId(rs.getInt("id"));
+                piloto.setRut(rs.getString("rut"));
+                piloto.setNombre(rs.getString("nombre"));
+                piloto.setApellidos(rs.getString("apellidos"));
+                piloto.setTipo(rs.getString("tipo"));
+                listaPiloto.add(piloto);
+            }
+
+        } catch (Exception e) {
+        }
+        return listaPiloto;
     }
 
 }

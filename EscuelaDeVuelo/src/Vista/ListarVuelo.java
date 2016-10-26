@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.Administrar_Vuelo;
+import Modelo.Piloto;
 import Modelo.Vuelo;
 import com.toedter.calendar.JDateChooser;
 import java.text.DateFormat;
@@ -33,8 +34,6 @@ public class ListarVuelo extends javax.swing.JFrame {
             return false;
         }
     };
-    
-    
 
     public void Formato() {
         jTableVuelos.setModel(modelo);
@@ -92,7 +91,6 @@ public class ListarVuelo extends javax.swing.JFrame {
     }
 
     public ListarVuelo() {
-
         initComponents();
         Formato();
         Clear_Table();
@@ -156,6 +154,11 @@ public class ListarVuelo extends javax.swing.JFrame {
         });
 
         jButtonVer.setText("Ver");
+        jButtonVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -240,7 +243,7 @@ public class ListarVuelo extends javax.swing.JFrame {
                     Logger.getLogger(ListarVuelo.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 vuelo.setFecha_vuelo(date);
-                
+
                 this.setEnabled(false);
                 VentanaTerminarVuelo.setVisible(true);
                 VentanaTerminarVuelo.setVuelo(vuelo);
@@ -252,6 +255,30 @@ public class ListarVuelo extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButtonTerminarActionPerformed
+
+    private void jButtonVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerActionPerformed
+        if (jTableVuelos.getSelectedRow() != -1) {
+            ListarTripulacion VentanaListarPasajeros = new ListarTripulacion();
+            //-----------
+            Administrar_Vuelo av = new Administrar_Vuelo();
+            ArrayList<Piloto> listaPilotos = av.listarPilotoID(Integer.parseInt(String.valueOf(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0))));
+            Object[] fila = new Object[4];
+            int num = listaPilotos.size();
+            for (int i = 0; i < num; i++) {
+                fila[0] = listaPilotos.get(i).getId();
+                fila[1] = listaPilotos.get(i).getRut();
+                fila[2] = listaPilotos.get(i).getNombre()+" "+listaPilotos.get(i).getApellidos();
+                fila[3] = listaPilotos.get(i).getTipo();
+                VentanaListarPasajeros.modelo.addRow(fila);
+            }
+            //-----------
+
+            this.setEnabled(false);
+            VentanaListarPasajeros.setVentanaListarVuelo(this);
+            VentanaListarPasajeros.jLabel1.setText(String.valueOf(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0)));
+            VentanaListarPasajeros.setVisible(true);
+        }
+    }//GEN-LAST:event_jButtonVerActionPerformed
 
     /**
      * @param args the command line arguments

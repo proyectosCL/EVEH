@@ -1,7 +1,5 @@
 package Modelo;
 
-
-
 public class Piloto extends Persona {
 
     private int id;
@@ -13,8 +11,10 @@ public class Piloto extends Persona {
     private String vencimiento_medicina;
 
     private String fecha_ultimo_vuelo;
-    
+
     private int id_persona;
+
+    private String tipo;
 
     public Piloto() {
     }
@@ -36,15 +36,20 @@ public class Piloto extends Persona {
         this.id_persona = id_persona;
     }
 
-   
-
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+    
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public Float getHoras_vuelo() {
