@@ -45,7 +45,7 @@ public class ListarVuelo extends javax.swing.JFrame {
         modelo.addColumn("MISIÓN");
         modelo.addColumn("FECHA");
         modelo.addColumn("AERONAVE");
-        modelo.addColumn("PILOTOS");
+        modelo.addColumn("ESTADO");
 
         TableColumnModel columnModel = jTableVuelos.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(40);
@@ -78,7 +78,7 @@ public class ListarVuelo extends javax.swing.JFrame {
             fila[5] = listaVuelo.get(i).getMision_vuelo();
             fila[6] = DateFormat.format(listaVuelo.get(i).getFecha_vuelo());
             fila[7] = listaVuelo.get(i).getAeronave();
-            fila[8] = "aa";
+            fila[8] = listaVuelo.get(i).getEstado();
             modelo.addRow(fila);
         }
     }
@@ -153,7 +153,7 @@ public class ListarVuelo extends javax.swing.JFrame {
             }
         });
 
-        jButtonVer.setText("Ver");
+        jButtonVer.setText("Ver tripulación");
         jButtonVer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVerActionPerformed(evt);
@@ -221,6 +221,8 @@ public class ListarVuelo extends javax.swing.JFrame {
             av.eliminarVuelo(Integer.parseInt(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0).toString()));
             Clear_Table();
             CargarTabla(this.jCheckBoxTerminado.isSelected());
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un vuelo de la lista.");
         }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
@@ -253,6 +255,8 @@ public class ListarVuelo extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "El vuelo seleccionado ya está terminado.");
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un vuelo de la lista.");
         }
     }//GEN-LAST:event_jButtonTerminarActionPerformed
 
@@ -277,6 +281,8 @@ public class ListarVuelo extends javax.swing.JFrame {
             VentanaListarPasajeros.setVentanaListarVuelo(this);
             VentanaListarPasajeros.jLabel1.setText(String.valueOf(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0)));
             VentanaListarPasajeros.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un vuelo de la lista.");
         }
     }//GEN-LAST:event_jButtonVerActionPerformed
 

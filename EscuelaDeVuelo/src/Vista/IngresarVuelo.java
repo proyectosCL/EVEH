@@ -393,13 +393,12 @@ public class IngresarVuelo extends javax.swing.JFrame {
         ComboItem item_condicion_vuelo = (ComboItem) this.jComboBoxCondicion.getSelectedItem();
         vuelo.setCondicion_vuelo(item_condicion_vuelo.getValue());
         //Misión de vuelo
-        System.out.println(this.jTextFieldMision.getText());
         if (this.jTextFieldMision.getText() != null) {
             if (this.jTextFieldMision.getText().equals("")) {
                 count++;
                 JOptionPane.showMessageDialog(null, "No puedes dejar la misión en blanco.");
             } else {
-                vuelo.setMision_vuelo(this.jTextFieldMision.getText());
+                vuelo.setMision_vuelo(this.jTextFieldMision.getText().trim());
             }
 
         } else {

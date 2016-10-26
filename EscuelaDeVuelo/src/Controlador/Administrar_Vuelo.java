@@ -25,7 +25,7 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
             DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy");
             DateFormat df2 = new SimpleDateFormat("HH:mm:ss");
             String date = df1.format(vuelo.getFecha_vuelo()) + ":" + df2.format(vuelo.getFecha_vuelo());
-            dbconn.escribir("INSERT INTO vuelos VALUES ((SELECT (MAX(id)+1) FROM vuelos)," + vuelo.getId_aerodromo_origen() + "," + vuelo.getId_aerodromo_destino() + ",0.0,'" + vuelo.getCondicion_vuelo() + "','" + vuelo.getMision_vuelo() + "',to_date('" + date + "','dd/MM/yyyy:hh24:mi:ss')," + vuelo.getId_aeronave() + ")");
+            dbconn.escribir("INSERT INTO vuelos VALUES ((SELECT (MAX(id)+1) FROM vuelos)," + vuelo.getId_aerodromo_origen() + "," + vuelo.getId_aerodromo_destino() + ",0.0,'" + vuelo.getCondicion_vuelo() + "','" + vuelo.getMision_vuelo() + "',to_date('" + date + "','dd/MM/yyyy:hh24:mi:ss')," + vuelo.getId_aeronave() + ",'en curso')");
             dbconn.escribir("INSERT INTO tripulacion VALUES ((SELECT (MAX(id)) FROM vuelos)," + piloto + ",'P')");
             for (int i = 0; i < tripulacion.length; i++) {
                 dbconn.escribir("INSERT INTO tripulacion VALUES ((SELECT (MAX(id)) FROM vuelos)," + tripulacion[i] + ",'T')");
@@ -68,7 +68,7 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
             float horas = num1 / num2;
             DecimalFormat def = new DecimalFormat("0.00000");
             String horasString = def.format(horas);
-            dbconn.escribir("UPDATE vuelos SET horas_vuelo = (horas_vuelo + " + horasString.replace(',', '.') + ")  WHERE id = " + id);
+            dbconn.escribir("UPDATE vuelos SET horas_vuelo = (horas_vuelo + " + horasString.replace(',', '.') + "), estado_vuelo = 'terminado' WHERE id = " + id);
             dbconn.escribir("UPDATE aeronaves SET horas_vuelo = (horas_vuelo + " + horasString.replace(',', '.') + ") WHERE matricula = '" + matricula + "'");
             dbconn.escribir("UPDATE pilotos SET pilotos.horas_vuelo = (pilotos.horas_vuelo + " + horasString.replace(',', '.') + ") WHERE pilotos.id = (SELECT pilotos_id FROM tripulacion WHERE tripulacion.vuelos_id = "+id+" AND tripulacion.pilotos_id = pilotos.id)");
             return true;
@@ -178,6 +178,7 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 vuelo.setFecha_vuelo(df.parse(rs.getString("fecha_vuelo")));
                 vuelo.setAeronave(rs.getString("matricula"));
+                vuelo.setEstado(rs.getString("estado_vuelo"));
                 listaVuelo.add(vuelo);
             }
 
@@ -205,6 +206,7 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 vuelo.setFecha_vuelo(df.parse(rs.getString("fecha_vuelo")));
                 vuelo.setAeronave(rs.getString("matricula"));
+                vuelo.setEstado(rs.getString("estado_vuelo"));
                 listaVuelo.add(vuelo);
             }
 

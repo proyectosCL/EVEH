@@ -26,10 +26,12 @@ public class Vuelo {
 
     private String aeronave;
 
+    private String estado;
+
     public Vuelo() {
     }
 
-    public Vuelo(int id, int id_aerodromo_origen, String aerodromo_origen, int id_aerodromo_destino, String aerodromo_destino, Float horas_vuelo, String condicion_vuelo, String mision_vuelo, Date fecha_vuelo, int id_aeronave, String aeronave) {
+    public Vuelo(int id, int id_aerodromo_origen, String aerodromo_origen, int id_aerodromo_destino, String aerodromo_destino, Float horas_vuelo, String condicion_vuelo, String mision_vuelo, Date fecha_vuelo, int id_aeronave, String aeronave, String estado) {
         this.id = id;
         this.id_aerodromo_origen = id_aerodromo_origen;
         this.aerodromo_origen = aerodromo_origen;
@@ -41,6 +43,7 @@ public class Vuelo {
         this.fecha_vuelo = fecha_vuelo;
         this.id_aeronave = id_aeronave;
         this.aeronave = aeronave;
+        this.estado = estado;
     }
 
     public int getId() {
@@ -129,6 +132,14 @@ public class Vuelo {
 
     public void setAeronave(String aeronave) {
         this.aeronave = aeronave;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
 }
