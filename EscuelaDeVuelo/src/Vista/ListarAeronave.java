@@ -44,6 +44,8 @@ public class ListarAeronave extends javax.swing.JFrame {
         btnEliminarCompte = new javax.swing.JButton();
         btnModificarCompte = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnAgregarAeronave = new javax.swing.JButton();
+        btnMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,6 +85,20 @@ public class ListarAeronave extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Listar Aeronaves");
 
+        btnAgregarAeronave.setText("Agregar Aeronave");
+        btnAgregarAeronave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarAeronaveActionPerformed(evt);
+            }
+        });
+
+        btnMenu.setText("Volver Menu");
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,11 +112,16 @@ public class ListarAeronave extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(btnEliminarCompte)
-                        .addGap(122, 122, 122)
-                        .addComponent(btnModificarCompte)))
-                .addContainerGap(86, Short.MAX_VALUE))
+                        .addGap(55, 55, 55)
+                        .addComponent(btnAgregarAeronave)
+                        .addGap(106, 106, 106)
+                        .addComponent(btnModificarCompte)
+                        .addGap(108, 108, 108)
+                        .addComponent(btnEliminarCompte))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(303, 303, 303)
+                        .addComponent(btnMenu)))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,8 +132,10 @@ public class ListarAeronave extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminarCompte)
-                    .addComponent(btnModificarCompte))
-                .addContainerGap(40, Short.MAX_VALUE))
+                    .addComponent(btnModificarCompte)
+                    .addComponent(btnAgregarAeronave))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(btnMenu))
         );
 
         pack();
@@ -161,6 +184,20 @@ public class ListarAeronave extends javax.swing.JFrame {
             cargarTablaComponentes();
         }
     }//GEN-LAST:event_btnModificarCompteActionPerformed
+
+    private void btnAgregarAeronaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAeronaveActionPerformed
+        // TODO add your handling code here:
+        IngresarAeronave menu = new IngresarAeronave();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAgregarAeronaveActionPerformed
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+         MenuPrincipalOperador menu = new MenuPrincipalOperador();
+        menu.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btnMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -261,7 +298,9 @@ private void cargarTablaComponentes() {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarAeronave;
     private javax.swing.JButton btnEliminarCompte;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnModificarCompte;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

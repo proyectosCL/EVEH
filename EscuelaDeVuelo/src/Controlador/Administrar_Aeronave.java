@@ -94,7 +94,7 @@ public class Administrar_Aeronave implements administrar_horas_vuelo {
     public Aeronave cargarAeronave(int matricula) {
 
         Aeronave aeronavesita = new Aeronave();
-
+ DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         Conexion con = new Conexion();
         try {
             con.conectar();
@@ -108,8 +108,8 @@ public class Administrar_Aeronave implements administrar_horas_vuelo {
                 aeronavesita.setMatricula(rs.getString(2));
                 aeronavesita.setTiponave(rs.getString(3));
                 aeronavesita.setEstado(rs.getString(4));
-                aeronavesita.setFecha_aeronavegavilidad(rs.getString(5));
-                aeronavesita.setFecha_ultima_inspeccion_anual(rs.getString(6));
+                aeronavesita.setFecha_aeronavegavilidad(df.format(rs.getDate(5)));
+                aeronavesita.setFecha_ultima_inspeccion_anual(df.format(rs.getDate(6)));
                 aeronavesita.setHoras_vuelo(rs.getString(7));
                 aeronavesita.setDias_vuelo(rs.getString(8));
 
