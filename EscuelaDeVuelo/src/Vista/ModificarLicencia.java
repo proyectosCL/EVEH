@@ -58,10 +58,11 @@ public class ModificarLicencia extends javax.swing.JFrame {
         }
     
 }
-     
+    private  int id_licencia;
     public ModificarLicencia(int id) {
         initComponents();
 
+        id_licencia = id;
         Administrar_Licencia al = new Administrar_Licencia();
         Administrar_Pilotos ap = new Administrar_Pilotos();
         //licencia a modificar
@@ -348,15 +349,14 @@ public class ModificarLicencia extends javax.swing.JFrame {
             int id_piloto = Integer.parseInt(((ComboItem)item2).getValue());
             
             int numero_licencia = Integer.parseInt(jTextFieldNumeroLicencia.getText());
-            float horas = Integer.parseInt(jTextFieldHoras.getText());
+            float horas = Float.parseFloat(jTextFieldHoras.getText());
             int dias = Integer.parseInt(jTextFieldDias.getText());
-            int id_licencia=0;
                
 
             Administrar_Licencia al = new Administrar_Licencia();
 
             //vali numero licenci arepetido
-            if (al.buscarNumeroLicencia(numero_licencia)) {
+            if (al.buscarNumeroLicenciaModificar(numero_licencia,id_licencia)) {
                 JOptionPane.showMessageDialog(null, "Numero de licencia ya ingresado");
                 return;
             }

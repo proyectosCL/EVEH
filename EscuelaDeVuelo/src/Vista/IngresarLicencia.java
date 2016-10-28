@@ -324,7 +324,7 @@ public class IngresarLicencia extends javax.swing.JFrame {
             int id_piloto = Integer.parseInt(((ComboItem)item2).getValue());
             
             int numero_licencia = Integer.parseInt(jTextFieldNumeroLicencia.getText());
-            float horas = Integer.parseInt(jTextFieldHoras.getText());
+            float horas = Float.parseFloat(jTextFieldHoras.getText());
             int dias = Integer.parseInt(jTextFieldDias.getText());
             int id_licencia=0;
                

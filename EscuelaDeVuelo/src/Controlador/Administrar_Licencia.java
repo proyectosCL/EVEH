@@ -45,16 +45,18 @@ public class Administrar_Licencia {
     public void modificarLicencia(Licencia nlicencia){
         try{
          int numero =  nlicencia.getNumero();
-           int tipo_licencia = nlicencia.getId_licencia();
+           int tipo_licencia = nlicencia.getId();
            String fecha_vencimiento = nlicencia.getFecha_vencimiento();
+           float horas_vuelo = nlicencia.getHoras_vuelo();
            int dias_vuelo = nlicencia.getDias_vuelo();
-           int id = nlicencia.getId();
+           int id = nlicencia.getId_licencia();
            
            Conexion conec = new Conexion();
             conec.conectar();
             String sql = "update licencias set numero= "+numero+","
-                    + " tipo_licencia = "+tipo_licencia+","
-                    + " fecha_vencimiento= "+fecha_vencimiento+","
+                    + " tipos_licencias_id = "+tipo_licencia+","
+                    + " fecha_vencimiento= '"+fecha_vencimiento+"',"
+                    + " horas_vuelo = "+horas_vuelo+","
                     + "dias_vuelo = "+dias_vuelo
                     + "where id = "+id;
             conec.escribir(sql);
@@ -175,6 +177,26 @@ public class Administrar_Licencia {
                 ResultSet rs = dbconn.consultar("SELECT * FROM licencias where numero = "+numero);
                 while (rs.next()) {
                     valido = true;
+                }
+
+            } catch (Exception e) {
+            }
+          
+          return valido;
+      }
+      
+     public boolean buscarNumeroLicenciaModificar(int numero, int id){
+          boolean valido = false;
+          
+            try {
+                Conexion dbconn = new Conexion();
+                dbconn.conectar();
+                ResultSet rs = dbconn.consultar("SELECT * FROM licencias where numero = "+numero);
+                while (rs.next()) {
+                    int idbd = rs.getInt("id");
+                    if (idbd != id) {
+                        valido = true;
+                    }
                 }
 
             } catch (Exception e) {
