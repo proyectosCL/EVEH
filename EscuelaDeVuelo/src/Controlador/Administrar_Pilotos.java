@@ -47,6 +47,7 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
                     + " vencimiento_medicina = '"+vencimiento_medicina+"' ,"
                     + "ultimo_vuelo_realizado = '"+fecha_ultimo_vuelo+"' "
                     + "where id = "+id;
+             System.out.println(sql);
             conec.escribir(sql);
             JOptionPane.showMessageDialog(null, "Modificado Correctamente");
             

@@ -54,10 +54,11 @@ public class ModificarPiloto extends javax.swing.JFrame {
         }
     
 }
- 
+ private int id_piloto;
     public ModificarPiloto(int id) {
         initComponents();
         
+        id_piloto = id;
         Administrar_Pilotos ap = new Administrar_Pilotos();
         //piloto a modificra
         ArrayList<Piloto> piloto = ap.listarPilotoID(id);
@@ -125,7 +126,8 @@ public class ModificarPiloto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Ingresar Piloto");
+        jLabel1.setText("Modificar Piloto");
+        jLabel1.setToolTipText("");
 
         jLabel2.setText("Horas de vuelo");
 
@@ -301,8 +303,7 @@ public class ModificarPiloto extends javax.swing.JFrame {
             }
             //datos
             Object item2 = cbRut.getSelectedItem();
-            int id_persona = Integer.parseInt(((IngresarLicencia.ComboItem)item2).getValue());
-            int id_piloto =0;
+            int id_persona = Integer.parseInt(((ComboItem)item2).getValue());
             float horas = Float.parseFloat(jTextFieldHoras.getText());
             int dias = Integer.parseInt(jTextFieldDias.getText());
             

@@ -6,7 +6,6 @@
 package Vista;
 
 import Controlador.Administrar_Licencia;
-import Controlador.Administrar_Personas;
 import Controlador.Administrar_Pilotos;
 import Modelo.Licencia;
 import Modelo.Piloto;
@@ -15,8 +14,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
