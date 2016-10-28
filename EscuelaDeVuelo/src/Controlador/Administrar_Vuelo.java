@@ -70,11 +70,25 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
             String horasString = def.format(horas);
             dbconn.escribir("UPDATE vuelos SET horas_vuelo = (horas_vuelo + " + horasString.replace(',', '.') + "), estado_vuelo = 'terminado' WHERE id = " + id);
             dbconn.escribir("UPDATE aeronaves SET horas_vuelo = (horas_vuelo + " + horasString.replace(',', '.') + ") WHERE matricula = '" + matricula + "'");
-            dbconn.escribir("UPDATE pilotos SET pilotos.horas_vuelo = (pilotos.horas_vuelo + " + horasString.replace(',', '.') + ") WHERE pilotos.id = (SELECT pilotos_id FROM tripulacion WHERE tripulacion.vuelos_id = "+id+" AND tripulacion.pilotos_id = pilotos.id)");
+            dbconn.escribir("UPDATE pilotos SET pilotos.horas_vuelo = (pilotos.horas_vuelo + " + horasString.replace(',', '.') + ") WHERE pilotos.id = (SELECT pilotos_id FROM tripulacion WHERE tripulacion.vuelos_id = " + id + " AND tripulacion.pilotos_id = pilotos.id)");
             return true;
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public void sumarHoras3(int id, Date fecha_inicio, Date fecha_termino) {
+        Conexion dbconn = new Conexion();
+        dbconn.conectar();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        int calculo_fecha = (int) ((fecha_termino.getTime() - fecha_inicio.getTime()) / 1000);
+        float num1 = calculo_fecha;
+        float num2 = 3600;
+        float horas = num1 / num2;
+        DecimalFormat def = new DecimalFormat("0.00000");
+        String horasString = def.format(horas);
+        dbconn.escribir("UPDATE vuelos SET horas_vuelo = (horas_vuelo + " + horasString.replace(',', '.') + "), estado_vuelo = 'terminado' WHERE id = " + id);
+        dbconn.sumar_horas(id);
     }
 
     ListarVuelo vistaListarVuelo = new ListarVuelo();
@@ -215,14 +229,14 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
         }
         return listaVuelo;
     }
-    
+
     public ArrayList<Piloto> listarPilotoID(int id) {
         ArrayList listaPiloto = new ArrayList();
         Piloto piloto;
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
-            ResultSet rs = dbconn.consultar("SELECT * FROM tripulacion JOIN pilotos ON tripulacion.pilotos_id = pilotos.id JOIN personas ON pilotos.personas_id = personas.id WHERE tripulacion.vuelos_id = "+id);
+            ResultSet rs = dbconn.consultar("SELECT * FROM tripulacion JOIN pilotos ON tripulacion.pilotos_id = pilotos.id JOIN personas ON pilotos.personas_id = personas.id WHERE tripulacion.vuelos_id = " + id);
             while (rs.next()) {
                 piloto = new Piloto();
                 piloto.setId(rs.getInt("id"));
