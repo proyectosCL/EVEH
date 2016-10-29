@@ -10,6 +10,7 @@ import Controlador.Administrar_Componente;
 import Database.Conexion;
 import Modelo.Componente;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author pcbla
@@ -21,7 +22,7 @@ public class IngresarComponente extends javax.swing.JFrame {
      */
     public IngresarComponente() {
         initComponents();
-        
+
         RestrictedTextField descripcionLimit = new RestrictedTextField(txtDesc);
         descripcionLimit.setLimit(40);
         RestrictedTextField fabricanteLimit = new RestrictedTextField(txtFabricante);
@@ -165,7 +166,7 @@ public class IngresarComponente extends javax.swing.JFrame {
 
     private void btnGuardarNuevoComponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarNuevoComponenteActionPerformed
         // TODO add your handling code here:
-        
+
         Conexion con = new Conexion();
         con.conectar();
         Administrar_Componente ingresarCompte = new Administrar_Componente();
@@ -174,40 +175,59 @@ public class IngresarComponente extends javax.swing.JFrame {
         String fabricte = txtFabricante.getText();
         Float horasVuelo = Float.parseFloat(spinHorasVuelo.getValue().toString());
         int diasVuelo = Integer.parseInt(spinDiasVuelo.getValue().toString());
-        int tipoCompte=0;
-        switch (cbxTipoNave.getSelectedIndex()+1){
-            
-            case 1 :  tipoCompte = 1;
-            break;
-            
-            case 2 :  tipoCompte = 2;
-            break;
-            
-            case 3 : tipoCompte = 3;
-            break;
-            
-            case 4 :  tipoCompte =4;
-            break;
-            
-            case 5 :  tipoCompte = 5;
-            break;
-            
-            case 6 : tipoCompte = 6;
-            break;
-            
-            case 7 :  tipoCompte = 7;
-            break;
-            
-            case 8 : tipoCompte = 8;
-            break;
-        
+        int tipoCompte = 0;
+        switch (cbxTipoNave.getSelectedIndex() + 1) {
+
+            case 1:
+                tipoCompte = 1;
+                break;
+
+            case 2:
+                tipoCompte = 2;
+                break;
+
+            case 3:
+                tipoCompte = 3;
+                break;
+
+            case 4:
+                tipoCompte = 4;
+                break;
+
+            case 5:
+                tipoCompte = 5;
+                break;
+
+            case 6:
+                tipoCompte = 6;
+                break;
+
+            case 7:
+                tipoCompte = 7;
+                break;
+
+            case 8:
+                tipoCompte = 8;
+                break;
+
         }
-         
-        
+
         Componente nvoCompte = new Componente(id, desc, fabricte, horasVuelo, diasVuelo, tipoCompte);
-         ingresarCompte.ingresarNuevoComponente(nvoCompte);
-        
-        
+        ingresarCompte.ingresarNuevoComponente(nvoCompte);
+
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar sub-componentes al componente ingresado?", "Confirmación", dialogButton);
+        if (dialogResult == 0) {
+            // codigo para cerrar y abrir la ventana subcomponentes
+            IngresarSubComponente ventanaSub = new IngresarSubComponente();
+
+            ventanaSub.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "No se han ingresado sub-componentes");
+        }
+
+
     }//GEN-LAST:event_btnGuardarNuevoComponenteActionPerformed
 
     /**
@@ -244,12 +264,9 @@ public class IngresarComponente extends javax.swing.JFrame {
                 new IngresarComponente().setVisible(true);
             }
         });
-        
-        
-        
+
     }
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardarNuevoComponente;
