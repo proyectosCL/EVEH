@@ -33,8 +33,9 @@ public class ListarPersonas extends javax.swing.JFrame {
 
         initComponents();
         cargarTablaComponentes();
-        btnEliminarCompte.setEnabled(false);
+        btnDesactivar.setEnabled(false);
         btnModificarCompte.setEnabled(false);
+        btnactivar.setEnabled(false);
 
 //        DefaultTableModel modelo = new DefaultTableModel() {
 //            public boolean isCellEditable(int row, int column) {
@@ -83,9 +84,10 @@ public class ListarPersonas extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
-        btnEliminarCompte = new javax.swing.JButton();
+        btnDesactivar = new javax.swing.JButton();
         btnModificarCompte = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnactivar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,10 +115,10 @@ public class ListarPersonas extends javax.swing.JFrame {
             }
         });
 
-        btnEliminarCompte.setText("Eliminar Persona");
-        btnEliminarCompte.addActionListener(new java.awt.event.ActionListener() {
+        btnDesactivar.setText("Desactivar Cuenta");
+        btnDesactivar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarCompteActionPerformed(evt);
+                btnDesactivarActionPerformed(evt);
             }
         });
 
@@ -129,6 +131,13 @@ public class ListarPersonas extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Listar Personas");
+
+        btnactivar.setText("Activar Cuenta");
+        btnactivar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnactivarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,10 +156,12 @@ public class ListarPersonas extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(240, 240, 240)
-                .addComponent(btnEliminarCompte)
-                .addGap(230, 230, 230)
+                .addComponent(btnDesactivar)
+                .addGap(47, 47, 47)
+                .addComponent(btnactivar)
+                .addGap(62, 62, 62)
                 .addComponent(btnModificarCompte)
-                .addContainerGap(389, Short.MAX_VALUE))
+                .addContainerGap(395, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,8 +179,9 @@ public class ListarPersonas extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminarCompte)
-                    .addComponent(btnModificarCompte))
+                    .addComponent(btnDesactivar)
+                    .addComponent(btnModificarCompte)
+                    .addComponent(btnactivar))
                 .addGap(29, 29, 29))
         );
 
@@ -179,14 +191,15 @@ public class ListarPersonas extends javax.swing.JFrame {
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         btnActualizar.setText("En curso...");
         btnActualizar.setEnabled(false);
-        btnEliminarCompte.setEnabled(false);
+        btnDesactivar.setEnabled(false);
         btnModificarCompte.setEnabled(false);
         
         cargarTablaComponentes();
         btnActualizar.setText("Actualizar");
         btnActualizar.setEnabled(true);
-        btnEliminarCompte.setEnabled(false);
+        btnDesactivar.setEnabled(false);
         btnModificarCompte.setEnabled(false);
+        
         
     }//GEN-LAST:event_btnActualizarActionPerformed
 
@@ -195,52 +208,95 @@ public class ListarPersonas extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void btnEliminarCompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCompteActionPerformed
+    private void btnDesactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesactivarActionPerformed
         // TODO add your handling code here:
         
-        btnEliminarCompte.setEnabled(false);
+        btnDesactivar.setEnabled(false);
+        btnActualizar.setEnabled(false);
+        btnactivar.setEnabled(false);
         btnModificarCompte.setEnabled(false);
-        btnEliminarCompte.setText("en curso...");
-        int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar el componente seleccionado?");
+        btnDesactivar.setText("en curso...");
+        try{
+        String rut = jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();
+        String cuenta = jTable1.getValueAt(jTable1.getSelectedRow(), 10).toString();
+        int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea desactivar la cuenta seleccionada?");
         
         if (JOptionPane.OK_OPTION == resp) {
             
             
-            Administrar_Personas admp = new Administrar_Personas();
-            Administrar_Usuarios usr = new Administrar_Usuarios();
             
-            String rut = jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();
-            String cuenta = jTable1.getValueAt(jTable1.getSelectedRow(), 10).toString();
+             
+                 Administrar_Personas admp = new Administrar_Personas();
+                 Administrar_Usuarios usr = new Administrar_Usuarios();
+
+                
+
+                //admp.eliminarPersona(rut);
+                usr.eliminarUsuario(cuenta);
+
+                cargarTablaComponentes();
+                JOptionPane.showMessageDialog(null, "se desactivó correctamente");
+                btnDesactivar.setText("Desactivar Cuenta");
+                btnActualizar.setEnabled(true);
+                
            
-            admp.eliminarPersona(rut);
-            usr.eliminarUsuario(cuenta);
+   
+             
+                
             
-            cargarTablaComponentes();
-            JOptionPane.showMessageDialog(null, "se elimino correctamente");
             
             
         } else {
-           // cargarTablaComponentes();
+           JOptionPane.showMessageDialog(null, "no se realizaron cambios");
+            btnDesactivar.setText("Desactivar Cuenta");
+            btnActualizar.setEnabled(true);
         }
-        btnEliminarCompte.setText("Eliminar");
+        
+        } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "primero seleccione una cuenta");
+                btnDesactivar.setText("Desactivar Cuenta");
+                btnActualizar.setEnabled(true);
+        }
+        
         //btnEliminarCompte.setEnabled(true);
         //btnModificarCompte.setEnabled(true);
 
-    }//GEN-LAST:event_btnEliminarCompteActionPerformed
+    }//GEN-LAST:event_btnDesactivarActionPerformed
 
     private void btnModificarCompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCompteActionPerformed
         // TODO add your handling code here:
+        btnDesactivar.setEnabled(false);
+        btnActualizar.setEnabled(false);
+        btnactivar.setEnabled(false);
+        btnModificarCompte.setEnabled(false);
+        btnModificarCompte.setText("en curso...");
+        btnActualizar.setEnabled(false);
+        
+        try{
+        String rut = jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();// aqui vot
         int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea modificar el Usuario seleccionado?");
         if (JOptionPane.OK_OPTION == resp) {
-            String rut = jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();// aqui vot
-            ModificarPersona modCompte= new ModificarPersona(rut);
-//            modCompte.setVarRut(rut);
-//            System.out.println("rut de listar"+rut);
-            modCompte.setVisible(true);
-            //modCompte.cargar();
-            this.dispose();
-        } else {
-            //cargarTablaComponentes();
+            
+                
+                ModificarPersona modCompte= new ModificarPersona(rut);
+    //            modCompte.setVarRut(rut);
+    //            System.out.println("rut de listar"+rut);
+                modCompte.setVisible(true);
+                //modCompte.cargar();
+                this.dispose();
+                
+            }else {
+                JOptionPane.showMessageDialog(null, "no se realizaron cambios");
+                btnModificarCompte.setText("Modificar Cuenta");
+                btnActualizar.setEnabled(true);
+                
+            }
+        
+        
+        } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "primero seleccione una cuenta");
+                btnModificarCompte.setText("Modificar Cuenta");
+                btnActualizar.setEnabled(true);
         }
     }//GEN-LAST:event_btnModificarCompteActionPerformed
 
@@ -251,9 +307,52 @@ public class ListarPersonas extends javax.swing.JFrame {
 
     private void jTable1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusGained
         // TODO add your handling code here:
-        btnEliminarCompte.setEnabled(true);
+        btnDesactivar.setEnabled(true);
         btnModificarCompte.setEnabled(true);
+        btnactivar.setEnabled(true);
     }//GEN-LAST:event_jTable1FocusGained
+
+    private void btnactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactivarActionPerformed
+       
+        btnDesactivar.setEnabled(false);
+        btnActualizar.setEnabled(false);
+        btnactivar.setEnabled(false);
+        btnModificarCompte.setEnabled(false);
+        btnactivar.setText("en curso...");
+        
+        try{
+            String rut = jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();
+            String cuenta = jTable1.getValueAt(jTable1.getSelectedRow(), 10).toString();
+            int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea activar la cuenta seleccionada?");
+        if (JOptionPane.OK_OPTION == resp) {
+            
+            
+                Administrar_Personas admp = new Administrar_Personas();
+                Administrar_Usuarios usr = new Administrar_Usuarios();
+
+                
+
+                //admp.eliminarPersona(rut);
+                usr.darDeAlta(cuenta);
+
+                cargarTablaComponentes();
+                JOptionPane.showMessageDialog(null, "se activó correctamente");
+                btnactivar.setText("Activar Cuenta");
+                btnActualizar.setEnabled(true);
+            } 
+        else {
+               JOptionPane.showMessageDialog(null, "no se realizaron cambios");
+               btnactivar.setText("Activar Cuenta");
+                btnActualizar.setEnabled(true);
+            }
+    } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "primero seleccione una cuenta");
+                btnactivar.setText("Activar Cuenta");
+                btnActualizar.setEnabled(true);
+    }
+    
+        
+    }//GEN-LAST:event_btnactivarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -368,7 +467,9 @@ public class ListarPersonas extends javax.swing.JFrame {
             fila[8] = listaPersonas.get(i).getNacionalidad();
             fila[9] = listaPersonas.get(i).getId_usuario();
             fila[10] = listaPersonas.get(i).getUsuario();
-            fila[11] = listaPersonas.get(i).getPass();
+            //fila[11] = listaPersonas.get(i).getPass();
+            //no mostra pass
+            fila[11] = "***********";
             switch(listaPersonas.get(i).getId_tipo()){
                 case 1 :  fila[12] = "administrador";
                 break;
@@ -389,6 +490,9 @@ public class ListarPersonas extends javax.swing.JFrame {
             modelo.addRow(fila);
         }
         jTable1.updateUI();
+        btnDesactivar.setEnabled(false);
+        btnModificarCompte.setEnabled(false);
+        btnactivar.setEnabled(false);
                
 
     }
@@ -396,8 +500,9 @@ public class ListarPersonas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnEliminarCompte;
+    private javax.swing.JButton btnDesactivar;
     private javax.swing.JButton btnModificarCompte;
+    private javax.swing.JButton btnactivar;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;

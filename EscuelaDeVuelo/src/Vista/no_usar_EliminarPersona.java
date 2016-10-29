@@ -19,12 +19,12 @@ import javax.swing.JOptionPane;
  *
  * @author Diego
  */
-public class EliminarPersona extends javax.swing.JFrame {
+public class no_usar_EliminarPersona extends javax.swing.JFrame {
 
     /**
      * Creates new form IngresarUsuario
      */
-    public EliminarPersona() {
+    public no_usar_EliminarPersona() {
         initComponents();
 //        lblapellido.setVisible(false);
 //        lblconfirmar.setVisible(false);
@@ -707,7 +707,7 @@ public class EliminarPersona extends javax.swing.JFrame {
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new EliminarPersona().setVisible(true);
+//                new no_usar_EliminarPersona().setVisible(true);
 //                
 //            }
 //        });

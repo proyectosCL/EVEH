@@ -168,12 +168,15 @@ public class Administrar_Usuarios {
         try {
             Conexion con = new Conexion();
             con.conectar();
-            //cambiar el 32 por el id del user
-            String sql = "delete from usuarios where cuenta = '"+cuenta+"'";
-            //JOptionPane.showMessageDialog(null, "intentando insertar: "+sql);
+            
+            //String sql = "delete from usuarios where cuenta = '"+cuenta+"'";
+           
+            String sql = "update usuarios set estado_cuenta = 'desactivado' where cuenta = '"+cuenta+"'";
+            
+            
             System.out.println(sql);
             con.escribir(sql);
-            //JOptionPane.showMessageDialog(null, "Eliminado correctamente");
+            
             return true;
             
         } catch (HeadlessException e) {
@@ -185,8 +188,24 @@ public class Administrar_Usuarios {
         return false;
     }
     
-    public boolean darDeAlta() {
-        return false;
+    public boolean darDeAlta(String cuenta) {
+        try {
+            Conexion con = new Conexion();
+            con.conectar();
+            
+            //String sql = "delete from usuarios where cuenta = '"+cuenta+"'";
+           
+            String sql = "update usuarios set estado_cuenta = 'activado' where cuenta = '"+cuenta+"'";
+            
+            
+            System.out.println(sql);
+            con.escribir(sql);
+            
+            return true;
+            
+        } catch (HeadlessException e) {
+            return false;
+        }
     }
 
     public Usuario getUsuario() {
