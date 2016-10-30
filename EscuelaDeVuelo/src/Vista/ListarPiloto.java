@@ -9,6 +9,7 @@ import Controlador.Administrar_Licencia;
 import Controlador.Administrar_Pilotos;
 import Modelo.Piloto;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -62,6 +63,8 @@ public class ListarPiloto extends javax.swing.JFrame {
         jTable1.updateUI();
         
         listarTodo();
+        
+        btnEliminarPiloto.setVisible(false);
     }
 
     /**
@@ -89,6 +92,9 @@ public class ListarPiloto extends javax.swing.JFrame {
         jLabel1.setText("Listar Pilotos");
 
         btnEliminarPiloto.setText("Eliminar Piloto");
+        btnEliminarPiloto.setDefaultCapable(false);
+        btnEliminarPiloto.setEnabled(false);
+        btnEliminarPiloto.setFocusPainted(false);
         btnEliminarPiloto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarPilotoActionPerformed(evt);
@@ -120,13 +126,13 @@ public class ListarPiloto extends javax.swing.JFrame {
                         .addGap(263, 263, 263)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(138, 138, 138)
+                        .addGap(65, 65, 65)
                         .addComponent(btnEliminarPiloto)
-                        .addGap(51, 51, 51)
+                        .addGap(142, 142, 142)
                         .addComponent(btnModificarPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
+                        .addGap(55, 55, 55)
                         .addComponent(btnVerLicencias)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(190, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(237, Short.MAX_VALUE)
@@ -156,21 +162,6 @@ public class ListarPiloto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEliminarPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPilotoActionPerformed
-        // TODO add your handling code here:
-        int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar el piloto seleccionado?");
-        try{
-            if (JOptionPane.OK_OPTION == resp) {
-            int id = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
-            Administrar_Pilotos ap = new Administrar_Pilotos();
-            ap.eliminarPiloto(id);
-        }
-        }catch(Exception ex){
-            System.out.println(ex);
-        }
-        listarTodo();
-    }//GEN-LAST:event_btnEliminarPilotoActionPerformed
-
     private void btnModificarPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPilotoActionPerformed
         // TODO add your handling code here:
         int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea modificar el piloto seleccionado?");
@@ -199,6 +190,21 @@ public class ListarPiloto extends javax.swing.JFrame {
             listarTodo();
         }
     }//GEN-LAST:event_btnVerLicenciasActionPerformed
+
+    private void btnEliminarPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPilotoActionPerformed
+        // TODO add your handling code here:
+        int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar el piloto seleccionado?");
+        try{
+            if (JOptionPane.OK_OPTION == resp) {
+                int id = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+                Administrar_Pilotos ap = new Administrar_Pilotos();
+                ap.eliminarPiloto(id);
+            }
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+        listarTodo();
+    }//GEN-LAST:event_btnEliminarPilotoActionPerformed
 
     /**
      * @param args the command line arguments
