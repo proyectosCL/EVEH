@@ -128,6 +128,10 @@ public class Inicio extends javax.swing.JFrame {
             Administrar_Usuarios au = new Administrar_Usuarios();
             Usuario user = au.autenticarUsuario(usuario, pass);
             
+            if (user.getEstado_usuario().equals("activado")) {
+                JOptionPane.showMessageDialog(null, "Usuario no activado");
+                return;
+            }
             if (user.getUsuario() != null) {
                 switch(user.getId_tipo()){
                     case 1:

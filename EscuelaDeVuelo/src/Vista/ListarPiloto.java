@@ -47,7 +47,7 @@ public class ListarPiloto extends javax.swing.JFrame {
         modelo.addColumn("DIAS VUELO");
         modelo.addColumn("VENC. MEDICINA");
         modelo.addColumn("ULTIMO VUELO");
-        modelo.addColumn("CANTIDAD DE LICENCIA");
+        modelo.addColumn("CANTIDAD DE LICENCIAS");
         TableColumnModel columnModel = jTable1.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(30);
         columnModel.getColumn(1).setPreferredWidth(80);
@@ -113,7 +113,7 @@ public class ListarPiloto extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -129,9 +129,9 @@ public class ListarPiloto extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(193, Short.MAX_VALUE)
+                    .addContainerGap(237, Short.MAX_VALUE)
                     .addComponent(txtPilotoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(177, Short.MAX_VALUE)))
+                    .addContainerGap(221, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,14 +159,16 @@ public class ListarPiloto extends javax.swing.JFrame {
     private void btnEliminarPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPilotoActionPerformed
         // TODO add your handling code here:
         int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar el piloto seleccionado?");
-        if (JOptionPane.OK_OPTION == resp) {
+        try{
+            if (JOptionPane.OK_OPTION == resp) {
             int id = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
             Administrar_Pilotos ap = new Administrar_Pilotos();
             ap.eliminarPiloto(id);
-            listarTodo();
-        } else {
-            listarTodo();
         }
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+        listarTodo();
     }//GEN-LAST:event_btnEliminarPilotoActionPerformed
 
     private void btnModificarPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPilotoActionPerformed
