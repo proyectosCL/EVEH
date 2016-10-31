@@ -24,117 +24,118 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
     /**
      * Creates new form ListarLicenciaPiloto
      */
-    
     class ComboItem {
 
-            
-         String key;
-         String value;
+        String key;
+        String value;
 
-        public ComboItem(String key, String value)
-        {
+        public ComboItem(String key, String value) {
             this.key = key;
             this.value = value;
         }
 
         @Override
-        public String toString()
-        {
+        public String toString() {
             return key;
         }
 
-        public String getKey()
-        {
+        public String getKey() {
             return key;
         }
 
-        public String getValue()
-        {
+        public String getValue() {
             return value;
         }
-    
-}
-    private void Clear_Table(){
-       for (int i = 0; i < jTable1.getRowCount(); i++) {
-           modelo.removeRow(i);
-           i-=1;
-       }
-   }
-    
-     DefaultTableModel modelo = new DefaultTableModel() {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-    private String dato;
-    
-    public ListarLicenciaPiloto(String dato){
-        initComponents();
-        
-        jTable1.setModel(modelo);
-        
-        modelo.addColumn("ID");
-        modelo.addColumn("NUMERO");
-        modelo.addColumn("TIPO DE LICENCIA");
-        modelo.addColumn("FECHA VENCIMIENTO");
-        modelo.addColumn("HORAS DE VUELO");
-        modelo.addColumn("DIAS DE VUELO");
-        modelo.addColumn("ID DEL PILOTO");
-        TableColumnModel columnModel = jTable1.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(30);
-        columnModel.getColumn(1).setPreferredWidth(75);
-        columnModel.getColumn(2).setPreferredWidth(140);
-        columnModel.getColumn(3).setPreferredWidth(140);
-        columnModel.getColumn(4).setPreferredWidth(110);
-        columnModel.getColumn(5).setPreferredWidth(110);
-        columnModel.getColumn(6).setPreferredWidth(100);
-        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        
-        jTable1.updateUI();
-        
-        Administrar_Pilotos ap = new Administrar_Pilotos();
-        ArrayList<Piloto> listaPiloto = ap.listarPiloto();
-        
-        for (int i = 0; i < listaPiloto.size(); i++) {
-            this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut()+" : "+listaPiloto.get(i).getNombre()+" "+listaPiloto.get(i).getApellidos(),listaPiloto.get(i).getRut()));
-        }
-        
-        listarPiloto(dato);
+
     }
-    public ListarLicenciaPiloto() {
-        
-        initComponents();
-        
-        jTable1.setModel(modelo);
-        
-        modelo.addColumn("ID");
-        modelo.addColumn("NUMERO");
-        modelo.addColumn("TIPO DE LICENCIA");
-        modelo.addColumn("FECHA VENCIMIENTO");
-        modelo.addColumn("HORAS DE VUELO");
-        modelo.addColumn("DIAS DE VUELO");
-        modelo.addColumn("ID DEL PILOTO");
-        TableColumnModel columnModel = jTable1.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(30);
-        columnModel.getColumn(1).setPreferredWidth(75);
-        columnModel.getColumn(2).setPreferredWidth(140);
-        columnModel.getColumn(3).setPreferredWidth(140);
-        columnModel.getColumn(4).setPreferredWidth(110);
-        columnModel.getColumn(5).setPreferredWidth(110);
-        columnModel.getColumn(6).setPreferredWidth(100);
-        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        
-        jTable1.updateUI();
-        
-        Administrar_Pilotos ap = new Administrar_Pilotos();
-        ArrayList<Piloto> listaPiloto = ap.listarPiloto();
-        
-        for (int i = 0; i < listaPiloto.size(); i++) {
-            this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut()+" : "+listaPiloto.get(i).getNombre()+" "+listaPiloto.get(i).getApellidos(),listaPiloto.get(i).getRut()));
+
+    private void Clear_Table() {
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i -= 1;
         }
+    }
+
+    DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+    private String dato;
+
+    public ListarLicenciaPiloto(String dato) {
+        initComponents();
+        try {
+            jTable1.setModel(modelo);
+
+            modelo.addColumn("ID");
+            modelo.addColumn("NUMERO");
+            modelo.addColumn("TIPO DE LICENCIA");
+            modelo.addColumn("FECHA VENCIMIENTO");
+            modelo.addColumn("HORAS DE VUELO");
+            modelo.addColumn("DIAS DE VUELO");
+            modelo.addColumn("ID DEL PILOTO");
+            TableColumnModel columnModel = jTable1.getColumnModel();
+            columnModel.getColumn(0).setPreferredWidth(30);
+            columnModel.getColumn(1).setPreferredWidth(75);
+            columnModel.getColumn(2).setPreferredWidth(140);
+            columnModel.getColumn(3).setPreferredWidth(140);
+            columnModel.getColumn(4).setPreferredWidth(110);
+            columnModel.getColumn(5).setPreferredWidth(110);
+            columnModel.getColumn(6).setPreferredWidth(100);
+            jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+            jTable1.updateUI();
+
+            Administrar_Pilotos ap = new Administrar_Pilotos();
+            ArrayList<Piloto> listaPiloto = ap.listarPiloto();
+
+            for (int i = 0; i < listaPiloto.size(); i++) {
+                this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut() + " : " + listaPiloto.get(i).getNombre() + " " + listaPiloto.get(i).getApellidos(), listaPiloto.get(i).getRut()));
+            }
+
+            listarPiloto(dato);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al listar");
+        }
+    }
+
+    public ListarLicenciaPiloto() {
+
+        initComponents();
+        try {
+            jTable1.setModel(modelo);
+
+            modelo.addColumn("ID");
+            modelo.addColumn("NUMERO");
+            modelo.addColumn("TIPO DE LICENCIA");
+            modelo.addColumn("FECHA VENCIMIENTO");
+            modelo.addColumn("HORAS DE VUELO");
+            modelo.addColumn("DIAS DE VUELO");
+            modelo.addColumn("ID DEL PILOTO");
+            TableColumnModel columnModel = jTable1.getColumnModel();
+            columnModel.getColumn(0).setPreferredWidth(30);
+            columnModel.getColumn(1).setPreferredWidth(75);
+            columnModel.getColumn(2).setPreferredWidth(140);
+            columnModel.getColumn(3).setPreferredWidth(140);
+            columnModel.getColumn(4).setPreferredWidth(110);
+            columnModel.getColumn(5).setPreferredWidth(110);
+            columnModel.getColumn(6).setPreferredWidth(100);
+            jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+            jTable1.updateUI();
+
+            Administrar_Pilotos ap = new Administrar_Pilotos();
+            ArrayList<Piloto> listaPiloto = ap.listarPiloto();
+
+            for (int i = 0; i < listaPiloto.size(); i++) {
+                this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut() + " : " + listaPiloto.get(i).getNombre() + " " + listaPiloto.get(i).getApellidos(), listaPiloto.get(i).getRut()));
+            }
             listarTodo();
-            
-        
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al listar");
+        }
+
     }
 
     /**
@@ -149,7 +150,6 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        ListarPiloto = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnModificarLicencia = new javax.swing.JButton();
         btnEliminarLicencia = new javax.swing.JButton();
@@ -162,13 +162,6 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Listar Licencia de Pilotos");
-
-        ListarPiloto.setText("Listar por Piloto");
-        ListarPiloto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ListarPilotoActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Rut del Piloto");
 
@@ -187,6 +180,11 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
         });
 
         cbRut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
+        cbRut.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbRutItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -199,14 +197,9 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(79, 79, 79)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbRut, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(ListarPiloto)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbRut, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -226,13 +219,10 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(cbRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ListarPiloto)))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(cbRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(txtLicenciaSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -246,50 +236,12 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ListarPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarPilotoActionPerformed
-             Clear_Table();
-             
-             if (cbRut.getSelectedItem().equals("Seleccione")) {
-                JOptionPane.showMessageDialog(null, "Seleccione un Piloto");
-                return;
-            }
-             Object item2 = cbRut.getSelectedItem();
-             String rut = ((ComboItem)item2).getValue();
-             
-            listarPiloto(rut);
-        
-
-    }//GEN-LAST:event_ListarPilotoActionPerformed
-
-    public void listarPiloto(String rut){
-         try{
-                    Administrar_Licencia al = new Administrar_Licencia();
-
-                    ArrayList<Licencia>lista = al.listarLicencia2(rut);
-
-                    Object[] fila = new Object[9];
-                    int num = lista.size();
-                    for (int i = 0; i < num; i++) {
-                        fila[0] = lista.get(i).getId_licencia();
-                        fila[1] = lista.get(i).getNumero();
-                        fila[2] = lista.get(i).getDescripcion();
-                        fila[3] = lista.get(i).getFecha_vencimiento();
-                        fila[4] = lista.get(i).getHoras_vuelo();
-                        fila[5] = lista.get(i).getDias_vuelo();
-                        fila[6] = lista.get(i).getId_piloto();
-                        modelo.addRow(fila);
-            }
-            jTable1.updateUI();
-        }catch(Exception ex){
-            System.out.println(ex);
-        }
-    }
-    public void listarTodo(){
-        try{
+    public void listarPiloto(String rut) {
+        try {
             Administrar_Licencia al = new Administrar_Licencia();
 
-            ArrayList<Licencia>lista = al.listarLicencia();
-            
+            ArrayList<Licencia> lista = al.listarLicencia2(rut);
+
             Object[] fila = new Object[9];
             int num = lista.size();
             for (int i = 0; i < num; i++) {
@@ -303,16 +255,40 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
                 modelo.addRow(fila);
             }
             jTable1.updateUI();
-        }catch(Exception ex){
-            System.out.println(ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al listar por rut");
         }
     }
-    
+
+    public void listarTodo() {
+        try {
+            Administrar_Licencia al = new Administrar_Licencia();
+
+            ArrayList<Licencia> lista = al.listarLicencia();
+
+            Object[] fila = new Object[9];
+            int num = lista.size();
+            for (int i = 0; i < num; i++) {
+                fila[0] = lista.get(i).getId_licencia();
+                fila[1] = lista.get(i).getNumero();
+                fila[2] = lista.get(i).getDescripcion();
+                fila[3] = lista.get(i).getFecha_vencimiento();
+                fila[4] = lista.get(i).getHoras_vuelo();
+                fila[5] = lista.get(i).getDias_vuelo();
+                fila[6] = lista.get(i).getId_piloto();
+                modelo.addRow(fila);
+            }
+            jTable1.updateUI();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al listar");
+        }
+    }
+
     private void btnModificarLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarLicenciaActionPerformed
         // TODO add your handling code here:
         int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea modificar la licencia seleccionada?");
         if (JOptionPane.OK_OPTION == resp) {
-            int id =Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+            int id = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
             ModificarLicencia modLicencia = new ModificarLicencia(id);
             modLicencia.setVisible(true);
             this.dispose();
@@ -334,6 +310,25 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnEliminarLicenciaActionPerformed
+
+    private void cbRutItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbRutItemStateChanged
+        // TODO add your handling code here:
+        try {
+            Clear_Table();
+
+            if (cbRut.getSelectedItem().equals("Seleccione")) {
+                JOptionPane.showMessageDialog(null, "Seleccione un Piloto");
+                listarTodo();
+                return;
+            }
+            Object item2 = cbRut.getSelectedItem();
+            String rut = ((ComboItem) item2).getValue();
+
+            listarPiloto(rut);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al listar");
+        }
+    }//GEN-LAST:event_cbRutItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -371,7 +366,6 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton ListarPiloto;
     private javax.swing.JButton btnEliminarLicencia;
     private javax.swing.JButton btnModificarLicencia;
     public javax.swing.JComboBox cbRut;

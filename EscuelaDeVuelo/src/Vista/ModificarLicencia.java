@@ -25,85 +25,82 @@ public class ModificarLicencia extends javax.swing.JFrame {
     /**
      * Creates new form IngresarLicencia
      */
-    
-     class ComboItem {
+    class ComboItem {
 
-            
-         String key;
-         String value;
+        String key;
+        String value;
 
-        public ComboItem(String key, String value)
-        {
+        public ComboItem(String key, String value) {
             this.key = key;
             this.value = value;
         }
 
         @Override
-        public String toString()
-        {
+        public String toString() {
             return key;
         }
 
-        public String getKey()
-        {
+        public String getKey() {
             return key;
         }
 
-        public String getValue()
-        {
+        public String getValue() {
             return value;
         }
-    
-}
-    private  int id_licencia;
+
+    }
+    private int id_licencia;
+
     public ModificarLicencia(int id) {
         initComponents();
+        try {
+            id_licencia = id;
+            Administrar_Licencia al = new Administrar_Licencia();
+            Administrar_Pilotos ap = new Administrar_Pilotos();
+            //licencia a modificar
+            ArrayList<Licencia> listaLicencia = al.listarLicenciaID(id);
 
-        id_licencia = id;
-        Administrar_Licencia al = new Administrar_Licencia();
-        Administrar_Pilotos ap = new Administrar_Pilotos();
-        //licencia a modificar
-        ArrayList<Licencia> listaLicencia = al.listarLicenciaID(id);
-        
-        //combos
-        ArrayList<Tipo_licencia> lista = al.listarTipoLicencia();
-        
-        ComboItem selectTipo = null;
-        for (int i = 0; i < lista.size(); i++) {
-            this.jComboBoxTipoLicencia.addItem(new ComboItem(lista.get(i).getDescripcion(),String.valueOf(lista.get(i).getId())));
-            if (lista.get(i).getId() == listaLicencia.get(0).getId()) {
-                selectTipo = new ComboItem(lista.get(i).getDescripcion(),String.valueOf(lista.get(i).getId()));
+            //combos
+            ArrayList<Tipo_licencia> lista = al.listarTipoLicencia();
+
+            ComboItem selectTipo = null;
+            for (int i = 0; i < lista.size(); i++) {
+                this.jComboBoxTipoLicencia.addItem(new ComboItem(lista.get(i).getDescripcion(), String.valueOf(lista.get(i).getId())));
+                if (lista.get(i).getId() == listaLicencia.get(0).getId()) {
+                    selectTipo = new ComboItem(lista.get(i).getDescripcion(), String.valueOf(lista.get(i).getId()));
+                }
             }
-        }
-        
-        ArrayList<Piloto> listaPiloto = ap.listarPiloto();
-        
-        ComboItem select = null;
-        for (int i = 0; i < listaPiloto.size(); i++) {
-            this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut()+" : "+listaPiloto.get(i).getNombre()+" "+listaPiloto.get(i).getApellidos(),String.valueOf(listaPiloto.get(i).getId())));
-            if (listaPiloto.get(i).getId() == listaLicencia.get(0).getId_piloto()) {
-               select = new ComboItem(listaPiloto.get(i).getRut()+" : "+listaPiloto.get(i).getNombre()+" "+listaPiloto.get(i).getApellidos(),String.valueOf(listaPiloto.get(i).getId()));
+
+            ArrayList<Piloto> listaPiloto = ap.listarPiloto();
+
+            ComboItem select = null;
+            for (int i = 0; i < listaPiloto.size(); i++) {
+                this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut() + " : " + listaPiloto.get(i).getNombre() + " " + listaPiloto.get(i).getApellidos(), String.valueOf(listaPiloto.get(i).getId())));
+                if (listaPiloto.get(i).getId() == listaLicencia.get(0).getId_piloto()) {
+                    select = new ComboItem(listaPiloto.get(i).getRut() + " : " + listaPiloto.get(i).getNombre() + " " + listaPiloto.get(i).getApellidos(), String.valueOf(listaPiloto.get(i).getId()));
+                }
             }
+
+            //datos
+            this.cbRut.getModel().setSelectedItem(select);
+            jTextFieldNumeroLicencia.setText(String.valueOf(listaLicencia.get(0).getNumero()));
+            jComboBoxTipoLicencia.getModel().setSelectedItem(selectTipo);
+            jTextFieldHoras.setText(String.valueOf(listaLicencia.get(0).getHoras_vuelo()));
+            jTextFieldDias.setText(String.valueOf(listaLicencia.get(0).getDias_vuelo()));
+
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            Date fecha = null;
+            try {
+                fecha = df.parse(listaLicencia.get(0).getFecha_vencimiento());
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+
+            JDateVencimiento.setDate(fecha);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al crear el modificar");
         }
-        
-        //datos
-        this.cbRut.getModel().setSelectedItem(select);
-        jTextFieldNumeroLicencia.setText(String.valueOf(listaLicencia.get(0).getNumero()));
-        jComboBoxTipoLicencia.getModel().setSelectedItem(selectTipo);
-        jTextFieldHoras.setText(String.valueOf(listaLicencia.get(0).getHoras_vuelo()));
-        jTextFieldDias.setText(String.valueOf(listaLicencia.get(0).getDias_vuelo()));
-        
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        Date fecha = null;
-        try{
-             fecha = df.parse(listaLicencia.get(0).getFecha_vencimiento());
-        }catch(Exception ex){
-            System.out.println(ex);
-        }
-        
-        JDateVencimiento.setDate(fecha);
-                
-        
+
     }
 
     /**
@@ -300,13 +297,13 @@ public class ModificarLicencia extends javax.swing.JFrame {
         // persona
         //validaciones
 
-        try{
+        try {
             //validacion combos
             if (jComboBoxTipoLicencia.getSelectedItem().equals("Seleccione")) {
                 JOptionPane.showMessageDialog(null, "Seleccione un tipo de licencia");
                 return;
             }
-             if (cbRut.getSelectedItem().equals("Seleccione")) {
+            if (cbRut.getSelectedItem().equals("Seleccione")) {
                 JOptionPane.showMessageDialog(null, "Seleccione un Piloto");
                 return;
             }
@@ -323,48 +320,43 @@ public class ModificarLicencia extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Ingrese los dias de la licencia");
                 return;
             }
-             
+
             //vali fecha
             String fecha_vencimiento = null;
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-            
-            try{
+
+            try {
                 Date fecha = JDateVencimiento.getDate();
                 fecha_vencimiento = df.format(fecha);
-            }catch(Exception ex){
-                System.out.println(ex);
+            } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Fecha mal ingresada");
                 return;
             }
-           
-            
-            
+
             //datos
             Object item = jComboBoxTipoLicencia.getSelectedItem();
-            int tipo_licencia = Integer.parseInt(((ComboItem)item).getValue());
+            int tipo_licencia = Integer.parseInt(((ComboItem) item).getValue());
             Object item2 = cbRut.getSelectedItem();
-            int id_piloto = Integer.parseInt(((ComboItem)item2).getValue());
-            
+            int id_piloto = Integer.parseInt(((ComboItem) item2).getValue());
+
             int numero_licencia = Integer.parseInt(jTextFieldNumeroLicencia.getText());
             float horas = Float.parseFloat(jTextFieldHoras.getText());
             int dias = Integer.parseInt(jTextFieldDias.getText());
-               
 
             Administrar_Licencia al = new Administrar_Licencia();
 
             //vali numero licenci arepetido
-            if (al.buscarNumeroLicenciaModificar(numero_licencia,id_licencia)) {
+            if (al.buscarNumeroLicenciaModificar(numero_licencia, id_licencia)) {
                 JOptionPane.showMessageDialog(null, "Numero de licencia ya ingresado");
                 return;
             }
-            
-            Licencia licencia = new Licencia(id_licencia,numero_licencia,dias, horas, fecha_vencimiento, tipo_licencia,id_piloto);
 
+            Licencia licencia = new Licencia(id_licencia, numero_licencia, dias, horas, fecha_vencimiento, tipo_licencia, id_piloto);
 
             al.modificarLicencia(licencia);
-            
-        }catch(Exception ex){
-            System.out.println(ex);
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al modificar");
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
@@ -379,10 +371,10 @@ public class ModificarLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxTipoLicenciaActionPerformed
 
     private void jTextFieldHorasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldHorasKeyTyped
-        if (!Character.isDigit(evt.getKeyChar())&&evt.getKeyChar()!='.') {
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
             evt.consume();
         }
-        if (evt.getKeyChar()=='.'&&jTextFieldHoras.getText().contains(".")) {
+        if (evt.getKeyChar() == '.' && jTextFieldHoras.getText().contains(".")) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldHorasKeyTyped
@@ -432,7 +424,7 @@ public class ModificarLicencia extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ModificarLicencia(2).setVisible(true);
+                new ModificarLicencia(3).setVisible(true);
             }
         });
     }

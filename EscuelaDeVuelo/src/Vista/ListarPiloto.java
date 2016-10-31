@@ -5,11 +5,9 @@
  */
 package Vista;
 
-import Controlador.Administrar_Licencia;
 import Controlador.Administrar_Pilotos;
 import Modelo.Piloto;
 import java.util.ArrayList;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -24,47 +22,52 @@ public class ListarPiloto extends javax.swing.JFrame {
     /**
      * Creates new form ListarPiloto
      */
-    private void Clear_Table(){
-       for (int i = 0; i < jTable1.getRowCount(); i++) {
-           modelo.removeRow(i);
-           i-=1;
-       }
-   }
-                           
+    private void Clear_Table() {
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i -= 1;
+        }
+    }
+
     DefaultTableModel modelo = new DefaultTableModel() {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-  
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+
     public ListarPiloto() {
         initComponents();
-        jTable1.setModel(modelo);
-        
-        modelo.addColumn("ID");
-        modelo.addColumn("RUT");
-        modelo.addColumn("NOMBRE COMPLETO");
-        modelo.addColumn("HORAS VUELO");
-        modelo.addColumn("DIAS VUELO");
-        modelo.addColumn("VENC. MEDICINA");
-        modelo.addColumn("ULTIMO VUELO");
-        modelo.addColumn("CANTIDAD DE LICENCIAS");
-        TableColumnModel columnModel = jTable1.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(30);
-        columnModel.getColumn(1).setPreferredWidth(80);
-        columnModel.getColumn(2).setPreferredWidth(140);
-        columnModel.getColumn(3).setPreferredWidth(100);
-        columnModel.getColumn(4).setPreferredWidth(80);
-        columnModel.getColumn(5).setPreferredWidth(120);
-        columnModel.getColumn(6).setPreferredWidth(100);
-        columnModel.getColumn(7).setPreferredWidth(160);
-        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        
-        jTable1.updateUI();
-        
-        listarTodo();
-        
-        btnEliminarPiloto.setVisible(false);
+        try {
+            jTable1.setModel(modelo);
+
+            modelo.addColumn("ID");
+            modelo.addColumn("RUT");
+            modelo.addColumn("NOMBRE COMPLETO");
+            modelo.addColumn("HORAS VUELO");
+            modelo.addColumn("DIAS VUELO");
+            modelo.addColumn("VENC. MEDICINA");
+            modelo.addColumn("ULTIMO VUELO");
+            modelo.addColumn("CANTIDAD DE LICENCIAS");
+            TableColumnModel columnModel = jTable1.getColumnModel();
+            columnModel.getColumn(0).setPreferredWidth(30);
+            columnModel.getColumn(1).setPreferredWidth(80);
+            columnModel.getColumn(2).setPreferredWidth(140);
+            columnModel.getColumn(3).setPreferredWidth(100);
+            columnModel.getColumn(4).setPreferredWidth(80);
+            columnModel.getColumn(5).setPreferredWidth(120);
+            columnModel.getColumn(6).setPreferredWidth(100);
+            columnModel.getColumn(7).setPreferredWidth(160);
+            jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+            jTable1.updateUI();
+
+            listarTodo();
+
+            btnEliminarPiloto.setVisible(false);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al crear la lista");
+        }
+
     }
 
     /**
@@ -166,11 +169,11 @@ public class ListarPiloto extends javax.swing.JFrame {
         // TODO add your handling code here:
         int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea modificar el piloto seleccionado?");
         if (JOptionPane.OK_OPTION == resp) {
-            int id  = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
-            
+            int id = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+
             ModificarPiloto modificar = new ModificarPiloto(id);
             modificar.setVisible(true);
-           
+
             this.dispose();
         } else {
             listarTodo();
@@ -184,7 +187,7 @@ public class ListarPiloto extends javax.swing.JFrame {
             String rut = jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();
             ListarLicenciaPiloto listLicencia = new ListarLicenciaPiloto(rut);
             listLicencia.setVisible(true);
-           
+
             this.dispose();
         } else {
             listarTodo();
@@ -194,13 +197,13 @@ public class ListarPiloto extends javax.swing.JFrame {
     private void btnEliminarPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPilotoActionPerformed
         // TODO add your handling code here:
         int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar el piloto seleccionado?");
-        try{
+        try {
             if (JOptionPane.OK_OPTION == resp) {
                 int id = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
                 Administrar_Pilotos ap = new Administrar_Pilotos();
                 ap.eliminarPiloto(id);
             }
-        }catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex);
         }
         listarTodo();
@@ -252,25 +255,25 @@ public class ListarPiloto extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void listarTodo() {
-        try{
+        try {
             Administrar_Pilotos ap = new Administrar_Pilotos();
 
-             ArrayList<Piloto> lista = ap.listarPilotoMasCantidadLicencia();
-             Object[] fila = new Object[9];
-             int num = lista.size();
-             for (int i = 0; i < num; i++) {
-                 fila[0] = lista.get(i).getId();
-                 fila[1] = lista.get(i).getRut();
-                 fila[2] = lista.get(i).getNombre()+" "+lista.get(i).getApellidos();
-                 fila[3] = lista.get(i).getHoras_vuelo();
-                 fila[4] = lista.get(i).getDias_vuelo();
-                 fila[5] = lista.get(i).getVencimiento_medicina();
-                 fila[6] = lista.get(i).getFecha_ultimo_vuelo();
-                 fila[7] = lista.get(i).getId_persona();
-                 modelo.addRow(fila);
-             }
-             jTable1.updateUI();
-        }catch(Exception ex){
+            ArrayList<Piloto> lista = ap.listarPilotoMasCantidadLicencia();
+            Object[] fila = new Object[9];
+            int num = lista.size();
+            for (int i = 0; i < num; i++) {
+                fila[0] = lista.get(i).getId();
+                fila[1] = lista.get(i).getRut();
+                fila[2] = lista.get(i).getNombre() + " " + lista.get(i).getApellidos();
+                fila[3] = lista.get(i).getHoras_vuelo();
+                fila[4] = lista.get(i).getDias_vuelo();
+                fila[5] = lista.get(i).getVencimiento_medicina();
+                fila[6] = lista.get(i).getFecha_ultimo_vuelo();
+                fila[7] = lista.get(i).getId_persona();
+                modelo.addRow(fila);
+            }
+            jTable1.updateUI();
+        } catch (Exception ex) {
             System.out.println(ex);
         }
     }

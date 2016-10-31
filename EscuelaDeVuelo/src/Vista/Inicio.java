@@ -8,14 +8,11 @@ package Vista;
 import Controlador.Administrar_Usuarios;
 import Modelo.Usuario;
 import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
-import com.jtattoo.plaf.aero.AeroLookAndFeel;
-import com.jtattoo.plaf.smart.SmartLookAndFeel;
 import java.awt.Image;
 import java.util.Properties;
 import org.apache.commons.codec.digest.DigestUtils;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 /**
@@ -150,7 +147,7 @@ public class Inicio extends javax.swing.JFrame {
             Administrar_Usuarios au = new Administrar_Usuarios();
             Usuario user = au.autenticarUsuario(usuario, pass);
 
-            if (user.getEstado_usuario().equals("activado")) {
+            if (!user.getEstado_usuario().equals("activado")) {
                 JOptionPane.showMessageDialog(null, "Usuario no activado");
                 return;
             }

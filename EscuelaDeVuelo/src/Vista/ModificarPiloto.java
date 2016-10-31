@@ -5,7 +5,6 @@
  */
 package Vista;
 
-
 import Controlador.Administrar_Pilotos;
 import Modelo.Piloto;
 import static java.lang.String.*;
@@ -27,77 +26,77 @@ public class ModificarPiloto extends javax.swing.JFrame {
      */
     class ComboItem {
 
-            
-         String key;
-         String value;
+        String key;
+        String value;
 
-        public ComboItem(String key, String value)
-        {
+        public ComboItem(String key, String value) {
             this.key = key;
             this.value = value;
         }
 
         @Override
-        public String toString()
-        {
+        public String toString() {
             return key;
         }
 
-        public String getKey()
-        {
+        public String getKey() {
             return key;
         }
 
-        public String getValue()
-        {
+        public String getValue() {
             return value;
         }
-    
-}
- private int id_piloto;
+
+    }
+    private int id_piloto;
+
     public ModificarPiloto(int id) {
         initComponents();
-        
-        id_piloto = id;
-        Administrar_Pilotos ap = new Administrar_Pilotos();
-        //piloto a modificra
-        ArrayList<Piloto> piloto = ap.listarPilotoID(id);
-        
-        //combo
-        ArrayList<Piloto> listaPiloto = ap.listarPiloto();
-        
-        ComboItem select = null;
-        for (int i = 0; i < listaPiloto.size(); i++) {
-            this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut()+" : "+listaPiloto.get(i).getNombre()+" "+listaPiloto.get(i).getApellidos(),String.valueOf(listaPiloto.get(i).getId_persona())));
-            if (listaPiloto.get(i).getId_persona() == piloto.get(0).getId_persona()) {
-                select = new ComboItem(listaPiloto.get(i).getRut()+" : "+listaPiloto.get(i).getNombre()+" "+listaPiloto.get(i).getApellidos(),String.valueOf(listaPiloto.get(i).getId_persona()));
+        try {
+            id_piloto = id;
+            Administrar_Pilotos ap = new Administrar_Pilotos();
+            //piloto a modificra
+            ArrayList<Piloto> piloto = ap.listarPilotoID(id);
+
+            //combo
+            ArrayList<Piloto> listaPiloto = ap.listarPiloto();
+
+            ComboItem select = null;
+            for (int i = 0; i < listaPiloto.size(); i++) {
+                this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut() + " : " + listaPiloto.get(i).getNombre() + " " + listaPiloto.get(i).getApellidos(), String.valueOf(listaPiloto.get(i).getId_persona())));
+                if (listaPiloto.get(i).getId_persona() == piloto.get(0).getId_persona()) {
+                    select = new ComboItem(listaPiloto.get(i).getRut() + " : " + listaPiloto.get(i).getNombre() + " " + listaPiloto.get(i).getApellidos(), String.valueOf(listaPiloto.get(i).getId_persona()));
+                }
             }
+
+            //datos
+            jTextFieldDias.setText(String.valueOf(piloto.get(0).getDias_vuelo()));
+            jTextFieldHoras.setText(String.valueOf(piloto.get(0).getHoras_vuelo()));
+            cbRut.getModel().setSelectedItem(select);
+            cbRut.setEnabled(false);
+
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            Date medicina = null;
+            Date ultimo_vuelo = null;
+
+            try {
+                medicina = df.parse(piloto.get(0).getVencimiento_medicina());
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+
+            try {
+                ultimo_vuelo = df.parse(piloto.get(0).getFecha_ultimo_vuelo());
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+
+            JDateMedicina.setDate(medicina);
+            JDateUltimoVuelo.setDate(ultimo_vuelo);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al crear el modificar");
         }
 
-        //datos
-        jTextFieldDias.setText(String.valueOf(piloto.get(0).getDias_vuelo()));
-        jTextFieldHoras.setText(String.valueOf(piloto.get(0).getHoras_vuelo()));
-        cbRut.getModel().setSelectedItem(select);
-        cbRut.setEnabled(false);
-        
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        Date medicina = null;
-        Date ultimo_vuelo = null;
-        
-        try{
-             medicina = df.parse(piloto.get(0).getVencimiento_medicina());
-        }catch(Exception ex){
-            System.out.println(ex);
-        }
-        
-        try{
-            ultimo_vuelo = df.parse(piloto.get(0).getFecha_ultimo_vuelo());
-        }catch(Exception ex){
-            System.out.println(ex);
-        }
-        
-        JDateMedicina.setDate(medicina);
-        JDateUltimoVuelo.setDate(ultimo_vuelo);
     }
 
     /**
@@ -250,16 +249,13 @@ public class ModificarPiloto extends javax.swing.JFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 
-
-
-        
-        try{
+        try {
             //vali combo
             if (cbRut.getSelectedItem().equals("Seleccione")) {
                 JOptionPane.showMessageDialog(null, "Seleccione un Usuario");
                 return;
             }
-            
+
             //vali campos vacios
             if (jTextFieldHoras.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Ingrese las horas del piloto");
@@ -273,8 +269,8 @@ public class ModificarPiloto extends javax.swing.JFrame {
             String fecha_medicina = null;
             String fecha_ultimo_vuelo = null;
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-            
-            try{
+
+            try {
                 Date fecha = JDateMedicina.getDate();
                 Date hoy = new Date();
                 if (fecha.before(hoy)) {
@@ -282,39 +278,37 @@ public class ModificarPiloto extends javax.swing.JFrame {
                     return;
                 }
                 fecha_medicina = df.format(fecha);
-            }catch(Exception ex){
-                System.out.println(ex);
+            } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Fecha de la Medicina mal ingresada");
                 return;
             }
-            
-            try{
+
+            try {
                 Date fecha_ultimo = JDateUltimoVuelo.getDate();
                 Date hoy = new Date();
                 if (fecha_ultimo.after(hoy)) {
-                     JOptionPane.showMessageDialog(null, "La fecha delultimo vuelo realizado no puede ser mayor a la de hoy");
+                    JOptionPane.showMessageDialog(null, "La fecha delultimo vuelo realizado no puede ser mayor a la de hoy");
                     return;
                 }
                 fecha_ultimo_vuelo = df.format(fecha_ultimo);
-            }catch(Exception ex){
-                System.out.println(ex);
+            } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Fecha del ultimo vuelo mal ingresado");
                 return;
             }
             //datos
             Object item2 = cbRut.getSelectedItem();
-            int id_persona = Integer.parseInt(((ComboItem)item2).getValue());
+            int id_persona = Integer.parseInt(((ComboItem) item2).getValue());
             float horas = Float.parseFloat(jTextFieldHoras.getText());
             int dias = Integer.parseInt(jTextFieldDias.getText());
-            
+
             Administrar_Pilotos ap = new Administrar_Pilotos();
-            
+
             //ibgresar
             Piloto piloto = new Piloto(id_piloto, horas, dias, fecha_medicina, fecha_ultimo_vuelo, id_persona);
             ap.modificarPiloto(piloto);
-            
-        }catch(Exception ex){
-            System.out.println(ex);
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al modificar");
         }
 
     }//GEN-LAST:event_btnModificarActionPerformed
@@ -326,10 +320,10 @@ public class ModificarPiloto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void jTextFieldHorasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldHorasKeyTyped
-       if (!Character.isDigit(evt.getKeyChar())&&evt.getKeyChar()!='.') {
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
             evt.consume();
         }
-        if (evt.getKeyChar()=='.'&&jTextFieldHoras.getText().contains(".")) {
+        if (evt.getKeyChar() == '.' && jTextFieldHoras.getText().contains(".")) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldHorasKeyTyped
