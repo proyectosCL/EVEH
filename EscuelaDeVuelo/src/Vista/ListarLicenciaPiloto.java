@@ -185,6 +185,11 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
                 cbRutItemStateChanged(evt);
             }
         });
+        cbRut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbRutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -314,8 +319,8 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
     private void cbRutItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbRutItemStateChanged
         // TODO add your handling code here:
         try {
+            
             Clear_Table();
-
             if (cbRut.getSelectedItem().equals("Seleccione")) {
                 JOptionPane.showMessageDialog(null, "Seleccione un Piloto");
                 listarTodo();
@@ -323,12 +328,16 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
             }
             Object item2 = cbRut.getSelectedItem();
             String rut = ((ComboItem) item2).getValue();
-
             listarPiloto(rut);
+            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al listar");
         }
     }//GEN-LAST:event_cbRutItemStateChanged
+
+    private void cbRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbRutActionPerformed
 
     /**
      * @param args the command line arguments
