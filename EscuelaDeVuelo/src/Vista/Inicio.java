@@ -7,10 +7,15 @@ package Vista;
 
 import Controlador.Administrar_Usuarios;
 import Modelo.Usuario;
+import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
+import com.jtattoo.plaf.aero.AeroLookAndFeel;
+import com.jtattoo.plaf.smart.SmartLookAndFeel;
 import java.awt.Image;
+import java.util.Properties;
 import org.apache.commons.codec.digest.DigestUtils;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 /**
@@ -24,7 +29,7 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
-        
+
         Image icon = new ImageIcon(getClass().getResource("../Imagenes/icono.jpg")).getImage();
         setIconImage(icon);
     }
@@ -128,7 +133,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
             //vali campos vacios
             if (txtUsuario.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Ingrese un usuario");
@@ -140,17 +145,17 @@ public class Inicio extends javax.swing.JFrame {
             }
             String usuario = txtUsuario.getText();
             //encryptar pass
-            String pass =DigestUtils.md5Hex( txtPass.getText()); 
-            
+            String pass = DigestUtils.md5Hex(txtPass.getText());
+
             Administrar_Usuarios au = new Administrar_Usuarios();
             Usuario user = au.autenticarUsuario(usuario, pass);
-            
+
             if (user.getEstado_usuario().equals("activado")) {
                 JOptionPane.showMessageDialog(null, "Usuario no activado");
                 return;
             }
             if (user.getUsuario() != null) {
-                switch(user.getId_tipo()){
+                switch (user.getId_tipo()) {
                     case 1:
                         new MenuPrincipalAdministrador().setVisible(true);
                         this.dispose();
@@ -163,16 +168,15 @@ public class Inicio extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Esta cuenta no puede ingresar");
                         break;
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Usuario o contraseña mal ingresada");
             }
-        }catch(Exception ex){
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al autentificar");
         }
-        
+
         //JOptionPane.showInputDialog(texto);
-        
-        
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void txtPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusGained
@@ -184,30 +188,32 @@ public class Inicio extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
- 
-        
-        
-        
+
         try {
-             UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+            Properties props = new Properties();
+            props.put("logoString", "EVEEH");
+            props.put("centerWindowTitle", "on");
+            props.put("backgroundColor", "230 230 230");
+            AcrylLookAndFeel.setCurrentTheme(props);
+            UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+
         } catch (Exception ex) {// Manejo de excepción...
-                               }
+        }
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inicio().setVisible(true);
+                final Inicio app = new Inicio();
+                app.setLocationRelativeTo(null);
+
+                app.setVisible(true);
             }
         });
-        
+
 //            String texto =DigestUtils.md5Hex("admin"); 
 //            System.out.println("Texto Encriptado con MD5 : "+texto);
-
-        
     }
-    
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
