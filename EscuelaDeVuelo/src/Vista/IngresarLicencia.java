@@ -84,6 +84,39 @@ public class IngresarLicencia extends javax.swing.JFrame {
         
         
     }
+    
+    public IngresarLicencia(Piloto piloto) {
+    
+        
+        
+       
+        initComponents();
+            
+            
+        Administrar_Licencia al = new Administrar_Licencia();
+        Administrar_Pilotos ap = new Administrar_Pilotos();
+        
+        ArrayList<Tipo_licencia> lista = al.listarTipoLicencia();
+        
+        for (int i = 0; i < lista.size(); i++) {
+            this.jComboBoxTipoLicencia.addItem(new ComboItem(lista.get(i).getDescripcion(),String.valueOf(lista.get(i).getId())));
+        }
+        
+        ArrayList<Piloto> listaPiloto = ap.listarPiloto();
+        
+        ComboItem select = null;
+            for (int i = 0; i < listaPiloto.size(); i++) {
+                this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut() + " : " + listaPiloto.get(i).getNombre() + " " + listaPiloto.get(i).getApellidos(), String.valueOf(listaPiloto.get(i).getId())));
+                if (listaPiloto.get(i).getId() == piloto.getId()) {
+                    select = new ComboItem(listaPiloto.get(i).getRut() + " : " + listaPiloto.get(i).getNombre() + " " + listaPiloto.get(i).getApellidos(), String.valueOf(listaPiloto.get(i).getId()));
+                }
+            }
+        
+       this.cbRut.getModel().setSelectedItem(select);
+       cbRut.setEnabled(false);
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -410,7 +443,9 @@ public class IngresarLicencia extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IngresarLicencia().setVisible(true);
+                Piloto piloto = new Piloto();
+                piloto.setId(3);
+                new IngresarLicencia(piloto).setVisible(true);
             }
         });
     }

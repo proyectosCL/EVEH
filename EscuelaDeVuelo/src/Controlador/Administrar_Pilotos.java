@@ -134,6 +134,35 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
         return lista;
     }
 
+     public ArrayList<Piloto> listarPilotoIngresar() {
+        ArrayList lista = new ArrayList();
+        Piloto piloto;
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM pilotos right join   personas on personas.id = personas_id order by rut");
+            int cantidad = 0;
+
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+            while (rs.next()) {
+                piloto = new Piloto();
+                if (rs.getDate("vencimiento_medicina") == null) {
+                    piloto.setRut(rs.getString("rut"));
+                    piloto.setId_persona(rs.getInt("personas_id"));
+                    piloto.setNombre(rs.getString("nombre"));
+                    piloto.setApellidos(rs.getString("apellidos"));
+                    lista.add(piloto);
+                }
+                
+            }
+
+        } catch (Exception e) {
+        }
+        return lista;
+    }
+    
+    
     public String buscarRutPiloto(int id) {
         Piloto piloto;
         piloto = new Piloto();

@@ -56,11 +56,15 @@ public class IngresarPiloto extends javax.swing.JFrame {
         initComponents();
         
         Administrar_Pilotos ap = new Administrar_Pilotos();
-        ArrayList<Piloto> listaPiloto = ap.listarPiloto();
-        
-        for (int i = 0; i < listaPiloto.size(); i++) {
-            this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut()+" : "+listaPiloto.get(i).getNombre()+" "+listaPiloto.get(i).getApellidos(),String.valueOf(listaPiloto.get(i).getId_persona())));
+        try{
+            ArrayList<Piloto> listaPiloto = ap.listarPilotoIngresar();
+                for (int i = 0; i < listaPiloto.size(); i++) {
+                this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut()+" : "+listaPiloto.get(i).getNombre()+" "+listaPiloto.get(i).getApellidos(),String.valueOf(listaPiloto.get(i).getId_persona())));
+                }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "No hay usuarios para agregar a pilotos");
         }
+        
 
         
     }
@@ -87,6 +91,7 @@ public class IngresarPiloto extends javax.swing.JFrame {
         JDateMedicina = new com.toedter.calendar.JDateChooser();
         JDateUltimoVuelo = new com.toedter.calendar.JDateChooser();
         cbRut = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,7 +120,7 @@ public class IngresarPiloto extends javax.swing.JFrame {
             }
         });
 
-        btnIngresar.setText("Ingresar");
+        btnIngresar.setText("Ingresar Piloto sin licencias");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarActionPerformed(evt);
@@ -140,6 +145,13 @@ public class IngresarPiloto extends javax.swing.JFrame {
 
         cbRut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
 
+        jButton1.setText("Ingresar Piloto Con licencias");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,33 +159,33 @@ public class IngresarPiloto extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5)
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldHoras)
-                            .addComponent(JDateMedicina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbRut, 0, 261, Short.MAX_VALUE)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbRut, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldDias)))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnIngresar)
-                                .addGap(40, 40, 40)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                                 .addComponent(btnCancelar))
-                            .addComponent(JDateUltimoVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))))
-                .addGap(80, 80, 80))
+                            .addComponent(JDateUltimoVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldHoras)
+                            .addComponent(JDateMedicina, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(62, 62, 62))
             .addGroup(layout.createSequentialGroup()
                 .addGap(168, 168, 168)
                 .addComponent(jLabel1)
@@ -205,11 +217,13 @@ public class IngresarPiloto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
                     .addComponent(JDateUltimoVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIngresar)
-                    .addComponent(btnCancelar))
-                .addGap(37, 37, 37))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnIngresar, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addGap(8, 8, 8))
         );
 
         pack();
@@ -217,9 +231,6 @@ public class IngresarPiloto extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
-
-
-        
         try{
             //vali combo
             if (cbRut.getSelectedItem().equals("Seleccione")) {
@@ -319,6 +330,82 @@ public class IngresarPiloto extends javax.swing.JFrame {
         
     }//GEN-LAST:event_JDateMedicinaKeyTyped
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try{
+            //vali combo
+            if (cbRut.getSelectedItem().equals("Seleccione")) {
+                JOptionPane.showMessageDialog(null, "Seleccione un Usuario");
+                return;
+            }
+            
+            //vali campos vacios
+            if (jTextFieldHoras.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese las horas del piloto");
+                return;
+            }
+            if (jTextFieldDias.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese los dias del piloto");
+                return;
+            }
+            //vali fecha
+            String fecha_medicina = null;
+            String fecha_ultimo_vuelo = null;
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            
+            try{
+                Date fecha = JDateMedicina.getDate();
+                Date hoy = new Date();
+                if (fecha.before(hoy)) {
+                    JOptionPane.showMessageDialog(null, "La fecha del vencimiento de la medicina no puede ser antes a la de hoy");
+                    return;
+                }
+                fecha_medicina = df.format(fecha);
+            }catch(Exception ex){
+                System.out.println(ex);
+                JOptionPane.showMessageDialog(null, "Fecha de la Medicina mal ingresada");
+                return;
+            }
+            
+            try{
+                Date fecha_ultimo = JDateUltimoVuelo.getDate();
+                Date hoy = new Date();
+                if (fecha_ultimo.after(hoy)) {
+                     JOptionPane.showMessageDialog(null, "La fecha delultimo vuelo realizado no puede ser mayor a la de hoy");
+                    return;
+                }
+                fecha_ultimo_vuelo = df.format(fecha_ultimo);
+            }catch(Exception ex){
+                System.out.println(ex);
+                JOptionPane.showMessageDialog(null, "Fecha del ultimo vuelo mal ingresado");
+                return;
+            }
+            //datos
+            Object item2 = cbRut.getSelectedItem();
+            int id_persona = Integer.parseInt(((ComboItem)item2).getValue());
+            int id_piloto =0;
+            float horas = Float.parseFloat(jTextFieldHoras.getText());
+            int dias = Integer.parseInt(jTextFieldDias.getText());
+            
+            Administrar_Pilotos ap = new Administrar_Pilotos();
+            
+            // validacion piloto repetido
+            if (ap.buscarPilotoR(id_persona)) {
+                JOptionPane.showMessageDialog(null, "Piloto ya ingresado");
+                return;
+            }
+            //ibgresar
+            Piloto piloto = new Piloto(id_piloto, horas, dias, fecha_medicina, fecha_ultimo_vuelo, id_persona);
+            ap.ingresarPiloto(piloto);
+            
+            IngresarLicencia il = new IngresarLicencia(piloto);
+            
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -360,6 +447,7 @@ public class IngresarPiloto extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JComboBox cbRut;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
