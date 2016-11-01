@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.Administrar_Vuelo;
+import Modelo.Licencia;
 import Modelo.Piloto;
 import Modelo.Vuelo;
 import com.toedter.calendar.JDateChooser;
@@ -34,6 +35,31 @@ public class ListarVuelo extends javax.swing.JFrame {
             return false;
         }
     };
+    
+    class ComboItem {
+
+        private String key;
+        private String value;
+
+        public ComboItem(String key, String value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return key;
+        }
+
+        public String getKey() {
+            return key;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+    }
 
     public void Formato() {
         jTableVuelos.setModel(modelo);
@@ -221,7 +247,7 @@ public class ListarVuelo extends javax.swing.JFrame {
             av.eliminarVuelo(Integer.parseInt(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0).toString()));
             Clear_Table();
             CargarTabla(this.jCheckBoxTerminado.isSelected());
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Seleccione un vuelo de la lista.");
         }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
@@ -230,6 +256,7 @@ public class ListarVuelo extends javax.swing.JFrame {
         if (jTableVuelos.getSelectedRow() != -1) {
             if (Double.parseDouble(String.valueOf(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 3))) == 0.0) {
                 TerminarVuelo VentanaTerminarVuelo = new TerminarVuelo();
+
                 Vuelo vuelo = new Vuelo();
                 vuelo.setId(Integer.parseInt(String.valueOf(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0))));
                 vuelo.setAeronave(String.valueOf(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 7)));
@@ -245,17 +272,30 @@ public class ListarVuelo extends javax.swing.JFrame {
                     Logger.getLogger(ListarVuelo.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 vuelo.setFecha_vuelo(date);
+                //----------
 
+                Administrar_Vuelo av = new Administrar_Vuelo();
+                ArrayList<Piloto> pilotoUnico = av.listarPilotoUnico(Integer.parseInt(String.valueOf(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0))));
+
+                //----------
                 this.setEnabled(false);
                 VentanaTerminarVuelo.setVisible(true);
                 VentanaTerminarVuelo.setVuelo(vuelo);
                 VentanaTerminarVuelo.jLabelMatricula.setText(vuelo.getAeronave());
                 VentanaTerminarVuelo.jLabelFechaInicio.setText(df.format(date));
+                VentanaTerminarVuelo.jLabelID.setText(String.valueOf(pilotoUnico.get(0).getId()));
+
+                ArrayList<Licencia> listaLicencias = av.listarLicencias(pilotoUnico.get(0).getId());
+                for (int i = 0; i < listaLicencias.size(); i++) {
+                    VentanaTerminarVuelo.jComboBoxLicencia.addItem(new ComboItem(String.valueOf(listaLicencias.get(i).getNumero()), String.valueOf(listaLicencias.get(i).getId_licencia())));
+                }
+
+                VentanaTerminarVuelo.jLabelPiloto.setText(pilotoUnico.get(0).getRut() + " | " + pilotoUnico.get(0).getNombre() + " " + pilotoUnico.get(0).getApellidos());
                 VentanaTerminarVuelo.setVentanaListarVuelo(this);
             } else {
                 JOptionPane.showMessageDialog(null, "El vuelo seleccionado ya está terminado.");
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Seleccione un vuelo de la lista.");
         }
     }//GEN-LAST:event_jButtonTerminarActionPerformed
@@ -271,7 +311,7 @@ public class ListarVuelo extends javax.swing.JFrame {
             for (int i = 0; i < num; i++) {
                 fila[0] = listaPilotos.get(i).getId();
                 fila[1] = listaPilotos.get(i).getRut();
-                fila[2] = listaPilotos.get(i).getNombre()+" "+listaPilotos.get(i).getApellidos();
+                fila[2] = listaPilotos.get(i).getNombre() + " " + listaPilotos.get(i).getApellidos();
                 fila[3] = listaPilotos.get(i).getTipo();
                 VentanaListarPasajeros.modelo.addRow(fila);
             }
@@ -279,9 +319,9 @@ public class ListarVuelo extends javax.swing.JFrame {
 
             this.setEnabled(false);
             VentanaListarPasajeros.setVentanaListarVuelo(this);
-            VentanaListarPasajeros.jLabel1.setText(String.valueOf(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0)));
+            //VentanaListarPasajeros.jLabel1.setText(String.valueOf(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0)));
             VentanaListarPasajeros.setVisible(true);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Seleccione un vuelo de la lista.");
         }
     }//GEN-LAST:event_jButtonVerActionPerformed

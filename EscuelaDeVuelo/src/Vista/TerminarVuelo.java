@@ -7,6 +7,7 @@ package Vista;
 
 import Controlador.Administrar_Vuelo;
 import Modelo.Vuelo;
+import Vista.ListarVuelo.ComboItem;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,6 +15,10 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -39,13 +44,38 @@ public class TerminarVuelo extends javax.swing.JFrame {
     public void setVentanaListarVuelo(ListarVuelo VentanaListarVuelo) {
         this.VentanaListarVuelo = VentanaListarVuelo;
     }
+    
+    DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
 
-    class ComboItem {
+    private void Clear_Table() {
+        for (int i = 0; i < jTableLicencias.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i -= 1;
+        }
+    }
+    
+    public void Formato() {
+        this.jTableLicencias.setModel(modelo);
+        modelo.addColumn("ID");
+        modelo.addColumn("NÚMERO");
+        TableColumnModel columnModel = jTableLicencias.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(30);
+        columnModel.getColumn(1).setPreferredWidth(80);
+        this.jTableLicencias.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        this.jTableLicencias.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jTableLicencias.updateUI();
+    }
+    
+    class ComboItem2 {
 
         private String key;
         private String value;
 
-        public ComboItem(String key, String value) {
+        public ComboItem2(String key, String value) {
             this.key = key;
             this.value = value;
         }
@@ -64,12 +94,14 @@ public class TerminarVuelo extends javax.swing.JFrame {
         }
 
     }
+    
 
     DateFormat df1 = new SimpleDateFormat("dd-MM-yyyy");
     DateFormat df2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
     public TerminarVuelo() {
         initComponents();
+        Formato();
 
         //Limpiar
         this.jComboBoxHora.removeAllItems();
@@ -77,14 +109,17 @@ public class TerminarVuelo extends javax.swing.JFrame {
         this.jComboBoxSegundo.removeAllItems();
         //Llenar
         for (int i = 0; i < 24; i++) {
-            this.jComboBoxHora.addItem(new ComboItem(String.format("%02d", i), String.valueOf(i)));
+            this.jComboBoxHora.addItem(new ComboItem2(String.format("%02d", i), String.valueOf(i)));
         }
         for (int i = 0; i < 60; i++) {
-            this.jComboBoxMinuto.addItem(new ComboItem(String.format("%02d", i), String.valueOf(i)));
-            this.jComboBoxSegundo.addItem(new ComboItem(String.format("%02d", i), String.valueOf(i)));
+            this.jComboBoxMinuto.addItem(new ComboItem2(String.format("%02d", i), String.valueOf(i)));
+            this.jComboBoxSegundo.addItem(new ComboItem2(String.format("%02d", i), String.valueOf(i)));
         }
+        Administrar_Vuelo av = new Administrar_Vuelo();
+        
+        
 
-        this.jLabelFechaInicio.setText("");
+
     }
 
     /**
@@ -107,6 +142,17 @@ public class TerminarVuelo extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabelAeronave = new javax.swing.JLabel();
         jLabelMatricula = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableLicencias = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBoxLicencia = new javax.swing.JComboBox();
+        jLabelPiloto = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabelID = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,7 +180,7 @@ public class TerminarVuelo extends javax.swing.JFrame {
 
         jLabel1.setText("Fecha de inicio:");
 
-        jLabelFechaInicio.setText("Inicio");
+        jLabelFechaInicio.setText("<Fecha>");
 
         jLabel3.setText("Fecha de termino:");
 
@@ -142,40 +188,97 @@ public class TerminarVuelo extends javax.swing.JFrame {
 
         jLabelMatricula.setText("Matricula");
 
+        jLabel2.setText("Piloto:");
+
+        jTableLicencias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jTableLicencias);
+
+        jLabel4.setText("Licencias usadas:");
+
+        jComboBoxLicencia.setModel(new javax.swing.DefaultComboBoxModel());
+
+        jLabelPiloto.setText("<Piloto>");
+
+        jButton1.setText("Añadir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("ID:");
+
+        jLabelID.setText("<ID>");
+
+        jButton2.setText("Limpiar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateFechaTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jComboBoxSegundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabelAeronave)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelFechaInicio)
-                                    .addComponent(jLabelMatricula)))
+                                    .addComponent(jLabelPiloto)
+                                    .addComponent(jLabelID))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addComponent(jComboBoxLicencia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateFechaTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxSegundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 10, Short.MAX_VALUE))
+                                .addComponent(jButton1))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelAeronave)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelMatricula)
+                            .addComponent(jLabelFechaInicio))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonCancelar)
+                        .addGap(63, 63, 63)
+                        .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonAceptar)
-                        .addContainerGap())))
+                        .addComponent(jButtonAceptar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,16 +293,34 @@ public class TerminarVuelo extends javax.swing.JFrame {
                     .addComponent(jLabelFechaInicio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
                     .addComponent(jDateFechaTermino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jComboBoxMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jComboBoxSegundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabelID))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabelPiloto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jComboBoxLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancelar)
-                    .addComponent(jButtonAceptar))
+                    .addComponent(jButtonAceptar)
+                    .addComponent(jButton2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -239,8 +360,13 @@ public class TerminarVuelo extends javax.swing.JFrame {
             }
 
         }
-        System.out.println(this.jDateFechaTermino.getDate().getTime());
-        System.out.println(this.getVuelo().getFecha_vuelo().getTime());
+        
+        
+        String[] licencias = new String[this.jTableLicencias.getRowCount()];
+        for (int i = 0; i < this.jTableLicencias.getRowCount(); i++) {
+            licencias[i] = String.valueOf(this.jTableLicencias.getValueAt(i, 0));
+        }
+        
 
         if (count == 0) {
             int R = JOptionPane.showConfirmDialog(null, "¿Seguro?", "¡Alerta!", JOptionPane.YES_NO_OPTION, 0, null);
@@ -248,7 +374,7 @@ public class TerminarVuelo extends javax.swing.JFrame {
                 Administrar_Vuelo av = new Administrar_Vuelo();
 
                 //av.sumarHoras2(this.getVuelo().getId(), this.getVuelo().getAeronave(), fecha1, date2);
-                av.sumarHoras3(this.getVuelo().getId(), fecha1, date2);
+                av.sumarHoras3(this.getVuelo().getId(), fecha1, date2, licencias);
                 this.getVentanaListarVuelo().Clear_Table();
                 this.getVentanaListarVuelo().CargarTabla(this.getVentanaListarVuelo().jCheckBoxTerminado.isSelected());
                 this.getVentanaListarVuelo().setEnabled(true);
@@ -257,6 +383,25 @@ public class TerminarVuelo extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButtonAceptarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ComboItem item_licencia = (ComboItem) this.jComboBoxLicencia.getSelectedItem();
+        int count = 0;
+         for (int i = 0; i < this.jTableLicencias.getRowCount(); i++) {
+            if (this.jTableLicencias.getValueAt(i, 0).equals(item_licencia.getValue())) {
+                count++;
+                JOptionPane.showMessageDialog(null, "La licencia seleccionada ya se encuentra en la lista de licencias usadas.");
+            }
+        }
+        
+        if (count == 0) {
+            modelo.addRow(new Object[]{item_licencia.getValue(),item_licencia.getKey()});
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Clear_Table();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -294,16 +439,27 @@ public class TerminarVuelo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JComboBox jComboBoxHora;
+    public javax.swing.JComboBox jComboBoxLicencia;
     private javax.swing.JComboBox jComboBoxMinuto;
     private javax.swing.JComboBox jComboBoxSegundo;
     private com.toedter.calendar.JDateChooser jDateFechaTermino;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelAeronave;
     public javax.swing.JLabel jLabelFechaInicio;
+    public javax.swing.JLabel jLabelID;
     public javax.swing.JLabel jLabelMatricula;
+    public javax.swing.JLabel jLabelPiloto;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTableLicencias;
     // End of variables declaration//GEN-END:variables
 }

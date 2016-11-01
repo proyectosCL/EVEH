@@ -73,7 +73,6 @@ public class ListarTripulacion extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableTripulacion = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,8 +96,6 @@ public class ListarTripulacion extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("jLabel1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,18 +107,13 @@ public class ListarTripulacion extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(162, 162, 162)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)))
+                        .addComponent(jButton1)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(23, 23, 23)
+                .addGap(48, 48, 48)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
@@ -174,7 +166,6 @@ public class ListarTripulacion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    public javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTableTripulacion;
     // End of variables declaration//GEN-END:variables

@@ -3,6 +3,7 @@ package Controlador;
 import Database.Conexion;
 import Modelo.Aerodromo;
 import Modelo.Aeronave;
+import Modelo.Licencia;
 import Modelo.Persona;
 import Modelo.Piloto;
 import Modelo.Vuelo;
@@ -77,7 +78,7 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
         }
     }
 
-    public void sumarHoras3(int id, Date fecha_inicio, Date fecha_termino) {
+    public void sumarHoras3(int id, Date fecha_inicio, Date fecha_termino,String[] licencias) {
         Conexion dbconn = new Conexion();
         dbconn.conectar();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -87,7 +88,15 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
         float horas = num1 / num2;
         DecimalFormat def = new DecimalFormat("0.00000");
         String horasString = def.format(horas);
+        String id_licencias = "";
+        for (int i = 0; i < licencias.length; i++) {
+            id_licencias = id_licencias + licencias[i];
+            if (i != licencias.length-1) {
+                id_licencias = id_licencias+",";
+            }
+        }
         dbconn.escribir("UPDATE vuelos SET horas_vuelo = (horas_vuelo + " + horasString.replace(',', '.') + "), estado_vuelo = 'terminado' WHERE id = " + id);
+        dbconn.escribir("UPDATE licencias SET horas_vuelo = (horas_vuelo + 10) WHERE id IN ("+id_licencias+")");
         dbconn.sumar_horas(id);
     }
 
@@ -171,6 +180,46 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
         } catch (Exception e) {
         }
         return listaPiloto;
+    }
+    
+    public ArrayList<Piloto> listarPilotoUnico(int id_vuelos) {
+        ArrayList listaPiloto = new ArrayList();
+        Piloto piloto;
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM tripulacion JOIN pilotos ON tripulacion.pilotos_id = pilotos.id JOIN personas ON pilotos.personas_id = personas.id WHERE tripulacion.tipo = 'P' AND tripulacion.vuelos_id = " + id_vuelos);
+            while (rs.next()) {
+                piloto = new Piloto();
+                piloto.setId(rs.getInt("id"));
+                piloto.setRut(rs.getString("rut"));
+                piloto.setNombre(rs.getString("nombre"));
+                piloto.setApellidos(rs.getString("apellidos"));
+                listaPiloto.add(piloto);
+            }
+
+        } catch (Exception e) {
+        }
+        return listaPiloto;
+    }
+    
+    public ArrayList<Licencia> listarLicencias(int id_vuelos) {
+        ArrayList listaLicencia = new ArrayList();
+        Licencia licencia;
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM licencias WHERE pilotos_id = " + id_vuelos);
+            while (rs.next()) {
+                licencia = new Licencia();
+                licencia.setId_licencia(rs.getInt("id"));
+                licencia.setNumero(rs.getInt("numero"));
+                listaLicencia.add(licencia);
+            }
+
+        } catch (Exception e) {
+        }
+        return listaLicencia;
     }
 
     //Metodo para llenar la tabla de vuelos.
