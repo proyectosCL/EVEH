@@ -279,7 +279,7 @@ public class AgregarComponente extends javax.swing.JFrame {
         int idAlas = Integer.parseInt(tablaAlas.getValueAt(tablaAlas.getSelectedRow(), 0).toString());
         int idControlesFrenos = Integer.parseInt(tablaControlesFrenos.getValueAt(tablaControlesFrenos.getSelectedRow(), 0).toString());
 
-        JOptionPane.showMessageDialog(null,"la matricula que viene es:"+ matriculaNave);
+        
 
         Administrar_Componente ac = new Administrar_Componente();
         ac.asociarAeronave(idFuselaje, matriculaNave);

@@ -149,10 +149,10 @@ public class Administrar_Componente implements administrar_horas_vuelo {
             Conexion conec = new Conexion();
             conec.conectar();
             String sql = " update COMPONENTES set DESCRIPCION= '" + desc + "',"
-                    + " FABRICANTE = '" + fabricte + "'," 
-                    + "HORAS_VUELO = " +horasVuelo+ ","
-                    + "DIAS_VUELO =  " +diasVuelo+  ","
-                    + "TIPOS_COMPONENTES_ID = " + tpoCompteId+" where ID=" + id + "";
+                    + " FABRICANTE = '" + fabricte + "',"
+                    + "HORAS_VUELO = " + horasVuelo + ","
+                    + "DIAS_VUELO =  " + diasVuelo + ","
+                    + "TIPOS_COMPONENTES_ID = " + tpoCompteId + " where ID=" + id + "";
             conec.escribir(sql);
             System.out.println(sql);
 
@@ -176,7 +176,73 @@ public class Administrar_Componente implements administrar_horas_vuelo {
 
     }
 
-    public void asociarSubcomponente() {
+    public boolean asociarSubcomponente(Componente nuevoComponente) {
+        try {
+            String desc = nuevoComponente.getDescripcion();
+            String fabricte = nuevoComponente.getFabricante();
+            Float horasVuelo = nuevoComponente.getHoras_vuelo();
+            int diasVuelo = nuevoComponente.getDias_vuelo();
+            int tpoCompteId = nuevoComponente.getTipo_componente_id();
+            int compteId = nuevoComponente.getComponente_id();
+
+            Conexion conec = new Conexion();
+            conec.conectar();
+            String sql = "INSERT INTO componentes  VALUES ((select (max(id)+1)from componentes),'" + desc + "','" + fabricte + "'," + horasVuelo + "," + diasVuelo + "," + tpoCompteId + "," + compteId + ",  null )";
+            conec.escribir(sql);
+
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
+    public int buscarIdSubComponente() {
+
+        int idCompte = 0;
+
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("select MAX(ID) as ID from COMPONENTES where COMPONENTES_ID is null");
+            while (rs.next()) {
+                idCompte = rs.getInt("id");
+            }
+
+        } catch (Exception e) {
+
+        }
+        JOptionPane.showMessageDialog(null, idCompte);
+        return idCompte;
+
+    }
+
+    public ArrayList<Componente> listarCompteLibre() {
+
+        ArrayList listaFiltro = new ArrayList();
+        Componente filtro;
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("select * from COMPONENTES where COMPONENTES_ID is null");
+            while (rs.next()) {
+                filtro = new Componente();
+                filtro.setId(rs.getInt("id"));
+                filtro.setDescripcion(rs.getString(2));
+                filtro.setFabricante(rs.getString(3));
+                filtro.setHoras_vuelo(rs.getFloat("horas_vuelo"));
+                filtro.setDias_vuelo(rs.getInt("dias_vuelo"));
+                filtro.setTipo_componente_id(rs.getInt("tipos_componentes_id"));
+                filtro.setComponente_id(rs.getInt("componentes_id"));
+                filtro.setAeronave_id(rs.getInt("aeronaves_id"));
+                listaFiltro.add(filtro);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return listaFiltro;
+
     }
 
     @Override
