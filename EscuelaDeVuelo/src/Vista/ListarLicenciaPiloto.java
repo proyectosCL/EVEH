@@ -90,10 +90,16 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
             Administrar_Pilotos ap = new Administrar_Pilotos();
             ArrayList<Piloto> listaPiloto = ap.listarPiloto();
 
+            ComboItem select = null;
             for (int i = 0; i < listaPiloto.size(); i++) {
+                if (listaPiloto.get(i).getRut().equals(dato)) {
+                    select = new ComboItem(listaPiloto.get(i).getRut() + " : " + listaPiloto.get(i).getNombre() + " " + listaPiloto.get(i).getApellidos(), listaPiloto.get(i).getRut());
+                }
                 this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut() + " : " + listaPiloto.get(i).getNombre() + " " + listaPiloto.get(i).getApellidos(), listaPiloto.get(i).getRut()));
             }
 
+            
+            cbRut.getModel().setSelectedItem(select);
             listarPiloto(dato);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al listar");

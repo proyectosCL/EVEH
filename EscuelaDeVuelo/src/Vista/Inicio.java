@@ -9,7 +9,13 @@ import Controlador.Administrar_Usuarios;
 import Modelo.Usuario;
 import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
 import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.util.Properties;
+import javafx.event.Event;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import org.apache.commons.codec.digest.DigestUtils;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -26,7 +32,16 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
-
+        
+        Action action = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnAceptarActionPerformed(e);
+            }
+        };
+        
+        txtPass.addActionListener(action);
+        
         Image icon = new ImageIcon(getClass().getResource("../Imagenes/icono.jpg")).getImage();
         setIconImage(icon);
     }
@@ -71,6 +86,14 @@ public class Inicio extends javax.swing.JFrame {
         txtPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPassActionPerformed(evt);
+            }
+        });
+        txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPassKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPassKeyReleased(evt);
             }
         });
 
@@ -143,10 +166,10 @@ public class Inicio extends javax.swing.JFrame {
             String usuario = txtUsuario.getText();
             //encryptar pass
             String pass = DigestUtils.md5Hex(txtPass.getText());
-
+            
             Administrar_Usuarios au = new Administrar_Usuarios();
             Usuario user = au.autenticarUsuario(usuario, pass);
-
+            
             if (!user.getEstado_usuario().equals("activado")) {
                 JOptionPane.showMessageDialog(null, "Usuario no activado");
                 return;
@@ -181,11 +204,20 @@ public class Inicio extends javax.swing.JFrame {
         txtPass.setText("");
     }//GEN-LAST:event_txtPassFocusGained
 
+    private void txtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyPressed
+
+    }//GEN-LAST:event_txtPassKeyPressed
+
+    private void txtPassKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyReleased
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtPassKeyReleased
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-
+        
         try {
             Properties props = new Properties();
             props.put("logoString", "EVEEH");
@@ -193,7 +225,7 @@ public class Inicio extends javax.swing.JFrame {
             props.put("backgroundColor", "230 230 230");
             AcrylLookAndFeel.setCurrentTheme(props);
             UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
-
+            
         } catch (Exception ex) {// Manejo de excepción...
         }
 
@@ -202,7 +234,7 @@ public class Inicio extends javax.swing.JFrame {
             public void run() {
                 final Inicio app = new Inicio();
                 app.setLocationRelativeTo(null);
-
+                
                 app.setVisible(true);
             }
         });
