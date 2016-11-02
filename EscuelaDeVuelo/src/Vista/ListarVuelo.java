@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
 
 import Controlador.Administrar_Vuelo;
 import Modelo.Licencia;
 import Modelo.Piloto;
 import Modelo.Vuelo;
-import com.toedter.calendar.JDateChooser;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,16 +12,11 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Diego S.
- */
 public class ListarVuelo extends javax.swing.JFrame {
 
     DefaultTableModel modelo = new DefaultTableModel() {
@@ -35,7 +24,7 @@ public class ListarVuelo extends javax.swing.JFrame {
             return false;
         }
     };
-    
+
     class ComboItem {
 
         private String key;
@@ -75,8 +64,8 @@ public class ListarVuelo extends javax.swing.JFrame {
 
         TableColumnModel columnModel = jTableVuelos.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(40);
-        columnModel.getColumn(1).setPreferredWidth(140);
-        columnModel.getColumn(2).setPreferredWidth(140);
+        columnModel.getColumn(1).setPreferredWidth(160);
+        columnModel.getColumn(2).setPreferredWidth(160);
         columnModel.getColumn(3).setPreferredWidth(55);
         columnModel.getColumn(4).setPreferredWidth(90);
         columnModel.getColumn(5).setPreferredWidth(160);
@@ -137,6 +126,7 @@ public class ListarVuelo extends javax.swing.JFrame {
         jButtonVer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jButtonListar.setText("Listar");
         jButtonListar.addActionListener(new java.awt.event.ActionListener() {
@@ -202,9 +192,9 @@ public class ListarVuelo extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButtonVer)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonTerminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonTerminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonEliminar)))
                 .addContainerGap())
         );
@@ -235,20 +225,22 @@ public class ListarVuelo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonListarActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        new MenuPrincipalAdministrador().setVisible(true);
+        new MenuPrincipalOperador().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         Administrar_Vuelo av = new Administrar_Vuelo();
-        int R = JOptionPane.showConfirmDialog(null, "¿Seguro?", "¡Alerta!", JOptionPane.YES_NO_OPTION, 0, null);
-        if (this.jTableVuelos.getSelectedRow() != -1 && R == 0) {
-            jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0).toString();
-            av.eliminarVuelo(Integer.parseInt(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0).toString()));
-            Clear_Table();
-            CargarTabla(this.jCheckBoxTerminado.isSelected());
-        } else {
+        if (this.jTableVuelos.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione un vuelo de la lista.");
+        } else {
+            int R = JOptionPane.showConfirmDialog(null, "¿Seguro?", "¡Alerta!", JOptionPane.YES_NO_OPTION, 0, null);
+            if (R == 0) {
+                jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0).toString();
+                av.eliminarVuelo(Integer.parseInt(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0).toString()));
+                Clear_Table();
+                CargarTabla(this.jCheckBoxTerminado.isSelected());
+            }
         }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
@@ -271,13 +263,11 @@ public class ListarVuelo extends javax.swing.JFrame {
                 } catch (ParseException ex) {
                     Logger.getLogger(ListarVuelo.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
                 vuelo.setFecha_vuelo(date);
-                //----------
-
                 Administrar_Vuelo av = new Administrar_Vuelo();
                 ArrayList<Piloto> pilotoUnico = av.listarPilotoUnico(Integer.parseInt(String.valueOf(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0))));
 
-                //----------
                 this.setEnabled(false);
                 VentanaTerminarVuelo.setVisible(true);
                 VentanaTerminarVuelo.setVuelo(vuelo);
@@ -315,11 +305,9 @@ public class ListarVuelo extends javax.swing.JFrame {
                 fila[3] = listaPilotos.get(i).getTipo();
                 VentanaListarPasajeros.modelo.addRow(fila);
             }
-            //-----------
-
+            
             this.setEnabled(false);
             VentanaListarPasajeros.setVentanaListarVuelo(this);
-            //VentanaListarPasajeros.jLabel1.setText(String.valueOf(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0)));
             VentanaListarPasajeros.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un vuelo de la lista.");

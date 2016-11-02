@@ -210,6 +210,13 @@ public class IngresarVuelo extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        jTextFieldMision.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldMisionKeyTyped(evt);
+            }
+        });
 
         jButtonVolver.setText("Volver");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -374,7 +381,7 @@ public class IngresarVuelo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        new MenuPrincipalAdministrador().setVisible(true);
+        new MenuPrincipalOperador().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
@@ -477,6 +484,13 @@ public class IngresarVuelo extends javax.swing.JFrame {
             modelo.addRow(new Object[]{item_pasajero.getValue(), item_pasajero.getRut(), item_pasajero.getNombre() + " " + item_pasajero.getApellido()});
         }
     }//GEN-LAST:event_jButtonAñadirActionPerformed
+
+    private void jTextFieldMisionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldMisionKeyTyped
+        int max = 37;
+        if (this.jTextFieldMision.getText().length() >= max) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldMisionKeyTyped
 
     /**
      * @param args the command line arguments

@@ -26,6 +26,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -201,6 +202,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldMision">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldMisionKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBoxAeronave">
       <Properties>

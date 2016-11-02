@@ -4,7 +4,6 @@ import Database.Conexion;
 import Modelo.Aerodromo;
 import Modelo.Aeronave;
 import Modelo.Licencia;
-import Modelo.Persona;
 import Modelo.Piloto;
 import Modelo.Vuelo;
 import Vista.ListarVuelo;
@@ -33,7 +32,7 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
             }
             JOptionPane.showMessageDialog(null, "El vuelo ha sido ingresado correctamente.");
         } catch (Exception ex) {
-            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "El vuelo no ha sido ingresado correctamente.");
         }
 
     }
@@ -41,15 +40,15 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
     public void modificarVuelo() {
     }
 
-    public boolean eliminarVuelo(int id) {
+    public void eliminarVuelo(int id) {
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
             dbconn.escribir("DELETE FROM tripulacion WHERE vuelos_id = " + id);
             dbconn.escribir("DELETE FROM vuelos WHERE id = " + id);
-            return true;
-        } catch (Exception e) {
-            return false;
+            JOptionPane.showMessageDialog(null, "El vuelo ha sido eliminado correctamente.");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "El vuelo no ha sido eliminado correctamente.");
         }
     }
 
@@ -58,27 +57,7 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
 
     }
 
-    public boolean sumarHoras2(int id, String matricula, Date fecha_inicio, Date fecha_termino) {
-        try {
-            Conexion dbconn = new Conexion();
-            dbconn.conectar();
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            int calculo_fecha = (int) ((fecha_termino.getTime() - fecha_inicio.getTime()) / 1000);
-            float num1 = calculo_fecha;
-            float num2 = 3600;
-            float horas = num1 / num2;
-            DecimalFormat def = new DecimalFormat("0.00000");
-            String horasString = def.format(horas);
-            dbconn.escribir("UPDATE vuelos SET horas_vuelo = (horas_vuelo + " + horasString.replace(',', '.') + "), estado_vuelo = 'terminado' WHERE id = " + id);
-            dbconn.escribir("UPDATE aeronaves SET horas_vuelo = (horas_vuelo + " + horasString.replace(',', '.') + ") WHERE matricula = '" + matricula + "'");
-            dbconn.escribir("UPDATE pilotos SET pilotos.horas_vuelo = (pilotos.horas_vuelo + " + horasString.replace(',', '.') + ") WHERE pilotos.id = (SELECT pilotos_id FROM tripulacion WHERE tripulacion.vuelos_id = " + id + " AND tripulacion.pilotos_id = pilotos.id)");
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public void sumarHoras3(int id, Date fecha_inicio, Date fecha_termino,String[] licencias) {
+    public void sumarHoras3(int id, Date fecha_inicio, Date fecha_termino, String[] licencias) {
         Conexion dbconn = new Conexion();
         dbconn.conectar();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -91,17 +70,15 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
         String id_licencias = "";
         for (int i = 0; i < licencias.length; i++) {
             id_licencias = id_licencias + licencias[i];
-            if (i != licencias.length-1) {
-                id_licencias = id_licencias+",";
+            if (i != licencias.length - 1) {
+                id_licencias = id_licencias + ",";
             }
         }
         dbconn.escribir("UPDATE vuelos SET horas_vuelo = (horas_vuelo + " + horasString.replace(',', '.') + "), estado_vuelo = 'terminado' WHERE id = " + id);
-        dbconn.escribir("UPDATE licencias SET horas_vuelo = (horas_vuelo + 10) WHERE id IN ("+id_licencias+")");
+        dbconn.escribir("UPDATE licencias SET horas_vuelo = (horas_vuelo + 10) WHERE id IN (" + id_licencias + ")");
         dbconn.sumar_horas(id);
+        JOptionPane.showMessageDialog(null, "El vuelo ha sido terminado correctamente.");
     }
-
-    ListarVuelo vistaListarVuelo = new ListarVuelo();
-    JTable tabla = null;
 
     //Metodo para llenar la lista de aerodromos.
     public ArrayList<Aerodromo> listarAerodromo() {
@@ -139,7 +116,8 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
                 listaAeronave.add(aeronave);
             }
 
-        } catch (Exception e) {
+        } catch (Exception ex) {
+
         }
         return listaAeronave;
     }
@@ -155,7 +133,8 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
                 piloto.setId(rs.getInt("id"));
                 piloto.setRut(rs.getString("rut"));
             }
-        } catch (Exception e) {
+        } catch (Exception ex) {
+
         }
         return piloto.getId();
     }
@@ -177,11 +156,12 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
                 listaPiloto.add(piloto);
             }
 
-        } catch (Exception e) {
+        } catch (Exception ex) {
+
         }
         return listaPiloto;
     }
-    
+
     public ArrayList<Piloto> listarPilotoUnico(int id_vuelos) {
         ArrayList listaPiloto = new ArrayList();
         Piloto piloto;
@@ -198,11 +178,12 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
                 listaPiloto.add(piloto);
             }
 
-        } catch (Exception e) {
+        } catch (Exception ex) {
+
         }
         return listaPiloto;
     }
-    
+
     public ArrayList<Licencia> listarLicencias(int id_vuelos) {
         ArrayList listaLicencia = new ArrayList();
         Licencia licencia;
@@ -218,6 +199,7 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
             }
 
         } catch (Exception e) {
+
         }
         return listaLicencia;
     }
@@ -245,7 +227,7 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
                 listaVuelo.add(vuelo);
             }
 
-        } catch (Exception e) {
+        } catch (Exception ex) {
 
         }
         return listaVuelo;
@@ -273,7 +255,7 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
                 listaVuelo.add(vuelo);
             }
 
-        } catch (Exception e) {
+        } catch (Exception ex) {
 
         }
         return listaVuelo;
@@ -296,7 +278,8 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
                 listaPiloto.add(piloto);
             }
 
-        } catch (Exception e) {
+        } catch (Exception ex) {
+
         }
         return listaPiloto;
     }
