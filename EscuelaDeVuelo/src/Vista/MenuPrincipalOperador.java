@@ -41,8 +41,15 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnIngresarVuelos = new javax.swing.JButton();
         btnTerminarVuelo = new javax.swing.JButton();
+        btnListarComponentes = new javax.swing.JButton();
+        btnAgregarComponente = new javax.swing.JButton();
+        btnIngresarAeronave = new javax.swing.JButton();
+        btnListarAeronave = new javax.swing.JButton();
+        btnAgregarSubcomponente = new javax.swing.JButton();
+        btnListarTripulacion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Operador");
 
         btnIngresarPiloto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IngresarPiloto.png"))); // NOI18N
         btnIngresarPiloto.setBorder(null);
@@ -124,54 +131,137 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
             }
         });
 
+        btnListarComponentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ListarComponentes.png"))); // NOI18N
+        btnListarComponentes.setBorder(null);
+        btnListarComponentes.setBorderPainted(false);
+        btnListarComponentes.setContentAreaFilled(false);
+        btnListarComponentes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnListarComponentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarComponentesActionPerformed(evt);
+            }
+        });
+
+        btnAgregarComponente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AgregarComponente.png"))); // NOI18N
+        btnAgregarComponente.setBorder(null);
+        btnAgregarComponente.setBorderPainted(false);
+        btnAgregarComponente.setContentAreaFilled(false);
+        btnAgregarComponente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregarComponente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarComponenteActionPerformed(evt);
+            }
+        });
+
+        btnIngresarAeronave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IngresarAeronave.png"))); // NOI18N
+        btnIngresarAeronave.setBorder(null);
+        btnIngresarAeronave.setBorderPainted(false);
+        btnIngresarAeronave.setContentAreaFilled(false);
+        btnIngresarAeronave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIngresarAeronave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarAeronaveActionPerformed(evt);
+            }
+        });
+
+        btnListarAeronave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ListarAeronaves.png"))); // NOI18N
+        btnListarAeronave.setBorder(null);
+        btnListarAeronave.setBorderPainted(false);
+        btnListarAeronave.setContentAreaFilled(false);
+        btnListarAeronave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnListarAeronave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarAeronaveActionPerformed(evt);
+            }
+        });
+
+        btnAgregarSubcomponente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AgregarSubComponente.png"))); // NOI18N
+        btnAgregarSubcomponente.setBorder(null);
+        btnAgregarSubcomponente.setBorderPainted(false);
+        btnAgregarSubcomponente.setContentAreaFilled(false);
+        btnAgregarSubcomponente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregarSubcomponente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarSubcomponenteActionPerformed(evt);
+            }
+        });
+
+        btnListarTripulacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ListarTripulacion.png"))); // NOI18N
+        btnListarTripulacion.setBorder(null);
+        btnListarTripulacion.setBorderPainted(false);
+        btnListarTripulacion.setContentAreaFilled(false);
+        btnListarTripulacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnListarTripulacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarTripulacionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnListarVuelos)
-                        .addGap(51, 51, 51)
-                        .addComponent(btnListarPiloto))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnIngresarVuelos)
-                            .addComponent(btnTerminarVuelo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnTerminarVuelo)
+                            .addComponent(btnListarVuelos)
+                            .addComponent(btnListarTripulacion))
+                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnListarPiloto)
+                            .addComponent(btnIngresarPiloto)
                             .addComponent(btnListarLicencias)
-                            .addComponent(btnIngresarPiloto))))
-                .addGap(0, 29, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnAgregarSubcomponente))
+                        .addGap(46, 46, 46)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnListarAeronave)
+                            .addComponent(btnIngresarAeronave)
+                            .addComponent(btnListarComponentes)
+                            .addComponent(btnAgregarComponente))
+                        .addContainerGap(22, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4)
+                        .addGap(31, 31, 31))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton4)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnListarVuelos)
-                    .addComponent(btnListarPiloto))
-                .addGap(11, 11, 11)
+                    .addComponent(btnListarPiloto)
+                    .addComponent(btnListarAeronave))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnIngresarPiloto)
+                    .addComponent(btnIngresarVuelos)
+                    .addComponent(btnIngresarAeronave))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnIngresarPiloto)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnListarLicencias))
+                        .addComponent(btnTerminarVuelo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnListarTripulacion))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnListarLicencias)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAgregarSubcomponente))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnIngresarVuelos)
+                        .addComponent(btnListarComponentes)
                         .addGap(18, 18, 18)
-                        .addComponent(btnTerminarVuelo)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addContainerGap())
+                        .addComponent(btnAgregarComponente)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -214,7 +304,41 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
 
     private void btnTerminarVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarVueloActionPerformed
         // TODO add your handling code here:
+         new TerminarVuelo().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnTerminarVueloActionPerformed
+
+    private void btnListarComponentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarComponentesActionPerformed
+        // TODO add your handling code here:
+         new ListarComponente().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnListarComponentesActionPerformed
+
+    private void btnAgregarComponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarComponenteActionPerformed
+        // TODO add your handling code here:
+         new AgregarComponente().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAgregarComponenteActionPerformed
+
+    private void btnIngresarAeronaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarAeronaveActionPerformed
+        // TODO add your handling code here:
+         new IngresarAeronave().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnIngresarAeronaveActionPerformed
+
+    private void btnListarAeronaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarAeronaveActionPerformed
+        // TODO add your handling code here:
+         new ListarAeronave().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnListarAeronaveActionPerformed
+
+    private void btnAgregarSubcomponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarSubcomponenteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarSubcomponenteActionPerformed
+
+    private void btnListarTripulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarTripulacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListarTripulacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,10 +376,16 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarComponente;
+    private javax.swing.JButton btnAgregarSubcomponente;
+    private javax.swing.JButton btnIngresarAeronave;
     private javax.swing.JButton btnIngresarPiloto;
     private javax.swing.JButton btnIngresarVuelos;
+    private javax.swing.JButton btnListarAeronave;
+    private javax.swing.JButton btnListarComponentes;
     private javax.swing.JButton btnListarLicencias;
     private javax.swing.JButton btnListarPiloto;
+    private javax.swing.JButton btnListarTripulacion;
     private javax.swing.JButton btnListarVuelos;
     private javax.swing.JButton btnTerminarVuelo;
     private javax.swing.JButton jButton4;
