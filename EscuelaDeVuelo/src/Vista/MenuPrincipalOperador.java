@@ -40,7 +40,6 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
         btnListarLicencias = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnIngresarVuelos = new javax.swing.JButton();
-        btnTerminarVuelo = new javax.swing.JButton();
         btnListarComponentes = new javax.swing.JButton();
         btnAgregarComponente = new javax.swing.JButton();
         btnListarAeronave = new javax.swing.JButton();
@@ -119,17 +118,6 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
             }
         });
 
-        btnTerminarVuelo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/TerminarVuelo.png"))); // NOI18N
-        btnTerminarVuelo.setBorder(null);
-        btnTerminarVuelo.setBorderPainted(false);
-        btnTerminarVuelo.setContentAreaFilled(false);
-        btnTerminarVuelo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnTerminarVuelo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTerminarVueloActionPerformed(evt);
-            }
-        });
-
         btnListarComponentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ListarComponentes.png"))); // NOI18N
         btnListarComponentes.setBorder(null);
         btnListarComponentes.setBorderPainted(false);
@@ -195,7 +183,6 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnIngresarVuelos)
-                            .addComponent(btnTerminarVuelo)
                             .addComponent(btnListarVuelos)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
@@ -234,9 +221,7 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
                     .addComponent(btnListarComponentes))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnTerminarVuelo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton4)
                         .addGap(10, 10, 10))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -287,12 +272,6 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
         new IngresarVuelo().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIngresarVuelosActionPerformed
-
-    private void btnTerminarVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarVueloActionPerformed
-        // TODO add your handling code here:
-         new TerminarVuelo().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnTerminarVueloActionPerformed
 
     private void btnListarComponentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarComponentesActionPerformed
         // TODO add your handling code here:
@@ -366,7 +345,6 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
     private javax.swing.JButton btnListarPiloto;
     private javax.swing.JButton btnListarTripulacion;
     private javax.swing.JButton btnListarVuelos;
-    private javax.swing.JButton btnTerminarVuelo;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
