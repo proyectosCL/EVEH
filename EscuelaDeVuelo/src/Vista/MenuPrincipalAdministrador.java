@@ -132,23 +132,32 @@ public class MenuPrincipalAdministrador extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        new IngresarUsuario().setVisible(true);
+        IngresarUsuario btn = new IngresarUsuario();
+                        btn.setLocationRelativeTo(null);
+                        btn.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        Inicio btn = new Inicio();
+                        btn.setLocationRelativeTo(null);
+                        btn.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnModificarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarUsuarioActionPerformed
-        new ModificarPersona().setVisible(true);
+        ModificarPersona btn = new ModificarPersona();
+                        btn.setLocationRelativeTo(null);
+                        btn.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnModificarUsuarioActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        new ListarPersonas().setVisible(true);
+        ListarPersonas btn = new ListarPersonas();
+                        btn.setLocationRelativeTo(null);
+                        btn.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 

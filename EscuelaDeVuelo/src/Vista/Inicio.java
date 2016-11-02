@@ -187,11 +187,15 @@ public class Inicio extends javax.swing.JFrame {
             if (user.getUsuario() != null) {
                 switch (user.getId_tipo()) {
                     case 1:
-                        new MenuPrincipalAdministrador().setVisible(true);
+                        MenuPrincipalAdministrador menu = new MenuPrincipalAdministrador();
+                        menu.setLocationRelativeTo(null);
+                        menu.setVisible(true);
                         this.dispose();
                         break;
                     case 2:
-                        new MenuPrincipalOperador().setVisible(true);
+                        MenuPrincipalOperador menuope = new MenuPrincipalOperador();
+                        menuope.setLocationRelativeTo(null);
+                        menuope.setVisible(true);
                         this.dispose();
                         break;
                     default:

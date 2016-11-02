@@ -19,7 +19,7 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
      */
     public MenuPrincipalOperador() {
         initComponents();
-        
+
         Image icon = new ImageIcon(getClass().getResource("../Imagenes/icono.jpg")).getImage();
         setIconImage(icon);
     }
@@ -40,7 +40,6 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
         btnListarLicencias = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnIngresarVuelos = new javax.swing.JButton();
-        btnTerminarVuelo = new javax.swing.JButton();
         btnListarComponentes = new javax.swing.JButton();
         btnAgregarComponente = new javax.swing.JButton();
         btnListarAeronave = new javax.swing.JButton();
@@ -119,17 +118,6 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
             }
         });
 
-        btnTerminarVuelo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/TerminarVuelo.png"))); // NOI18N
-        btnTerminarVuelo.setBorder(null);
-        btnTerminarVuelo.setBorderPainted(false);
-        btnTerminarVuelo.setContentAreaFilled(false);
-        btnTerminarVuelo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnTerminarVuelo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTerminarVueloActionPerformed(evt);
-            }
-        });
-
         btnListarComponentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ListarComponentes.png"))); // NOI18N
         btnListarComponentes.setBorder(null);
         btnListarComponentes.setBorderPainted(false);
@@ -195,7 +183,6 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnIngresarVuelos)
-                            .addComponent(btnTerminarVuelo)
                             .addComponent(btnListarVuelos)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
@@ -234,9 +221,7 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
                     .addComponent(btnListarComponentes))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnTerminarVuelo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton4)
                         .addGap(10, 10, 10))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -255,69 +240,90 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
 
     private void btnIngresarPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarPilotoActionPerformed
         // TODO add your handling code here:
-        new IngresarPiloto().setVisible(true);
+        IngresarPiloto ip = new IngresarPiloto();
+        ip.setLocationRelativeTo(null);
+        ip.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIngresarPilotoActionPerformed
 
     private void btnListarVuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarVuelosActionPerformed
         // TODO add your handling code here:
-        new ListarVuelo().setVisible(true);
+        ListarVuelo lv = new ListarVuelo();
+        lv.setLocationRelativeTo(null);
+        lv.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnListarVuelosActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        Inicio btn = new Inicio();
+        btn.setLocationRelativeTo(null);
+        btn.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnListarPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarPilotoActionPerformed
         // TODO add your handling code here:
-        new ListarPiloto().setVisible(true);
+        ListarPiloto btn = new ListarPiloto();
+        btn.setLocationRelativeTo(null);
+        btn.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnListarPilotoActionPerformed
 
     private void btnListarLicenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarLicenciasActionPerformed
         // TODO add your handling code here:
-        new ListarLicenciaPiloto().setVisible(true);
+        ListarLicenciaPiloto btn = new ListarLicenciaPiloto();
+        btn.setLocationRelativeTo(null);
+        btn.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnListarLicenciasActionPerformed
 
     private void btnIngresarVuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarVuelosActionPerformed
         // TODO add your handling code here:
-        new IngresarVuelo().setVisible(true);
+        IngresarVuelo btn = new IngresarVuelo();
+        btn.setLocationRelativeTo(null);
+        btn.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIngresarVuelosActionPerformed
 
-    private void btnTerminarVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarVueloActionPerformed
-        // TODO add your handling code here:
-         new TerminarVuelo().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnTerminarVueloActionPerformed
-
     private void btnListarComponentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarComponentesActionPerformed
         // TODO add your handling code here:
-         new ListarComponente().setVisible(true);
+        ListarComponente btn = new ListarComponente();
+        btn.setLocationRelativeTo(null);
+        btn.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnListarComponentesActionPerformed
 
     private void btnAgregarComponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarComponenteActionPerformed
         // TODO add your handling code here:
-         new AgregarComponente().setVisible(true);
+        AgregarComponente btn = new AgregarComponente();
+        btn.setLocationRelativeTo(null);
+        btn.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAgregarComponenteActionPerformed
 
     private void btnListarAeronaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarAeronaveActionPerformed
         // TODO add your handling code here:
-         new ListarAeronave().setVisible(true);
+        ListarAeronave btn = new ListarAeronave();
+        btn.setLocationRelativeTo(null);
+        btn.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnListarAeronaveActionPerformed
 
     private void btnAgregarSubcomponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarSubcomponenteActionPerformed
         // TODO add your handling code here:
+        IngresarSubComponente btn = new IngresarSubComponente();
+        btn.setLocationRelativeTo(null);
+        btn.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnAgregarSubcomponenteActionPerformed
 
     private void btnListarTripulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarTripulacionActionPerformed
         // TODO add your handling code here:
+        ListarTripulacion btn = new ListarTripulacion();
+        btn.setLocationRelativeTo(null);
+        btn.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnListarTripulacionActionPerformed
 
     /**
@@ -366,7 +372,6 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
     private javax.swing.JButton btnListarPiloto;
     private javax.swing.JButton btnListarTripulacion;
     private javax.swing.JButton btnListarVuelos;
-    private javax.swing.JButton btnTerminarVuelo;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
