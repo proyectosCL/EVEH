@@ -169,7 +169,11 @@ public class AgregarComponente2 extends javax.swing.JFrame {
 
         lblCabina.setText("jLabel10");
 
-        btnGuardar.setText("Guardar cambios");
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/guardar.png"))); // NOI18N
+        btnGuardar.setBorder(null);
+        btnGuardar.setBorderPainted(false);
+        btnGuardar.setContentAreaFilled(false);
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -202,7 +206,7 @@ public class AgregarComponente2 extends javax.swing.JFrame {
                                     .addComponent(lblMotor)
                                     .addComponent(lblCabina)))))
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 190, Short.MAX_VALUE))
+                .addGap(0, 186, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)

@@ -78,7 +78,11 @@ public class IngresarComponente extends javax.swing.JFrame {
 
         cbxTipoNave.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fuselaje", "Alas", "Empenaje", "Controles y Frenos", "Tren de Aterrizaje", "Equipos", "Motor", "Cabina" }));
 
-        btnGuardarNuevoComponente.setText("Guardar");
+        btnGuardarNuevoComponente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/guardar.png"))); // NOI18N
+        btnGuardarNuevoComponente.setBorder(null);
+        btnGuardarNuevoComponente.setBorderPainted(false);
+        btnGuardarNuevoComponente.setContentAreaFilled(false);
+        btnGuardarNuevoComponente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardarNuevoComponente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarNuevoComponenteActionPerformed(evt);
@@ -99,19 +103,15 @@ public class IngresarComponente extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnGuardarNuevoComponente)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxTipoNave, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txtFabricante, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                         .addComponent(txtDesc)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(spinDiasVuelo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                            .addComponent(spinHorasVuelo, javax.swing.GroupLayout.Alignment.LEADING))))
+                        .addComponent(spinDiasVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                        .addComponent(spinHorasVuelo)))
                 .addContainerGap(25, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGuardarNuevoComponente)
-                .addGap(329, 329, 329))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,7 +140,7 @@ public class IngresarComponente extends javax.swing.JFrame {
                     .addComponent(cbxTipoNave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnGuardarNuevoComponente)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -76,7 +76,11 @@ public class IngresarSubComponente extends javax.swing.JFrame {
         cbxTipoNaveSub.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fuselaje", "Alas", "Empenaje", "Controles y Frenos", "Tren de Aterrizaje", "Equipos", "Motor", "Cabina", "Sub-Componente" }));
         cbxTipoNaveSub.setEnabled(false);
 
-        btnGuardarNuevoComponenteSub.setText("Guardar");
+        btnGuardarNuevoComponenteSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/guardar.png"))); // NOI18N
+        btnGuardarNuevoComponenteSub.setBorder(null);
+        btnGuardarNuevoComponenteSub.setBorderPainted(false);
+        btnGuardarNuevoComponenteSub.setContentAreaFilled(false);
+        btnGuardarNuevoComponenteSub.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardarNuevoComponenteSub.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarNuevoComponenteSubActionPerformed(evt);
@@ -107,7 +111,7 @@ public class IngresarSubComponente extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(374, Short.MAX_VALUE)
+                .addContainerGap(328, Short.MAX_VALUE)
                 .addComponent(btnGuardarNuevoComponenteSub)
                 .addGap(306, 306, 306))
         );
@@ -138,7 +142,7 @@ public class IngresarSubComponente extends javax.swing.JFrame {
                     .addComponent(cbxTipoNaveSub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnGuardarNuevoComponenteSub)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();

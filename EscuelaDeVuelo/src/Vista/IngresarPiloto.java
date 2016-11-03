@@ -64,7 +64,10 @@ public class IngresarPiloto extends javax.swing.JFrame {
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "No hay usuarios para agregar a pilotos");
         }
-        
+            btnIngresarLicencia.setEnabled(false);
+            btnIngresarLicencia.setVisible(false);
+            btnIngresar.setEnabled(true);
+            btnIngresar.setVisible(true);
 
         
     }
@@ -78,6 +81,7 @@ public class IngresarPiloto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -91,7 +95,9 @@ public class IngresarPiloto extends javax.swing.JFrame {
         JDateMedicina = new com.toedter.calendar.JDateChooser();
         JDateUltimoVuelo = new com.toedter.calendar.JDateChooser();
         cbRut = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
+        btnIngresarLicencia = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,14 +126,22 @@ public class IngresarPiloto extends javax.swing.JFrame {
             }
         });
 
-        btnIngresar.setText("Ingresar Piloto sin licencias");
+        btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregar.png"))); // NOI18N
+        btnIngresar.setBorder(null);
+        btnIngresar.setBorderPainted(false);
+        btnIngresar.setContentAreaFilled(false);
+        btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarActionPerformed(evt);
             }
         });
 
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/cancelar.png"))); // NOI18N
+        btnCancelar.setBorder(null);
+        btnCancelar.setBorderPainted(false);
+        btnCancelar.setContentAreaFilled(false);
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -145,10 +159,28 @@ public class IngresarPiloto extends javax.swing.JFrame {
 
         cbRut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
 
-        jButton1.setText("Ingresar Piloto Con licencias");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnIngresarLicencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregar.png"))); // NOI18N
+        btnIngresarLicencia.setBorder(null);
+        btnIngresarLicencia.setBorderPainted(false);
+        btnIngresarLicencia.setContentAreaFilled(false);
+        btnIngresarLicencia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIngresarLicencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnIngresarLicenciaActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Tiene Licencias");
+
+        jRadioButton1.setText("Si");
+        jRadioButton1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jRadioButton1ItemStateChanged(evt);
+            }
+        });
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
             }
         });
 
@@ -170,26 +202,31 @@ public class IngresarPiloto extends javax.swing.JFrame {
                             .addComponent(jTextFieldDias)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6)))
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnIngresar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                                .addComponent(btnCancelar))
                             .addComponent(JDateUltimoVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldHoras)
-                            .addComponent(JDateMedicina, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(JDateMedicina, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jRadioButton1)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnIngresarLicencia)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnIngresar)
+                        .addGap(79, 79, 79)
+                        .addComponent(btnCancelar)))
                 .addGap(62, 62, 62))
             .addGroup(layout.createSequentialGroup()
                 .addGap(168, 168, 168)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(302, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,13 +254,16 @@ public class IngresarPiloto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
                     .addComponent(JDateUltimoVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jRadioButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnIngresar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addGap(8, 8, 8))
+                    .addComponent(btnIngresar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnIngresarLicencia, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(54, 54, 54))
         );
 
         pack();
@@ -304,7 +344,7 @@ public class IngresarPiloto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        MenuPrincipalAdministrador menu = new MenuPrincipalAdministrador();
+        MenuPrincipalOperador menu = new MenuPrincipalOperador();
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -330,7 +370,7 @@ public class IngresarPiloto extends javax.swing.JFrame {
         
     }//GEN-LAST:event_JDateMedicinaKeyTyped
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnIngresarLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarLicenciaActionPerformed
         // TODO add your handling code here:
         try{
             //vali combo
@@ -404,7 +444,26 @@ public class IngresarPiloto extends javax.swing.JFrame {
             System.out.println(ex);
         }
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnIngresarLicenciaActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jRadioButton1ItemStateChanged
+        // TODO add your handling code here:
+        if (jRadioButton1.isSelected()) {
+            btnIngresarLicencia.setEnabled(true);
+            btnIngresarLicencia.setVisible(true);
+            btnIngresar.setEnabled(false);
+            btnIngresar.setVisible(false);
+        }else{
+            btnIngresarLicencia.setEnabled(false);
+            btnIngresarLicencia.setVisible(false);
+            btnIngresar.setEnabled(true);
+            btnIngresar.setVisible(true);
+        }
+    }//GEN-LAST:event_jRadioButton1ItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -446,14 +505,17 @@ public class IngresarPiloto extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser JDateUltimoVuelo;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnIngresarLicencia;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cbRut;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JTextField jTextFieldDias;
     private javax.swing.JTextField jTextFieldHoras;
     // End of variables declaration//GEN-END:variables

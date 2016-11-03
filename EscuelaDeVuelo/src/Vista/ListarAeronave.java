@@ -67,15 +67,23 @@ public class ListarAeronave extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaComponentes);
 
-        btnEliminarCompte.setText("Eliminar Aeronave");
+        btnEliminarCompte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/eliminar.png"))); // NOI18N
         btnEliminarCompte.setToolTipText("");
+        btnEliminarCompte.setBorder(null);
+        btnEliminarCompte.setBorderPainted(false);
+        btnEliminarCompte.setContentAreaFilled(false);
+        btnEliminarCompte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminarCompte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarCompteActionPerformed(evt);
             }
         });
 
-        btnModificarCompte.setText("Modificar Aeronave");
+        btnModificarCompte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/editar.png"))); // NOI18N
+        btnModificarCompte.setBorder(null);
+        btnModificarCompte.setBorderPainted(false);
+        btnModificarCompte.setContentAreaFilled(false);
+        btnModificarCompte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnModificarCompte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarCompteActionPerformed(evt);
@@ -85,14 +93,22 @@ public class ListarAeronave extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Listar Aeronaves");
 
-        btnAgregarAeronave.setText("Agregar Aeronave");
+        btnAgregarAeronave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregar.png"))); // NOI18N
+        btnAgregarAeronave.setBorder(null);
+        btnAgregarAeronave.setBorderPainted(false);
+        btnAgregarAeronave.setContentAreaFilled(false);
+        btnAgregarAeronave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAgregarAeronave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarAeronaveActionPerformed(evt);
             }
         });
 
-        btnMenu.setText("Volver Menu");
+        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/regresar.png"))); // NOI18N
+        btnMenu.setBorder(null);
+        btnMenu.setBorderPainted(false);
+        btnMenu.setContentAreaFilled(false);
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuActionPerformed(evt);
@@ -104,24 +120,22 @@ public class ListarAeronave extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
                         .addComponent(btnAgregarAeronave)
-                        .addGap(106, 106, 106)
+                        .addGap(41, 41, 41)
                         .addComponent(btnModificarCompte)
-                        .addGap(108, 108, 108)
-                        .addComponent(btnEliminarCompte))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(303, 303, 303)
+                        .addGap(32, 32, 32)
+                        .addComponent(btnEliminarCompte)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnMenu)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(187, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(169, 169, 169))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,12 +144,12 @@ public class ListarAeronave extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEliminarCompte)
                     .addComponent(btnModificarCompte)
-                    .addComponent(btnAgregarAeronave))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(btnMenu))
+                    .addComponent(btnAgregarAeronave)
+                    .addComponent(btnMenu))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();

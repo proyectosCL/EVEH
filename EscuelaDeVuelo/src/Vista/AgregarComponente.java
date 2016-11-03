@@ -171,7 +171,11 @@ public class AgregarComponente extends javax.swing.JFrame {
 
         lblControlesYFrenos.setText("jLabel10");
 
-        btnAvanzar.setText("Avanzar");
+        btnAvanzar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/avanzar.png"))); // NOI18N
+        btnAvanzar.setBorder(null);
+        btnAvanzar.setBorderPainted(false);
+        btnAvanzar.setContentAreaFilled(false);
+        btnAvanzar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAvanzar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAvanzarActionPerformed(evt);
@@ -195,9 +199,6 @@ public class AgregarComponente extends javax.swing.JFrame {
                         .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(137, 137, 137)
-                                .addComponent(btnAvanzar))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(96, 96, 96)
                                 .addComponent(jLabel6))
                             .addGroup(layout.createSequentialGroup()
@@ -207,8 +208,11 @@ public class AgregarComponente extends javax.swing.JFrame {
                                     .addComponent(lblFuselaje)
                                     .addComponent(lblEmpenaje)
                                     .addComponent(lblControlesYFrenos)))))
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 209, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(128, 128, 128)
+                        .addComponent(btnAvanzar)))
+                .addGap(0, 195, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()

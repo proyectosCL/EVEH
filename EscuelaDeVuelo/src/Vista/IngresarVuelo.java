@@ -218,14 +218,22 @@ public class IngresarVuelo extends javax.swing.JFrame {
             }
         });
 
-        jButtonVolver.setText("Volver");
+        jButtonVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/regresar.png"))); // NOI18N
+        jButtonVolver.setBorder(null);
+        jButtonVolver.setBorderPainted(false);
+        jButtonVolver.setContentAreaFilled(false);
+        jButtonVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVolverActionPerformed(evt);
             }
         });
 
-        jButtonIngresar.setText("Ingresar");
+        jButtonIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/guardar.png"))); // NOI18N
+        jButtonIngresar.setBorder(null);
+        jButtonIngresar.setBorderPainted(false);
+        jButtonIngresar.setContentAreaFilled(false);
+        jButtonIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonIngresarActionPerformed(evt);
@@ -240,7 +248,11 @@ public class IngresarVuelo extends javax.swing.JFrame {
 
         jComboBoxSegundo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00" }));
 
-        jButtonAñadir.setText("Añadir");
+        jButtonAñadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregar.png"))); // NOI18N
+        jButtonAñadir.setBorder(null);
+        jButtonAñadir.setBorderPainted(false);
+        jButtonAñadir.setContentAreaFilled(false);
+        jButtonAñadir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonAñadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAñadirActionPerformed(evt);
@@ -267,7 +279,11 @@ public class IngresarVuelo extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTablePasajeros);
 
-        jButtonCode.setText("Limpiar");
+        jButtonCode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/limpiar.png"))); // NOI18N
+        jButtonCode.setBorder(null);
+        jButtonCode.setBorderPainted(false);
+        jButtonCode.setContentAreaFilled(false);
+        jButtonCode.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCodeActionPerformed(evt);
@@ -310,7 +326,7 @@ public class IngresarVuelo extends javax.swing.JFrame {
                                     .addComponent(jComboBoxDestino, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBoxPiloto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jDateFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                        .addComponent(jDateFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -364,13 +380,13 @@ public class IngresarVuelo extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxPasajero)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel7)
-                        .addComponent(jButtonAñadir)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAñadir))
+                    .addComponent(jComboBoxPasajero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonIngresar)
                     .addComponent(jButtonCode))
