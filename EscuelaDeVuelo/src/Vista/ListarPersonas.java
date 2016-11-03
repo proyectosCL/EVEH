@@ -91,7 +91,11 @@ public class ListarPersonas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnActualizar.setText("Actualizar");
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/actualizar.png"))); // NOI18N
+        btnActualizar.setBorder(null);
+        btnActualizar.setBorderPainted(false);
+        btnActualizar.setContentAreaFilled(false);
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -118,7 +122,11 @@ public class ListarPersonas extends javax.swing.JFrame {
             }
         });
 
-        btnDesactivar.setText("Desactivar Cuenta");
+        btnDesactivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/Desactivar.png"))); // NOI18N
+        btnDesactivar.setBorder(null);
+        btnDesactivar.setBorderPainted(false);
+        btnDesactivar.setContentAreaFilled(false);
+        btnDesactivar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDesactivar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDesactivarActionPerformed(evt);
@@ -139,7 +147,11 @@ public class ListarPersonas extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Listar Personas");
 
-        btnactivar.setText("Activar Cuenta");
+        btnactivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/aceptar_1.png"))); // NOI18N
+        btnactivar.setBorder(null);
+        btnactivar.setBorderPainted(false);
+        btnactivar.setContentAreaFilled(false);
+        btnactivar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnactivar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnactivarActionPerformed(evt);
@@ -162,13 +174,13 @@ public class ListarPersonas extends javax.swing.JFrame {
                     .addComponent(jScrollPane2))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(240, 240, 240)
+                .addGap(189, 189, 189)
                 .addComponent(btnDesactivar)
-                .addGap(47, 47, 47)
+                .addGap(75, 75, 75)
                 .addComponent(btnactivar)
-                .addGap(62, 62, 62)
+                .addGap(85, 85, 85)
                 .addComponent(btnModificarCompte)
-                .addContainerGap(517, Short.MAX_VALUE))
+                .addContainerGap(571, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

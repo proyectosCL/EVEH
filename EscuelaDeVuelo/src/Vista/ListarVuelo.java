@@ -128,7 +128,11 @@ public class ListarVuelo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jButtonListar.setText("Listar");
+        jButtonListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/listar.png"))); // NOI18N
+        jButtonListar.setBorder(null);
+        jButtonListar.setBorderPainted(false);
+        jButtonListar.setContentAreaFilled(false);
+        jButtonListar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonListarActionPerformed(evt);
@@ -169,15 +173,28 @@ public class ListarVuelo extends javax.swing.JFrame {
         });
 
         jCheckBoxTerminado.setText("Vuelos no terminados");
+        jCheckBoxTerminado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxTerminadoActionPerformed(evt);
+            }
+        });
 
-        jButtonTerminar.setText("Terminar");
+        jButtonTerminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/terminar.png"))); // NOI18N
+        jButtonTerminar.setBorder(null);
+        jButtonTerminar.setBorderPainted(false);
+        jButtonTerminar.setContentAreaFilled(false);
+        jButtonTerminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonTerminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonTerminarActionPerformed(evt);
             }
         });
 
-        jButtonVer.setText("Ver tripulación");
+        jButtonVer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/vertripulacion.png"))); // NOI18N
+        jButtonVer.setBorder(null);
+        jButtonVer.setBorderPainted(false);
+        jButtonVer.setContentAreaFilled(false);
+        jButtonVer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonVer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVerActionPerformed(evt);
@@ -195,12 +212,12 @@ public class ListarVuelo extends javax.swing.JFrame {
                         .addComponent(jButtonVolver)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jCheckBoxTerminado)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonListar))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButtonVer)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(27, 27, 27)
                         .addComponent(jButtonTerminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonEliminar)))
@@ -213,7 +230,9 @@ public class ListarVuelo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonListar)
                     .addComponent(jButtonVolver)
-                    .addComponent(jCheckBoxTerminado))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jCheckBoxTerminado)
+                        .addGap(6, 6, 6)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -321,6 +340,10 @@ public class ListarVuelo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Seleccione un vuelo de la lista.");
         }
     }//GEN-LAST:event_jButtonVerActionPerformed
+
+    private void jCheckBoxTerminadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxTerminadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxTerminadoActionPerformed
 
     /**
      * @param args the command line arguments

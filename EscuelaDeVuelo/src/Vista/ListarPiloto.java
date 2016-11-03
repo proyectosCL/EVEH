@@ -105,7 +105,11 @@ public class ListarPiloto extends javax.swing.JFrame {
             }
         });
 
-        btnVerLicencias.setText("Ver las licencias del Piloto");
+        btnVerLicencias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/ver.png"))); // NOI18N
+        btnVerLicencias.setBorder(null);
+        btnVerLicencias.setBorderPainted(false);
+        btnVerLicencias.setContentAreaFilled(false);
+        btnVerLicencias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVerLicencias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerLicenciasActionPerformed(evt);
@@ -144,16 +148,16 @@ public class ListarPiloto extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(237, Short.MAX_VALUE)
+                    .addContainerGap(236, Short.MAX_VALUE)
                     .addComponent(txtPilotoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(221, Short.MAX_VALUE)))
+                    .addContainerGap(222, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,9 +168,9 @@ public class ListarPiloto extends javax.swing.JFrame {
                 .addGap(59, 59, 59))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(286, Short.MAX_VALUE)
+                    .addContainerGap(290, Short.MAX_VALUE)
                     .addComponent(txtPilotoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(95, Short.MAX_VALUE)))
+                    .addContainerGap(99, Short.MAX_VALUE)))
         );
 
         pack();
