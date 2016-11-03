@@ -63,7 +63,6 @@ public class ListarPiloto extends javax.swing.JFrame {
 
             listarTodo();
 
-            btnEliminarPiloto.setVisible(false);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al crear la lista");
         }
@@ -82,10 +81,10 @@ public class ListarPiloto extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        btnEliminarPiloto = new javax.swing.JButton();
         btnModificarPiloto = new javax.swing.JButton();
         txtPilotoSeleccionado = new javax.swing.JLabel();
         btnVerLicencias = new javax.swing.JButton();
+        btnMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,17 +93,11 @@ public class ListarPiloto extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Listar Pilotos");
 
-        btnEliminarPiloto.setText("Eliminar Piloto");
-        btnEliminarPiloto.setDefaultCapable(false);
-        btnEliminarPiloto.setEnabled(false);
-        btnEliminarPiloto.setFocusPainted(false);
-        btnEliminarPiloto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarPilotoActionPerformed(evt);
-            }
-        });
-
-        btnModificarPiloto.setText("Modificar Piloto");
+        btnModificarPiloto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/editar.png"))); // NOI18N
+        btnModificarPiloto.setBorder(null);
+        btnModificarPiloto.setBorderPainted(false);
+        btnModificarPiloto.setContentAreaFilled(false);
+        btnModificarPiloto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnModificarPiloto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarPilotoActionPerformed(evt);
@@ -118,6 +111,17 @@ public class ListarPiloto extends javax.swing.JFrame {
             }
         });
 
+        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/regresar.png"))); // NOI18N
+        btnMenu.setBorder(null);
+        btnMenu.setBorderPainted(false);
+        btnMenu.setContentAreaFilled(false);
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,15 +131,16 @@ public class ListarPiloto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(263, 263, 263)
-                        .addComponent(jLabel1))
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(btnEliminarPiloto)
-                        .addGap(142, 142, 142)
+                        .addGap(304, 304, 304)
                         .addComponent(btnModificarPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(55, 55, 55)
-                        .addComponent(btnVerLicencias)))
-                .addContainerGap(190, Short.MAX_VALUE))
+                        .addComponent(btnVerLicencias)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnMenu)))
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(237, Short.MAX_VALUE)
@@ -147,19 +152,20 @@ public class ListarPiloto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminarPiloto)
-                    .addComponent(btnModificarPiloto)
-                    .addComponent(btnVerLicencias))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnModificarPiloto)
+                        .addComponent(btnVerLicencias))
+                    .addComponent(btnMenu))
                 .addGap(59, 59, 59))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(285, Short.MAX_VALUE)
+                    .addContainerGap(286, Short.MAX_VALUE)
                     .addComponent(txtPilotoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(93, Short.MAX_VALUE)))
+                    .addContainerGap(95, Short.MAX_VALUE)))
         );
 
         pack();
@@ -194,20 +200,12 @@ public class ListarPiloto extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVerLicenciasActionPerformed
 
-    private void btnEliminarPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPilotoActionPerformed
-        // TODO add your handling code here:
-        int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar el piloto seleccionado?");
-        try {
-            if (JOptionPane.OK_OPTION == resp) {
-                int id = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
-                Administrar_Pilotos ap = new Administrar_Pilotos();
-                ap.eliminarPiloto(id);
-            }
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        listarTodo();
-    }//GEN-LAST:event_btnEliminarPilotoActionPerformed
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        MenuPrincipalOperador menu = new MenuPrincipalOperador();
+        menu.setLocationRelativeTo(null);
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,7 +243,7 @@ public class ListarPiloto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEliminarPiloto;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnModificarPiloto;
     private javax.swing.JButton btnVerLicencias;
     private javax.swing.JLabel jLabel1;

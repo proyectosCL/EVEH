@@ -108,7 +108,10 @@ public class ListarPersonas extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
-        jButton2.setText("< Volver");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/regresar.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -122,7 +125,11 @@ public class ListarPersonas extends javax.swing.JFrame {
             }
         });
 
-        btnModificarCompte.setText("Modificar Persona");
+        btnModificarCompte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/editar.png"))); // NOI18N
+        btnModificarCompte.setBorder(null);
+        btnModificarCompte.setBorderPainted(false);
+        btnModificarCompte.setContentAreaFilled(false);
+        btnModificarCompte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnModificarCompte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarCompteActionPerformed(evt);
@@ -161,7 +168,7 @@ public class ListarPersonas extends javax.swing.JFrame {
                 .addComponent(btnactivar)
                 .addGap(62, 62, 62)
                 .addComponent(btnModificarCompte)
-                .addContainerGap(395, Short.MAX_VALUE))
+                .addContainerGap(517, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +184,7 @@ public class ListarPersonas extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDesactivar)
                     .addComponent(btnModificarCompte)

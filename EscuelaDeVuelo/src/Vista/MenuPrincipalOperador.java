@@ -44,7 +44,6 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
         btnAgregarComponente = new javax.swing.JButton();
         btnListarAeronave = new javax.swing.JButton();
         btnAgregarSubcomponente = new javax.swing.JButton();
-        btnListarTripulacion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Operador");
@@ -162,17 +161,6 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
             }
         });
 
-        btnListarTripulacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ListarTripulacion.png"))); // NOI18N
-        btnListarTripulacion.setBorder(null);
-        btnListarTripulacion.setBorderPainted(false);
-        btnListarTripulacion.setContentAreaFilled(false);
-        btnListarTripulacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnListarTripulacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarTripulacionActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -184,15 +172,12 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnIngresarVuelos)
                             .addComponent(btnListarVuelos)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jButton4))
-                            .addComponent(btnListarLicencias))
+                            .addComponent(jButton4))
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnListarPiloto)
                             .addComponent(btnIngresarPiloto)
-                            .addComponent(btnListarTripulacion))
+                            .addComponent(btnListarLicencias))
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -223,19 +208,15 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
                     .addComponent(btnListarComponentes))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(btnListarLicencias)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(btnAgregarComponente)
-                            .addGap(85, 85, 85))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnListarTripulacion)
-                            .addGap(0, 57, Short.MAX_VALUE)))
-                    .addComponent(btnAgregarSubcomponente))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(btnAgregarComponente))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAgregarSubcomponente)
+                            .addComponent(btnListarLicencias))))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -321,14 +302,6 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnAgregarSubcomponenteActionPerformed
 
-    private void btnListarTripulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarTripulacionActionPerformed
-        // TODO add your handling code here:
-        ListarTripulacion btn = new ListarTripulacion();
-        btn.setLocationRelativeTo(null);
-        btn.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnListarTripulacionActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -373,7 +346,6 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
     private javax.swing.JButton btnListarComponentes;
     private javax.swing.JButton btnListarLicencias;
     private javax.swing.JButton btnListarPiloto;
-    private javax.swing.JButton btnListarTripulacion;
     private javax.swing.JButton btnListarVuelos;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;

@@ -76,7 +76,11 @@ public class ModificarComponente extends javax.swing.JFrame {
 
         cbxTipoNaveMod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fuselaje", "Alas", "Empenaje", "Controles y Frenos", "Tren de Aterrizaje", "Equipos", "Motor", "Cabina" }));
 
-        btnGuardarCambios.setText("Guardar cambios");
+        btnGuardarCambios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/actualizar.png"))); // NOI18N
+        btnGuardarCambios.setBorder(null);
+        btnGuardarCambios.setBorderPainted(false);
+        btnGuardarCambios.setContentAreaFilled(false);
+        btnGuardarCambios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardarCambios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarCambiosActionPerformed(evt);
@@ -142,7 +146,7 @@ public class ModificarComponente extends javax.swing.JFrame {
                     .addComponent(cbxTipoNaveMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnGuardarCambios)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

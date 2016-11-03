@@ -345,6 +345,7 @@ public class IngresarPiloto extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         MenuPrincipalOperador menu = new MenuPrincipalOperador();
+        menu.setLocationRelativeTo(null);
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed

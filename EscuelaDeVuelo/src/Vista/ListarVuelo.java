@@ -146,14 +146,22 @@ public class ListarVuelo extends javax.swing.JFrame {
         jTableVuelos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(jTableVuelos);
 
-        jButtonVolver.setText("Volver");
+        jButtonVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/regresar.png"))); // NOI18N
+        jButtonVolver.setBorder(null);
+        jButtonVolver.setBorderPainted(false);
+        jButtonVolver.setContentAreaFilled(false);
+        jButtonVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVolverActionPerformed(evt);
             }
         });
 
-        jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/eliminar.png"))); // NOI18N
+        jButtonEliminar.setBorder(null);
+        jButtonEliminar.setBorderPainted(false);
+        jButtonEliminar.setContentAreaFilled(false);
+        jButtonEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEliminarActionPerformed(evt);

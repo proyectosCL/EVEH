@@ -98,7 +98,11 @@ public class ModificarAeronave extends javax.swing.JFrame {
         lbldiasvuelo.setText("Días de Vuelo");
 
         btningresar.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
-        btningresar.setText("Actualizar Aeronave");
+        btningresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/actualizar.png"))); // NOI18N
+        btningresar.setBorder(null);
+        btningresar.setBorderPainted(false);
+        btningresar.setContentAreaFilled(false);
+        btningresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btningresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btningresarActionPerformed(evt);
@@ -113,7 +117,11 @@ public class ModificarAeronave extends javax.swing.JFrame {
             }
         });
 
-        btncargar.setText("Cargar Datos");
+        btncargar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/buscar.png"))); // NOI18N
+        btncargar.setBorder(null);
+        btncargar.setBorderPainted(false);
+        btncargar.setContentAreaFilled(false);
+        btncargar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btncargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncargarActionPerformed(evt);
@@ -130,7 +138,11 @@ public class ModificarAeronave extends javax.swing.JFrame {
 
         JDateVencimiento1.setDateFormatString("dd/MMMM/yyyy");
 
-        btnvolver.setText("Volver");
+        btnvolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/regresar.png"))); // NOI18N
+        btnvolver.setBorder(null);
+        btnvolver.setBorderPainted(false);
+        btnvolver.setContentAreaFilled(false);
+        btnvolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnvolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnvolverActionPerformed(evt);
@@ -141,11 +153,14 @@ public class ModificarAeronave extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnvolver)
+                .addGap(47, 47, 47)
+                .addComponent(btningresar)
+                .addGap(114, 114, 114))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -173,6 +188,7 @@ public class ModificarAeronave extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(43, 43, 43)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JDateVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -182,9 +198,8 @@ public class ModificarAeronave extends javax.swing.JFrame {
                                                 .addComponent(txtmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(lblusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(31, 31, 31)
-                                        .addComponent(btncargar))
-                                    .addComponent(JDateVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btncargar))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(44, 44, 44)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,27 +211,22 @@ public class ModificarAeronave extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lbldiasvuelito)
-                                            .addComponent(lblhorasvuelito))))
-                                .addGap(120, 120, 120)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnvolver)
-                .addGap(94, 94, 94)
-                .addComponent(btningresar)
-                .addGap(114, 114, 114))
+                                            .addComponent(lblhorasvuelito)))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblusuario)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblusuario))
                     .addComponent(btncargar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

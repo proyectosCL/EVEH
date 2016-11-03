@@ -47,6 +47,7 @@ public class ListarComponente extends javax.swing.JFrame {
         btnEliminarCompte = new javax.swing.JButton();
         btnModificarCompte = new javax.swing.JButton();
         lblComponenteSeleccionado = new javax.swing.JLabel();
+        btnMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,17 +72,36 @@ public class ListarComponente extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaComponentes);
 
-        btnEliminarCompte.setText("Eliminar Componente");
+        btnEliminarCompte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/eliminar.png"))); // NOI18N
+        btnEliminarCompte.setBorder(null);
+        btnEliminarCompte.setBorderPainted(false);
+        btnEliminarCompte.setContentAreaFilled(false);
+        btnEliminarCompte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminarCompte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarCompteActionPerformed(evt);
             }
         });
 
-        btnModificarCompte.setText("Modificar Componente");
+        btnModificarCompte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/editar.png"))); // NOI18N
+        btnModificarCompte.setBorder(null);
+        btnModificarCompte.setBorderPainted(false);
+        btnModificarCompte.setContentAreaFilled(false);
+        btnModificarCompte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnModificarCompte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarCompteActionPerformed(evt);
+            }
+        });
+
+        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/regresar.png"))); // NOI18N
+        btnMenu.setBorder(null);
+        btnMenu.setBorderPainted(false);
+        btnMenu.setContentAreaFilled(false);
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
             }
         });
 
@@ -101,12 +121,14 @@ public class ListarComponente extends javax.swing.JFrame {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(256, 256, 256)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblComponenteSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnEliminarCompte)
-                                        .addGap(230, 230, 230)
-                                        .addComponent(btnModificarCompte)))))
+                                        .addGap(77, 77, 77)
+                                        .addComponent(btnModificarCompte)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnMenu)))))
                         .addGap(0, 268, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -117,12 +139,14 @@ public class ListarComponente extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblComponenteSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(lblComponenteSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminarCompte)
-                    .addComponent(btnModificarCompte))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnEliminarCompte)
+                        .addComponent(btnModificarCompte))
+                    .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -168,6 +192,14 @@ public class ListarComponente extends javax.swing.JFrame {
             cargarTablaComponentes();
         }
     }//GEN-LAST:event_btnModificarCompteActionPerformed
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        MenuPrincipalOperador menu = new MenuPrincipalOperador();
+        menu.setLocationRelativeTo(null);
+        menu.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btnMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,6 +299,7 @@ public class ListarComponente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminarCompte;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnModificarCompte;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

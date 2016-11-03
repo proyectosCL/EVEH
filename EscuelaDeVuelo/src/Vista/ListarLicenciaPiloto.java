@@ -161,6 +161,7 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
         btnEliminarLicencia = new javax.swing.JButton();
         txtLicenciaSeleccionado = new javax.swing.JLabel();
         cbRut = new javax.swing.JComboBox();
+        btnMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -171,14 +172,22 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
 
         jLabel2.setText("Rut del Piloto");
 
-        btnModificarLicencia.setText("Modificar Licencia");
+        btnModificarLicencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/editar.png"))); // NOI18N
+        btnModificarLicencia.setBorder(null);
+        btnModificarLicencia.setBorderPainted(false);
+        btnModificarLicencia.setContentAreaFilled(false);
+        btnModificarLicencia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnModificarLicencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarLicenciaActionPerformed(evt);
             }
         });
 
-        btnEliminarLicencia.setText("Eliminar Licencia");
+        btnEliminarLicencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/eliminar.png"))); // NOI18N
+        btnEliminarLicencia.setBorder(null);
+        btnEliminarLicencia.setBorderPainted(false);
+        btnEliminarLicencia.setContentAreaFilled(false);
+        btnEliminarLicencia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminarLicencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarLicenciaActionPerformed(evt);
@@ -194,6 +203,17 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
         cbRut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbRutActionPerformed(evt);
+            }
+        });
+
+        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/regresar.png"))); // NOI18N
+        btnMenu.setBorder(null);
+        btnMenu.setBorderPainted(false);
+        btnMenu.setContentAreaFilled(false);
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
             }
         });
 
@@ -217,9 +237,11 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnEliminarLicencia)
-                                .addGap(48, 48, 48)
+                                .addGap(52, 52, 52)
                                 .addComponent(btnModificarLicencia)
-                                .addGap(169, 169, 169))
+                                .addGap(99, 99, 99)
+                                .addComponent(btnMenu)
+                                .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(txtLicenciaSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(60, 60, 60))))))
@@ -236,11 +258,12 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(txtLicenciaSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtLicenciaSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, 8, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnModificarLicencia)
-                    .addComponent(btnEliminarLicencia))
+                    .addComponent(btnEliminarLicencia)
+                    .addComponent(btnMenu))
                 .addGap(37, 37, 37))
         );
 
@@ -345,6 +368,14 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbRutActionPerformed
 
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        MenuPrincipalOperador menu = new MenuPrincipalOperador();
+        menu.setLocationRelativeTo(null);
+        menu.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btnMenuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -382,6 +413,7 @@ public class ListarLicenciaPiloto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminarLicencia;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnModificarLicencia;
     public javax.swing.JComboBox cbRut;
     private javax.swing.JLabel jLabel1;
