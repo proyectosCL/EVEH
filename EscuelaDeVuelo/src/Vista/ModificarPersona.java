@@ -443,9 +443,9 @@ public class ModificarPersona extends javax.swing.JFrame {
                     .addComponent(cboRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnactualizar)
-                    .addComponent(btnCancelar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnactualizar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(9, 9, 9))
         );
 

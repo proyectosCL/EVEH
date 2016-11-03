@@ -246,8 +246,8 @@ public class ModificarPiloto extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(JDateUltimoVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnModificar))
                 .addGap(37, 37, 37))
         );
