@@ -38,7 +38,7 @@ public class Conexion {
 //            System.out.println("Conexion fallida!"); 
 //        } 
         } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showMessageDialog(null, e + "NO HAY CONEXIÓN");
+            JOptionPane.showMessageDialog(null, "ERROR: NO HAY CONEXIÓN");
         }
         return this;
     }

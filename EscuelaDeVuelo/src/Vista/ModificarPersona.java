@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.apache.commons.codec.digest.DigestUtils;
 /**
  *
  * @author Diego
@@ -220,7 +221,7 @@ public class ModificarPersona extends javax.swing.JFrame {
             }
         });
 
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText("Volver");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -489,7 +490,9 @@ public class ModificarPersona extends javax.swing.JFrame {
         int iduser = id_persona;
         String nombreusuario = txtUsuario.getText();
         
-        String pass=txtPass.getText();
+        //String pass=txtPass.getText();
+        String pass = DigestUtils.md5Hex(txtPass.getText());
+        //System.out.println("pass encriptada; "+pass);
        
         int id_perfil=cboRol.getSelectedIndex()+1;
         
@@ -515,7 +518,7 @@ public class ModificarPersona extends javax.swing.JFrame {
             }
             
             btnactualizar.setEnabled(true);
-            btnactualizar.setText("Ingresar");
+            btnactualizar.setText("Actualizar");
             
              
             

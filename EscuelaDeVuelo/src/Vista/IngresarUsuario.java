@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import jdk.nashorn.internal.runtime.regexp.joni.Regex;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -33,6 +34,11 @@ public class IngresarUsuario extends javax.swing.JFrame {
 
         RestrictedTextField rutlimite = new RestrictedTextField(txtRut);
         rutlimite.setLimit(9);
+        RestrictedTextField nombreLetras = new RestrictedTextField(txtNombre);
+        nombreLetras.setOnlyText(true);
+        RestrictedTextField apellidoLetras = new RestrictedTextField(txtApellido);
+        apellidoLetras.setOnlyText(true);
+        
 
         //rutlimite.setOnlyNums(true);
 
@@ -474,7 +480,8 @@ public class IngresarUsuario extends javax.swing.JFrame {
         int iduser = 0;
         String nombreusuario = txtUsuario.getText();
 
-        String pass = txtPass.getText();
+        //String pass = txtPass.getText();
+        String pass = DigestUtils.md5Hex(txtPass.getText());
 
         int id_perfil = cboRol.getSelectedIndex() + 1;
 
@@ -541,6 +548,20 @@ public class IngresarUsuario extends javax.swing.JFrame {
 
                 if (usr.ingresarUsuario(userr) && admp.ingresarPersona(person)) {
                     JOptionPane.showMessageDialog(null, "Se ingreso correctamente");
+                    int dialogButton2 = JOptionPane.YES_NO_OPTION;
+                    int dialogResult2 = JOptionPane.showConfirmDialog(this, "¿Desea ingresar otro usuario?", "confirmacion", dialogButton2);
+                    if (dialogResult2 == 0) {
+                        IngresarUsuario ventana = new IngresarUsuario();
+                        ventana.setVisible(true);
+                        this.dispose();
+                    } else {
+                        MenuPrincipalAdministrador menu = new MenuPrincipalAdministrador();
+                        menu.setVisible(true);
+                        this.dispose();
+                    }
+                    
+                    
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "no se puedo ingresar");
                 }
