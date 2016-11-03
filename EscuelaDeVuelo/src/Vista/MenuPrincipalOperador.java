@@ -41,9 +41,8 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnIngresarVuelos = new javax.swing.JButton();
         btnListarComponentes = new javax.swing.JButton();
-        btnAgregarComponente = new javax.swing.JButton();
         btnListarAeronave = new javax.swing.JButton();
-        btnAgregarSubcomponente = new javax.swing.JButton();
+        btnIngresarCompoenente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Operador");
@@ -128,17 +127,6 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
             }
         });
 
-        btnAgregarComponente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AgregarComponente.png"))); // NOI18N
-        btnAgregarComponente.setBorder(null);
-        btnAgregarComponente.setBorderPainted(false);
-        btnAgregarComponente.setContentAreaFilled(false);
-        btnAgregarComponente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAgregarComponente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarComponenteActionPerformed(evt);
-            }
-        });
-
         btnListarAeronave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AdministrarAeronave.png"))); // NOI18N
         btnListarAeronave.setBorder(null);
         btnListarAeronave.setBorderPainted(false);
@@ -150,14 +138,14 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
             }
         });
 
-        btnAgregarSubcomponente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IngresarComponentes.png"))); // NOI18N
-        btnAgregarSubcomponente.setBorder(null);
-        btnAgregarSubcomponente.setBorderPainted(false);
-        btnAgregarSubcomponente.setContentAreaFilled(false);
-        btnAgregarSubcomponente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAgregarSubcomponente.addActionListener(new java.awt.event.ActionListener() {
+        btnIngresarCompoenente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IngresarComponentes.png"))); // NOI18N
+        btnIngresarCompoenente.setBorder(null);
+        btnIngresarCompoenente.setBorderPainted(false);
+        btnIngresarCompoenente.setContentAreaFilled(false);
+        btnIngresarCompoenente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIngresarCompoenente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarSubcomponenteActionPerformed(evt);
+                btnIngresarCompoenenteActionPerformed(evt);
             }
         });
 
@@ -179,17 +167,14 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
                             .addComponent(btnIngresarPiloto)
                             .addComponent(btnListarLicencias))
                         .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAgregarComponente)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAgregarSubcomponente))
-                            .addComponent(btnListarComponentes, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnListarAeronave, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnListarComponentes)
+                            .addComponent(btnListarAeronave)
+                            .addComponent(btnIngresarCompoenente)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(211, 211, 211)
                         .addComponent(jLabel1)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,16 +192,12 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
                     .addComponent(btnIngresarVuelos)
                     .addComponent(btnListarComponentes))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(btnAgregarComponente))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAgregarSubcomponente)
-                            .addComponent(btnListarLicencias))))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton4)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnIngresarCompoenente)
+                        .addComponent(btnListarLicencias)))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         pack();
@@ -278,14 +259,6 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnListarComponentesActionPerformed
 
-    private void btnAgregarComponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarComponenteActionPerformed
-        // TODO add your handling code here:
-        AgregarComponente btn = new AgregarComponente();
-        btn.setLocationRelativeTo(null);
-        btn.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnAgregarComponenteActionPerformed
-
     private void btnListarAeronaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarAeronaveActionPerformed
         // TODO add your handling code here:
         ListarAeronave btn = new ListarAeronave();
@@ -294,13 +267,13 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnListarAeronaveActionPerformed
 
-    private void btnAgregarSubcomponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarSubcomponenteActionPerformed
+    private void btnIngresarCompoenenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarCompoenenteActionPerformed
         // TODO add your handling code here:
         IngresarComponente btn = new IngresarComponente();
         btn.setLocationRelativeTo(null);
         btn.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnAgregarSubcomponenteActionPerformed
+    }//GEN-LAST:event_btnIngresarCompoenenteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -338,8 +311,7 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarComponente;
-    private javax.swing.JButton btnAgregarSubcomponente;
+    private javax.swing.JButton btnIngresarCompoenente;
     private javax.swing.JButton btnIngresarPiloto;
     private javax.swing.JButton btnIngresarVuelos;
     private javax.swing.JButton btnListarAeronave;

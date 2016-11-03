@@ -253,7 +253,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-//            String texto =DigestUtils.md5Hex("admin"); 
+//            String texto =DigestUtils.md5Hex("operador"); 
 //            System.out.println("Texto Encriptado con MD5 : "+texto);
     }
 
