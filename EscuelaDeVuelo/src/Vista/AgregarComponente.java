@@ -746,9 +746,6 @@ public class AgregarComponente extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarAeronave;
-    private javax.swing.JButton btnAgregarAeronave1;
-    private javax.swing.JButton btnAgregarAeronave2;
     private javax.swing.JButton btnAgregarAlas;
     private javax.swing.JButton btnAgregarControlesFrenos;
     private javax.swing.JButton btnAgregarEmpenaje;

@@ -165,7 +165,7 @@ public class IngresarSubComponente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+int idComptePadre = 0;
     private void txtDescSubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescSubActionPerformed
         // TODO addfdf your handling code here:
     }//GEN-LAST:event_txtDescSubActionPerformed
@@ -183,7 +183,6 @@ public class IngresarSubComponente extends javax.swing.JFrame {
         int idCompte = 0;
 
         idCompte = ingresarCompte.buscarIdSubComponente();
-        JOptionPane.showMessageDialog(null, idCompte);
 
         Componente nvoCompte = new Componente(id, desc, fabricte, horasVuelo, diasVuelo, tipoCompte, idCompte);
         ingresarCompte.asociarSubcomponente(nvoCompte);
@@ -191,12 +190,18 @@ public class IngresarSubComponente extends javax.swing.JFrame {
         int dialogButton = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar otro sub-componente?", "Confirmación", dialogButton);
         if (dialogResult == 0) {
-            // codigo para cerrar y abrir la ventana subcomponentes
-            IngresarSubComponente ventanaSub = new IngresarSubComponente();
+            
+            txtDescSub.setText("");
+            txtFabricanteSub.setText("");
+            spinDiasVueloSub.setValue(0);
+            spinHorasVueloSub.setValue(0);
 
-            ventanaSub.setVisible(true);
+        } else {
+            MenuPrincipalOperador menu = new MenuPrincipalOperador();
+            menu.setLocationRelativeTo(null);
+            menu.setVisible(true);
             this.dispose();
-        } 
+        }
     }//GEN-LAST:event_btnGuardarNuevoComponenteSubActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed

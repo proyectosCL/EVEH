@@ -6,9 +6,12 @@
 package Vista;
 
 import Atxy2k.CustomTextField.RestrictedTextField;
+import Controlador.Administrar_Aeronave;
 import Controlador.Administrar_Componente;
 import Database.Conexion;
+import Modelo.Aeronave;
 import Modelo.Componente;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 
@@ -32,16 +35,15 @@ public class IngresarComponente extends javax.swing.JFrame {
         diasVuelo.setMaximum(10000);
         diasVuelo.setMinimum(0);
         spinDiasVuelo.setModel(diasVuelo);
-        
+
         SpinnerNumberModel horasVuelo = new SpinnerNumberModel();
         horasVuelo.setMaximum(10000);
         horasVuelo.setMinimum(0);
         spinHorasVuelo.setModel(horasVuelo);
-        
+
         txtDesc.setText("");
         txtFabricante.setText("");
-        
-        
+
     }
 
     /**
@@ -250,30 +252,55 @@ public class IngresarComponente extends javax.swing.JFrame {
                 break;
 
         }
-        
-        if(matriculaNave.equals("")){
-            
-        }
 
-        Componente nvoCompte = new Componente(id, desc, fabricte, horasVuelo, diasVuelo, tipoCompte);
-        ingresarCompte.ingresarNuevoComponente(nvoCompte);
+        if (matriculaNave.equals("")) {
+            Componente nvoCompte = new Componente(id, desc, fabricte, horasVuelo, diasVuelo, tipoCompte);
+            ingresarCompte.ingresarNuevoComponente(nvoCompte);
 
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar sub-componentes al componente ingresado?", "Confirmación", dialogButton);
-        if (dialogResult == 0) {
-            // codigo para cerrar y abrir la ventana subcomponentes
-            IngresarSubComponente ventanaSub = new IngresarSubComponente();
-
-            ventanaSub.setVisible(true);
-            this.dispose();
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar sub-componentes al componente ingresado?", "Confirmación", dialogButton);
+            if (dialogResult == 0) {
+                // codigo para cerrar y abrir la ventana subcomponentes
+                IngresarSubComponente ventanaSub = new IngresarSubComponente();
+                ventanaSub.setLocationRelativeTo(null);
+                ventanaSub.setVisible(true);
+                this.dispose();
+            } else {
+                txtDesc.setText("");
+                txtFabricante.setText("");
+                spinDiasVuelo.setValue(0);
+                spinHorasVuelo.setValue(0);
+            }
         } else {
-            
-            
-        }
+            if (matriculaNave.length() == 5) {
+
+                Administrar_Aeronave aa = new Administrar_Aeronave();
+                ArrayList<Aeronave> listaAeronave = aa.listarPorMatricula(matriculaNave);
+                int idNave = Integer.parseInt(listaAeronave.get(0).getId());
+
+                Componente nvoCompte = new Componente(desc, fabricte, horasVuelo, diasVuelo, tipoCompte, idNave);
+                ingresarCompte.ingresarNuevoComponenteNave(nvoCompte);
+
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar sub-componentes al componente ingresado?", "Confirmación", dialogButton);
+                if (dialogResult == 0) {
+                    // codigo para cerrar y abrir la ventana subcomponentes
+                    IngresarSubComponente ventanaSub = new IngresarSubComponente();
+                    
+                    ventanaSub.setLocationRelativeTo(null);
+                    ventanaSub.setVisible(true);
+                    this.dispose();
+                } else {
+                    txtDesc.setText("");
+                    txtFabricante.setText("");
+                    spinDiasVuelo.setValue(0);
+                    spinHorasVuelo.setValue(0);
+                }
+            }
 
 
     }//GEN-LAST:event_btnGuardarNuevoComponenteActionPerformed
-
+    }
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         MenuPrincipalOperador menu = new MenuPrincipalOperador();
         menu.setLocationRelativeTo(null);

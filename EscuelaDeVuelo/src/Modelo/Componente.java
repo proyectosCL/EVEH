@@ -40,6 +40,18 @@ public class Componente {
         this.componente_id = componente_id;
     }
     
+    public Componente( String descripcion, String fabricante, Float horas_vuelo, int dias_vuelo, int tipo_componente_id, int aeronave_id) {
+        
+        this.descripcion = descripcion;
+        this.fabricante = fabricante;
+        this.horas_vuelo = horas_vuelo;
+        this.dias_vuelo = dias_vuelo;
+        this.tipo_componente_id = tipo_componente_id;
+        this.aeronave_id = aeronave_id;
+    }
+    
+    
+    
     
 
     

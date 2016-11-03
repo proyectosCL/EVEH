@@ -63,28 +63,29 @@ public class Administrar_Aeronave implements administrar_horas_vuelo {
         }
 
     }
- public boolean eliminarAeronave(String id) {
+
+    public boolean eliminarAeronave(String id) {
         try {
-            
+
             Conexion con = new Conexion();
             con.conectar();
             //cambiar el 32 por el id del user
-            String sql1 = "update componentes set AERONAVES_ID=null where AERONAVES_ID= '"+id+"'";
-           con.escribir(sql1);
-         
-            
-            String sql = "delete from aeronaves where id = '"+id+"'";
-        
+            String sql1 = "update componentes set AERONAVES_ID=null where AERONAVES_ID= '" + id + "'";
+            con.escribir(sql1);
+
+            String sql = "delete from aeronaves where id = '" + id + "'";
+
             System.out.println(sql);
             con.escribir(sql);
             JOptionPane.showMessageDialog(null, "Eliminado correctamente");
             return true;
-            
+
         } catch (HeadlessException e) {
             return false;
         }
-        
+
     }
+
     public void asociarComponentes() {
     }
 
@@ -94,7 +95,7 @@ public class Administrar_Aeronave implements administrar_horas_vuelo {
     public Aeronave cargarAeronave(int matricula) {
 
         Aeronave aeronavesita = new Aeronave();
- DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         Conexion con = new Conexion();
         try {
             con.conectar();
@@ -150,17 +151,18 @@ public class Administrar_Aeronave implements administrar_horas_vuelo {
         }
 
     }
-public ArrayList<Aeronave> listarAeronave() {
+
+    public ArrayList<Aeronave> listarAeronave() {
 
         ArrayList listaComponentes = new ArrayList();
         Aeronave lista;
-         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
             ResultSet rs = dbconn.consultar("select * from aeronaves ");
             while (rs.next()) {
-             
+
                 lista = new Aeronave();
                 lista.setId(rs.getString(1));
                 lista.setMatricula(rs.getString(2));
@@ -179,6 +181,37 @@ public ArrayList<Aeronave> listarAeronave() {
         return listaComponentes;
 
     }
+
+    public ArrayList<Aeronave> listarPorMatricula(String matri) {
+
+        ArrayList listaNave = new ArrayList();
+        Aeronave lista;
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("select * from aeronaves where matricula like '"+matri+"'");
+            while (rs.next()) {
+
+                lista = new Aeronave();
+                lista.setId(rs.getString(1));
+                lista.setMatricula(rs.getString(2));
+                lista.setTiponave(rs.getString(3));
+                lista.setEstado(rs.getString(4));
+                lista.setFecha_aeronavegavilidad(df.format(rs.getDate(5)));
+                lista.setFecha_ultima_inspeccion_anual(df.format(rs.getDate(6)));
+                lista.setHoras_vuelo(rs.getString(7));
+                lista.setDias_vuelo(rs.getString(8));
+                listaNave.add(lista);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return listaNave;
+
+    }
+
     @Override
     public void sumarHoras() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

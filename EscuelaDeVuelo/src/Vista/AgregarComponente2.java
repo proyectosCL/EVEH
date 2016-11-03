@@ -28,11 +28,7 @@ public class AgregarComponente2 extends javax.swing.JFrame {
      */
     public AgregarComponente2() {
         initComponents();
-        JOptionPane.showMessageDialog(null, "Seleccione un componente de cada tipo");
-        cargarTablaCabina();
-        cargarTablaEquipos();
-        cargarTablaMotor();
-        cargarTablaTrenAterrizaje();
+        
         lblTrenAterrizaje.setText("Seleccione algun componente de la tabla Tren de Aterrizaje");
         lblTrenAterrizaje.setForeground(Color.red);
         lblEquipos.setText("Seleccione algun componente de la tabla Equipos");
@@ -42,6 +38,10 @@ public class AgregarComponente2 extends javax.swing.JFrame {
         lblMotor.setText("Seleccione algun componente de la tabla Motor");
         lblMotor.setForeground(Color.red);
         btnGuardar.setEnabled(false);
+        cargarTablaCabina();
+        cargarTablaEquipos();
+        cargarTablaMotor();
+        cargarTablaTrenAterrizaje();
     }
 
     /**
@@ -73,8 +73,13 @@ public class AgregarComponente2 extends javax.swing.JFrame {
         lblMotor = new javax.swing.JLabel();
         lblCabina = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
+        btnAgregarFuselaje = new javax.swing.JButton();
+        btnAgregarEmpenaje = new javax.swing.JButton();
+        btnAgregarAlas = new javax.swing.JButton();
+        btnAgregarControlesFrenos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1792, 674));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Agregar componentes");
@@ -161,12 +166,16 @@ public class AgregarComponente2 extends javax.swing.JFrame {
 
         jLabel6.setText("Componentes seleccionados");
 
+        lblTrenAterrizaje.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblTrenAterrizaje.setText("jLabel7");
 
+        lblEquipos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblEquipos.setText("jLabel8");
 
+        lblMotor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblMotor.setText("jLabel9");
 
+        lblCabina.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblCabina.setText("jLabel10");
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/guardar.png"))); // NOI18N
@@ -177,6 +186,58 @@ public class AgregarComponente2 extends javax.swing.JFrame {
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
+            }
+        });
+
+        btnAgregarFuselaje.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        btnAgregarFuselaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregar.png"))); // NOI18N
+        btnAgregarFuselaje.setBorder(null);
+        btnAgregarFuselaje.setBorderPainted(false);
+        btnAgregarFuselaje.setContentAreaFilled(false);
+        btnAgregarFuselaje.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregarFuselaje.setEnabled(false);
+        btnAgregarFuselaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarFuselajeActionPerformed(evt);
+            }
+        });
+
+        btnAgregarEmpenaje.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        btnAgregarEmpenaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregar.png"))); // NOI18N
+        btnAgregarEmpenaje.setBorder(null);
+        btnAgregarEmpenaje.setBorderPainted(false);
+        btnAgregarEmpenaje.setContentAreaFilled(false);
+        btnAgregarEmpenaje.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregarEmpenaje.setEnabled(false);
+        btnAgregarEmpenaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarEmpenajeActionPerformed(evt);
+            }
+        });
+
+        btnAgregarAlas.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        btnAgregarAlas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregar.png"))); // NOI18N
+        btnAgregarAlas.setBorder(null);
+        btnAgregarAlas.setBorderPainted(false);
+        btnAgregarAlas.setContentAreaFilled(false);
+        btnAgregarAlas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregarAlas.setEnabled(false);
+        btnAgregarAlas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarAlasActionPerformed(evt);
+            }
+        });
+
+        btnAgregarControlesFrenos.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        btnAgregarControlesFrenos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregar.png"))); // NOI18N
+        btnAgregarControlesFrenos.setBorder(null);
+        btnAgregarControlesFrenos.setBorderPainted(false);
+        btnAgregarControlesFrenos.setContentAreaFilled(false);
+        btnAgregarControlesFrenos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregarControlesFrenos.setEnabled(false);
+        btnAgregarControlesFrenos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarControlesFrenosActionPerformed(evt);
             }
         });
 
@@ -201,12 +262,27 @@ public class AgregarComponente2 extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(57, 57, 57)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblEquipos)
-                                    .addComponent(lblTrenAterrizaje)
-                                    .addComponent(lblMotor)
-                                    .addComponent(lblCabina)))))
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 186, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblTrenAterrizaje)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnAgregarControlesFrenos))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblEquipos)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnAgregarAlas))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblMotor)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
+                                        .addComponent(btnAgregarEmpenaje))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(lblCabina)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnAgregarFuselaje)))))
+                        .addGap(13, 13, 13))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,21 +317,30 @@ public class AgregarComponente2 extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addGap(49, 49, 49)
-                        .addComponent(lblTrenAterrizaje)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblEquipos)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblMotor)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblCabina)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5))
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAgregarControlesFrenos)
+                            .addComponent(lblTrenAterrizaje))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblEquipos)
+                            .addComponent(btnAgregarAlas))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblMotor)
+                            .addComponent(btnAgregarEmpenaje))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCabina)
+                            .addComponent(btnAgregarFuselaje))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,15 +365,13 @@ String matriculaNave2 = "";
         int idMotor = Integer.parseInt(tablaMotor.getValueAt(tablaMotor.getSelectedRow(),0).toString());
         int idCabina = Integer.parseInt(tablaCabina.getValueAt(tablaCabina.getSelectedRow(),0).toString());
         
-        JOptionPane.showMessageDialog(null,"la matricula que viene es:"+ matriculaNave2);
-        
         Administrar_Componente ac = new Administrar_Componente();
         ac.asociarAeronave(idCabina, matriculaNave2);
         ac.asociarAeronave(idEquipos, matriculaNave2);
         ac.asociarAeronave(idMotor, matriculaNave2);
         ac.asociarAeronave(idTrenAterrizaje, matriculaNave2);
         
-        this.dispose();
+        JOptionPane.showMessageDialog(null,"Los componentes han sido agregados exitosamente a la aeronave");
 
        
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -340,6 +423,38 @@ String matriculaNave2 = "";
         }
 
     }//GEN-LAST:event_tablaCabinaMouseClicked
+
+    private void btnAgregarFuselajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarFuselajeActionPerformed
+        IngresarComponente ingresarCompte = new IngresarComponente();
+        //ingresarCompte.retorno = true;
+        ingresarCompte.setLocationRelativeTo(null);
+        ingresarCompte.setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarFuselajeActionPerformed
+
+    private void btnAgregarEmpenajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEmpenajeActionPerformed
+        IngresarComponente ingresarCompte = new IngresarComponente();
+        //ingresarCompte.retorno = true;
+        ingresarCompte.setLocationRelativeTo(null);
+        ingresarCompte.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAgregarEmpenajeActionPerformed
+
+    private void btnAgregarAlasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAlasActionPerformed
+        IngresarComponente ingresarCompte = new IngresarComponente();
+        //ingresarCompte.retorno = true;
+        ingresarCompte.setLocationRelativeTo(null);
+        ingresarCompte.setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarAlasActionPerformed
+
+    private void btnAgregarControlesFrenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarControlesFrenosActionPerformed
+        IngresarComponente ingresarCompte = new IngresarComponente();
+        //ingresarCompte.retorno = true;
+        ingresarCompte.setLocationRelativeTo(null);
+        ingresarCompte.setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarControlesFrenosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -549,6 +664,10 @@ String matriculaNave2 = "";
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarAlas;
+    private javax.swing.JButton btnAgregarControlesFrenos;
+    private javax.swing.JButton btnAgregarEmpenaje;
+    private javax.swing.JButton btnAgregarFuselaje;
     private javax.swing.JButton btnGuardar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;

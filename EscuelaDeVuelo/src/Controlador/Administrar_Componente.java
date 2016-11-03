@@ -18,10 +18,33 @@ public class Administrar_Componente implements administrar_horas_vuelo {
             Float horasVuelo = nuevoComponente.getHoras_vuelo();
             int diasVuelo = nuevoComponente.getDias_vuelo();
             int tpoCompteId = nuevoComponente.getTipo_componente_id();
+            
 
             Conexion conec = new Conexion();
             conec.conectar();
             String sql = "INSERT INTO componentes  VALUES ((select (max(id)+1)from componentes),'" + desc + "','" + fabricte + "'," + horasVuelo + "," + diasVuelo + "," + tpoCompteId + ", null,  null )";
+            conec.escribir(sql);
+
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+    
+    public boolean ingresarNuevoComponenteNave(Componente nuevoComponente) {
+        try {
+            String desc = nuevoComponente.getDescripcion();
+            String fabricte = nuevoComponente.getFabricante();
+            Float horasVuelo = nuevoComponente.getHoras_vuelo();
+            int diasVuelo = nuevoComponente.getDias_vuelo();
+            int tpoCompteId = nuevoComponente.getTipo_componente_id();
+            int aeronaveId = nuevoComponente.getAeronave_id();
+            
+
+            Conexion conec = new Conexion();
+            conec.conectar();
+            String sql = "INSERT INTO componentes  VALUES ((select (max(id)+1)from componentes),'" + desc + "','" + fabricte + "'," + horasVuelo + "," + diasVuelo + "," + tpoCompteId + ", null,"+aeronaveId+")";
             conec.escribir(sql);
 
             return true;
@@ -185,7 +208,7 @@ public class Administrar_Componente implements administrar_horas_vuelo {
                     + "DIAS_VUELO =  " + diasVuelo + ","
                     + "TIPOS_COMPONENTES_ID = " + tpoCompteId + " where ID=" + id + "";
             conec.escribir(sql);
-            System.out.println(sql);
+            
 
         } catch (Exception ex) {
 
@@ -243,7 +266,7 @@ public class Administrar_Componente implements administrar_horas_vuelo {
         } catch (Exception e) {
 
         }
-        JOptionPane.showMessageDialog(null, idCompte);
+       
         return idCompte;
 
     }
