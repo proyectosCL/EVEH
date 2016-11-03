@@ -34,13 +34,13 @@ public class IngresarAeronave extends javax.swing.JFrame {
      */
     public IngresarAeronave() {
         initComponents();
- RestrictedTextField descripcionLimit = new RestrictedTextField(txtmatricula);
- descripcionLimit.setLimit(5);
- descripcionLimit.setOnlyText(true);
- RestrictedTextField descripcionNUMERO = new RestrictedTextField(txtdiasvuelo);
- descripcionNUMERO.setOnlyNums(true);
-  RestrictedTextField descripcionNUMERO2 = new RestrictedTextField(txthorasvuelo);
- descripcionNUMERO2.setOnlyNums(true);
+        RestrictedTextField descripcionLimit = new RestrictedTextField(txtmatricula);
+        descripcionLimit.setLimit(5);
+        descripcionLimit.setOnlyText(true);
+        RestrictedTextField descripcionNUMERO = new RestrictedTextField(txtdiasvuelo);
+        descripcionNUMERO.setOnlyNums(true);
+        RestrictedTextField descripcionNUMERO2 = new RestrictedTextField(txthorasvuelo);
+        descripcionNUMERO2.setOnlyNums(true);
     }
 
     /**
@@ -245,7 +245,7 @@ public class IngresarAeronave extends javax.swing.JFrame {
                     .addComponent(txthorasvuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbldiasvuelito))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnvolver)
                     .addComponent(btningresar))
                 .addGap(23, 23, 23))
@@ -260,7 +260,6 @@ public class IngresarAeronave extends javax.swing.JFrame {
 
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
 
-
         Administrar_Aeronave ingresar = new Administrar_Aeronave();
         String id = "0";
         String matricula = txtmatricula.getText().toUpperCase();
@@ -268,27 +267,27 @@ public class IngresarAeronave extends javax.swing.JFrame {
         String diasvuelo = txtdiasvuelo.getText();
         String tiponave = "" + cmbtiponave.getSelectedItem();
         String estado = "" + cmbestado.getSelectedItem();
-       
-            String fecha_aeronavegabilidad = null;
-            String fecha_inspeccion = null;
-            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-            
-            try{
-                Date fecha = JDateVencimiento.getDate();
-                fecha_aeronavegabilidad = df.format(fecha);
-            }catch(Exception ex){
-                System.out.println(ex);
-                JOptionPane.showMessageDialog(null, "Fecha mal ingresada");
-                return;
-            }
-            try{
-                Date fecha1 = JDateVencimiento1.getDate();
-                fecha_inspeccion = df.format(fecha1);
-            }catch(Exception ex){
-                System.out.println(ex);
-                JOptionPane.showMessageDialog(null, "Fecha mal ingresada");
-                return;
-            }
+
+        String fecha_aeronavegabilidad = null;
+        String fecha_inspeccion = null;
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            Date fecha = JDateVencimiento.getDate();
+            fecha_aeronavegabilidad = df.format(fecha);
+        } catch (Exception ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Fecha mal ingresada");
+            return;
+        }
+        try {
+            Date fecha1 = JDateVencimiento1.getDate();
+            fecha_inspeccion = df.format(fecha1);
+        } catch (Exception ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Fecha mal ingresada");
+            return;
+        }
         if (tiponave.equals("Helicoptero")) {
             tiponave = "1";
 
@@ -296,18 +295,18 @@ public class IngresarAeronave extends javax.swing.JFrame {
             tiponave = "2";
 
         }
-            if (txthorasvuelo.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Se asigna automaticamente el valor cero horas de vuelo");
-               horasvuelo="0";
-              
-            }
-            if (txtdiasvuelo.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Se asigna automaticamente el valor cero dias de vuelo");
-                diasvuelo="0";
-                
-            }
+        if (txthorasvuelo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Se asigna automaticamente el valor cero horas de vuelo");
+            horasvuelo = "0";
+
+        }
+        if (txtdiasvuelo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Se asigna automaticamente el valor cero dias de vuelo");
+            diasvuelo = "0";
+
+        }
         switch (estado) {
-           
+
             case "Disponible":
                 estado = "V";
                 break;
@@ -316,38 +315,63 @@ public class IngresarAeronave extends javax.swing.JFrame {
                 break;
         }
 
-        
-            Aeronave nueva = new Aeronave(id, matricula, tiponave, estado, fecha_aeronavegabilidad, fecha_inspeccion, horasvuelo, diasvuelo);
+        Aeronave nueva = new Aeronave(id, matricula, tiponave, estado, fecha_aeronavegabilidad, fecha_inspeccion, horasvuelo, diasvuelo);
 
-            if (ingresar.buscarAeronave(nueva.getMatricula())) {
-                JOptionPane.showMessageDialog(null, "La matricula de la aeronave ya esta registrado, por favor ingrese otra");
-                txtmatricula.requestFocus();
+        if (ingresar.buscarAeronave(nueva.getMatricula())) {
+            JOptionPane.showMessageDialog(null, "La matricula de la aeronave ya esta registrado, por favor ingrese otra");
+            txtmatricula.requestFocus();
 
-            } else {
+        } else {
 
-                if (ingresar.ingresarAeronave(nueva)) {
-                    JOptionPane.showMessageDialog(null, "Se ingreso correctamente");
-                   
-            int dialogButton = JOptionPane.YES_NO_OPTION;
-            int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar los componentes de la aeronave ingresada?", "confirmacion", dialogButton);
-            if(dialogResult == 0) {
-                      
-                // codigo para cerrar y abrir la ventana componentes
-                AgregarComponente ventanaComponente = new AgregarComponente();
-                ventanaComponente.matriculaNave = matricula;
-                ventanaComponente.setVisible(true);
-                this.dispose();
-            } else {
-              JOptionPane.showMessageDialog(null, "no se ingresaron componentes");
-            }
+            if (ingresar.ingresarAeronave(nueva)) {
+                JOptionPane.showMessageDialog(null, "Se ingreso correctamente");
+
+                int seleccion = JOptionPane.showOptionDialog(null, "Seleccione una opcion ",
+                        "Opciones Componentes", JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
+                        new Object[]{"Agregar nuevos componentes a esta aeronave", "Asociar con componentes existentes", "Salir",}, "opcion 1");
+
+                if (seleccion == 0) {
+                    IngresarComponente ingresarCompte = new IngresarComponente();
+                    ingresarCompte.matriculaNave = matricula;
+                    ingresarCompte.setLocationRelativeTo(null);
+                    ingresarCompte.setVisible(true);
+                    this.dispose();
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "no se puedo ingresar");
+                    if (seleccion == 1) {
+                        AgregarComponente agregarCompte = new AgregarComponente();
+                        agregarCompte.matriculaNave = matricula;
+                        agregarCompte.setLocationRelativeTo(null);
+                        agregarCompte.setVisible(true);
+                        this.dispose();
+                    } else {
+                        if (seleccion == 2) {
+                            MenuPrincipalOperador menu = new MenuPrincipalOperador();
+                            menu.setLocationRelativeTo(null);
+                            menu.setVisible(true);
+                            this.dispose();
+                        }
+                    }
                 }
 
+//            int dialogButton = JOptionPane.YES_NO_OPTION;
+//            int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar los componentes de la aeronave ingresada?", "confirmacion", dialogButton);
+//            if(dialogResult == 0) {
+//                      
+//                // codigo para cerrar y abrir la ventana componentes
+//                AgregarComponente ventanaComponente = new AgregarComponente();
+//                ventanaComponente.matriculaNave = matricula;
+//                ventanaComponente.setVisible(true);
+//                this.dispose();
+//            } else {
+//              JOptionPane.showMessageDialog(null, "no se ingresaron componentes");
+//            }
+            } else {
+                JOptionPane.showMessageDialog(null, "no se puedo ingresar");
             }
 
-        
+        }
 
 //        // TODO add your handling code here:
     }//GEN-LAST:event_btningresarActionPerformed
@@ -358,7 +382,7 @@ public class IngresarAeronave extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbtiponaveActionPerformed
 
     private void btnvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolverActionPerformed
- ListarAeronave menu = new ListarAeronave();
+        ListarAeronave menu = new ListarAeronave();
         menu.setVisible(true);
         this.dispose();
         // TODO add your handling code here:
@@ -367,7 +391,6 @@ public class IngresarAeronave extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser JDateVencimiento;

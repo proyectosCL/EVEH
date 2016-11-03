@@ -26,10 +26,7 @@ public class ListarComponente extends javax.swing.JFrame {
     public ListarComponente() {
         initComponents();
         cargarTablaComponentes();
-        btnEliminarCompte.setEnabled(false);
-        btnModificarCompte.setEnabled(false);
-        lblComponenteSeleccionado.setText("Seleccione un componente para Eliminar/Modificar");
-        lblComponenteSeleccionado.setForeground(Color.red);
+        
     }
 
     /**
@@ -143,9 +140,9 @@ public class ListarComponente extends javax.swing.JFrame {
                 .addComponent(lblComponenteSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnEliminarCompte)
-                        .addComponent(btnModificarCompte))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnModificarCompte, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnEliminarCompte))
                     .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -185,9 +182,13 @@ public class ListarComponente extends javax.swing.JFrame {
         if (JOptionPane.OK_OPTION == resp) {
             int idCompte = Integer.parseInt(tablaComponentes.getValueAt(tablaComponentes.getSelectedRow(), 0).toString());
             ModificarComponente modCompte= new ModificarComponente();
+            
             modCompte.idCompteMod = idCompte;
+            modCompte.setLocationRelativeTo(null);
             modCompte.setVisible(true);
             this.dispose();
+            
+            
         } else {
             cargarTablaComponentes();
         }
@@ -244,6 +245,10 @@ public class ListarComponente extends javax.swing.JFrame {
                 return false;
             }
         };
+        btnEliminarCompte.setEnabled(false);
+        btnModificarCompte.setEnabled(false);
+        lblComponenteSeleccionado.setText("Seleccione un componente para Eliminar/Modificar");
+        lblComponenteSeleccionado.setForeground(Color.red);
         String tipo_componente, asociacionAeronave = "";
         int tipoCompte, tipoAsociacion = 0;
         tablaComponentes.setModel(modelo);

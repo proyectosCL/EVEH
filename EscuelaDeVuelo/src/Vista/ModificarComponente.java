@@ -9,6 +9,7 @@ import Atxy2k.CustomTextField.RestrictedTextField;
 import Controlador.Administrar_Componente;
 import Database.Conexion;
 import Modelo.Componente;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,12 +23,11 @@ public class ModificarComponente extends javax.swing.JFrame {
      */
     public ModificarComponente() {
         initComponents();
-        
         RestrictedTextField descripcionLimit = new RestrictedTextField(txtDescMod);
         descripcionLimit.setLimit(40);
         RestrictedTextField fabricanteLimit = new RestrictedTextField(txtFabricanteMod);
         descripcionLimit.setLimit(25);
-        
+
     }
 
     /**
@@ -60,6 +60,11 @@ public class ModificarComponente extends javax.swing.JFrame {
 
         jLabel2.setText("Descripcion");
 
+        txtDescMod.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDescModMouseClicked(evt);
+            }
+        });
         txtDescMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDescModActionPerformed(evt);
@@ -169,15 +174,16 @@ public class ModificarComponente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    int idCompteMod=0;
-    
+    int idCompteMod = 0;
+
+
     private void txtDescModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescModActionPerformed
         // TODO addfdf your handling code here:
     }//GEN-LAST:event_txtDescModActionPerformed
 
     private void btnGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiosActionPerformed
         // TODO add your handling code here:
-           JOptionPane.showMessageDialog(null,"id que viene del listar"+idCompteMod);
+        JOptionPane.showMessageDialog(null, "id que viene del listar" + idCompteMod);
         Conexion con = new Conexion();
         con.conectar();
         Administrar_Componente modificarCompte = new Administrar_Componente();
@@ -186,32 +192,40 @@ public class ModificarComponente extends javax.swing.JFrame {
         String fabricte = txtFabricanteMod.getText();
         Float horasVuelo = Float.parseFloat(spinHorasVueloMod.getValue().toString());
         int diasVuelo = Integer.parseInt(spinDiasVueloMod.getValue().toString());
-        int tipoCompte=0;
-        switch (cbxTipoNaveMod.getSelectedIndex()+1){
+        int tipoCompte = 0;
+        switch (cbxTipoNaveMod.getSelectedIndex() + 1) {
 
-            case 1 :  tipoCompte = 1;
-            break;
+            case 1:
+                tipoCompte = 1;
+                break;
 
-            case 2 :  tipoCompte = 2;
-            break;
+            case 2:
+                tipoCompte = 2;
+                break;
 
-            case 3 : tipoCompte = 3;
-            break;
+            case 3:
+                tipoCompte = 3;
+                break;
 
-            case 4 :  tipoCompte =4;
-            break;
+            case 4:
+                tipoCompte = 4;
+                break;
 
-            case 5 :  tipoCompte = 5;
-            break;
+            case 5:
+                tipoCompte = 5;
+                break;
 
-            case 6 : tipoCompte = 6;
-            break;
+            case 6:
+                tipoCompte = 6;
+                break;
 
-            case 7 :  tipoCompte = 7;
-            break;
+            case 7:
+                tipoCompte = 7;
+                break;
 
-            case 8 : tipoCompte = 8;
-            break;
+            case 8:
+                tipoCompte = 8;
+                break;
 
         }
 
@@ -219,6 +233,20 @@ public class ModificarComponente extends javax.swing.JFrame {
         modificarCompte.modificarComponente(nvoCompte);
 
     }//GEN-LAST:event_btnGuardarCambiosActionPerformed
+
+    private void txtDescModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDescModMouseClicked
+        // TODO add your handling code here:
+        Administrar_Componente ac = new Administrar_Componente();
+        ArrayList<Componente> listaComponenteId = ac.listarFiltroId(idCompteMod);
+
+        
+        txtFabricanteMod.setText(listaComponenteId.get(0).getFabricante());
+        spinHorasVueloMod.setValue(listaComponenteId.get(0).getHoras_vuelo());
+        spinDiasVueloMod.setValue(listaComponenteId.get(0).getDias_vuelo());
+        cbxTipoNaveMod.setSelectedIndex(listaComponenteId.get(0).getTipo_componente_id() + 1);
+
+        txtDescMod.setToolTipText(listaComponenteId.get(0).getDescripcion());
+    }//GEN-LAST:event_txtDescModMouseClicked
 
     /**
      * @param args the command line arguments
@@ -253,6 +281,19 @@ public class ModificarComponente extends javax.swing.JFrame {
                 new ModificarComponente().setVisible(true);
             }
         });
+    }
+
+    private void cargarDatos() {
+        //JOptionPane.showMessageDialog(null, "dentro de cargar datos, el valor del id es: " + idCompteMod);
+        Administrar_Componente ac = new Administrar_Componente();
+        ArrayList<Componente> listaComponenteId = ac.listarFiltroId(idCompteMod);
+
+        txtDescMod.setText(listaComponenteId.get(0).getDescripcion());
+        txtFabricanteMod.setText(listaComponenteId.get(0).getFabricante());
+        spinHorasVueloMod.setValue(listaComponenteId.get(0).getHoras_vuelo());
+        spinDiasVueloMod.setValue(listaComponenteId.get(0).getDias_vuelo());
+        cbxTipoNaveMod.setSelectedIndex(listaComponenteId.get(0).getTipo_componente_id() + 1);
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

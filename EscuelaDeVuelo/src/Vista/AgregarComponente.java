@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import jdk.nashorn.internal.ir.BreakNode;
 
 /**
  *
@@ -28,12 +29,6 @@ public class AgregarComponente extends javax.swing.JFrame {
      */
     public AgregarComponente() {
         initComponents();
-
-        JOptionPane.showMessageDialog(null, "Seleccione un componente de cada tipo");
-        cargarTablaFuselaje();
-        cargarTablaAlas();
-        cargarTablaEmpenaje();
-        cargarTablaControlesFrenos();
         lblFuselaje.setText("Seleccione algun componente de la tabla Fuselaje");
         lblFuselaje.setForeground(Color.red);
         lblAlas.setText("Seleccione algun componente de la tabla Alas");
@@ -43,7 +38,39 @@ public class AgregarComponente extends javax.swing.JFrame {
         lblEmpenaje.setText("Seleccione algun componente de la tabla Empenaje");
         lblEmpenaje.setForeground(Color.red);
         btnAvanzar.setEnabled(false);
+        cargarTablaFuselaje();
+//        if (flagDisp == false) {
+//            MenuPrincipalOperador menu = new MenuPrincipalOperador();
+//            menu.setLocationRelativeTo(null);
+//            menu.setVisible(true);
+//            this.dispose();
+//        } else {
+        cargarTablaAlas();
+//            if (flagDisp == false) {
+//                MenuPrincipalOperador menu = new MenuPrincipalOperador();
+//                menu.setLocationRelativeTo(null);
+//                menu.setVisible(true);
+//                this.dispose();
+//            } else {
+        cargarTablaEmpenaje();
+//                if (flagDisp == false) {
+//                    MenuPrincipalOperador menu = new MenuPrincipalOperador();
+//                    menu.setLocationRelativeTo(null);
+//                    menu.setVisible(true);
+//                    this.dispose();
+//                } else {
+        cargarTablaControlesFrenos();
+//                    if (flagDisp == false) {
+//                        MenuPrincipalOperador menu = new MenuPrincipalOperador();
+//                        menu.setLocationRelativeTo(null);
+//                        menu.setVisible(true);
+//                        this.dispose();
+//                    } else {
 
+//                    }
+//                }
+//            }
+//        }
     }
 
     /**
@@ -75,11 +102,17 @@ public class AgregarComponente extends javax.swing.JFrame {
         lblEmpenaje = new javax.swing.JLabel();
         lblControlesYFrenos = new javax.swing.JLabel();
         btnAvanzar = new javax.swing.JButton();
+        btnMenu = new javax.swing.JButton();
+        btnAgregarEmpenaje = new javax.swing.JButton();
+        btnAgregarFuselaje = new javax.swing.JButton();
+        btnAgregarControlesFrenos = new javax.swing.JButton();
+        btnAgregarAlas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1792, 674));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setText("Agregar componentes");
+        jLabel1.setText("Agregar componentes a aeronave");
 
         jLabel2.setText("Fuselaje");
 
@@ -163,12 +196,16 @@ public class AgregarComponente extends javax.swing.JFrame {
 
         jLabel6.setText("Componentes seleccionados");
 
+        lblFuselaje.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblFuselaje.setText("jLabel7");
 
+        lblAlas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblAlas.setText("jLabel8");
 
+        lblEmpenaje.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblEmpenaje.setText("jLabel9");
 
+        lblControlesYFrenos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblControlesYFrenos.setText("jLabel10");
 
         btnAvanzar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/avanzar.png"))); // NOI18N
@@ -182,37 +219,105 @@ public class AgregarComponente extends javax.swing.JFrame {
             }
         });
 
+        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/regresar.png"))); // NOI18N
+        btnMenu.setBorder(null);
+        btnMenu.setBorderPainted(false);
+        btnMenu.setContentAreaFilled(false);
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
+
+        btnAgregarEmpenaje.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        btnAgregarEmpenaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregar.png"))); // NOI18N
+        btnAgregarEmpenaje.setBorder(null);
+        btnAgregarEmpenaje.setBorderPainted(false);
+        btnAgregarEmpenaje.setContentAreaFilled(false);
+        btnAgregarEmpenaje.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregarEmpenaje.setEnabled(false);
+        btnAgregarEmpenaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarEmpenajeActionPerformed(evt);
+            }
+        });
+
+        btnAgregarFuselaje.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        btnAgregarFuselaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregar.png"))); // NOI18N
+        btnAgregarFuselaje.setBorder(null);
+        btnAgregarFuselaje.setBorderPainted(false);
+        btnAgregarFuselaje.setContentAreaFilled(false);
+        btnAgregarFuselaje.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregarFuselaje.setEnabled(false);
+        btnAgregarFuselaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarFuselajeActionPerformed(evt);
+            }
+        });
+
+        btnAgregarControlesFrenos.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        btnAgregarControlesFrenos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregar.png"))); // NOI18N
+        btnAgregarControlesFrenos.setBorder(null);
+        btnAgregarControlesFrenos.setBorderPainted(false);
+        btnAgregarControlesFrenos.setContentAreaFilled(false);
+        btnAgregarControlesFrenos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregarControlesFrenos.setEnabled(false);
+        btnAgregarControlesFrenos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarControlesFrenosActionPerformed(evt);
+            }
+        });
+
+        btnAgregarAlas.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
+        btnAgregarAlas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregar.png"))); // NOI18N
+        btnAgregarAlas.setBorder(null);
+        btnAgregarAlas.setBorderPainted(false);
+        btnAgregarAlas.setContentAreaFilled(false);
+        btnAgregarAlas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregarAlas.setEnabled(false);
+        btnAgregarAlas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarAlasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(396, 396, 396))
             .addGroup(layout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(128, 128, 128)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAvanzar)
+                            .addComponent(btnMenu))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(96, 96, 96)
-                                .addComponent(jLabel6))
-                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(57, 57, 57)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblAlas)
-                                    .addComponent(lblFuselaje)
                                     .addComponent(lblEmpenaje)
-                                    .addComponent(lblControlesYFrenos)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(128, 128, 128)
-                        .addComponent(btnAvanzar)))
-                .addGap(0, 195, Short.MAX_VALUE))
+                                    .addComponent(lblAlas)
+                                    .addComponent(lblControlesYFrenos)
+                                    .addComponent(lblFuselaje))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnAgregarEmpenaje, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnAgregarAlas, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnAgregarControlesFrenos, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(22, 22, 22))))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -226,55 +331,80 @@ public class AgregarComponente extends javax.swing.JFrame {
                         .addGap(438, 438, 438)
                         .addComponent(jLabel5)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(429, 429, 429)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(62, 62, 62)
                     .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(999, Short.MAX_VALUE)))
+                    .addContainerGap(1006, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(1455, Short.MAX_VALUE)
+                    .addComponent(btnAgregarFuselaje)
+                    .addGap(20, 20, 20)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAvanzar)
+                                .addGap(34, 34, 34)
+                                .addComponent(btnMenu))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addGap(49, 49, 49)
+                        .addGap(38, 38, 38)
                         .addComponent(lblFuselaje)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblAlas)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblEmpenaje)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblControlesYFrenos)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAvanzar))
-                .addContainerGap(68, Short.MAX_VALUE))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAgregarEmpenaje)
+                            .addComponent(lblAlas))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblEmpenaje)
+                            .addComponent(btnAgregarAlas))
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAgregarControlesFrenos)
+                            .addComponent(lblControlesYFrenos))))
+                .addContainerGap(62, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(129, 129, 129)
                     .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(326, Short.MAX_VALUE)))
+                    .addContainerGap(320, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(175, 175, 175)
+                    .addComponent(btnAgregarFuselaje)
+                    .addContainerGap(460, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     String matriculaNave = "";
+    boolean flagDisp = true;
     private void btnAvanzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvanzarActionPerformed
         // TODO add your handling code here:
 
@@ -283,20 +413,16 @@ public class AgregarComponente extends javax.swing.JFrame {
         int idAlas = Integer.parseInt(tablaAlas.getValueAt(tablaAlas.getSelectedRow(), 0).toString());
         int idControlesFrenos = Integer.parseInt(tablaControlesFrenos.getValueAt(tablaControlesFrenos.getSelectedRow(), 0).toString());
 
-        
-
         Administrar_Componente ac = new Administrar_Componente();
         ac.asociarAeronave(idFuselaje, matriculaNave);
         ac.asociarAeronave(idEmpenaje, matriculaNave);
         ac.asociarAeronave(idAlas, matriculaNave);
         ac.asociarAeronave(idControlesFrenos, matriculaNave);
-        
-        AgregarComponente2 ventanaComponente2 = new AgregarComponente2();
-                ventanaComponente2.matriculaNave2 = matriculaNave;
-                ventanaComponente2.setVisible(true);
-                this.dispose();
 
-      
+        AgregarComponente2 ventanaComponente2 = new AgregarComponente2();
+        ventanaComponente2.matriculaNave2 = matriculaNave;
+        ventanaComponente2.setVisible(true);
+        this.dispose();
 
 
     }//GEN-LAST:event_btnAvanzarActionPerformed
@@ -349,6 +475,46 @@ public class AgregarComponente extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_tablaControlesFrenosMouseClicked
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        MenuPrincipalOperador menu = new MenuPrincipalOperador();
+        menu.setLocationRelativeTo(null);
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnAgregarEmpenajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEmpenajeActionPerformed
+        IngresarComponente ingresarCompte = new IngresarComponente();
+        //ingresarCompte.retorno = true;
+        ingresarCompte.setLocationRelativeTo(null);
+        ingresarCompte.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAgregarEmpenajeActionPerformed
+
+    private void btnAgregarFuselajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarFuselajeActionPerformed
+        IngresarComponente ingresarCompte = new IngresarComponente();
+        //ingresarCompte.retorno = true;
+        ingresarCompte.setLocationRelativeTo(null);
+        ingresarCompte.setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnAgregarFuselajeActionPerformed
+
+    private void btnAgregarControlesFrenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarControlesFrenosActionPerformed
+        IngresarComponente ingresarCompte = new IngresarComponente();
+        //ingresarCompte.retorno = true;
+        ingresarCompte.setLocationRelativeTo(null);
+        ingresarCompte.setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarControlesFrenosActionPerformed
+
+    private void btnAgregarAlasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAlasActionPerformed
+        IngresarComponente ingresarCompte = new IngresarComponente();
+        //ingresarCompte.retorno = true;
+        ingresarCompte.setLocationRelativeTo(null);
+        ingresarCompte.setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarAlasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -420,8 +586,11 @@ public class AgregarComponente extends javax.swing.JFrame {
         Object[] fila = new Object[8];
         int num = listaFuselaje.size();
         if (listaFuselaje.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No hay disponibilidad de componentes");
-            System.exit(-1);
+            //JOptionPane.showMessageDialog(null, "No hay disponibilidad de componentes del tipo Fuselaje");
+            flagDisp = false;
+            btnAgregarFuselaje.setEnabled(true);
+            lblFuselaje.setText("No existen componentes tipo fuselaje disponibles");
+
         } else {
             for (int i = 0; i < num; i++) {
                 fila[0] = listaFuselaje.get(i).getId();
@@ -463,8 +632,10 @@ public class AgregarComponente extends javax.swing.JFrame {
         ArrayList<Componente> listaAlas = ac.listarFiltro(2);
         int num = listaAlas.size();
         if (listaAlas.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No hay disponibilidad de componentes");
-            System.exit(-1);
+            //JOptionPane.showMessageDialog(null, "No hay disponibilidad de componentes del tipo Alas");
+            flagDisp = false;
+            btnAgregarAlas.setEnabled(true);
+            lblAlas.setText("No existen componentes tipo alas disponibles ");
         } else {
             Object[] fila = new Object[8];
 
@@ -510,8 +681,10 @@ public class AgregarComponente extends javax.swing.JFrame {
 
         int num = listaEmpenaje.size();
         if (listaEmpenaje.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No hay disponibilidad de componentes");
-            System.exit(-1);
+            //JOptionPane.showMessageDialog(null, "No hay disponibilidad de componentes del tipo Empenaje");
+            flagDisp = false;
+            btnAgregarEmpenaje.setEnabled(true);
+            lblEmpenaje.setText("No existen componentes tipo empenaje disponibles ");
         } else {
             for (int i = 0; i < num; i++) {
                 fila[0] = listaEmpenaje.get(i).getId();
@@ -554,8 +727,10 @@ public class AgregarComponente extends javax.swing.JFrame {
         Object[] fila = new Object[8];
         int num = listaControlesFrenos.size();
         if (listaControlesFrenos.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No hay disponibilidad de componentes");
-            System.exit(-1);
+            //JOptionPane.showMessageDialog(null, "No hay disponibilidad de componentes del tipo Controles y Frenos");
+            flagDisp = false;
+            btnAgregarControlesFrenos.setEnabled(true);
+            lblControlesYFrenos.setText("No existen componentes tipo controles/frenos disponibles ");
         } else {
             for (int i = 0; i < num; i++) {
                 fila[0] = listaControlesFrenos.get(i).getId();
@@ -571,7 +746,15 @@ public class AgregarComponente extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarAeronave;
+    private javax.swing.JButton btnAgregarAeronave1;
+    private javax.swing.JButton btnAgregarAeronave2;
+    private javax.swing.JButton btnAgregarAlas;
+    private javax.swing.JButton btnAgregarControlesFrenos;
+    private javax.swing.JButton btnAgregarEmpenaje;
+    private javax.swing.JButton btnAgregarFuselaje;
     private javax.swing.JButton btnAvanzar;
+    private javax.swing.JButton btnMenu;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

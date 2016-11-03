@@ -58,6 +58,34 @@ public class Administrar_Componente implements administrar_horas_vuelo {
         return listaFiltro;
 
     }
+    
+    public ArrayList<Componente> listarFiltroId(int idCompte) {
+
+        ArrayList listaFiltro = new ArrayList();
+        Componente filtro;
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM componentes WHERE id = " + idCompte + "  ");
+            while (rs.next()) {
+                filtro = new Componente();
+                filtro.setId(rs.getInt("id"));
+                filtro.setDescripcion(rs.getString(2));
+                filtro.setFabricante(rs.getString(3));
+                filtro.setHoras_vuelo(rs.getFloat("horas_vuelo"));
+                filtro.setDias_vuelo(rs.getInt("dias_vuelo"));
+                filtro.setTipo_componente_id(rs.getInt("tipos_componentes_id"));
+                filtro.setComponente_id(rs.getInt("componentes_id"));
+                filtro.setAeronave_id(rs.getInt("aeronaves_id"));
+                listaFiltro.add(filtro);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return listaFiltro;
+
+    }
 
     public ArrayList<Componente> listarComponente() {
 
@@ -115,6 +143,9 @@ public class Administrar_Componente implements administrar_horas_vuelo {
                 break;
             case 8:
                 tipoCompte = "Cabina";
+                break;
+            case 9:
+                tipoCompte = "SubComponente";
                 break;
         }
 
