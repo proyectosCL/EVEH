@@ -542,6 +542,8 @@ public class IngresarUsuario extends javax.swing.JFrame {
 //        }
         if (lblconfirmar.isVisible() || lblnombre.isVisible() || lblapellido.isVisible() || lblpass.isVisible() || lblrut.isVisible() || lblusuario.isVisible()) {
             JOptionPane.showMessageDialog(null, "debe llenar todos los campos con asteriscos");
+            btnIngresar.setEnabled(true);
+            btnIngresar.setText("Ingresar");
         } else {
 
             Usuario userr = new Usuario(iduser, nombreusuario, pass, id_perfil, estado_cuenta);
@@ -572,9 +574,13 @@ public class IngresarUsuario extends javax.swing.JFrame {
                     
                 } else {
                     JOptionPane.showMessageDialog(null, "no se puedo ingresar");
+                    btnIngresar.setEnabled(true);
+                    btnIngresar.setText("Ingresar");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "no se guardaron los cambios");
+                btnIngresar.setEnabled(true);
+                btnIngresar.setText("Ingresar");
             }
 
             btnIngresar.setEnabled(true);
