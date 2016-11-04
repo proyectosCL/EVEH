@@ -113,7 +113,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
 
         jLabel5.setText("Apellidos:");
 
-        jLabel6.setText("Rut:");
+        jLabel6.setText("Rut: (sin puntos ni guiones)");
 
         txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -290,8 +290,8 @@ public class IngresarUsuario extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(jLabel11)
                     .addComponent(jLabel16)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,7 +347,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addComponent(jLabel17)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -543,7 +543,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
         if (lblconfirmar.isVisible() || lblnombre.isVisible() || lblapellido.isVisible() || lblpass.isVisible() || lblrut.isVisible() || lblusuario.isVisible()) {
             JOptionPane.showMessageDialog(null, "debe llenar todos los campos con asteriscos");
             btnIngresar.setEnabled(true);
-            btnIngresar.setText("Ingresar");
+            btnIngresar.setText("");
         } else {
 
             Usuario userr = new Usuario(iduser, nombreusuario, pass, id_perfil, estado_cuenta);
@@ -575,16 +575,16 @@ public class IngresarUsuario extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "no se puedo ingresar");
                     btnIngresar.setEnabled(true);
-                    btnIngresar.setText("Ingresar");
+                    btnIngresar.setText("");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "no se guardaron los cambios");
                 btnIngresar.setEnabled(true);
-                btnIngresar.setText("Ingresar");
+                btnIngresar.setText("");
             }
 
             btnIngresar.setEnabled(true);
-            btnIngresar.setText("Ingresar");
+            btnIngresar.setText("");
 
         }
 

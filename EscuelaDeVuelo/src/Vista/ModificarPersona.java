@@ -120,7 +120,7 @@ public class ModificarPersona extends javax.swing.JFrame {
 
         jLabel5.setText("Apellidos:");
 
-        jLabel6.setText("Rut:");
+        jLabel6.setText("Rut: (sin puntos ni guiones)");
 
         txtUsuario.setEditable(false);
         txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -309,9 +309,9 @@ public class ModificarPersona extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(jLabel9)
                             .addComponent(jLabel11)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel16))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,10 +358,10 @@ public class ModificarPersona extends javax.swing.JFrame {
                                             .addComponent(cboAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel15)))
                                     .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 47, Short.MAX_VALUE))
+                                .addGap(0, 35, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnactualizar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                                 .addComponent(btnCancelar)
                                 .addGap(17, 17, 17))))
                     .addGroup(layout.createSequentialGroup()
@@ -551,7 +551,7 @@ public class ModificarPersona extends javax.swing.JFrame {
             }
             
             btnactualizar.setEnabled(true);
-            btnactualizar.setText("Actualizar");
+            btnactualizar.setText("");
             
              
             
