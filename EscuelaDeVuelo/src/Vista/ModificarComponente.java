@@ -11,6 +11,7 @@ import Database.Conexion;
 import Modelo.Componente;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 
 /**
  *
@@ -27,6 +28,15 @@ public class ModificarComponente extends javax.swing.JFrame {
         descripcionLimit.setLimit(40);
         RestrictedTextField fabricanteLimit = new RestrictedTextField(txtFabricanteMod);
         descripcionLimit.setLimit(25);
+        SpinnerNumberModel diasVuelo = new SpinnerNumberModel();
+        diasVuelo.setMaximum(10000);
+        diasVuelo.setMinimum(0);
+        spinDiasVueloMod.setModel(diasVuelo);
+        
+        SpinnerNumberModel horasVuelo = new SpinnerNumberModel();
+        horasVuelo.setMaximum(10000);
+        horasVuelo.setMinimum(0);
+        spinHorasVueloMod.setModel(horasVuelo);
 
     }
 
@@ -52,6 +62,7 @@ public class ModificarComponente extends javax.swing.JFrame {
         spinDiasVueloMod = new javax.swing.JSpinner();
         cbxTipoNaveMod = new javax.swing.JComboBox<>();
         btnGuardarCambios = new javax.swing.JButton();
+        btnMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,6 +103,17 @@ public class ModificarComponente extends javax.swing.JFrame {
             }
         });
 
+        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/regresar.png"))); // NOI18N
+        btnMenu.setBorder(null);
+        btnMenu.setBorderPainted(false);
+        btnMenu.setContentAreaFilled(false);
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -107,19 +129,21 @@ public class ModificarComponente extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtFabricanteMod, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                        .addComponent(txtDescMod, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(spinDiasVueloMod, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                         .addComponent(spinHorasVueloMod, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(cbxTipoNaveMod, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxTipoNaveMod, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnMenu)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtFabricanteMod, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                            .addComponent(txtDescMod, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addContainerGap(169, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(112, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnGuardarCambios)
-                        .addGap(293, 293, 293))
+                        .addGap(364, 364, 364))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(105, 105, 105))))
@@ -138,19 +162,22 @@ public class ModificarComponente extends javax.swing.JFrame {
                     .addComponent(txtFabricanteMod, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(spinHorasVueloMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(spinDiasVueloMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(cbxTipoNaveMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnGuardarCambios)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(spinHorasVueloMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(spinDiasVueloMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(cbxTipoNaveMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnGuardarCambios))
+                    .addComponent(btnMenu))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -183,9 +210,6 @@ public class ModificarComponente extends javax.swing.JFrame {
 
     private void btnGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiosActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "id que viene del listar" + idCompteMod);
-        Conexion con = new Conexion();
-        con.conectar();
         Administrar_Componente modificarCompte = new Administrar_Componente();
         //int id=0;
         String desc = txtDescMod.getText();
@@ -226,6 +250,9 @@ public class ModificarComponente extends javax.swing.JFrame {
             case 8:
                 tipoCompte = 8;
                 break;
+            case 9:
+                tipoCompte = 9;
+                break;
 
         }
 
@@ -239,7 +266,6 @@ public class ModificarComponente extends javax.swing.JFrame {
         Administrar_Componente ac = new Administrar_Componente();
         ArrayList<Componente> listaComponenteId = ac.listarFiltroId(idCompteMod);
 
-        
         txtFabricanteMod.setText(listaComponenteId.get(0).getFabricante());
         spinHorasVueloMod.setValue(listaComponenteId.get(0).getHoras_vuelo());
         spinDiasVueloMod.setValue(listaComponenteId.get(0).getDias_vuelo());
@@ -247,6 +273,13 @@ public class ModificarComponente extends javax.swing.JFrame {
 
         txtDescMod.setToolTipText(listaComponenteId.get(0).getDescripcion());
     }//GEN-LAST:event_txtDescModMouseClicked
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        ListarComponente listar = new ListarComponente();
+        listar.setLocationRelativeTo(null);
+        listar.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,6 +331,7 @@ public class ModificarComponente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardarCambios;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JComboBox<String> cbxTipoNaveMod;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

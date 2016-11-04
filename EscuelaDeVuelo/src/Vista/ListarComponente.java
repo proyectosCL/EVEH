@@ -91,6 +91,8 @@ public class ListarComponente extends javax.swing.JFrame {
             }
         });
 
+        lblComponenteSeleccionado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
         btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/regresar.png"))); // NOI18N
         btnMenu.setBorder(null);
         btnMenu.setBorderPainted(false);
