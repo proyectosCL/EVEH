@@ -172,7 +172,9 @@ int idComptePadre = 0;
 
     private void btnGuardarNuevoComponenteSubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarNuevoComponenteSubActionPerformed
         // TODO add your handling code here:
-
+        if (txtDescSub.getText().equals("")) {
+JOptionPane.showMessageDialog(null,"Por favor, rellene todos los campos");
+        }else{
         Administrar_Componente ingresarCompte = new Administrar_Componente();
         int id = 0;
         String desc = txtDescSub.getText();
@@ -190,7 +192,7 @@ int idComptePadre = 0;
         int dialogButton = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar otro sub-componente?", "Confirmación", dialogButton);
         if (dialogResult == 0) {
-            
+
             txtDescSub.setText("");
             txtFabricanteSub.setText("");
             spinDiasVueloSub.setValue(0);
@@ -201,6 +203,7 @@ int idComptePadre = 0;
             menu.setLocationRelativeTo(null);
             menu.setVisible(true);
             this.dispose();
+        }
         }
     }//GEN-LAST:event_btnGuardarNuevoComponenteSubActionPerformed
 

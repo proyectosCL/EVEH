@@ -34,7 +34,7 @@ public class ModificarComponente extends javax.swing.JFrame {
         diasVuelo.setMaximum(10000);
         diasVuelo.setMinimum(0);
         spinDiasVueloMod.setModel(diasVuelo);
-        
+
         SpinnerNumberModel horasVuelo = new SpinnerNumberModel();
         horasVuelo.setMaximum(10000);
         horasVuelo.setMinimum(0);
@@ -65,7 +65,6 @@ public class ModificarComponente extends javax.swing.JFrame {
         cbxTipoNaveMod = new javax.swing.JComboBox<>();
         btnGuardarCambios = new javax.swing.JButton();
         btnMenu1 = new javax.swing.JButton();
-        btnListarComponentes = new javax.swing.JButton();
         lblModCompte = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -118,17 +117,6 @@ public class ModificarComponente extends javax.swing.JFrame {
             }
         });
 
-        btnListarComponentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ListarComponentes.png"))); // NOI18N
-        btnListarComponentes.setBorder(null);
-        btnListarComponentes.setBorderPainted(false);
-        btnListarComponentes.setContentAreaFilled(false);
-        btnListarComponentes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnListarComponentes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarComponentesActionPerformed(evt);
-            }
-        });
-
         lblModCompte.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -160,12 +148,9 @@ public class ModificarComponente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cbxTipoNaveMod, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(spinDiasVueloMod, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                                .addComponent(spinHorasVueloMod, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnListarComponentes))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(spinDiasVueloMod, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                            .addComponent(spinHorasVueloMod, javax.swing.GroupLayout.Alignment.LEADING))
                         .addComponent(txtFabricanteMod, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
                         .addComponent(txtDescMod, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -183,17 +168,14 @@ public class ModificarComponente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFabricanteMod, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(spinHorasVueloMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(spinHorasVueloMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(spinDiasVueloMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnListarComponentes))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(spinDiasVueloMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -235,56 +217,60 @@ public class ModificarComponente extends javax.swing.JFrame {
 
     private void btnGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiosActionPerformed
         // TODO add your handling code here:
-        Administrar_Componente modificarCompte = new Administrar_Componente();
-        //int id=0;
-        
-        String desc = txtDescMod.getText();
-        String fabricte = txtFabricanteMod.getText();
-        Float horasVuelo = Float.parseFloat(spinHorasVueloMod.getValue().toString());
-        int diasVuelo = Integer.parseInt(spinDiasVueloMod.getValue().toString());
-        int tipoCompte = 0;
-        switch (cbxTipoNaveMod.getSelectedIndex() + 1) {
 
-            case 1:
-                tipoCompte = 1;
-                break;
+        if (txtDescMod.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, rellene todos los campos");
+        } else {
+            Administrar_Componente modificarCompte = new Administrar_Componente();
+            //int id=0;
 
-            case 2:
-                tipoCompte = 2;
-                break;
+            String desc = txtDescMod.getText();
+            String fabricte = txtFabricanteMod.getText();
+            Float horasVuelo = Float.parseFloat(spinHorasVueloMod.getValue().toString());
+            int diasVuelo = Integer.parseInt(spinDiasVueloMod.getValue().toString());
+            int tipoCompte = 0;
+            switch (cbxTipoNaveMod.getSelectedIndex() + 1) {
 
-            case 3:
-                tipoCompte = 3;
-                break;
+                case 1:
+                    tipoCompte = 1;
+                    break;
 
-            case 4:
-                tipoCompte = 4;
-                break;
+                case 2:
+                    tipoCompte = 2;
+                    break;
 
-            case 5:
-                tipoCompte = 5;
-                break;
+                case 3:
+                    tipoCompte = 3;
+                    break;
 
-            case 6:
-                tipoCompte = 6;
-                break;
+                case 4:
+                    tipoCompte = 4;
+                    break;
 
-            case 7:
-                tipoCompte = 7;
-                break;
+                case 5:
+                    tipoCompte = 5;
+                    break;
 
-            case 8:
-                tipoCompte = 8;
-                break;
-            case 9:
-                tipoCompte = 9;
-                break;
+                case 6:
+                    tipoCompte = 6;
+                    break;
 
+                case 7:
+                    tipoCompte = 7;
+                    break;
+
+                case 8:
+                    tipoCompte = 8;
+                    break;
+                case 9:
+                    tipoCompte = 9;
+                    break;
+
+            }
+
+            Componente nvoCompte = new Componente(idCompteMod, desc, fabricte, horasVuelo, diasVuelo, tipoCompte);
+            modificarCompte.modificarComponente(nvoCompte);
         }
-
-        Componente nvoCompte = new Componente(idCompteMod, desc, fabricte, horasVuelo, diasVuelo, tipoCompte);
-        modificarCompte.modificarComponente(nvoCompte);
-
     }//GEN-LAST:event_btnGuardarCambiosActionPerformed
 
     private void txtDescModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDescModMouseClicked
@@ -302,43 +288,30 @@ public class ModificarComponente extends javax.swing.JFrame {
 
     private void btnMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenu1ActionPerformed
         // TODO add your handling code here:
-        
+
         ListarComponente btn = new ListarComponente();
         btn.setLocationRelativeTo(null);
         btn.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMenu1ActionPerformed
 
-    private void btnListarComponentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarComponentesActionPerformed
-        // TODO add your handling code here:
-        ListarSubcomponentes btn = new ListarSubcomponentes();
-        btn.setLocationRelativeTo(null);
-        btn.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnListarComponentesActionPerformed
-
     /**
      * @param args the command line arguments
      */
-    
-
     private void VerificarSubCompte(int idAso) {
         //JOptionPane.showMessageDialog(null, "dentro de cargar datos, el valor del id es: " + idCompteMod);
         Administrar_Componente ac = new Administrar_Componente();
         ArrayList<Componente> listaComponenteId = ac.listarCompteAso(idAso);
-        
-        if(listaComponenteId.isEmpty()){
+
+        if (listaComponenteId.isEmpty()) {
             lblModCompte.setText("Este componente no tiene SubComponentes asociados");
             lblModCompte.setForeground(Color.red);
         }
-
-       
 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardarCambios;
-    private javax.swing.JButton btnListarComponentes;
     private javax.swing.JButton btnMenu1;
     private javax.swing.JComboBox<String> cbxTipoNaveMod;
     private javax.swing.JLabel jLabel1;

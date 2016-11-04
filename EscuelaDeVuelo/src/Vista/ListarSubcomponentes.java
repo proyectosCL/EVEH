@@ -153,7 +153,7 @@ public class ListarSubcomponentes extends javax.swing.JFrame {
 //        columnModel.getColumn(6).setPreferredWidth(140);
 //        columnModel.getColumn(7).setPreferredWidth(165);
         Administrar_Componente ac = new Administrar_Componente();
-        ArrayList<Componente> listaComponente = ac.listarComponente();
+        ArrayList<Componente> listaComponente = ac.listarCompteAso(WIDTH);
         Object[] fila = new Object[8];
         int num = listaComponente.size();
         for (int i = 0; i < num; i++) {

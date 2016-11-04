@@ -208,70 +208,73 @@ public class IngresarComponente extends javax.swing.JFrame {
     private void btnGuardarNuevoComponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarNuevoComponenteActionPerformed
         // TODO add your handling code here:
 
-       
-        Administrar_Componente ingresarCompte = new Administrar_Componente();
-        int id = 0;
-        String desc = txtDesc.getText();
-        String fabricte = txtFabricante.getText();
-        Float horasVuelo = Float.parseFloat(spinHorasVuelo.getValue().toString());
-        int diasVuelo = Integer.parseInt(spinDiasVuelo.getValue().toString());
-        int tipoCompte = 0;
-        switch (cbxTipoNave.getSelectedIndex() + 1) {
+        if (txtDesc.getText().equals("") || txtFabricante.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, rellene todos los campos");
 
-            case 1:
-                tipoCompte = 1;
-                break;
-
-            case 2:
-                tipoCompte = 2;
-                break;
-
-            case 3:
-                tipoCompte = 3;
-                break;
-
-            case 4:
-                tipoCompte = 4;
-                break;
-
-            case 5:
-                tipoCompte = 5;
-                break;
-
-            case 6:
-                tipoCompte = 6;
-                break;
-
-            case 7:
-                tipoCompte = 7;
-                break;
-
-            case 8:
-                tipoCompte = 8;
-                break;
-
-        }
-
-        if (matriculaNave.equals("")) {
-            Componente nvoCompte = new Componente(id, desc, fabricte, horasVuelo, diasVuelo, tipoCompte);
-            ingresarCompte.ingresarNuevoComponente(nvoCompte);
-
-            int dialogButton = JOptionPane.YES_NO_OPTION;
-            int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar sub-componentes al componente ingresado?", "Componente ingresado exitosamente", dialogButton);
-            if (dialogResult == 0) {
-                // codigo para cerrar y abrir la ventana subcomponentes
-                IngresarSubComponente ventanaSub = new IngresarSubComponente();
-                ventanaSub.setLocationRelativeTo(null);
-                ventanaSub.setVisible(true);
-                this.dispose();
-            } else {
-                txtDesc.setText("");
-                txtFabricante.setText("");
-                spinDiasVuelo.setValue(0);
-                spinHorasVuelo.setValue(0);
-            }
         } else {
-            if (matriculaNave.length() == 5) {
+
+            Administrar_Componente ingresarCompte = new Administrar_Componente();
+            int id = 0;
+            String desc = txtDesc.getText();
+            String fabricte = txtFabricante.getText();
+            Float horasVuelo = Float.parseFloat(spinHorasVuelo.getValue().toString());
+            int diasVuelo = Integer.parseInt(spinDiasVuelo.getValue().toString());
+            int tipoCompte = 0;
+            switch (cbxTipoNave.getSelectedIndex() + 1) {
+
+                case 1:
+                    tipoCompte = 1;
+                    break;
+
+                case 2:
+                    tipoCompte = 2;
+                    break;
+
+                case 3:
+                    tipoCompte = 3;
+                    break;
+
+                case 4:
+                    tipoCompte = 4;
+                    break;
+
+                case 5:
+                    tipoCompte = 5;
+                    break;
+
+                case 6:
+                    tipoCompte = 6;
+                    break;
+
+                case 7:
+                    tipoCompte = 7;
+                    break;
+
+                case 8:
+                    tipoCompte = 8;
+                    break;
+
+            }
+
+            if (matriculaNave.equals("")) {
+                Componente nvoCompte = new Componente(id, desc, fabricte, horasVuelo, diasVuelo, tipoCompte);
+                ingresarCompte.ingresarNuevoComponente(nvoCompte);
+
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar sub-componentes al componente ingresado?", "Componente ingresado exitosamente", dialogButton);
+                if (dialogResult == 0) {
+                    // codigo para cerrar y abrir la ventana subcomponentes
+                    IngresarSubComponente ventanaSub = new IngresarSubComponente();
+                    ventanaSub.setLocationRelativeTo(null);
+                    ventanaSub.setVisible(true);
+                    this.dispose();
+                } else {
+                    txtDesc.setText("");
+                    txtFabricante.setText("");
+                    spinDiasVuelo.setValue(0);
+                    spinHorasVuelo.setValue(0);
+                }
+            } else if (matriculaNave.length() == 5) {
 
                 Administrar_Aeronave aa = new Administrar_Aeronave();
                 ArrayList<Aeronave> listaAeronave = aa.listarPorMatricula(matriculaNave);
@@ -285,7 +288,7 @@ public class IngresarComponente extends javax.swing.JFrame {
                 if (dialogResult == 0) {
                     // codigo para cerrar y abrir la ventana subcomponentes
                     IngresarSubComponente ventanaSub = new IngresarSubComponente();
-                    
+
                     ventanaSub.setLocationRelativeTo(null);
                     ventanaSub.setVisible(true);
                     this.dispose();
@@ -295,10 +298,9 @@ public class IngresarComponente extends javax.swing.JFrame {
                     spinDiasVuelo.setValue(0);
                     spinHorasVuelo.setValue(0);
                 }
-            }
-
-
+            
     }//GEN-LAST:event_btnGuardarNuevoComponenteActionPerformed
+        }
     }
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         MenuPrincipalOperador menu = new MenuPrincipalOperador();
