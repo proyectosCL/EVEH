@@ -183,7 +183,7 @@ public class ListarComponente extends javax.swing.JFrame {
         int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea modificar el componente seleccionado?");
         if (JOptionPane.OK_OPTION == resp) {
             int idCompte = Integer.parseInt(tablaComponentes.getValueAt(tablaComponentes.getSelectedRow(), 0).toString());
-            ModificarComponente modCompte= new ModificarComponente();
+            ModificarComponente modCompte= new ModificarComponente(idCompte);
             
             modCompte.idCompteMod = idCompte;
             modCompte.setLocationRelativeTo(null);

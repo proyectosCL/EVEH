@@ -298,6 +298,34 @@ public class Administrar_Componente implements administrar_horas_vuelo {
         return listaFiltro;
 
     }
+    
+    public ArrayList<Componente> listarCompteAso(int id) {
+        
+        System.out.println(id);
+        ArrayList listaFiltro = new ArrayList();
+        Componente filtro;
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("select * from COMPONENTES where COMPONENTES_ID= "+id+"");
+            while (rs.next()) {
+                filtro = new Componente();
+                filtro.setId(rs.getInt("id"));
+                filtro.setDescripcion(rs.getString(2));
+                filtro.setFabricante(rs.getString(3));
+                filtro.setHoras_vuelo(rs.getFloat("horas_vuelo"));
+                filtro.setDias_vuelo(rs.getInt("dias_vuelo"));
+                filtro.setTipo_componente_id(rs.getInt("tipos_componentes_id"));
+                
+                listaFiltro.add(filtro);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return listaFiltro;
+
+    }
 
     @Override
     public void sumarHoras() {

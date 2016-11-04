@@ -189,6 +189,7 @@ public class Administrar_Personas {
         }
         return persona.getId_persona();
     }
+    
      public ArrayList<Persona> listarPersonas() {
         ArrayList listaPersonas = new ArrayList();
         Persona persona;

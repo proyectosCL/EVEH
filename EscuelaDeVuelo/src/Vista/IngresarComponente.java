@@ -208,8 +208,7 @@ public class IngresarComponente extends javax.swing.JFrame {
     private void btnGuardarNuevoComponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarNuevoComponenteActionPerformed
         // TODO add your handling code here:
 
-        Conexion con = new Conexion();
-        con.conectar();
+       
         Administrar_Componente ingresarCompte = new Administrar_Componente();
         int id = 0;
         String desc = txtDesc.getText();
@@ -258,7 +257,7 @@ public class IngresarComponente extends javax.swing.JFrame {
             ingresarCompte.ingresarNuevoComponente(nvoCompte);
 
             int dialogButton = JOptionPane.YES_NO_OPTION;
-            int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar sub-componentes al componente ingresado?", "Confirmación", dialogButton);
+            int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar sub-componentes al componente ingresado?", "Componente ingresado exitosamente", dialogButton);
             if (dialogResult == 0) {
                 // codigo para cerrar y abrir la ventana subcomponentes
                 IngresarSubComponente ventanaSub = new IngresarSubComponente();

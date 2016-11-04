@@ -3,14 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/src/Vista/IngresarSubComponente.java</file>
-            <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/src/Vista/ListarComponente.java</file>
-            <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/src/Controlador/Administrar_Componente.java</file>
-            <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/src/Vista/IngresarComponente.java</file>
-            <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/src/Vista/AgregarComponente2.java</file>
+            <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/test/Controlador/Administrar_AeronaveTest.java</file>
+            <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/test/Controlador/Administrar_UsuariosTest.java</file>
+            <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/src/Controlador/Administrar_Vuelo.java</file>
+            <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/src/Controlador/Administrar_Pilotos.java</file>
+            <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/src/Vista/ModificarPiloto.java</file>
+            <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/test/Controlador/Administrar_PilotosTest.java</file>
+            <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/test/Controlador/Administrar_LicenciaTest.java</file>
+            <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/src/Controlador/Administrar_Usuarios.java</file>
+            <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/test/Controlador/Administrar_ComponenteTest.java</file>
+            <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/src/Vista/ListarPiloto.java</file>
             <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/src/Controlador/Administrar_Aeronave.java</file>
-            <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/src/Vista/IngresarAeronave.java</file>
-            <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/src/Vista/AgregarComponente.java</file>
+            <file>file:/C:/Users/pcbla/Documents/NetBeansProjects/EVEH/EscuelaDeVuelo/test/Controlador/Administrar_VueloTest.java</file>
         </group>
     </open-files>
 </project-private>
