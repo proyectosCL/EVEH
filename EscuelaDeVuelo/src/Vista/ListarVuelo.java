@@ -227,19 +227,20 @@ public class ListarVuelo extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonListar)
-                    .addComponent(jButtonVolver)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jCheckBoxTerminado)
-                        .addGap(6, 6, 6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(6, 6, 6))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonListar)
+                        .addComponent(jButtonVolver)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonEliminar)
-                    .addComponent(jButtonTerminar)
-                    .addComponent(jButtonVer))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonTerminar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonEliminar)
+                        .addComponent(jButtonVer)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -258,17 +259,24 @@ public class ListarVuelo extends javax.swing.JFrame {
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         Administrar_Vuelo av = new Administrar_Vuelo();
+
         if (this.jTableVuelos.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione un vuelo de la lista.");
         } else {
-            int R = JOptionPane.showConfirmDialog(null, "¿Seguro?", "¡Alerta!", JOptionPane.YES_NO_OPTION, 0, null);
-            if (R == 0) {
-                jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0).toString();
-                av.eliminarVuelo(Integer.parseInt(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0).toString()));
-                Clear_Table();
-                CargarTabla(this.jCheckBoxTerminado.isSelected());
+            if (Double.parseDouble(String.valueOf(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 3))) != 0.0) {
+                JOptionPane.showMessageDialog(null, "No puedes eliminar un vuelo ya terminado.");
+            } else {
+                int R = JOptionPane.showConfirmDialog(null, "¿Seguro?", "¡Alerta!", JOptionPane.YES_NO_OPTION, 0, null);
+                if (R == 0) {
+                    jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0).toString();
+                    av.eliminarVuelo(Integer.parseInt(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0).toString()));
+                    Clear_Table();
+                    CargarTabla(this.jCheckBoxTerminado.isSelected());
+                }
+
             }
         }
+
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTerminarActionPerformed
@@ -290,7 +298,7 @@ public class ListarVuelo extends javax.swing.JFrame {
                 } catch (ParseException ex) {
                     Logger.getLogger(ListarVuelo.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
                 vuelo.setFecha_vuelo(date);
                 Administrar_Vuelo av = new Administrar_Vuelo();
                 ArrayList<Piloto> pilotoUnico = av.listarPilotoUnico(Integer.parseInt(String.valueOf(jTableVuelos.getValueAt(jTableVuelos.getSelectedRow(), 0))));
@@ -332,7 +340,7 @@ public class ListarVuelo extends javax.swing.JFrame {
                 fila[3] = listaPilotos.get(i).getTipo();
                 VentanaListarPasajeros.modelo.addRow(fila);
             }
-            
+
             this.setEnabled(false);
             VentanaListarPasajeros.setVentanaListarVuelo(this);
             VentanaListarPasajeros.setVisible(true);
