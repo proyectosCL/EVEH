@@ -340,7 +340,7 @@ int idCompteMod=0;
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea guardar los cambios?", "confirmacion", dialogButton);
             if(dialogResult == 0) {
-                      
+              // System.out.println("matricula"+ matricula);      
 
                 if (ingresar.modificarAeronave(nueva)) {
                         JOptionPane.showMessageDialog(null, "Aeronave Actualizada");

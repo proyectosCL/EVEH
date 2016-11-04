@@ -92,6 +92,7 @@ public class ListarAeronave extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Listar Aeronaves");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         btnAgregarAeronave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregar.png"))); // NOI18N
         btnAgregarAeronave.setBorder(null);
@@ -129,13 +130,13 @@ public class ListarAeronave extends javax.swing.JFrame {
                         .addComponent(btnModificarCompte)
                         .addGap(32, 32, 32)
                         .addComponent(btnEliminarCompte)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 617, Short.MAX_VALUE)
                         .addComponent(btnMenu)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(187, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(169, 169, 169))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(433, 433, 433))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +150,7 @@ public class ListarAeronave extends javax.swing.JFrame {
                     .addComponent(btnModificarCompte)
                     .addComponent(btnAgregarAeronave)
                     .addComponent(btnMenu))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -273,14 +274,14 @@ private void cargarTablaComponentes() {
         //.:Tamaño de columnas:.
         tablaComponentes.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         TableColumnModel columnModel = tablaComponentes.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(30);
+        columnModel.getColumn(0).setPreferredWidth(40);
         columnModel.getColumn(1).setPreferredWidth(100);
-        columnModel.getColumn(2).setPreferredWidth(100);
-        columnModel.getColumn(3).setPreferredWidth(100);
-        columnModel.getColumn(4).setPreferredWidth(100);
-        columnModel.getColumn(5).setPreferredWidth(100);
-        columnModel.getColumn(6).setPreferredWidth(100);
-        columnModel.getColumn(7).setPreferredWidth(100);
+        columnModel.getColumn(2).setPreferredWidth(140);
+        columnModel.getColumn(3).setPreferredWidth(150);
+        columnModel.getColumn(4).setPreferredWidth(210);
+        columnModel.getColumn(5).setPreferredWidth(190);
+        columnModel.getColumn(6).setPreferredWidth(140);
+        columnModel.getColumn(7).setPreferredWidth(130);
         Administrar_Aeronave ac = new Administrar_Aeronave();
         ArrayList<Aeronave> listaComponente = ac.listarAeronave();
         Object[] fila = new Object[8];
