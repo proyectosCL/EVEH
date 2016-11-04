@@ -685,6 +685,7 @@ public class ModificarPersona extends javax.swing.JFrame {
             String dia = person.getFecha_nacimiento().substring(8, 10);
             
             btnactualizar.setEnabled(true);
+            varRut = txtRut.getText();
             
             cboAnio.setSelectedItem(año);
             cboMes.setSelectedIndex(Integer.parseInt(mes)-1);
