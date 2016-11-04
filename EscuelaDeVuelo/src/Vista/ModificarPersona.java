@@ -9,6 +9,7 @@ import Controlador.Administrar_Usuarios;
 import Database.Conexion;
 import Modelo.Persona;
 import Modelo.Usuario;
+import static Vista.IngresarUsuario.validarRut;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,6 +27,7 @@ public class ModificarPersona extends javax.swing.JFrame {
      * Creates new form IngresarUsuario
      */
     private String varRut;
+    private String passdebd = "";
     
     
     public ModificarPersona(String rut) {
@@ -34,6 +36,8 @@ public class ModificarPersona extends javax.swing.JFrame {
         
         cargar();
         lblrut.setVisible(false);
+        
+        
     
         
     }
@@ -104,6 +108,7 @@ public class ModificarPersona extends javax.swing.JFrame {
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Modificar Persona");
 
         jLabel1.setText("Nombre de usuario:");
 
@@ -220,6 +225,7 @@ public class ModificarPersona extends javax.swing.JFrame {
         btnactualizar.setBorderPainted(false);
         btnactualizar.setContentAreaFilled(false);
         btnactualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnactualizar.setEnabled(false);
         btnactualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnactualizarActionPerformed(evt);
@@ -305,7 +311,7 @@ public class ModificarPersona extends javax.swing.JFrame {
                             .addComponent(jLabel11)
                             .addComponent(jLabel6)
                             .addComponent(jLabel16))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,7 +340,7 @@ public class ModificarPersona extends javax.swing.JFrame {
                                                 .addComponent(lblId_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(lblrut, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGap(18, 18, 18)
                                                 .addComponent(btncargar))))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,16 +358,16 @@ public class ModificarPersona extends javax.swing.JFrame {
                                             .addComponent(cboAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel15)))
                                     .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(0, 47, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnactualizar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                                 .addComponent(btnCancelar)
                                 .addGap(17, 17, 17))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(123, 123, 123)
                         .addComponent(jLabel17)
-                        .addGap(0, 180, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -480,7 +486,8 @@ public class ModificarPersona extends javax.swing.JFrame {
         
         int id_persona = Integer.parseInt(lblId_usuario.getText());
         
-        String rut = txtRut.getText();
+        String rut = varRut;
+        txtRut.setText(rut);
         
         String nombre = txtNombre.getText();
        
@@ -511,9 +518,13 @@ public class ModificarPersona extends javax.swing.JFrame {
         //usuario
         int iduser = id_persona;
         String nombreusuario = txtUsuario.getText();
-        
+        String pass;
         //String pass=txtPass.getText();
-        String pass = DigestUtils.md5Hex(txtPass.getText());
+        if (!passdebd.equals(txtPass.getText())) {
+                pass = DigestUtils.md5Hex(txtPass.getText());
+        }else{
+                pass=passdebd;
+        }
         //System.out.println("pass encriptada; "+pass);
        
         int id_perfil=cboRol.getSelectedIndex()+1;
@@ -657,6 +668,7 @@ public class ModificarPersona extends javax.swing.JFrame {
             lblusuario.setVisible(false);
             
             txtPass.setText(usr.getPass());
+            passdebd = usr.getPass();
             txtConfirmarPass.setText(usr.getPass());
             lblpass.setVisible(false);
             lblconfirmar.setVisible(false);
@@ -672,6 +684,7 @@ public class ModificarPersona extends javax.swing.JFrame {
             String mes = person.getFecha_nacimiento().substring(5, 7);
             String dia = person.getFecha_nacimiento().substring(8, 10);
             
+            btnactualizar.setEnabled(true);
             
             cboAnio.setSelectedItem(año);
             cboMes.setSelectedIndex(Integer.parseInt(mes)-1);
@@ -681,9 +694,76 @@ public class ModificarPersona extends javax.swing.JFrame {
             
         }
     }
+    public String formatearRut(String rut) {
+        //JOptionPane.showMessageDialog(null, rut + " rut sin formato");
+
+        int cont = 0;
+        String format;
+        rut = rut.replace(".", "");
+        rut = rut.replace("-", "");
+        format = "-" + rut.substring(rut.length() - 1);
+        for (int i = rut.length() - 2; i >= 0; i--) {
+            format = rut.substring(i, i + 1) + format;
+            cont++;
+            if (cont == 3 && i != 0) {
+                format = "." + format;
+                cont = 0;
+            }
+        }
+
+        return format;
+    }
+
+    public static boolean validarRut(String rut) {
+
+        boolean validacion = false;
+        try {
+            rut = rut.toUpperCase();
+            rut = rut.replace(".", "");
+            rut = rut.replace("-", "");
+            int rutAux = Integer.parseInt(rut.substring(0, rut.length() - 1));
+
+            char dv = rut.charAt(rut.length() - 1);
+
+            int m = 0, s = 1;
+            for (; rutAux != 0; rutAux /= 10) {
+                s = (s + rutAux % 10 * (9 - m++ % 6)) % 11;
+            }
+            if (dv == (char) (s != 0 ? s + 47 : 75)) {
+                validacion = true;
+            }
+
+        } catch (java.lang.NumberFormatException e) {
+        } catch (Exception e) {
+        }
+        return validacion;
+    }
     private void btncargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncargarActionPerformed
         // TODO add your handling code here:
-        cargar();
+        
+        if (txtRut.getText().equals("")) {
+            lblrut.setVisible(true);
+        } else {
+
+            
+                String rut = formatearRut(txtRut.getText());
+                System.out.println(rut);
+                if (validarRut(rut)) {
+                    //txtRut.setText("");
+                    //JOptionPane.showMessageDialog(null, rut + " rut con formato");
+                    txtRut.setText(rut);
+                    varRut = rut;
+                    cargar();
+                    
+                    
+                    
+                    
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ingrese un rut valido");
+                    txtRut.requestFocus();
+                }
+            
+        }
         
         
     }//GEN-LAST:event_btncargarActionPerformed
@@ -691,38 +771,38 @@ public class ModificarPersona extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-////        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-////        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-////         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-////         */
-////        try {
-////            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-////                if ("Nimbus".equals(info.getName())) {
-////                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-////                    break;
-////                }
-////            }
-////        } catch (ClassNotFoundException ex) {
-////            java.util.logging.Logger.getLogger(IngresarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-////        } catch (InstantiationException ex) {
-////            java.util.logging.Logger.getLogger(IngresarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-////        } catch (IllegalAccessException ex) {
-////            java.util.logging.Logger.getLogger(IngresarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-////        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-////            java.util.logging.Logger.getLogger(IngresarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-////        }
-////        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new ModificarPersona().setVisible(true);
-//                
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
 //            }
-//        });
-//    }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(IngresarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(IngresarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(IngresarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(IngresarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ModificarPersona().setVisible(true);
+                
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

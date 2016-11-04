@@ -90,6 +90,7 @@ public class ListarPersonas extends javax.swing.JFrame {
         btnactivar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Listar Personas");
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/actualizar.png"))); // NOI18N
         btnActualizar.setBorder(null);
@@ -197,10 +198,10 @@ public class ListarPersonas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnDesactivar)
-                    .addComponent(btnModificarCompte)
-                    .addComponent(btnactivar))
+                    .addComponent(btnactivar)
+                    .addComponent(btnModificarCompte))
                 .addGap(29, 29, 29))
         );
 
