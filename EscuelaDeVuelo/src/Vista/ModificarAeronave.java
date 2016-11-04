@@ -339,11 +339,41 @@ int idCompteMod=0;
 
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea guardar los cambios?", "confirmacion", dialogButton);
-            if(dialogResult == 0) {
-              // System.out.println("matricula"+ matricula);      
+            if(dialogResult == 0) {      
 
                 if (ingresar.modificarAeronave(nueva)) {
                         JOptionPane.showMessageDialog(null, "Aeronave Actualizada");
+                        
+                        int seleccion = JOptionPane.showOptionDialog(null, "Seleccione una opcion ",
+                        "Opciones Componentes", JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
+                        new Object[]{"Agregar nuevos componentes a esta aeronave", "Asociar con componentes existentes", "Salir",}, "opcion 1");
+
+                if (seleccion == 0) {
+                    IngresarComponente ingresarCompte = new IngresarComponente();
+                    ingresarCompte.matriculaNave = matricula;
+                    ingresarCompte.setLocationRelativeTo(null);
+                    ingresarCompte.setVisible(true);
+                    this.dispose();
+
+                } else {
+                    if (seleccion == 1) {
+                        AgregarComponente agregarCompte = new AgregarComponente();
+                        agregarCompte.matriculaNave = matricula;
+                        agregarCompte.setLocationRelativeTo(null);
+                        agregarCompte.setVisible(true);
+                        this.dispose();
+                    } else {
+                        if (seleccion == 2) {
+                            MenuPrincipalOperador menu = new MenuPrincipalOperador();
+                            menu.setLocationRelativeTo(null);
+                            menu.setVisible(true);
+                            this.dispose();
+                        }
+                    }
+                        
+                        
+                        
                     }
             } else {
               JOptionPane.showMessageDialog(null, "no se guardaron los cambios");
@@ -351,7 +381,7 @@ int idCompteMod=0;
            
              
             
-
+            }
         
 
         //        // TODO add your handling code here:
