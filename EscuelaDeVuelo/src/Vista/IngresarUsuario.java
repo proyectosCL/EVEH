@@ -102,6 +102,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImages(null);
 
         jLabel1.setText("Nombre de usuario:");
 
@@ -555,28 +556,48 @@ public class IngresarUsuario extends javax.swing.JFrame {
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar al sistema?", "confirmacion", dialogButton);
             if (dialogResult == 0) {
+                
+                //aqui
+                
+                if (usr.buscarUsuario(txtUsuario.getText())) {
+                    JOptionPane.showMessageDialog(null, "el nombre de usuario ya esta registrado, por favor seleccione otro");
+                    txtUsuario.requestFocus();
 
-                if (usr.ingresarUsuario(userr) && admp.ingresarPersona(person)) {
-                    JOptionPane.showMessageDialog(null, "Se ingreso correctamente");
-                    int dialogButton2 = JOptionPane.YES_NO_OPTION;
-                    int dialogResult2 = JOptionPane.showConfirmDialog(this, "¿Desea ingresar otro usuario?", "confirmacion", dialogButton2);
-                    if (dialogResult2 == 0) {
-                        IngresarUsuario ventana = new IngresarUsuario();
-                        ventana.setVisible(true);
-                        this.dispose();
+                }else{
+                    
+                    if (admp.buscarPersona(txtRut.getText())) {
+                        JOptionPane.showMessageDialog(null, "El Rut Ya esta registrado");
+                        txtRut.requestFocus();
+
                     } else {
-                        MenuPrincipalAdministrador menu = new MenuPrincipalAdministrador();
-                        menu.setVisible(true);
-                        this.dispose();
+                        if (usr.ingresarUsuario(userr) && admp.ingresarPersona(person)) {
+                            JOptionPane.showMessageDialog(null, "Se ingreso correctamente");
+                            int dialogButton2 = JOptionPane.YES_NO_OPTION;
+                            int dialogResult2 = JOptionPane.showConfirmDialog(this, "¿Desea ingresar otro usuario?", "confirmacion", dialogButton2);
+                            if (dialogResult2 == 0) {
+                                IngresarUsuario ventana = new IngresarUsuario();
+                                ventana.setVisible(true);
+                                this.dispose();
+                            } else {
+                                MenuPrincipalAdministrador menu = new MenuPrincipalAdministrador();
+                                menu.setVisible(true);
+                                this.dispose();
+                            }
+                   
+                    } else {
+                        JOptionPane.showMessageDialog(null, "no se puedo ingresar");
+                        btnIngresar.setEnabled(true);
+                        btnIngresar.setText("");
+                    }
+                        
                     }
                     
                     
                     
-                } else {
-                    JOptionPane.showMessageDialog(null, "no se puedo ingresar");
-                    btnIngresar.setEnabled(true);
-                    btnIngresar.setText("");
+                    
                 }
+
+                
             } else {
                 JOptionPane.showMessageDialog(null, "no se guardaron los cambios");
                 btnIngresar.setEnabled(true);
@@ -615,19 +636,11 @@ public class IngresarUsuario extends javax.swing.JFrame {
                 String rut = formatearRut(txtRut.getText());
                 
                 if (validarRut(rut)) {
-                    //txtRut.setText("");
-                    //JOptionPane.showMessageDialog(null, rut + " rut con formato");
-                    Administrar_Personas admp = new Administrar_Personas();
-                    if (admp.buscarPersona(txtRut.getText())) {
-                        JOptionPane.showMessageDialog(null, "El Rut Ya esta registrado");
-                        txtRut.requestFocus();
-
-                    }else{
-                        txtRut.setText(rut);
-                        //txtRut.setEnabled(false);
-                        lblrut.setVisible(false);
-                    }
                     
+                    txtRut.setText(rut);
+                        //txtRut.setEnabled(false);
+                    lblrut.setVisible(false);
+                                       
                     
                 } else {
                     JOptionPane.showMessageDialog(null, "Ingrese un rut valido");
@@ -696,13 +709,13 @@ public class IngresarUsuario extends javax.swing.JFrame {
 
             lblusuario.setVisible(false);
 
-            //aqui
-            Administrar_Usuarios usr = new Administrar_Usuarios();
-            if (usr.buscarUsuario(txtUsuario.getText())) {
-                JOptionPane.showMessageDialog(null, "el nombre de usuario ya esta registrado, por favor seleccione otro");
-                txtUsuario.requestFocus();
-
-            }
+//            //aqui
+//            Administrar_Usuarios usr = new Administrar_Usuarios();
+//            if (usr.buscarUsuario(txtUsuario.getText())) {
+//                JOptionPane.showMessageDialog(null, "el nombre de usuario ya esta registrado, por favor seleccione otro");
+//                txtUsuario.requestFocus();
+//
+//            }
 
         }
     }//GEN-LAST:event_txtUsuarioFocusLost
