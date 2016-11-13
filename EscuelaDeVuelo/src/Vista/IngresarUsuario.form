@@ -673,6 +673,7 @@
             <StringItem index="125" value="2040"/>
           </StringArray>
         </Property>
+        <Property name="selectedIndex" type="int" value="70"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

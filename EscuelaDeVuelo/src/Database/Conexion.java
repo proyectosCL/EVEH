@@ -31,7 +31,7 @@ public class Conexion {
         try {
             Class.forName("oracle.jdbc.OracleDriver");
             String BaseDeDatos = "jdbc:oracle:thin:@escuelavuelo.ccjs1vqr4hyu.us-west-2.rds.amazonaws.com:1521:orcl";
-            conexion = DriverManager.getConnection(BaseDeDatos, "escuela", "12345678");
+            conexion = DriverManager.getConnection(BaseDeDatos, "escuela", "87654321");
 //        if (conexion != null) { 
 //            System.out.println("Conexion exitosa!"); 
 //        } else { 

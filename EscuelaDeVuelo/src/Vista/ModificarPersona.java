@@ -120,7 +120,7 @@ public class ModificarPersona extends javax.swing.JFrame {
 
         jLabel5.setText("Apellidos:");
 
-        jLabel6.setText("Rut: (sin puntos ni guiones)");
+        jLabel6.setText("Buscar por Rut: (sin puntos ni guiones)");
 
         txtUsuario.setEditable(false);
         txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -383,7 +383,7 @@ public class ModificarPersona extends javax.swing.JFrame {
                             .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblrut)))
                     .addComponent(btncargar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(104, 104, 104)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
