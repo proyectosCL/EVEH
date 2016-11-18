@@ -271,7 +271,7 @@ public class IngresarPiloto extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
-        try{
+       try{
             //vali combo
             if (cbRut.getSelectedItem().equals("Seleccione")) {
                 JOptionPane.showMessageDialog(null, "Seleccione un Usuario");
@@ -337,10 +337,11 @@ public class IngresarPiloto extends javax.swing.JFrame {
             Piloto piloto = new Piloto(id_piloto, horas, dias, fecha_medicina, fecha_ultimo_vuelo, id_persona);
             ap.ingresarPiloto(piloto);
             
+        
         }catch(Exception ex){
             System.out.println(ex);
         }
-
+        
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -371,6 +372,8 @@ public class IngresarPiloto extends javax.swing.JFrame {
         
     }//GEN-LAST:event_JDateMedicinaKeyTyped
 
+    
+    
     private void btnIngresarLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarLicenciaActionPerformed
         // TODO add your handling code here:
         try{
@@ -440,11 +443,13 @@ public class IngresarPiloto extends javax.swing.JFrame {
             ap.ingresarPiloto(piloto);
             
             IngresarLicencia il = new IngresarLicencia(piloto);
-            
+            il.setLocationRelativeTo(null);
+            il.setVisible(true);
+            this.dispose();
+        
         }catch(Exception ex){
             System.out.println(ex);
         }
-        
     }//GEN-LAST:event_btnIngresarLicenciaActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed

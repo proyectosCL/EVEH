@@ -24,6 +24,7 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
             Conexion conec = new Conexion();
             conec.conectar();
             String sql = "INSERT INTO pilotos  VALUES ((select (max(id)+1)from pilotos)," + horas_vuelo + "," + dias_vuelo + ",'" + vencimiento_medicina + "','" + fecha_ultimo_vuelo + "'," + persona + ")";
+            System.out.println(sql);
             conec.escribir(sql);
             JOptionPane.showMessageDialog(null, "Ingresado Correctamente");
 
@@ -149,7 +150,8 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
                 piloto = new Piloto();
                 if (rs.getDate("vencimiento_medicina") == null) {
                     piloto.setRut(rs.getString("rut"));
-                    piloto.setId_persona(rs.getInt("personas_id"));
+                    piloto.setId_persona(rs.getInt("id_1"));
+                    // o 7 ._.
                     piloto.setNombre(rs.getString("nombre"));
                     piloto.setApellidos(rs.getString("apellidos"));
                     lista.add(piloto);
