@@ -117,7 +117,7 @@ public class ModificarAeronave extends javax.swing.JFrame {
             }
         });
 
-        btncargar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/buscar.png"))); // NOI18N
+        btncargar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/cargar.png"))); // NOI18N
         btncargar.setBorder(null);
         btncargar.setBorderPainted(false);
         btncargar.setContentAreaFilled(false);
@@ -340,7 +340,8 @@ int idCompteMod=0;
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea guardar los cambios?", "confirmacion", dialogButton);
             if(dialogResult == 0) {      
-
+                btningresar.setEnabled(false);
+       btningresar.setText("en curso...");
                 if (ingresar.modificarAeronave(nueva)) {
                         JOptionPane.showMessageDialog(null, "Aeronave Actualizada");
                         
@@ -444,6 +445,8 @@ int idCompteMod=0;
     }//GEN-LAST:event_btncargarActionPerformed
 
     private void btnvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolverActionPerformed
+      btnvolver.setEnabled(false);
+       btnvolver.setText("en curso...");
         ListarAeronave menu = new ListarAeronave();
         menu.setVisible(true);
         this.dispose();

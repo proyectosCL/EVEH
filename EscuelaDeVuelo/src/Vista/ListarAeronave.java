@@ -169,6 +169,8 @@ public class ListarAeronave extends javax.swing.JFrame {
     private void btnEliminarCompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCompteActionPerformed
      int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar la aeronave seleccionada?");
         if (JOptionPane.OK_OPTION == resp) {
+              btnEliminarCompte.setEnabled(false);
+        btnEliminarCompte.setText("en curso...");
             Administrar_Aeronave admp = new Administrar_Aeronave();
            
             
@@ -187,10 +189,15 @@ public class ListarAeronave extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarCompteActionPerformed
 
     private void btnModificarCompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCompteActionPerformed
+
         // TODO add your handling code here:
+    
         int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea modificar la aeronave seleccionada?");
         if (JOptionPane.OK_OPTION == resp) {
+              btnModificarCompte.setEnabled(false);
+        btnModificarCompte.setText("en curso...");
             int idCompte = Integer.parseInt(tablaComponentes.getValueAt(tablaComponentes.getSelectedRow(), 0).toString());
+             
             ModificarAeronave modCompte= new ModificarAeronave();
             modCompte.idCompteMod = idCompte;
             modCompte.setVisible(true);
@@ -202,6 +209,8 @@ public class ListarAeronave extends javax.swing.JFrame {
 
     private void btnAgregarAeronaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAeronaveActionPerformed
         // TODO add your handling code here:
+         btnAgregarAeronave.setEnabled(false);
+        btnAgregarAeronave.setText("en curso...");
         IngresarAeronave menu = new IngresarAeronave();
         menu.setVisible(true);
         this.dispose();

@@ -259,7 +259,8 @@ public class IngresarAeronave extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbestadoActionPerformed
 
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
-
+        btningresar.setEnabled(false);
+       btningresar.setText("en curso...");
         Administrar_Aeronave ingresar = new Administrar_Aeronave();
         String id = "0";
         String matricula = txtmatricula.getText().toUpperCase();
@@ -382,6 +383,8 @@ public class IngresarAeronave extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbtiponaveActionPerformed
 
     private void btnvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolverActionPerformed
+   btnvolver.setEnabled(false);
+       btnvolver.setText("en curso...");
         ListarAeronave menu = new ListarAeronave();
         menu.setVisible(true);
         this.dispose();
