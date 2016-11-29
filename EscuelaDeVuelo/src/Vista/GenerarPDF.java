@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 package Vista;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -114,7 +117,7 @@ public class GenerarPDF extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btngenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btngenerarActionPerformed
- String nave= cmbtiponave.getName();
+ String nave= ""+cmbtiponave.getSelectedItem();
  String ruta = txtruta.getText();
  try
  {
@@ -124,8 +127,27 @@ public class GenerarPDF extends javax.swing.JFrame {
      Document doc = new Document();
      PdfWriter.getInstance(doc, archivo);
      doc.open();
-     doc.add(new Paragraph("hola gente"));
-     doc.close();
+       Paragraph parrafo2 = new Paragraph("INFORME DE MANTENIMIENTOS");
+    parrafo2.setAlignment(1);//el 1 es para centrar
+    doc.add(parrafo2);
+     
+    doc.add(new Phrase(Chunk.NEWLINE));
+doc.add(new Phrase(Chunk.NEWLINE));
+
+ 
+           doc.add(new Paragraph("Acontinuacion se muestra una lista de los mantenimientos realizados a la aeronave "+nave+""));
+    doc.add(new Phrase(Chunk.NEWLINE));
+           PdfPTable tabla = new PdfPTable(3);
+    //el numero indica la cantidad de Columnas
+tabla.addCell("celda1");
+tabla.addCell("celda2");
+tabla.addCell("celda3");
+tabla.addCell("celda4");
+tabla.addCell("celda5");
+tabla.addCell("celda6");
+    // esto nos crea una tabla de 3 Columnas por 2 Filas
+doc.add(tabla);
+           doc.close();
      JOptionPane.showMessageDialog(null, "PDF CREADO CON EXITO");
      
      
