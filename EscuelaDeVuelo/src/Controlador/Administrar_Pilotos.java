@@ -150,7 +150,7 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
                 piloto = new Piloto();
                 if (rs.getDate("vencimiento_medicina") == null) {
                     piloto.setRut(rs.getString("rut"));
-                    piloto.setId_persona(rs.getInt("id_1"));
+                    piloto.setId_persona(rs.getInt(7));
                     // o 7 ._.
                     piloto.setNombre(rs.getString("nombre"));
                     piloto.setApellidos(rs.getString("apellidos"));
@@ -207,8 +207,8 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
             dbconn.conectar();
             ResultSet rs = dbconn.consultar("select pilotos.ID,pilotos.HORAS_VUELO,pilotos.DIAS_VUELO, "
                     + "pilotos.VENCIMIENTO_MEDICINA ,pilotos.ULTIMO_VUELO_REALIZADO,personas.rut,personas.nombre,"
-                    + "personas.apellidos, count(*) as licencias"
-                    + " from pilotos  join licencias  on pilotos.id = licencias.PILOTOS_ID "
+                    + "personas.apellidos, count(*) as licencias "
+                    + " from pilotos LEFT  join licencias  on pilotos.id = licencias.PILOTOS_ID "
                     + "join personas on pilotos.PERSONAS_ID = personas.id "
                     + "group by pilotos.ID,pilotos.HORAS_VUELO,pilotos.DIAS_VUELO,pilotos.VENCIMIENTO_MEDICINA, "
                     + "pilotos.ULTIMO_VUELO_REALIZADO,personas.rut,personas.nombre,personas.apellidos"
@@ -236,7 +236,10 @@ public class Administrar_Pilotos implements administrar_horas_vuelo {
                 piloto.setId_persona(rs.getInt(9));
                 piloto.setNombre(rs.getString("nombre"));
                 piloto.setApellidos(rs.getString("apellidos"));
-                piloto.setId_usuario(rs.getInt("licencias"));
+
+                    piloto.setId_usuario(rs.getInt("licencias"));
+
+                
                 lista.add(piloto);
             }
 

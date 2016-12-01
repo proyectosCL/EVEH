@@ -272,7 +272,12 @@ public class ListarPiloto extends javax.swing.JFrame {
                 fila[4] = lista.get(i).getDias_vuelo();
                 fila[5] = lista.get(i).getVencimiento_medicina();
                 fila[6] = lista.get(i).getFecha_ultimo_vuelo();
-                fila[7] = lista.get(i).getId_persona();
+                if (lista.get(i).getId_persona() == 1) {
+                    fila[7] = "1 o 0";
+                }else{
+                    fila[7] = lista.get(i).getId_persona();
+                }
+                
                 modelo.addRow(fila);
             }
             jTable1.updateUI();

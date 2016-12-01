@@ -107,7 +107,7 @@ public class IngresarLicencia extends javax.swing.JFrame {
         ComboItem select = null;
             for (int i = 0; i < listaPiloto.size(); i++) {
                 this.cbRut.addItem(new ComboItem(listaPiloto.get(i).getRut() + " : " + listaPiloto.get(i).getNombre() + " " + listaPiloto.get(i).getApellidos(), String.valueOf(listaPiloto.get(i).getId())));
-                if (listaPiloto.get(i).getId() == piloto.getId()) {
+                if (listaPiloto.get(i).getId_persona() == piloto.getId_persona()) {
                     select = new ComboItem(listaPiloto.get(i).getRut() + " : " + listaPiloto.get(i).getNombre() + " " + listaPiloto.get(i).getApellidos(), String.valueOf(listaPiloto.get(i).getId()));
                 }
             }
