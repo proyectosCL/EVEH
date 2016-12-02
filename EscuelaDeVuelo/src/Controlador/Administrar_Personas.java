@@ -216,9 +216,7 @@ public class Administrar_Personas {
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
-            ResultSet rs = dbconn.consultar("select * from PERSONAS where USUARIOS_ID IN (select PILOTOS_ID\n"
-                    + "from LICENCIAS\n"
-                    + "where (trunc(to_date(FECHA_VENCIMIENTO,'DD/MM/YYYY'))- trunc(to_date(SYSDATE,'DD/MM/YYYY'))) <10)");
+            ResultSet rs = dbconn.consultar("select * from PERSONAS inner join pilotos on personas.ID = pilotos.PERSONAS_ID where pilotos.ID IN (select PILOTOS_ID from LICENCIAS where (trunc(to_date(FECHA_VENCIMIENTO,'DD/MM/YYYY'))- trunc(to_date(SYSDATE,'DD/MM/YYYY'))) <10);");
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
             while (rs.next()) {
