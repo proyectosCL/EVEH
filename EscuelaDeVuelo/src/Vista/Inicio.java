@@ -198,6 +198,12 @@ public class Inicio extends javax.swing.JFrame {
                         menuope.setVisible(true);
                         this.dispose();
                         break;
+                    case 4:
+                           MenuConsultor menuC = new MenuConsultor();
+                           menuC.setLocationRelativeTo(null);
+                           menuC.setVisible(true);
+                           this.dispose();
+                           break;
                     default:
                         JOptionPane.showMessageDialog(null, "Esta cuenta no puede ingresar");
                         break;

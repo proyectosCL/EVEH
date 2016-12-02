@@ -212,12 +212,14 @@ public class ListarAeronave extends javax.swing.JFrame {
          btnAgregarAeronave.setEnabled(false);
         btnAgregarAeronave.setText("en curso...");
         IngresarAeronave menu = new IngresarAeronave();
+        menu.setLocationRelativeTo(null);
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAgregarAeronaveActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
          MenuPrincipalOperador menu = new MenuPrincipalOperador();
+         menu.setLocationRelativeTo(null);
         menu.setVisible(true);
         this.dispose();
         

@@ -330,31 +330,24 @@ public class IngresarAeronave extends javax.swing.JFrame {
                 int seleccion = JOptionPane.showOptionDialog(null, "Seleccione una opcion ",
                         "Opciones Componentes", JOptionPane.YES_NO_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
-                        new Object[]{"Agregar nuevos componentes a esta aeronave", "Asociar con componentes existentes", "Salir",}, "opcion 1");
+                        new Object[]{"Configurar aeronave", "Salir",}, "opcion 1");
 
-                if (seleccion == 0) {
-                    IngresarComponente ingresarCompte = new IngresarComponente();
-                    ingresarCompte.matriculaNave = matricula;
-                    ingresarCompte.setLocationRelativeTo(null);
-                    ingresarCompte.setVisible(true);
-                    this.dispose();
-
-                } else {
-                    if (seleccion == 1) {
+              
+                    if (seleccion == 0) {
                         AgregarComponente agregarCompte = new AgregarComponente();
                         agregarCompte.matriculaNave = matricula;
                         agregarCompte.setLocationRelativeTo(null);
                         agregarCompte.setVisible(true);
                         this.dispose();
                     } else {
-                        if (seleccion == 2) {
+                        if (seleccion == 1) {
                             MenuPrincipalOperador menu = new MenuPrincipalOperador();
                             menu.setLocationRelativeTo(null);
                             menu.setVisible(true);
                             this.dispose();
                         }
                     }
-                }
+                
 
 //            int dialogButton = JOptionPane.YES_NO_OPTION;
 //            int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar los componentes de la aeronave ingresada?", "confirmacion", dialogButton);

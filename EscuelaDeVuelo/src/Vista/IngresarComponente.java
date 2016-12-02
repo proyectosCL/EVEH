@@ -132,19 +132,19 @@ public class IngresarComponente extends javax.swing.JFrame {
                         .addGap(45, 45, 45)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbxTipoNave, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnMenu)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtFabricante, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                                    .addComponent(txtDesc)
-                                    .addComponent(spinDiasVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                                    .addComponent(spinHorasVuelo)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(btnGuardarNuevoComponente))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtFabricante, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                                .addComponent(txtDesc)
+                                .addComponent(spinDiasVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                                .addComponent(spinHorasVuelo))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(93, 93, 93)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(152, 152, 152)
+                        .addComponent(btnMenu)
+                        .addGap(33, 33, 33)
+                        .addComponent(btnGuardarNuevoComponente)))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -173,10 +173,10 @@ public class IngresarComponente extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(cbxTipoNave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnGuardarNuevoComponente)
-                    .addComponent(btnMenu))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnMenu)
+                    .addComponent(btnGuardarNuevoComponente))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -256,7 +256,7 @@ public class IngresarComponente extends javax.swing.JFrame {
 
             }
 
-            if (matriculaNave.equals("")) {
+            
                 Componente nvoCompte = new Componente(id, desc, fabricte, horasVuelo, diasVuelo, tipoCompte);
                 ingresarCompte.ingresarNuevoComponente(nvoCompte);
 
@@ -274,34 +274,12 @@ public class IngresarComponente extends javax.swing.JFrame {
                     spinDiasVuelo.setValue(0);
                     spinHorasVuelo.setValue(0);
                 }
-            } else if (matriculaNave.length() == 5) {
-
-                Administrar_Aeronave aa = new Administrar_Aeronave();
-                ArrayList<Aeronave> listaAeronave = aa.listarPorMatricula(matriculaNave);
-                int idNave = Integer.parseInt(listaAeronave.get(0).getId());
-
-                Componente nvoCompte = new Componente(desc, fabricte, horasVuelo, diasVuelo, tipoCompte, idNave);
-                ingresarCompte.ingresarNuevoComponenteNave(nvoCompte);
-
-                int dialogButton = JOptionPane.YES_NO_OPTION;
-                int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar sub-componentes al componente ingresado?", "Confirmación", dialogButton);
-                if (dialogResult == 0) {
-                    // codigo para cerrar y abrir la ventana subcomponentes
-                    IngresarSubComponente ventanaSub = new IngresarSubComponente();
-
-                    ventanaSub.setLocationRelativeTo(null);
-                    ventanaSub.setVisible(true);
-                    this.dispose();
-                } else {
-                    txtDesc.setText("");
-                    txtFabricante.setText("");
-                    spinDiasVuelo.setValue(0);
-                    spinHorasVuelo.setValue(0);
-                }
             
+
+
     }//GEN-LAST:event_btnGuardarNuevoComponenteActionPerformed
-        }
-    }
+    
+}
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         MenuPrincipalOperador menu = new MenuPrincipalOperador();
         menu.setLocationRelativeTo(null);
@@ -323,16 +301,28 @@ public class IngresarComponente extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+                
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IngresarComponente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IngresarComponente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IngresarComponente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IngresarComponente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IngresarComponente.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(IngresarComponente.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(IngresarComponente.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(IngresarComponente.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -351,9 +341,6 @@ public class IngresarComponente extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardarNuevoComponente;
     private javax.swing.JButton btnMenu;
     private javax.swing.JComboBox<String> cbxTipoNave;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

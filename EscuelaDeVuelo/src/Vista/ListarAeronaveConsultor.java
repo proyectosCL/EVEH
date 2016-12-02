@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Vista;
+
 import Controlador.Administrar_Aeronave;
 import Modelo.Aeronave;
 import java.awt.Color;
@@ -14,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+
 /**
  *
  * @author jordans
@@ -25,7 +27,7 @@ public class ListarAeronaveConsultor extends javax.swing.JFrame {
      */
     public ListarAeronaveConsultor() {
         initComponents();
-           cargarTablaComponentes();
+        cargarTablaComponentes();
     }
 
     /**
@@ -109,7 +111,8 @@ public class ListarAeronaveConsultor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        MenuPrincipalOperador menu = new MenuPrincipalOperador();
+        MenuConsultor menu = new MenuConsultor();
+        menu.setLocationRelativeTo(null);
         menu.setVisible(true);
         this.dispose();
 
@@ -117,8 +120,6 @@ public class ListarAeronaveConsultor extends javax.swing.JFrame {
 
     private void tablaComponentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaComponentesMouseClicked
         // TODO add your handling code here:
-
-       
 
         // lblComponenteSeleccionado.setText("Componente seleccionado");
         //lblComponenteSeleccionado.setForeground(Color.green);
@@ -134,7 +135,7 @@ public class ListarAeronaveConsultor extends javax.swing.JFrame {
                 return false;
             }
         };
-       
+
         tablaComponentes.setModel(modelo);
         tablaComponentes.getTableHeader().setReorderingAllowed(false);
         //.:Nombres de columnas:.
@@ -146,8 +147,7 @@ public class ListarAeronaveConsultor extends javax.swing.JFrame {
         modelo.addColumn("FECHA DE INSPECCION ANUAL");
         modelo.addColumn("HORAS DE VUELO");
         modelo.addColumn("DIAS DE VUELO");
-        
-       
+
         //.:Tamaño de columnas:.
         tablaComponentes.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         TableColumnModel columnModel = tablaComponentes.getColumnModel();
@@ -163,32 +163,32 @@ public class ListarAeronaveConsultor extends javax.swing.JFrame {
         ArrayList<Aeronave> listaComponente = ac.listarAeronave();
         Object[] fila = new Object[8];
         int num = listaComponente.size();
-        
-         
+
         for (int i = 0; i < num; i++) {
             fila[0] = listaComponente.get(i).getId();
             fila[1] = listaComponente.get(i).getMatricula();
-    
+
             fila[4] = listaComponente.get(i).getFecha_aeronavegavilidad();
-        
+
             fila[5] = listaComponente.get(i).getFecha_ultima_inspeccion_anual();
             fila[6] = listaComponente.get(i).getHoras_vuelo();
-             fila[7] = listaComponente.get(i).getDias_vuelo();
-             if (listaComponente.get(i).getTiponave().matches("1")){
-                  fila[2] = "Helicoptero";
-             }else {
-                     fila[2] = "Aeronave"  ;   
-                          }
-            if (listaComponente.get(i).getEstado().matches("V")){
-                  fila[3] = "Disponible";
-             }else {
-                     fila[3] = "No Disponible"  ;   
-                          }
+            fila[7] = listaComponente.get(i).getDias_vuelo();
+            if (listaComponente.get(i).getTiponave().matches("1")) {
+                fila[2] = "Helicoptero";
+            } else {
+                fila[2] = "Aeronave";
+            }
+            if (listaComponente.get(i).getEstado().matches("V")) {
+                fila[3] = "Disponible";
+            } else {
+                fila[3] = "No Disponible";
+            }
             modelo.addRow(fila);
         }
         tablaComponentes.updateUI();
 
     }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

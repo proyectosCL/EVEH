@@ -67,20 +67,15 @@ public class AgregarComponente2 extends javax.swing.JFrame {
         tablaCabina = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         lblTrenAterrizaje = new javax.swing.JLabel();
         lblEquipos = new javax.swing.JLabel();
         lblMotor = new javax.swing.JLabel();
         lblCabina = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
-        btnAgregarCabina = new javax.swing.JButton();
-        btnAgregarMotor = new javax.swing.JButton();
-        btnAgregarEquipos = new javax.swing.JButton();
-        btnAgregarTren = new javax.swing.JButton();
         btnMenu = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1792, 674));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1150, 674));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Agregar componentes");
@@ -165,8 +160,6 @@ public class AgregarComponente2 extends javax.swing.JFrame {
 
         jLabel5.setText("Cabina");
 
-        jLabel6.setText("Componentes seleccionados");
-
         lblTrenAterrizaje.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblTrenAterrizaje.setText("jLabel7");
 
@@ -190,58 +183,6 @@ public class AgregarComponente2 extends javax.swing.JFrame {
             }
         });
 
-        btnAgregarCabina.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
-        btnAgregarCabina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregar.png"))); // NOI18N
-        btnAgregarCabina.setBorder(null);
-        btnAgregarCabina.setBorderPainted(false);
-        btnAgregarCabina.setContentAreaFilled(false);
-        btnAgregarCabina.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAgregarCabina.setEnabled(false);
-        btnAgregarCabina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarCabinaActionPerformed(evt);
-            }
-        });
-
-        btnAgregarMotor.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
-        btnAgregarMotor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregar.png"))); // NOI18N
-        btnAgregarMotor.setBorder(null);
-        btnAgregarMotor.setBorderPainted(false);
-        btnAgregarMotor.setContentAreaFilled(false);
-        btnAgregarMotor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAgregarMotor.setEnabled(false);
-        btnAgregarMotor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarMotorActionPerformed(evt);
-            }
-        });
-
-        btnAgregarEquipos.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
-        btnAgregarEquipos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregar.png"))); // NOI18N
-        btnAgregarEquipos.setBorder(null);
-        btnAgregarEquipos.setBorderPainted(false);
-        btnAgregarEquipos.setContentAreaFilled(false);
-        btnAgregarEquipos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAgregarEquipos.setEnabled(false);
-        btnAgregarEquipos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarEquiposActionPerformed(evt);
-            }
-        });
-
-        btnAgregarTren.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
-        btnAgregarTren.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregar.png"))); // NOI18N
-        btnAgregarTren.setBorder(null);
-        btnAgregarTren.setBorderPainted(false);
-        btnAgregarTren.setContentAreaFilled(false);
-        btnAgregarTren.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAgregarTren.setEnabled(false);
-        btnAgregarTren.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarTrenActionPerformed(evt);
-            }
-        });
-
         btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/regresar.png"))); // NOI18N
         btnMenu.setBorder(null);
         btnMenu.setBorderPainted(false);
@@ -260,70 +201,35 @@ public class AgregarComponente2 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(57, 57, 57)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblTrenAterrizaje)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(btnAgregarTren))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblEquipos)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(btnAgregarEquipos))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblMotor)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
-                                                .addComponent(btnAgregarMotor))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(lblCabina)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(btnAgregarCabina))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(96, 96, 96)
-                                                .addComponent(jLabel6))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(137, 137, 137)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(btnMenu)
-                                                    .addComponent(btnGuardar))))
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addGap(13, 13, 13))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(234, 234, 234)
+                        .addComponent(jLabel2)
+                        .addGap(507, 507, 507)
+                        .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(266, 266, 266)
+                        .addComponent(jLabel3)
+                        .addGap(532, 532, 532)
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(435, 435, 435)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnMenu)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblTrenAterrizaje)
+                                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblMotor)))
+                        .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(285, 285, 285)
-                                .addComponent(jLabel2)
-                                .addGap(534, 534, 534)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(319, 319, 319)
-                                .addComponent(jLabel3)
-                                .addGap(438, 438, 438)
-                                .addComponent(jLabel5)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(435, 435, 435)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(62, 62, 62)
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(999, Short.MAX_VALUE)))
+                            .addComponent(btnGuardar)
+                            .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEquipos)
+                            .addComponent(lblCabina))))
+                .addGap(306, 479, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,44 +242,32 @@ public class AgregarComponente2 extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAgregarTren)
-                            .addComponent(lblTrenAterrizaje))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblEquipos)
-                            .addComponent(btnAgregarEquipos))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMotor)
-                            .addComponent(btnAgregarMotor))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCabina)
-                            .addComponent(btnAgregarCabina))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTrenAterrizaje)
+                    .addComponent(lblEquipos))
+                .addGap(63, 63, 63)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGuardar)
-                        .addGap(33, 33, 33)
-                        .addComponent(btnMenu)))
-                .addContainerGap(68, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(129, 129, 129)
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(326, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblCabina)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnMenu)
+                            .addComponent(btnGuardar))
+                        .addGap(112, 112, 112))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(lblMotor)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -394,9 +288,9 @@ String matriculaNave2 = "";
         ac.asociarAeronave(idMotor, matriculaNave2);
         ac.asociarAeronave(idTrenAterrizaje, matriculaNave2);
 
-        JOptionPane.showMessageDialog(null, "Los componentes han sido agregados exitosamente a la aeronave");
+        JOptionPane.showMessageDialog(null, "Aeronave configurada exitosamente");
 
-        MenuPrincipalOperador menu = new MenuPrincipalOperador();
+        IngresarAeronave menu = new IngresarAeronave();
         menu.setLocationRelativeTo(null);
         menu.setVisible(true);
         this.dispose();
@@ -408,9 +302,9 @@ String matriculaNave2 = "";
         // TODO add your handling code here:
         if (tablaTrenAterrizaje.getSelectedRow() >= 0) {
             lblTrenAterrizaje.setText("Componente Tren de Aterrizaje seleccionado");
-            lblTrenAterrizaje.setForeground(Color.GREEN);
+            lblTrenAterrizaje.setForeground(Color.BLUE);
         }
-        if (lblTrenAterrizaje.getForeground().equals(Color.GREEN) && lblEquipos.getForeground().equals(Color.GREEN) && lblCabina.getForeground().equals(Color.GREEN) && lblMotor.getForeground().equals(Color.GREEN)) {
+        if (lblTrenAterrizaje.getForeground().equals(Color.BLUE) && lblEquipos.getForeground().equals(Color.BLUE) && lblCabina.getForeground().equals(Color.BLUE) && lblMotor.getForeground().equals(Color.BLUE)) {
             btnGuardar.setEnabled(true);
         }
 
@@ -420,9 +314,9 @@ String matriculaNave2 = "";
         // TODO add your handling code here:}
         if (tablaEquipos.getSelectedRow() >= 0) {
             lblEquipos.setText("Componente Equipos seleccionado");
-            lblEquipos.setForeground(Color.GREEN);
+            lblEquipos.setForeground(Color.BLUE);
         }
-        if (lblTrenAterrizaje.getForeground().equals(Color.GREEN) && lblEquipos.getForeground().equals(Color.GREEN) && lblCabina.getForeground().equals(Color.GREEN) && lblMotor.getForeground().equals(Color.GREEN)) {
+        if (lblTrenAterrizaje.getForeground().equals(Color.BLUE) && lblEquipos.getForeground().equals(Color.BLUE) && lblCabina.getForeground().equals(Color.BLUE) && lblMotor.getForeground().equals(Color.BLUE)) {
             btnGuardar.setEnabled(true);
         }
     }//GEN-LAST:event_tablaEquiposMouseClicked
@@ -432,9 +326,9 @@ String matriculaNave2 = "";
 
         if (tablaMotor.getSelectedRow() >= 0) {
             lblMotor.setText("Componente Motor seleccionado");
-            lblMotor.setForeground(Color.GREEN);
+            lblMotor.setForeground(Color.BLUE);
         }
-        if (lblTrenAterrizaje.getForeground().equals(Color.GREEN) && lblEquipos.getForeground().equals(Color.GREEN) && lblCabina.getForeground().equals(Color.GREEN) && lblMotor.getForeground().equals(Color.GREEN)) {
+        if (lblTrenAterrizaje.getForeground().equals(Color.BLUE) && lblEquipos.getForeground().equals(Color.BLUE) && lblCabina.getForeground().equals(Color.BLUE) && lblMotor.getForeground().equals(Color.BLUE)) {
             btnGuardar.setEnabled(true);
         }
 
@@ -443,49 +337,17 @@ String matriculaNave2 = "";
     private void tablaCabinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCabinaMouseClicked
         // TODO add your handling code here:
         if (tablaCabina.getSelectedRow() >= 0) {
-            lblCabina.setText("Componente Controles y Frenos seleccionado");
-            lblCabina.setForeground(Color.GREEN);
+            lblCabina.setText("Componente Cabina seleccionado");
+            lblCabina.setForeground(Color.BLUE);
         }
-        if (lblTrenAterrizaje.getForeground().equals(Color.GREEN) && lblEquipos.getForeground().equals(Color.GREEN) && lblCabina.getForeground().equals(Color.GREEN) && lblMotor.getForeground().equals(Color.GREEN)) {
+        if (lblTrenAterrizaje.getForeground().equals(Color.BLUE) && lblEquipos.getForeground().equals(Color.BLUE) && lblCabina.getForeground().equals(Color.BLUE) && lblMotor.getForeground().equals(Color.BLUE)) {
             btnGuardar.setEnabled(true);
         }
 
     }//GEN-LAST:event_tablaCabinaMouseClicked
 
-    private void btnAgregarCabinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCabinaActionPerformed
-        IngresarComponente ingresarCompte = new IngresarComponente();
-        //ingresarCompte.retorno = true;
-        ingresarCompte.setLocationRelativeTo(null);
-        ingresarCompte.setVisible(true);
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarCabinaActionPerformed
-
-    private void btnAgregarMotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMotorActionPerformed
-        IngresarComponente ingresarCompte = new IngresarComponente();
-        //ingresarCompte.retorno = true;
-        ingresarCompte.setLocationRelativeTo(null);
-        ingresarCompte.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnAgregarMotorActionPerformed
-
-    private void btnAgregarEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEquiposActionPerformed
-        IngresarComponente ingresarCompte = new IngresarComponente();
-        //ingresarCompte.retorno = true;
-        ingresarCompte.setLocationRelativeTo(null);
-        ingresarCompte.setVisible(true);
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarEquiposActionPerformed
-
-    private void btnAgregarTrenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTrenActionPerformed
-        IngresarComponente ingresarCompte = new IngresarComponente();
-        //ingresarCompte.retorno = true;
-        ingresarCompte.setLocationRelativeTo(null);
-        ingresarCompte.setVisible(true);
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarTrenActionPerformed
-
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        MenuPrincipalOperador menu = new MenuPrincipalOperador();
+        IngresarAeronave menu = new IngresarAeronave();
         menu.setLocationRelativeTo(null);
         menu.setVisible(true);
         this.dispose();
@@ -568,11 +430,7 @@ String matriculaNave2 = "";
         ArrayList<Componente> listaTren = ac.listarFiltro(5);
         Object[] fila = new Object[8];
         int num = listaTren.size();
-        if (listaTren.isEmpty()) {
-            flagDisp2 = false;
-            btnAgregarTren.setEnabled(true);
-            lblTrenAterrizaje.setText("No existen componentes tipo tren de aterrizaje disponibles");
-        } else {
+        
             for (int i = 0; i < num; i++) {
                 fila[0] = listaTren.get(i).getId();
                 fila[1] = listaTren.get(i).getDescripcion();
@@ -582,7 +440,7 @@ String matriculaNave2 = "";
                 modelo.addRow(fila);
             }
             tablaTrenAterrizaje.updateUI();
-        }
+        
 
     }
 
@@ -613,11 +471,7 @@ String matriculaNave2 = "";
         ArrayList<Componente> listaMotor = ac.listarFiltro(7);
         Object[] fila = new Object[8];
         int num = listaMotor.size();
-        if (listaMotor.isEmpty()) {
-            flagDisp2 = false;
-            btnAgregarMotor.setEnabled(true);
-            lblMotor.setText("No existen componentes tipo motor disponibles");
-        } else {
+        
             for (int i = 0; i < num; i++) {
                 fila[0] = listaMotor.get(i).getId();
                 fila[1] = listaMotor.get(i).getDescripcion();
@@ -627,7 +481,7 @@ String matriculaNave2 = "";
                 modelo.addRow(fila);
             }
             tablaMotor.updateUI();
-        }
+        
 
     }
 
@@ -658,11 +512,7 @@ String matriculaNave2 = "";
         ArrayList<Componente> listaEquipos = ac.listarFiltro(6);
         Object[] fila = new Object[8];
         int num = listaEquipos.size();
-        if (listaEquipos.isEmpty()) {
-            flagDisp2 = false;
-            btnAgregarEquipos.setEnabled(true);
-            lblEquipos.setText("No existen componentes tipo equipos disponibles");
-        } else {
+       
             for (int i = 0; i < num; i++) {
                 fila[0] = listaEquipos.get(i).getId();
                 fila[1] = listaEquipos.get(i).getDescripcion();
@@ -672,7 +522,7 @@ String matriculaNave2 = "";
                 modelo.addRow(fila);
             }
             tablaEquipos.updateUI();
-        }
+        
 
     }
 
@@ -703,11 +553,7 @@ String matriculaNave2 = "";
         ArrayList<Componente> listaCabina = ac.listarFiltro(8);
         Object[] fila = new Object[8];
         int num = listaCabina.size();
-        if (listaCabina.isEmpty()) {
-            flagDisp2 = false;
-            btnAgregarCabina.setEnabled(true);
-            lblCabina.setText("No existen componentes tipo cabina disponibles");
-        } else {
+       
             for (int i = 0; i < num; i++) {
                 fila[0] = listaCabina.get(i).getId();
                 fila[1] = listaCabina.get(i).getDescripcion();
@@ -717,16 +563,11 @@ String matriculaNave2 = "";
                 modelo.addRow(fila);
             }
             tablaCabina.updateUI();
-        }
-
+        
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarCabina;
-    private javax.swing.JButton btnAgregarEquipos;
-    private javax.swing.JButton btnAgregarMotor;
-    private javax.swing.JButton btnAgregarTren;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnMenu;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -735,7 +576,6 @@ String matriculaNave2 = "";
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;

@@ -305,7 +305,7 @@ public class ListarLicenciPilotoConsultor extends javax.swing.JFrame {
     }//GEN-LAST:event_cbRutActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        MenuPrincipalOperador menu = new MenuPrincipalOperador();
+        MenuConsultor menu = new MenuConsultor();
         menu.setLocationRelativeTo(null);
         menu.setVisible(true);
         this.dispose();

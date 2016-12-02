@@ -444,16 +444,7 @@ public class ListarPersonas extends javax.swing.JFrame {
         modelo.addColumn("ESTADO CUENTA");
         jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         TableColumnModel columnModel = jTable1.getColumnModel();
-        //.:Tamaño de columnas:.
-//        columnModel.getColumn(0).setPreferredWidth(40);
-//        columnModel.getColumn(1).setPreferredWidth(140);
-//        columnModel.getColumn(2).setPreferredWidth(140);
-//        columnModel.getColumn(3).setPreferredWidth(55);
-//        columnModel.getColumn(4).setPreferredWidth(90);
-//        columnModel.getColumn(5).setPreferredWidth(120);
-//        columnModel.getColumn(6).setPreferredWidth(60);
-//        columnModel.getColumn(7).setPreferredWidth(80);
-//        columnModel.getColumn(8).setPreferredWidth(80);
+        
 
         ArrayList<Persona> listaPersonas = per.listarPersonas();
        

@@ -20,69 +20,69 @@ import javax.swing.JOptionPane;
  * @author Celso
  */
 public class Administrar_Licencia {
-    
+
     private Licencia licencia;
-    
-    public void ingresarLicencia(Licencia nlicencia){
-        try{
-           int numero =  nlicencia.getNumero();
-           int tipo_licencia = nlicencia.getId();
-           String fecha_vencimiento = nlicencia.getFecha_vencimiento();
-           int dias_vuelo = nlicencia.getDias_vuelo();
-           float horas_vuelo = nlicencia.getHoras_vuelo();
-           int id_piloto = nlicencia.getId_piloto();
-           
-           Conexion conec = new Conexion();
+
+    public void ingresarLicencia(Licencia nlicencia) {
+        try {
+            int numero = nlicencia.getNumero();
+            int tipo_licencia = nlicencia.getId();
+            String fecha_vencimiento = nlicencia.getFecha_vencimiento();
+            int dias_vuelo = nlicencia.getDias_vuelo();
+            float horas_vuelo = nlicencia.getHoras_vuelo();
+            int id_piloto = nlicencia.getId_piloto();
+
+            Conexion conec = new Conexion();
             conec.conectar();
-            String sql = "INSERT INTO licencias  VALUES ((select (max(id)+1)from licencias),"+numero+","+tipo_licencia+",'"+fecha_vencimiento+"',"+dias_vuelo+","+horas_vuelo+","+id_piloto+")";
+            String sql = "INSERT INTO licencias  VALUES ((select (max(id)+1)from licencias)," + numero + "," + tipo_licencia + ",'" + fecha_vencimiento + "'," + dias_vuelo + "," + horas_vuelo + "," + id_piloto + ")";
             conec.escribir(sql);
             JOptionPane.showMessageDialog(null, "Ingresado Correctamente");
-        }catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex);
         }
     }
-    
-    public void modificarLicencia(Licencia nlicencia){
-        try{
-         int numero =  nlicencia.getNumero();
-           int tipo_licencia = nlicencia.getId();
-           String fecha_vencimiento = nlicencia.getFecha_vencimiento();
-           float horas_vuelo = nlicencia.getHoras_vuelo();
-           int dias_vuelo = nlicencia.getDias_vuelo();
-           int id = nlicencia.getId_licencia();
-           
-           Conexion conec = new Conexion();
+
+    public void modificarLicencia(Licencia nlicencia) {
+        try {
+            int numero = nlicencia.getNumero();
+            int tipo_licencia = nlicencia.getId();
+            String fecha_vencimiento = nlicencia.getFecha_vencimiento();
+            float horas_vuelo = nlicencia.getHoras_vuelo();
+            int dias_vuelo = nlicencia.getDias_vuelo();
+            int id = nlicencia.getId_licencia();
+
+            Conexion conec = new Conexion();
             conec.conectar();
-            String sql = "update licencias set numero= "+numero+","
-                    + " tipos_licencias_id = "+tipo_licencia+","
-                    + " fecha_vencimiento= '"+fecha_vencimiento+"',"
-                    + " horas_vuelo = "+horas_vuelo+","
-                    + "dias_vuelo = "+dias_vuelo
-                    + "where id = "+id;
+            String sql = "update licencias set numero= " + numero + ","
+                    + " tipos_licencias_id = " + tipo_licencia + ","
+                    + " fecha_vencimiento= '" + fecha_vencimiento + "',"
+                    + " horas_vuelo = " + horas_vuelo + ","
+                    + "dias_vuelo = " + dias_vuelo
+                    + "where id = " + id;
             conec.escribir(sql);
             JOptionPane.showMessageDialog(null, "Modificado correctamente");
-            
-        }catch(Exception ex){
-            
-        }   
+
+        } catch (Exception ex) {
+
+        }
     }
-    
-    public void eliminarLicencia(int id){
+
+    public void eliminarLicencia(int id) {
         try {
             Conexion con = new Conexion();
             con.conectar();
-            
-            String sql = "delete from licencias where id = '"+id+"'";
+
+            String sql = "delete from licencias where id = '" + id + "'";
             System.out.println(sql);
             con.escribir(sql);
             JOptionPane.showMessageDialog(null, "Eliminado correctamente");
-            
+
         } catch (HeadlessException e) {
-            
+
         }
     }
-    
-     public ArrayList<Tipo_licencia> listarTipoLicencia() {
+
+    public ArrayList<Tipo_licencia> listarTipoLicencia() {
         ArrayList lista = new ArrayList();
         Tipo_licencia tipoLicencia;
         try {
@@ -100,13 +100,13 @@ public class Administrar_Licencia {
         }
         return lista;
     }
-     public ArrayList<Licencia> listarLicencia(){
-         ArrayList lista = new ArrayList();
-         Licencia licencia;
-         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-         
-         
-         try {
+
+    public ArrayList<Licencia> listarLicencia() {
+        ArrayList lista = new ArrayList();
+        Licencia licencia;
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
             ResultSet rs = dbconn.consultar("SELECT * FROM licencias join tipos_licencias on tipos_licencias_id = tipos_licencias.id order by licencias.numero");
@@ -115,11 +115,11 @@ public class Administrar_Licencia {
                 licencia.setId_licencia(rs.getInt("id"));
                 licencia.setNumero(rs.getInt("numero"));
                 try {
-                        licencia.setFecha_vencimiento(df.format(rs.getDate("fecha_vencimiento")));
-                    } catch (Exception ex) {
-                        System.out.println(ex);
-                    }
-                
+                    licencia.setFecha_vencimiento(df.format(rs.getDate("fecha_vencimiento")));
+                } catch (Exception ex) {
+                    System.out.println(ex);
+                }
+
                 licencia.setHoras_vuelo(rs.getFloat("horas_vuelo"));
                 licencia.setDias_vuelo(rs.getInt("dias_vuelo"));
                 licencia.setDescripcion(rs.getString("descripcion"));
@@ -128,32 +128,31 @@ public class Administrar_Licencia {
             }
 
         } catch (Exception e) {
-             System.out.println(e);
+            System.out.println(e);
         }
-         
-         return lista;
-     }
-     
-      public ArrayList<Licencia> listarLicencia2(String rut){
-         ArrayList lista = new ArrayList();
-         Licencia licencia;
-         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-         
-         
-         try {
+
+        return lista;
+    }
+
+    public ArrayList<Licencia> listarLicencia2(String rut) {
+        ArrayList lista = new ArrayList();
+        Licencia licencia;
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
-            ResultSet rs = dbconn.consultar("SELECT * FROM licencias join tipos_licencias on tipos_licencias_id = tipos_licencias.id join pilotos on pilotos.id = licencias.pilotos_id join personas on personas.id = pilotos.personas_id where personas.rut = '"+rut+"'");
+            ResultSet rs = dbconn.consultar("SELECT * FROM licencias join tipos_licencias on tipos_licencias_id = tipos_licencias.id join pilotos on pilotos.id = licencias.pilotos_id join personas on personas.id = pilotos.personas_id where personas.rut = '" + rut + "'");
             while (rs.next()) {
                 licencia = new Licencia();
                 licencia.setId_licencia(rs.getInt("id"));
                 licencia.setNumero(rs.getInt("numero"));
                 try {
-                        licencia.setFecha_vencimiento(df.format(rs.getDate("fecha_vencimiento")));
-                    } catch (Exception ex) {
-                        System.out.println(ex);
-                    }
-                
+                    licencia.setFecha_vencimiento(df.format(rs.getDate("fecha_vencimiento")));
+                } catch (Exception ex) {
+                    System.out.println(ex);
+                }
+
                 licencia.setHoras_vuelo(rs.getFloat("horas_vuelo"));
                 licencia.setDias_vuelo(rs.getInt("dias_vuelo"));
                 licencia.setDescripcion(rs.getString("descripcion"));
@@ -162,70 +161,69 @@ public class Administrar_Licencia {
             }
 
         } catch (Exception e) {
-             System.out.println(e);
+            System.out.println(e);
         }
-         
-         return lista;
-     }
-      
-      public boolean buscarNumeroLicencia(int numero){
-          boolean valido = false;
-          
-            try {
-                Conexion dbconn = new Conexion();
-                dbconn.conectar();
-                ResultSet rs = dbconn.consultar("SELECT * FROM licencias where numero = "+numero);
-                while (rs.next()) {
-                    valido = true;
-                }
 
-            } catch (Exception e) {
-            }
-          
-          return valido;
-      }
-      
-     public boolean buscarNumeroLicenciaModificar(int numero, int id){
-          boolean valido = false;
-          
-            try {
-                Conexion dbconn = new Conexion();
-                dbconn.conectar();
-                ResultSet rs = dbconn.consultar("SELECT * FROM licencias where numero = "+numero);
-                while (rs.next()) {
-                    int idbd = rs.getInt("id");
-                    if (idbd != id) {
-                        valido = true;
-                    }
-                }
+        return lista;
+    }
 
-            } catch (Exception e) {
-            }
-          
-          return valido;
-      }
-      
-      public ArrayList<Licencia> listarLicenciaID(int id){
-         ArrayList lista = new ArrayList();
-         Licencia licencia;
-         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-         
-         
-         try {
+    public boolean buscarNumeroLicencia(int numero) {
+        boolean valido = false;
+
+        try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
-            ResultSet rs = dbconn.consultar("SELECT * FROM licencias join tipos_licencias on tipos_licencias_id = tipos_licencias.id  where licencias.id = "+id+ " order by licencias.numero");
+            ResultSet rs = dbconn.consultar("SELECT * FROM licencias where numero = " + numero);
+            while (rs.next()) {
+                valido = true;
+            }
+
+        } catch (Exception e) {
+        }
+
+        return valido;
+    }
+
+    public boolean buscarNumeroLicenciaModificar(int numero, int id) {
+        boolean valido = false;
+
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM licencias where numero = " + numero);
+            while (rs.next()) {
+                int idbd = rs.getInt("id");
+                if (idbd != id) {
+                    valido = true;
+                }
+            }
+
+        } catch (Exception e) {
+        }
+
+        return valido;
+    }
+
+    public ArrayList<Licencia> listarLicenciaID(int id) {
+        ArrayList lista = new ArrayList();
+        Licencia licencia;
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("SELECT * FROM licencias join tipos_licencias on tipos_licencias_id = tipos_licencias.id  where licencias.id = " + id + " order by licencias.numero");
             while (rs.next()) {
                 licencia = new Licencia();
                 licencia.setId_licencia(rs.getInt("id"));
                 licencia.setId(rs.getInt("tipos_licencias_id"));
                 licencia.setNumero(rs.getInt("numero"));
                 try {
-                        licencia.setFecha_vencimiento(df.format(rs.getDate("fecha_vencimiento")));
-                    } catch (Exception ex) {
-                        System.out.println(ex);
-                    }
-                
+                    licencia.setFecha_vencimiento(df.format(rs.getDate("fecha_vencimiento")));
+                } catch (Exception ex) {
+                    System.out.println(ex);
+                }
+
                 licencia.setHoras_vuelo(rs.getFloat("horas_vuelo"));
                 licencia.setDias_vuelo(rs.getInt("dias_vuelo"));
                 licencia.setDescripcion(rs.getString("descripcion"));
@@ -234,10 +232,12 @@ public class Administrar_Licencia {
             }
 
         } catch (Exception e) {
-             System.out.println(e);
+            System.out.println(e);
         }
-         
-         return lista;
-     } 
-      
+
+        return lista;
+    }
+
+    
+
 }

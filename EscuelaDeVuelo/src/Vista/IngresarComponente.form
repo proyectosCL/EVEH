@@ -60,24 +60,23 @@
                           <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="cbxTipoNave" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Component id="btnMenu" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtFabricante" alignment="0" pref="251" max="32767" attributes="0"/>
-                                      <Component id="txtDesc" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="spinDiasVuelo" alignment="0" pref="251" max="32767" attributes="0"/>
-                                      <Component id="spinHorasVuelo" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
+                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtFabricante" alignment="0" pref="251" max="32767" attributes="0"/>
+                                  <Component id="txtDesc" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="spinDiasVuelo" alignment="0" pref="251" max="32767" attributes="0"/>
+                                  <Component id="spinHorasVuelo" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
-                          <Component id="btnGuardarNuevoComponente" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" pref="410" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
+                          <Component id="btnMenu" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="btnGuardarNuevoComponente" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="70" max="32767" attributes="0"/>
@@ -115,11 +114,11 @@
                       <Component id="cbxTipoNave" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="btnGuardarNuevoComponente" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnMenu" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnGuardarNuevoComponente" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="52" max="32767" attributes="0"/>
+                  <EmptySpace pref="68" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

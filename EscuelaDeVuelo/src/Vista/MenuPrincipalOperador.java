@@ -5,7 +5,10 @@
  */
 package Vista;
 
+import Controlador.Administrar_Personas;
+import Modelo.Persona;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 /**
@@ -19,7 +22,9 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
      */
     public MenuPrincipalOperador() {
         initComponents();
-
+        btnAlertas.setVisible(false);
+        btnAlertas.setEnabled(false);
+        alertas();
         Image icon = new ImageIcon(getClass().getResource("../Imagenes/icono.jpg")).getImage();
         setIconImage(icon);
     }
@@ -43,6 +48,7 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
         btnListarComponentes = new javax.swing.JButton();
         btnListarAeronave = new javax.swing.JButton();
         btnIngresarCompoenente = new javax.swing.JButton();
+        btnAlertas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Operador");
@@ -149,6 +155,14 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
             }
         });
 
+        btnAlertas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/not1.png"))); // NOI18N
+        btnAlertas.setBorder(null);
+        btnAlertas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlertasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,25 +170,31 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnIngresarVuelos)
-                            .addComponent(btnListarVuelos)
-                            .addComponent(jButton4))
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnListarPiloto)
-                            .addComponent(btnIngresarPiloto)
-                            .addComponent(btnListarLicencias))
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnListarComponentes)
-                            .addComponent(btnListarAeronave)
-                            .addComponent(btnIngresarCompoenente)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(211, 211, 211)
-                        .addComponent(jLabel1)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnIngresarVuelos)
+                                    .addComponent(btnListarVuelos)
+                                    .addComponent(jButton4))
+                                .addGap(37, 37, 37)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnListarPiloto)
+                                    .addComponent(btnIngresarPiloto)
+                                    .addComponent(btnListarLicencias))
+                                .addGap(46, 46, 46)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnListarComponentes)
+                                    .addComponent(btnListarAeronave)
+                                    .addComponent(btnIngresarCompoenente)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(211, 211, 211)
+                                .addComponent(jLabel1)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnAlertas, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +217,9 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(btnIngresarCompoenente)
                         .addComponent(btnListarLicencias)))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addComponent(btnAlertas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -275,6 +297,15 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnIngresarCompoenenteActionPerformed
 
+    private void btnAlertasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlertasActionPerformed
+        // TODO add your handling code here:
+        AlertasLicencias btn = new AlertasLicencias();
+        btn.setLocationRelativeTo(null);
+        btn.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btnAlertasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -309,8 +340,20 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
 //            }
 //        });
 //    }
+    
+    private void alertas (){
+        
+        Administrar_Personas persona = new Administrar_Personas();
+         ArrayList<Persona> listaPersonas = persona.alertaLicencias();
+        if(listaPersonas.size()>=1){
+            btnAlertas.setVisible(true);
+        btnAlertas.setEnabled(true);
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlertas;
     private javax.swing.JButton btnIngresarCompoenente;
     private javax.swing.JButton btnIngresarPiloto;
     private javax.swing.JButton btnIngresarVuelos;

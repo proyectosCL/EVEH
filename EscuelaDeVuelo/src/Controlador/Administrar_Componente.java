@@ -18,7 +18,6 @@ public class Administrar_Componente implements administrar_horas_vuelo {
             Float horasVuelo = nuevoComponente.getHoras_vuelo();
             int diasVuelo = nuevoComponente.getDias_vuelo();
             int tpoCompteId = nuevoComponente.getTipo_componente_id();
-            
 
             Conexion conec = new Conexion();
             conec.conectar();
@@ -31,7 +30,7 @@ public class Administrar_Componente implements administrar_horas_vuelo {
         }
 
     }
-    
+
     public boolean ingresarNuevoComponenteNave(Componente nuevoComponente) {
         try {
             String desc = nuevoComponente.getDescripcion();
@@ -40,11 +39,10 @@ public class Administrar_Componente implements administrar_horas_vuelo {
             int diasVuelo = nuevoComponente.getDias_vuelo();
             int tpoCompteId = nuevoComponente.getTipo_componente_id();
             int aeronaveId = nuevoComponente.getAeronave_id();
-            
 
             Conexion conec = new Conexion();
             conec.conectar();
-            String sql = "INSERT INTO componentes  VALUES ((select (max(id)+1)from componentes),'" + desc + "','" + fabricte + "'," + horasVuelo + "," + diasVuelo + "," + tpoCompteId + ", null,"+aeronaveId+")";
+            String sql = "INSERT INTO componentes  VALUES ((select (max(id)+1)from componentes),'" + desc + "','" + fabricte + "'," + horasVuelo + "," + diasVuelo + "," + tpoCompteId + ", null," + aeronaveId + ")";
             conec.escribir(sql);
 
             return true;
@@ -61,7 +59,7 @@ public class Administrar_Componente implements administrar_horas_vuelo {
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
-            ResultSet rs = dbconn.consultar("SELECT * FROM componentes WHERE tipos_componentes_id = " + tipoCompte + " AND aeronaves_ID IS null ");
+            ResultSet rs = dbconn.consultar("SELECT * FROM componentes WHERE tipos_componentes_id = " + tipoCompte + " AND aeronaves_ID IS null  AND componentes_id IS null");
             while (rs.next()) {
                 filtro = new Componente();
                 filtro.setId(rs.getInt("id"));
@@ -81,7 +79,7 @@ public class Administrar_Componente implements administrar_horas_vuelo {
         return listaFiltro;
 
     }
-    
+
     public ArrayList<Componente> listarFiltroId(int idCompte) {
 
         ArrayList listaFiltro = new ArrayList();
@@ -117,7 +115,7 @@ public class Administrar_Componente implements administrar_horas_vuelo {
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
-            ResultSet rs = dbconn.consultar("select * from COMPONENTES ");
+            ResultSet rs = dbconn.consultar("select * from COMPONENTES order by id");
             while (rs.next()) {
                 lista = new Componente();
                 lista.setId(rs.getInt("id"));
@@ -180,7 +178,8 @@ public class Administrar_Componente implements administrar_horas_vuelo {
         try {
             Conexion con = new Conexion();
             con.conectar();
-
+            String sql2 = "update componentes set componentes_id=null where componentes_id='" + id + "'";
+            con.escribir(sql2);
             String sql = "delete from COMPONENTES where id = '" + id + "'";
             System.out.println(sql);
             con.escribir(sql);
@@ -208,7 +207,6 @@ public class Administrar_Componente implements administrar_horas_vuelo {
                     + "DIAS_VUELO =  " + diasVuelo + ","
                     + "TIPOS_COMPONENTES_ID = " + tpoCompteId + " where ID=" + id + "";
             conec.escribir(sql);
-            
 
         } catch (Exception ex) {
 
@@ -266,7 +264,7 @@ public class Administrar_Componente implements administrar_horas_vuelo {
         } catch (Exception e) {
 
         }
-       
+
         return idCompte;
 
     }
@@ -298,16 +296,16 @@ public class Administrar_Componente implements administrar_horas_vuelo {
         return listaFiltro;
 
     }
-    
+
     public ArrayList<Componente> listarCompteAso(int id) {
-        
+
         System.out.println(id);
         ArrayList listaFiltro = new ArrayList();
         Componente filtro;
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
-            ResultSet rs = dbconn.consultar("select * from COMPONENTES where COMPONENTES_ID= "+id+"");
+            ResultSet rs = dbconn.consultar("select * from COMPONENTES where COMPONENTES_ID= " + id + "");
             while (rs.next()) {
                 filtro = new Componente();
                 filtro.setId(rs.getInt("id"));
@@ -316,7 +314,10 @@ public class Administrar_Componente implements administrar_horas_vuelo {
                 filtro.setHoras_vuelo(rs.getFloat("horas_vuelo"));
                 filtro.setDias_vuelo(rs.getInt("dias_vuelo"));
                 filtro.setTipo_componente_id(rs.getInt("tipos_componentes_id"));
-                
+                filtro.setComponente_id(rs.getInt("componentes_id"));
+                filtro.setAeronave_id(rs.getInt("aeronaves_id"));
+             
+
                 listaFiltro.add(filtro);
             }
 
