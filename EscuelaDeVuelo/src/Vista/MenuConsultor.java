@@ -39,7 +39,7 @@ public class MenuConsultor extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
-        jLabel1.setText("Menu CONSULTOR");
+        jLabel1.setText("Menu Consultor");
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/salir.png"))); // NOI18N
         btnSalir.setBorder(null);
@@ -104,7 +104,7 @@ public class MenuConsultor extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(146, 146, 146)
                         .addComponent(btnListarAeronaves)))
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(183, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(28, 28, 28)
