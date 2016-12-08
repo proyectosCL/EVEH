@@ -211,6 +211,35 @@ public class Administrar_Aeronave implements administrar_horas_vuelo {
         return listaNave;
 
     }
+        public ArrayList<Aeronave> listarAeronave2() {
+
+        ArrayList listaComponentes = new ArrayList();
+        Aeronave lista;
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Conexion dbconn = new Conexion();
+            dbconn.conectar();
+            ResultSet rs = dbconn.consultar("select * from aeronaves where estado='M'");
+            while (rs.next()) {
+
+                lista = new Aeronave();
+                lista.setId(rs.getString(1));
+                lista.setMatricula(rs.getString(2));
+                lista.setTiponave(rs.getString(3));
+                lista.setEstado(rs.getString(4));
+                lista.setFecha_aeronavegavilidad(df.format(rs.getDate(5)));
+                lista.setFecha_ultima_inspeccion_anual(df.format(rs.getDate(6)));
+                lista.setHoras_vuelo(rs.getString(7));
+                lista.setDias_vuelo(rs.getString(8));
+                listaComponentes.add(lista);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return listaComponentes;
+
+    }
 
     @Override
     public void sumarHoras() {
