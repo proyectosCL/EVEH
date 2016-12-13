@@ -50,9 +50,9 @@ public class Administrar_Mantenimientos {
             Conexion conec = new Conexion();
             conec.conectar();
             //
-            String sql = "INSERT INTO detalles_mantenimientos  VALUES ((select (max(id)+1)from detalles_mantenimientos),'" + idcompo + "','" + idplanes +"','"+estado +"','"+tareas+ "')";
+            String sql = "INSERT INTO detalles_mantenimientos  VALUES ((select (max(mantenimientos_id)+1)from detalles_mantenimientos),'" + idcompo + "','" + idplanes +"','"+estado +"','"+tareas+ "')";
             conec.escribir(sql);
-            String sql1 = "update aeronaves set estado = 'V' where AERONAVES_ID= '" + idcompo + "'";
+            String sql1 = "update aeronaves set estado = 'V' where id= '" + idcompo + "'";
             conec.escribir(sql1);
         } catch (Exception e) {
            
