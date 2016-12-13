@@ -339,19 +339,23 @@ public class IngresarLicencia extends javax.swing.JFrame {
             }
              
             //vali fecha
+            
             String fecha_vencimiento = null;
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             
             try{
                 Date fecha = JDateVencimiento.getDate();
+                Date hoy = new Date();
+                if (fecha.before(hoy)) {
+                    JOptionPane.showMessageDialog(null, "La fecha del vencimiento de la licencia no puede ser antes a la de hoy");
+                    return;
+                }
                 fecha_vencimiento = df.format(fecha);
             }catch(Exception ex){
                 System.out.println(ex);
                 JOptionPane.showMessageDialog(null, "Fecha mal ingresada");
                 return;
             }
-           
-            
             
             //datos
             Object item = jComboBoxTipoLicencia.getSelectedItem();
