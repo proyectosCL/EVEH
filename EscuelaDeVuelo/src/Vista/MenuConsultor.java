@@ -5,6 +5,10 @@
  */
 package Vista;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+
 /**
  *
  * @author pcbla
@@ -35,6 +39,7 @@ public class MenuConsultor extends javax.swing.JFrame {
         btnListarPiloto = new javax.swing.JButton();
         btnListarMantenimientos = new javax.swing.JButton();
         btnListarAeronaves = new javax.swing.JButton();
+        btnVerPlanes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +90,13 @@ public class MenuConsultor extends javax.swing.JFrame {
             }
         });
 
+        btnVerPlanes.setText("Ver planes");
+        btnVerPlanes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerPlanesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,9 +114,11 @@ public class MenuConsultor extends javax.swing.JFrame {
                         .addGap(127, 127, 127)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(btnListarAeronaves)))
-                .addContainerGap(183, Short.MAX_VALUE))
+                        .addGap(26, 26, 26)
+                        .addComponent(btnListarAeronaves)
+                        .addGap(116, 116, 116)
+                        .addComponent(btnVerPlanes)))
+                .addContainerGap(116, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(28, 28, 28)
@@ -114,13 +128,19 @@ public class MenuConsultor extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(42, 42, 42)
-                .addComponent(btnListarPiloto)
-                .addGap(27, 27, 27)
-                .addComponent(btnListarAeronaves)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addGap(42, 42, 42)
+                        .addComponent(btnListarPiloto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                        .addComponent(btnListarAeronaves)
+                        .addGap(38, 38, 38))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVerPlanes)
+                        .addGap(49, 49, 49)))
                 .addComponent(btnSalir)
                 .addGap(63, 63, 63))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,6 +185,16 @@ public class MenuConsultor extends javax.swing.JFrame {
         this.dispose();    
     }//GEN-LAST:event_btnListarAeronavesActionPerformed
 
+    private void btnVerPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPlanesActionPerformed
+        // TODO add your handling code here:
+        try {
+            File path = new File("planes.pdf");
+            Desktop.getDesktop().open(path);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnVerPlanesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -205,6 +235,7 @@ public class MenuConsultor extends javax.swing.JFrame {
     private javax.swing.JButton btnListarMantenimientos;
     private javax.swing.JButton btnListarPiloto;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnVerPlanes;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,14 +18,12 @@ import javax.swing.JOptionPane;
  */
 public class IngresarMantenimiento extends javax.swing.JFrame {
 
- 
     int idCompteMod = 0;
- public IngresarMantenimiento() {
+
+    public IngresarMantenimiento() {
         initComponents();
-       
-        
+
     }
-  
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -306,8 +304,7 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
-        
-        int idmante=0;
+        int idmante = 0;
         //vali fecha
         String fecha_inicio = null;
         String fecha_termino = null;
@@ -329,104 +326,106 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Fecha mal ingresada de termino");
             return;
         }
-        
-       
-        String validar="";
+
+        String validar = "";
         int contrador = 0;
-        int idtipoplanx=0;
-        String tareas="";
-     
+        int idtipoplanx = 0;
+        String tareas = "";
+
         switch (cmbtipoplan.getSelectedIndex()) {
             case 0:
-                idtipoplanx=1;
-                tareas="FUSELAJE : A,B,C,D ALAS : A,B,C,D,E EMPENAJE : A,B,C,D,E CONTROLES Y FRENOS AERODINAMICOS : A, TREN DE ATERRIZAJE : A,B,C EQUIPOS : A,B,C";
+                idtipoplanx = 1;
+                tareas = "FUSELAJE : A,B,C,D ALAS : A,B,C,D,E EMPENAJE : A,B,C,D,E CONTROLES Y FRENOS AERODINAMICOS : A, TREN DE ATERRIZAJE : A,B,C EQUIPOS : A,B,C";
                 break;
             case 1:
-                idtipoplanx=2;
-                tareas="CABINA : A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P FUSELAJE : A,B,C,D,E,F ALAS : A,B,C,D,E EMPENAJE : A,B,C,D,E CONTROLES Y FRENOS AERODINAMICOS : A TREN DE ATERRIZAJE : A,B,C,D,E EQUIPOS : A,B,C";
+                idtipoplanx = 2;
+                tareas = "CABINA : A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P FUSELAJE : A,B,C,D,E,F ALAS : A,B,C,D,E EMPENAJE : A,B,C,D,E CONTROLES Y FRENOS AERODINAMICOS : A TREN DE ATERRIZAJE : A,B,C,D,E EQUIPOS : A,B,C";
                 break;
             case 2:
-                idtipoplanx=3;
-                tareas="CABINA : A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P FUSELAJE : A,B,C,D,E,F ALAS : A,B,C,D,E EMPENAJE : A,B,C,D,E CONTROLES Y FRENOS AERODINAMICOS : A TREN DE ATERRIZAJE : A,B,C,D,E EQUIPOS : A,B,C NUMEROS : 1,2,3,4,5,6,7,8,9,10";
+                idtipoplanx = 3;
+                tareas = "CABINA : A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P FUSELAJE : A,B,C,D,E,F ALAS : A,B,C,D,E EMPENAJE : A,B,C,D,E CONTROLES Y FRENOS AERODINAMICOS : A TREN DE ATERRIZAJE : A,B,C,D,E EQUIPOS : A,B,C NUMEROS : 1,2,3,4,5,6,7,8,9,10";
                 break;
             case 3:
-                idtipoplanx=4;
-                tareas="CABINA : A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P FUSELAJE : A,B,C,D,E,F ALAS : A,B,C,D,E EMPENAJE : A,B,C,D,E CONTROLES Y FRENOS AERODINAMICOS : A TREN DE ATERRIZAJE : A,B,C,D,E EQUIPOS : A,B,C NUMEROS : 1,2,3,4,5,6,7,8,9,10 A,B,C,D,E,F,G,H,I,J,K,L";
+                idtipoplanx = 4;
+                tareas = "CABINA : A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P FUSELAJE : A,B,C,D,E,F ALAS : A,B,C,D,E EMPENAJE : A,B,C,D,E CONTROLES Y FRENOS AERODINAMICOS : A TREN DE ATERRIZAJE : A,B,C,D,E EQUIPOS : A,B,C NUMEROS : 1,2,3,4,5,6,7,8,9,10 A,B,C,D,E,F,G,H,I,J,K,L";
                 break;
         }
-        if(chkFuselaje.isSelected()){
-           contrador++;
-        }else{
-            contrador--;
-        }
-          if(chkAlas.isSelected()){
-            
+        if (chkFuselaje.isSelected()) {
             contrador++;
-        }else{
+        } else {
             contrador--;
         }
-            if(chkEmpenaje.isSelected()){
-       
+        if (chkAlas.isSelected()) {
+
             contrador++;
-        }else{
+        } else {
             contrador--;
         }
-        
-         if(chkControl.isSelected()){
-         
+        if (chkEmpenaje.isSelected()) {
+
             contrador++;
-        }else{
+        } else {
             contrador--;
         }
-           if(chkTren.isSelected()){
-           
+
+        if (chkControl.isSelected()) {
+
             contrador++;
-        }else{
+        } else {
             contrador--;
         }
-             if(chkEquipos.isSelected()){
-           
+        if (chkTren.isSelected()) {
+
             contrador++;
-        }else{
+        } else {
             contrador--;
         }
-              if(chkMotor.isSelected()){
-           
+        if (chkEquipos.isSelected()) {
+
             contrador++;
-        }else{
+        } else {
             contrador--;
-        }  
-        if(chkCabina.isSelected()){
-           
+        }
+        if (chkMotor.isSelected()) {
+
             contrador++;
-        }else{
+        } else {
             contrador--;
         }
-        
-          if (txtestado.getText().isEmpty()){
-               JOptionPane.showMessageDialog(null, "Debe ingresar un comentario en el estado de la revision");
-               txtestado.requestFocus();
-           }else{
-        if(contrador==8){
-         
-            String estado= txtestado.getText();
-           int idaeronave= idCompteMod;
-          
-            Mantenimientos man = new Mantenimientos(idmante,fecha_inicio,fecha_termino);
-            Administrar_Mantenimientos adm = new Administrar_Mantenimientos();
-            
-            adm.ingresarMantenimiento(man);
-            
-           Detalle_Mantenimiento detalle = new Detalle_Mantenimiento(idmante,idaeronave,idtipoplanx,tareas,estado);
-            adm.ingresarDetalleMantenimiento(detalle);
-            JOptionPane.showMessageDialog(null, "SE HA INGRESADO EL MANTENIMIENTO");
-        }else{
-            
-           JOptionPane.showMessageDialog(null, "DEBEN ESTAR TODAS LAS REVISIONES CORRECTAS"); 
-            jLabel14.requestFocus();
+        if (chkCabina.isSelected()) {
+
+            contrador++;
+        } else {
+            contrador--;
         }
-           
-        
+
+        if (txtestado.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un comentario en el estado de la revision");
+            txtestado.requestFocus();
+        } else {
+            if (contrador == 8) {
+
+                String estado = txtestado.getText();
+                int idaeronave = idCompteMod;
+
+                Mantenimientos man = new Mantenimientos(idmante, fecha_inicio, fecha_termino);
+                Administrar_Mantenimientos adm = new Administrar_Mantenimientos();
+
+                adm.ingresarMantenimiento(man);
+
+                Detalle_Mantenimiento detalle = new Detalle_Mantenimiento(idmante, idaeronave, idtipoplanx, tareas, estado);
+                adm.ingresarDetalleMantenimiento(detalle);
+
+                Administrar_Correo correo = new Administrar_Correo();
+                correo.enviarCorreo();
+                JOptionPane.showMessageDialog(null, "SE HA INGRESADO EL MANTENIMIENTO");
+            } else {
+
+                JOptionPane.showMessageDialog(null, "DEBEN ESTAR TODAS LAS REVISIONES CORRECTAS");
+                jLabel14.requestFocus();
+            }
+
+
     }//GEN-LAST:event_btnIngresarActionPerformed
     }
     private void chkFuselajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkFuselajeActionPerformed
@@ -443,9 +442,8 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
 
     private void btnMandarCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMandarCorreoActionPerformed
         // TODO add your handling code here:
-        Administrar_Correo correo = new Administrar_Correo();
-        correo.enviarCorreo();
-        
+
+
     }//GEN-LAST:event_btnMandarCorreoActionPerformed
 
     private void btnvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolverActionPerformed
