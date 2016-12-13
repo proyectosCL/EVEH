@@ -49,10 +49,11 @@ public class Administrar_Mantenimientos {
             String tareas= detalle.getTareas_seleccionadas();
             Conexion conec = new Conexion();
             conec.conectar();
-            String sql = "INSERT INTO detalle_mantenimientos  VALUES ((select (max(id))from mantenimientos),'" + idcompo + "','" + idplanes +"','"+estado +"','"+tareas+ "')";
+            //
+            String sql = "INSERT INTO detalles_mantenimientos  VALUES ((select (max(id)+1)from detalles_mantenimientos),'" + idcompo + "','" + idplanes +"','"+estado +"','"+tareas+ "')";
             conec.escribir(sql);
-
-         
+            String sql1 = "update aeronaves set estado = 'V' where AERONAVES_ID= '" + idcompo + "'";
+            conec.escribir(sql1);
         } catch (Exception e) {
            
         }

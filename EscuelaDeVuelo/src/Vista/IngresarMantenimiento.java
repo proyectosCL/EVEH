@@ -4,6 +4,7 @@ import Controlador.Administrar_Correo;
 import Controlador.Administrar_Mantenimientos;
 import Controlador.Administrar_Vuelo;
 import Modelo.Aeronave;
+import Modelo.Detalle_Mantenimiento;
 import Modelo.Mantenimientos;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -17,64 +18,19 @@ import javax.swing.JOptionPane;
  */
 public class IngresarMantenimiento extends javax.swing.JFrame {
 
-    class ComboItem {
-
-        private String text;
-        private String value;
-
-        public ComboItem(String text, String value) {
-            this.text = text;
-            this.value = value;
-        }
-
-        public String getText() {
-            return text;
-        }
-
-        public void setText(String text) {
-            this.text = text;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        public void setValue(String value) {
-            this.value = value;
-        }
-
-        @Override
-        public String toString() {
-            return text;
-        }
-
-    }
-
+ 
     int idCompteMod = 0;
-
-    public IngresarMantenimiento() {
+ public IngresarMantenimiento() {
         initComponents();
-
-        jComboBoxMatricula.setEditable(true);
-        jComboBoxMatricula.setModel(new javax.swing.DefaultComboBoxModel(new String[]{" "}));
-        jComboBoxMatricula.setSelectedIndex(0);
-        LlenarComboBoxMatricula();
+       
+        
     }
-
-    public void LlenarComboBoxMatricula() {
-        Administrar_Vuelo av = new Administrar_Vuelo();
-        ArrayList<Aeronave> listaAeronave = av.listarAeronave();
-        int num = listaAeronave.size();
-        for (int i = 0; i < num; i++) {
-            this.jComboBoxMatricula.addItem(new ComboItem(listaAeronave.get(i).getMatricula(), String.valueOf(listaAeronave.get(i).getId())));
-        }
-    }
+  
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         JDateInicio = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
@@ -83,7 +39,6 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         cmbtipoplan = new javax.swing.JComboBox<>();
         btnIngresar = new javax.swing.JButton();
-        jComboBoxMatricula = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -103,13 +58,11 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
         chkCabina = new javax.swing.JCheckBox();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        txtestado = new javax.swing.JTextPane();
         jLabel15 = new javax.swing.JLabel();
         btnMandarCorreo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("MATRICULA DE LA AERONAVE :");
 
         jLabel2.setText("Ingrese Fecha de Inicio");
 
@@ -126,6 +79,7 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
         jLabel4.setText("Seleccione Plan de Mantenimiento");
 
         cmbtipoplan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inspeccion diaria", "Plan de 50 horas", "Plan de 100 horas", "Plan de 1000 horas", " " }));
+        cmbtipoplan.setToolTipText("");
 
         btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregar.png"))); // NOI18N
         btnIngresar.setBorder(null);
@@ -176,9 +130,9 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
 
         jLabel14.setText("Estado de la revision");
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(txtestado);
 
-        jLabel15.setText("Comentarios");
+        jLabel15.setText("Comentarios de la revision");
 
         btnMandarCorreo.setText("probar envio de correo");
         btnMandarCorreo.addActionListener(new java.awt.event.ActionListener() {
@@ -193,11 +147,6 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,9 +170,7 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(JDateTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(23, 23, 23)
-                                        .addComponent(jLabel15))))))
+                                    .addComponent(jLabel15)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,7 +196,7 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
                                 .addComponent(jLabel5)
                                 .addGap(179, 179, 179)
                                 .addComponent(chkFuselaje)))))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,19 +216,14 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(txtmante, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
+                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jComboBoxMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(JDateInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel2)
+                                .addComponent(JDateInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(JDateTermino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -307,7 +249,6 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(chkEmpenaje))
                     .addComponent(jLabel7))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,7 +271,7 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(chkCabina)
                             .addComponent(jLabel12))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                         .addComponent(btnIngresar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -343,8 +284,8 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
-        JOptionPane.showMessageDialog(null, "id de la aeronave " + idCompteMod);
-int idmante=0;
+        
+        int idmante=0;
         //vali fecha
         String fecha_inicio = null;
         String fecha_termino = null;
@@ -368,21 +309,27 @@ int idmante=0;
         }
         String validar="";
         int contrador = 0;
-//      switch (cmbtipoplan.getSelectedIndex()) {
-//        case 0:
-//
-//            break;
-//        case 1:
-//
-//            break;
-//        case 2:
-//
-//            break;
-//        case 3:
-//
-//            break;
-//       }
-
+        int idtipoplanx=0;
+        String tareas="";
+     
+        switch (cmbtipoplan.getSelectedIndex()) {
+            case 0:
+                idtipoplanx=1;
+                tareas="FUSELAJE : A,B,C,D ALAS : A,B,C,D,E EMPENAJE : A,B,C,D,E CONTROLES Y FRENOS AERODINAMICOS : A, TREN DE ATERRIZAJE : A,B,C EQUIPOS : A,B,C";
+                break;
+            case 1:
+                idtipoplanx=2;
+                tareas="CABINA : A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P FUSELAJE : A,B,C,D,E,F ALAS : A,B,C,D,E EMPENAJE : A,B,C,D,E CONTROLES Y FRENOS AERODINAMICOS : A TREN DE ATERRIZAJE : A,B,C,D,E EQUIPOS : A,B,C";
+                break;
+            case 2:
+                idtipoplanx=3;
+                tareas="CABINA : A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P FUSELAJE : A,B,C,D,E,F ALAS : A,B,C,D,E EMPENAJE : A,B,C,D,E CONTROLES Y FRENOS AERODINAMICOS : A TREN DE ATERRIZAJE : A,B,C,D,E EQUIPOS : A,B,C NUMEROS : 1,2,3,4,5,6,7,8,9,10";
+                break;
+            case 3:
+                idtipoplanx=4;
+                tareas="CABINA : A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P FUSELAJE : A,B,C,D,E,F ALAS : A,B,C,D,E EMPENAJE : A,B,C,D,E CONTROLES Y FRENOS AERODINAMICOS : A TREN DE ATERRIZAJE : A,B,C,D,E EQUIPOS : A,B,C NUMEROS : 1,2,3,4,5,6,7,8,9,10 A,B,C,D,E,F,G,H,I,J,K,L";
+                break;
+        }
         if(chkFuselaje.isSelected()){
            contrador++;
         }else{
@@ -432,23 +379,31 @@ int idmante=0;
             contrador--;
         }
         
+          if (txtestado.getText().isEmpty()){
+               JOptionPane.showMessageDialog(null, "Debe ingresar un comentario en el estado de la revision");
+               txtestado.requestFocus();
+           }else{
         if(contrador==8){
-           
+         
+            String estado= txtestado.getText();
+           int idaeronave= idCompteMod;
             Mantenimientos man = new Mantenimientos(idmante,fecha_inicio,fecha_termino);
             Administrar_Mantenimientos adm = new Administrar_Mantenimientos();
+            
             adm.ingresarMantenimiento(man);
             
-            
-            
+           Detalle_Mantenimiento detalle = new Detalle_Mantenimiento(idmante,idaeronave,idtipoplanx,tareas,estado);
+            adm.ingresarDetalleMantenimiento(detalle);
+            JOptionPane.showMessageDialog(null, "SE HA INGRESADO EL MANTENIMIENTO");
         }else{
             
-            
-            
+           JOptionPane.showMessageDialog(null, "DEBEN ESTAR TODAS LAS REVISIONES CORRECTAS"); 
+            jLabel14.requestFocus();
         }
            
-         
+        
     }//GEN-LAST:event_btnIngresarActionPerformed
-
+    }
     private void chkFuselajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkFuselajeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chkFuselajeActionPerformed
@@ -517,8 +472,6 @@ int idmante=0;
     private javax.swing.JCheckBox chkMotor;
     private javax.swing.JCheckBox chkTren;
     private javax.swing.JComboBox<String> cmbtipoplan;
-    private javax.swing.JComboBox jComboBoxMatricula;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -534,7 +487,7 @@ int idmante=0;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane txtestado;
     private javax.swing.JLabel txtmante;
     // End of variables declaration//GEN-END:variables
 }
