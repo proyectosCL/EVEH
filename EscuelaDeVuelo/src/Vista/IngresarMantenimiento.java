@@ -1,5 +1,6 @@
 package Vista;
 
+import Controlador.Administrar_Correo;
 import Controlador.Administrar_Mantenimientos;
 import Controlador.Administrar_Vuelo;
 import Modelo.Aeronave;
@@ -104,6 +105,7 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jLabel15 = new javax.swing.JLabel();
+        btnMandarCorreo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -178,6 +180,13 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
 
         jLabel15.setText("Comentarios");
 
+        btnMandarCorreo.setText("probar envio de correo");
+        btnMandarCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMandarCorreoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -248,10 +257,12 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
                         .addComponent(txtmante)
                         .addGap(162, 162, 162))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnIngresar)
-                        .addGap(351, 351, 351))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnIngresar)
+                                .addGap(186, 186, 186)
+                                .addComponent(btnMandarCorreo))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(92, 92, 92))))
         );
         layout.setVerticalGroup(
@@ -298,27 +309,32 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chkControl))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(chkControl))
+                                .addGap(18, 18, 18)
+                                .addComponent(chkTren))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
-                        .addComponent(chkTren))
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(chkEquipos)
-                    .addComponent(jLabel10))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(chkMotor)
-                    .addComponent(jLabel11))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(chkCabina)
-                    .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnIngresar)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(chkEquipos)
+                            .addComponent(jLabel10))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(chkMotor)
+                            .addComponent(jLabel11))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(chkCabina)
+                            .addComponent(jLabel12))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnIngresar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnMandarCorreo)))
                 .addGap(39, 39, 39))
         );
 
@@ -423,6 +439,7 @@ int idmante=0;
             adm.ingresarMantenimiento(man);
             
             
+            
         }else{
             
             
@@ -443,6 +460,13 @@ int idmante=0;
     private void chkControlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkControlActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chkControlActionPerformed
+
+    private void btnMandarCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMandarCorreoActionPerformed
+        // TODO add your handling code here:
+        Administrar_Correo correo = new Administrar_Correo();
+        correo.enviarCorreo();
+        
+    }//GEN-LAST:event_btnMandarCorreoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -483,6 +507,7 @@ int idmante=0;
     private com.toedter.calendar.JDateChooser JDateInicio;
     private com.toedter.calendar.JDateChooser JDateTermino;
     private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnMandarCorreo;
     private javax.swing.JCheckBox chkAlas;
     private javax.swing.JCheckBox chkCabina;
     private javax.swing.JCheckBox chkControl;
