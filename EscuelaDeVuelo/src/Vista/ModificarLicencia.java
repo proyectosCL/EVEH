@@ -274,9 +274,9 @@ public class ModificarLicencia extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(jTextFieldDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIngresar)
-                    .addComponent(btnCancelar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnIngresar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -324,17 +324,22 @@ public class ModificarLicencia extends javax.swing.JFrame {
             }
 
             //vali fecha
-            String fecha_vencimiento = null;
+           String fecha_vencimiento = null;
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-
-            try {
+            
+            try{
                 Date fecha = JDateVencimiento.getDate();
+                Date hoy = new Date();
+                if (fecha.before(hoy)) {
+                    JOptionPane.showMessageDialog(null, "La fecha del vencimiento de la licencia no puede ser antes a la de hoy");
+                    return;
+                }
                 fecha_vencimiento = df.format(fecha);
-            } catch (Exception ex) {
+            }catch(Exception ex){
+                System.out.println(ex);
                 JOptionPane.showMessageDialog(null, "Fecha mal ingresada");
                 return;
             }
-
             //datos
             Object item = jComboBoxTipoLicencia.getSelectedItem();
             int tipo_licencia = Integer.parseInt(((ComboItem) item).getValue());
