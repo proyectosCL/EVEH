@@ -243,9 +243,9 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel13)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel14)
-                        .addComponent(jLabel15)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel14)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
@@ -265,7 +265,6 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(chkEmpenaje)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -452,8 +451,9 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
     private void btnvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolverActionPerformed
         btnvolver.setEnabled(false);
         btnvolver.setText("en curso...");
-        MenuPrincipalOperador menu = new MenuPrincipalOperador();
-        menu.setVisible(true);
+        IngresarMantenimiento2 btn = new IngresarMantenimiento2();
+        btn.setLocationRelativeTo(null);
+        btn.setVisible(true);
         this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnvolverActionPerformed

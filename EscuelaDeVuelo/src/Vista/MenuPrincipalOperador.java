@@ -49,6 +49,7 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
         btnListarAeronave = new javax.swing.JButton();
         btnIngresarCompoenente = new javax.swing.JButton();
         btnAlertas = new javax.swing.JButton();
+        btnMantenimientos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Operador");
@@ -163,6 +164,13 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
             }
         });
 
+        btnMantenimientos.setText("Mantenimientos");
+        btnMantenimientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMantenimientosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -172,11 +180,15 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnIngresarVuelos)
-                                    .addComponent(btnListarVuelos)
-                                    .addComponent(jButton4))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnIngresarVuelos)
+                                            .addComponent(btnListarVuelos)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(24, 24, 24)
+                                        .addComponent(btnMantenimientos)))
                                 .addGap(37, 37, 37)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnListarPiloto)
@@ -192,7 +204,9 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
                                 .addComponent(jLabel1)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAlertas, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -211,14 +225,19 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
                     .addComponent(btnIngresarPiloto)
                     .addComponent(btnIngresarVuelos)
                     .addComponent(btnListarComponentes))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnIngresarCompoenente)
-                        .addComponent(btnListarLicencias)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                .addComponent(btnAlertas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnIngresarCompoenente)
+                            .addComponent(btnListarLicencias))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                        .addComponent(btnAlertas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(btnMantenimientos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4)))
                 .addContainerGap())
         );
 
@@ -306,6 +325,14 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnAlertasActionPerformed
 
+    private void btnMantenimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMantenimientosActionPerformed
+        // TODO add your handling code here:
+        SubmenuMantenimientos btn = new SubmenuMantenimientos();
+        btn.setLocationRelativeTo(null);
+        btn.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnMantenimientosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -362,6 +389,7 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
     private javax.swing.JButton btnListarLicencias;
     private javax.swing.JButton btnListarPiloto;
     private javax.swing.JButton btnListarVuelos;
+    private javax.swing.JButton btnMantenimientos;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

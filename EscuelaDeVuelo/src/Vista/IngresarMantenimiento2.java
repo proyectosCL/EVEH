@@ -25,7 +25,7 @@ public class IngresarMantenimiento2 extends javax.swing.JFrame {
     public IngresarMantenimiento2() {
         initComponents();
         cargarTablaComponentes();
-        
+
     }
 
     /**
@@ -124,7 +124,6 @@ public class IngresarMantenimiento2 extends javax.swing.JFrame {
     private void tablaComponentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaComponentesMouseClicked
         // TODO add your handling code here:
 
-       
         btnModificarCompte.setEnabled(true);
 
         // lblComponenteSeleccionado.setText("Componente seleccionado");
@@ -134,27 +133,27 @@ public class IngresarMantenimiento2 extends javax.swing.JFrame {
     private void btnModificarCompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCompteActionPerformed
 
         // TODO add your handling code here:
-
         int resp = JOptionPane.showConfirmDialog(null, "Desea ingresar el mantenimiento a la aeronave seleccionada?");
         if (JOptionPane.OK_OPTION == resp) {
             btnModificarCompte.setEnabled(false);
             btnModificarCompte.setText("en curso...");
             int idCompte = Integer.parseInt(tablaComponentes.getValueAt(tablaComponentes.getSelectedRow(), 0).toString());
 
-            IngresarMantenimiento modCompte= new IngresarMantenimiento();
+            IngresarMantenimiento modCompte = new IngresarMantenimiento();
             modCompte.idCompteMod = idCompte;
             modCompte.setVisible(true);
             this.dispose();
         } else {
-           txtmante.requestFocus();
+            txtmante.requestFocus();
         }
     }//GEN-LAST:event_btnModificarCompteActionPerformed
 
     private void btnvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolverActionPerformed
         btnvolver.setEnabled(false);
         btnvolver.setText("en curso...");
-        MenuPrincipalOperador menu = new MenuPrincipalOperador();
-        menu.setVisible(true);
+        SubmenuMantenimientos btn = new SubmenuMantenimientos();
+        btn.setLocationRelativeTo(null);
+        btn.setVisible(true);
         this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnvolverActionPerformed
@@ -169,7 +168,7 @@ public class IngresarMantenimiento2 extends javax.swing.JFrame {
                 return false;
             }
         };
-       
+
         tablaComponentes.setModel(modelo);
         tablaComponentes.getTableHeader().setReorderingAllowed(false);
         //.:Nombres de columnas:.
@@ -181,8 +180,7 @@ public class IngresarMantenimiento2 extends javax.swing.JFrame {
         modelo.addColumn("FECHA DE INSPECCION ANUAL");
         modelo.addColumn("HORAS DE VUELO");
         modelo.addColumn("DIAS DE VUELO");
-        
-       
+
         //.:Tamaño de columnas:.
         tablaComponentes.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         TableColumnModel columnModel = tablaComponentes.getColumnModel();
@@ -198,33 +196,32 @@ public class IngresarMantenimiento2 extends javax.swing.JFrame {
         ArrayList<Aeronave> listaComponente = ac.listarAeronave2();
         Object[] fila = new Object[8];
         int num = listaComponente.size();
-        
-         
+
         for (int i = 0; i < num; i++) {
             fila[0] = listaComponente.get(i).getId();
             fila[1] = listaComponente.get(i).getMatricula();
-           
-           
+
             fila[4] = listaComponente.get(i).getFecha_aeronavegavilidad();
-        
+
             fila[5] = listaComponente.get(i).getFecha_ultima_inspeccion_anual();
             fila[6] = listaComponente.get(i).getHoras_vuelo();
             fila[7] = listaComponente.get(i).getDias_vuelo();
-             if (listaComponente.get(i).getTiponave().matches("1")){
-                  fila[2] = "Helicoptero";
-             }else {
-                     fila[2] = "Aeronave"  ;   
-                          }
-            if (listaComponente.get(i).getEstado().matches("V")){
-                  fila[3] = "Disponible";
-             }else {
-                     fila[3] = "Requiere Mantencion"  ;   
-                          }
+            if (listaComponente.get(i).getTiponave().matches("1")) {
+                fila[2] = "Helicoptero";
+            } else {
+                fila[2] = "Aeronave";
+            }
+            if (listaComponente.get(i).getEstado().matches("V")) {
+                fila[3] = "Disponible";
+            } else {
+                fila[3] = "Requiere Mantencion";
+            }
             modelo.addRow(fila);
         }
         tablaComponentes.updateUI();
 
     }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
