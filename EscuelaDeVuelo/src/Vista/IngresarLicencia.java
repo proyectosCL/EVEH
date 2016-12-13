@@ -382,6 +382,10 @@ public class IngresarLicencia extends javax.swing.JFrame {
 
             al.ingresarLicencia(licencia);
             
+            MenuPrincipalOperador menu = new MenuPrincipalOperador();
+        menu.setLocationRelativeTo(null);
+        menu.setVisible(true);
+        this.dispose();
         }catch(Exception ex){
             System.out.println(ex);
         }

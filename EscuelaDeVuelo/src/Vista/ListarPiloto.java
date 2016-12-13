@@ -47,7 +47,6 @@ public class ListarPiloto extends javax.swing.JFrame {
             modelo.addColumn("DIAS VUELO");
             modelo.addColumn("VENC. MEDICINA");
             modelo.addColumn("ULTIMO VUELO");
-            modelo.addColumn("CANTIDAD DE LICENCIAS");
             TableColumnModel columnModel = jTable1.getColumnModel();
             columnModel.getColumn(0).setPreferredWidth(30);
             columnModel.getColumn(1).setPreferredWidth(80);
@@ -56,7 +55,6 @@ public class ListarPiloto extends javax.swing.JFrame {
             columnModel.getColumn(4).setPreferredWidth(80);
             columnModel.getColumn(5).setPreferredWidth(120);
             columnModel.getColumn(6).setPreferredWidth(100);
-            columnModel.getColumn(7).setPreferredWidth(160);
             jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
             jTable1.updateUI();
@@ -135,21 +133,20 @@ public class ListarPiloto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(263, 263, 263)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(304, 304, 304)
+                        .addGap(254, 254, 254)
                         .addComponent(btnModificarPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
+                        .addGap(50, 50, 50)
                         .addComponent(btnVerLicencias)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnMenu)))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(236, Short.MAX_VALUE)
+                    .addContainerGap(187, Short.MAX_VALUE)
                     .addComponent(txtPilotoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(222, Short.MAX_VALUE)))
+                    .addContainerGap(175, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,11 +268,6 @@ public class ListarPiloto extends javax.swing.JFrame {
                 fila[4] = lista.get(i).getDias_vuelo();
                 fila[5] = lista.get(i).getVencimiento_medicina();
                 fila[6] = lista.get(i).getFecha_ultimo_vuelo();
-                if (lista.get(i).getId_persona() == 1) {
-                    fila[7] = "1 o 0";
-                }else{
-                    fila[7] = lista.get(i).getId_persona();
-                }
                 
                 modelo.addRow(fila);
             }
