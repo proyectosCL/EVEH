@@ -128,7 +128,7 @@ public class Administrar_Vuelo implements administrar_horas_vuelo {
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
-            ResultSet rs = dbconn.consultar("SELECT * FROM pilotos JOIN personas ON pilotos.personas_id = personas.id WHERE rut = '" + rut + "'");
+            ResultSet rs = dbconn.consultar("SELECT * FROM detalles_mantenimientos JOIN mantenimientos ON mantenimientos.id = detalles_mantenimientos.mantenimientos_id JOIN aeronaves ON detalles_mantenimientos.aeronaves_id = aeronaves.id");
             while (rs.next()) {
                 piloto.setId(rs.getInt("id"));
                 piloto.setRut(rs.getString("rut"));

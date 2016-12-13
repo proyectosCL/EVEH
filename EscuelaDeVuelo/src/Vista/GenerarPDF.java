@@ -4,19 +4,25 @@
  * and open the template in the editor.
  */
 package Vista;
+
+import Controlador.Administrar_Mantenimientos;
+import Modelo.Detalle_Mantenimiento;
+import Modelo.Mantenimientos;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
-
 
 /**
  *
@@ -44,7 +50,7 @@ public class GenerarPDF extends javax.swing.JFrame {
         btngenerar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cmbtiponave = new javax.swing.JComboBox<>();
+        cmbtiponave = new javax.swing.JComboBox<String>();
         txtruta = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -64,7 +70,7 @@ public class GenerarPDF extends javax.swing.JFrame {
 
         jLabel2.setText("Seleccione el tipo de nave");
 
-        cmbtiponave.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Helicoptero", "Aeronave" }));
+        cmbtiponave.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Helicóptero BK-117", "Avion Cessna-172" }));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/ruta.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -144,59 +150,68 @@ public class GenerarPDF extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btngenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btngenerarActionPerformed
- String nave= ""+cmbtiponave.getSelectedItem();
- String ruta = txtruta.getText();
- try
- {
-     FileOutputStream archivo= new FileOutputStream(ruta+".pdf");
-     
-     
-     Document doc = new Document();
-     PdfWriter.getInstance(doc, archivo);
-     doc.open();
-       Paragraph parrafo2 = new Paragraph("INFORME DE MANTENIMIENTOS");
-    parrafo2.setAlignment(1);//el 1 es para centrar
-    doc.add(parrafo2);
-     
-    doc.add(new Phrase(Chunk.NEWLINE));
-doc.add(new Phrase(Chunk.NEWLINE));
+        String nave = "" + cmbtiponave.getSelectedItem();
+        String ruta = txtruta.getText();
+        try {
+            FileOutputStream archivo = new FileOutputStream(ruta + ".pdf");
 
- 
-           doc.add(new Paragraph("Acontinuacion se muestra una lista de los mantenimientos realizados a la aeronave "+nave+""));
-    doc.add(new Phrase(Chunk.NEWLINE));
-           PdfPTable tabla = new PdfPTable(3);
-    //el numero indica la cantidad de Columnas
-tabla.addCell("celda1");
-tabla.addCell("celda2");
-tabla.addCell("celda3");
-tabla.addCell("celda4");
-tabla.addCell("celda5");
-tabla.addCell("celda6");
-    // esto nos crea una tabla de 3 Columnas por 2 Filas
-doc.add(tabla);
-           doc.close();
-     JOptionPane.showMessageDialog(null, "PDF CREADO CON EXITO");
-     
-     
- }catch (Exception e)
-         {
-           System.out.println("error"+e);
-         }
+            Document doc = new Document();
+            PdfWriter.getInstance(doc, archivo);
+            doc.open();
+            Paragraph parrafo2 = new Paragraph("INFORME DE MANTENIMIENTOS");
+            parrafo2.setAlignment(1);//el 1 es para centrar
+            doc.add(parrafo2);
 
+            doc.add(new Phrase(Chunk.NEWLINE));
+            doc.add(new Phrase(Chunk.NEWLINE));
+
+            doc.add(new Paragraph("Acontinuacion se muestra una lista de los mantenimientos realizados a la aeronave " + nave + ""));
+            doc.add(new Phrase(Chunk.NEWLINE));
+            PdfPTable tabla = new PdfPTable(6);
+            tabla.setHorizontalAlignment(Element.ALIGN_CENTER);
+            tabla.setTotalWidth(PageSize.A4.getWidth()-10);
+            //el numero indica la cantidad de Columnas
+
+            tabla.addCell("ID");
+            tabla.addCell("Matricula");
+            tabla.addCell("Estado");
+            tabla.addCell("Tareas");
+            tabla.addCell("Fecha inicio");
+            tabla.addCell("Fecha termino");
+            tabla.setWidths(new int[]{1, 2, 4, 4, 3, 3});
+            Administrar_Mantenimientos av = new Administrar_Mantenimientos();
+
+            ArrayList<Detalle_Mantenimiento> listaMantenimientos = av.listarMantenimientosMatricula(nave);
+            for (int i = 0; i < listaMantenimientos.size(); i++) {
+                tabla.addCell(String.valueOf(listaMantenimientos.get(i).getId()));
+                tabla.addCell(listaMantenimientos.get(i).getMatricula());
+                tabla.addCell(listaMantenimientos.get(i).getEstado());
+                tabla.addCell(listaMantenimientos.get(i).getTareas_seleccionadas());
+                tabla.addCell(listaMantenimientos.get(i).getFecha_inicio());
+                tabla.addCell(listaMantenimientos.get(i).getFecha_termino());
+            }
+
+            // esto nos crea una tabla de 3 Columnas por 2 Filas
+            doc.add(tabla);
+            doc.close();
+            JOptionPane.showMessageDialog(null, "PDF CREADO CON EXITO");
+
+        } catch (Exception e) {
+            System.out.println("error" + e);
+        }
 
 
     }//GEN-LAST:event_btngenerarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-JFileChooser dlg =new JFileChooser();
-int OPTION =dlg.showSaveDialog(this);
-if(OPTION == JFileChooser.APPROVE_OPTION)
-{
-    File f =dlg.getSelectedFile();
-    txtruta.setText(f.toString());
-}
-btngenerar.setEnabled(true);
+        JFileChooser dlg = new JFileChooser();
+        int OPTION = dlg.showSaveDialog(this);
+        if (OPTION == JFileChooser.APPROVE_OPTION) {
+            File f = dlg.getSelectedFile();
+            txtruta.setText(f.toString());
+        }
+        btngenerar.setEnabled(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -207,7 +222,7 @@ btngenerar.setEnabled(true);
         this.dispose();
     }//GEN-LAST:event_btnMenuActionPerformed
 
-   public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
 //        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -235,7 +250,7 @@ btngenerar.setEnabled(true);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GenerarPDF().setVisible(true);
-                
+
             }
         });
     }
