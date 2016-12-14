@@ -64,6 +64,27 @@ public class Administrar_Aeronave implements administrar_horas_vuelo {
 
     }
 
+    public int contarCompte(int id) {
+
+        int numCompte=0;
+        Conexion con = new Conexion();
+        try {
+            con.conectar();
+            Connection myconnection = con.getConexion();
+            PreparedStatement myStatement = myconnection.prepareStatement("SELECT matricula, F_VERCOMPTE(ID) as id FROM aeronaves where ID=" + id + "");
+            ResultSet rs = myStatement.executeQuery();
+
+            while (rs.next()) {
+                numCompte = rs.getInt("id");
+            }
+
+        } catch (Exception e) {
+
+        }
+        return numCompte;
+
+    }
+
     public boolean eliminarAeronave(String id) {
         try {
 
@@ -190,7 +211,7 @@ public class Administrar_Aeronave implements administrar_horas_vuelo {
         try {
             Conexion dbconn = new Conexion();
             dbconn.conectar();
-            ResultSet rs = dbconn.consultar("select * from aeronaves where matricula like '"+matri+"'");
+            ResultSet rs = dbconn.consultar("select * from aeronaves where matricula like '" + matri + "'");
             while (rs.next()) {
 
                 lista = new Aeronave();
@@ -211,7 +232,8 @@ public class Administrar_Aeronave implements administrar_horas_vuelo {
         return listaNave;
 
     }
-        public ArrayList<Aeronave> listarAeronave2() {
+
+    public ArrayList<Aeronave> listarAeronave2() {
 
         ArrayList listaComponentes = new ArrayList();
         Aeronave lista;

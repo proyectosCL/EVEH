@@ -117,7 +117,11 @@ public class ListarAeronave extends javax.swing.JFrame {
             }
         });
 
-        btnAgregarComponentes.setText("Agregar componentes");
+        btnAgregarComponentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/agregarComponentes.png"))); // NOI18N
+        btnAgregarComponentes.setBorder(null);
+        btnAgregarComponentes.setBorderPainted(false);
+        btnAgregarComponentes.setContentAreaFilled(false);
+        btnAgregarComponentes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAgregarComponentes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarComponentesActionPerformed(evt);
@@ -138,8 +142,8 @@ public class ListarAeronave extends javax.swing.JFrame {
                         .addComponent(btnModificarCompte)
                         .addGap(32, 32, 32)
                         .addComponent(btnEliminarCompte)
-                        .addGap(55, 55, 55)
-                        .addComponent(btnAgregarComponentes)
+                        .addGap(58, 58, 58)
+                        .addComponent(btnAgregarComponentes, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnMenu)))
                 .addContainerGap())
@@ -154,17 +158,13 @@ public class ListarAeronave extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnEliminarCompte)
-                            .addComponent(btnModificarCompte)
-                            .addComponent(btnAgregarAeronave)
-                            .addComponent(btnMenu)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(btnAgregarComponentes)))
+                    .addComponent(btnEliminarCompte)
+                    .addComponent(btnModificarCompte)
+                    .addComponent(btnAgregarAeronave)
+                    .addComponent(btnMenu)
+                    .addComponent(btnAgregarComponentes))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -211,6 +211,7 @@ public class ListarAeronave extends javax.swing.JFrame {
 
             ModificarAeronave modCompte = new ModificarAeronave();
             modCompte.idCompteMod = idCompte;
+            modCompte.setLocationRelativeTo(null);
             modCompte.setVisible(true);
             this.dispose();
         } else {
@@ -242,7 +243,7 @@ public class ListarAeronave extends javax.swing.JFrame {
         btnAgregarComponentes.setText("en curso...");
         
         String matricula = (tablaComponentes.getValueAt(tablaComponentes.getSelectedRow(), 1).toString());
-        JOptionPane.showMessageDialog(null,matricula);
+       
 
              AgregarComponente agregarCompte = new AgregarComponente();
                     agregarCompte.matriculaNave = matricula;

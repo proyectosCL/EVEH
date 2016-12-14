@@ -65,6 +65,8 @@ public class ModificarAeronave extends javax.swing.JFrame {
         JDateVencimiento = new com.toedter.calendar.JDateChooser();
         JDateVencimiento1 = new com.toedter.calendar.JDateChooser();
         btnvolver = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtNcompte = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,6 +154,10 @@ public class ModificarAeronave extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Número de componentes");
+
+        txtNcompte.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -202,7 +208,8 @@ public class ModificarAeronave extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(lblusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btncargar))))
+                                        .addComponent(btncargar))
+                                    .addComponent(txtNcompte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(44, 44, 44)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,7 +224,10 @@ public class ModificarAeronave extends javax.swing.JFrame {
                                             .addComponent(lblhorasvuelito)))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(71, 71, 71)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -239,7 +249,11 @@ public class ModificarAeronave extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblestado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtNcompte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JDateVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -385,6 +399,10 @@ int idCompteMod = 0;
 
         Administrar_Aeronave admper = new Administrar_Aeronave();
         Aeronave person = admper.cargarAeronave(idCompteMod);
+        
+        int compte = admper.contarCompte(idCompteMod);
+        txtNcompte.setText(String.valueOf(compte));
+        
 
         txtmatricula.setText(person.getMatricula());
 
@@ -429,6 +447,7 @@ int idCompteMod = 0;
         btnvolver.setEnabled(false);
         btnvolver.setText("en curso...");
         ListarAeronave menu = new ListarAeronave();
+        menu.setLocationRelativeTo(null);
         menu.setVisible(true);
         this.dispose();
         // TODO add your handling code here:
@@ -451,6 +470,7 @@ int idCompteMod = 0;
     private javax.swing.JComboBox<String> cmbestado;
     private javax.swing.JComboBox<String> cmbtiponave;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel lbldiasvuelito;
@@ -461,6 +481,7 @@ int idCompteMod = 0;
     private javax.swing.JLabel lblmatricula;
     private javax.swing.JLabel lbltiponave;
     private javax.swing.JLabel lblusuario;
+    private javax.swing.JTextField txtNcompte;
     private javax.swing.JTextField txtdiasvuelo;
     private javax.swing.JTextField txthorasvuelo;
     private javax.swing.JTextField txtmatricula;
