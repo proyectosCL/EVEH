@@ -53,7 +53,10 @@ public class SubmenuMantenimientos extends javax.swing.JFrame {
         txtmante.setText("Menu Mantenimientos");
         txtmante.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        btnIngresarMantenimiento.setText("Ingresar Mantenimiento");
+        btnIngresarMantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AgregarMant.png"))); // NOI18N
+        btnIngresarMantenimiento.setBorder(null);
+        btnIngresarMantenimiento.setContentAreaFilled(false);
+        btnIngresarMantenimiento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIngresarMantenimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarMantenimientoActionPerformed(evt);
