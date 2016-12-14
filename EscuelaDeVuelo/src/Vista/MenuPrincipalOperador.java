@@ -164,7 +164,11 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
             }
         });
 
-        btnMantenimientos.setText("Mantenimientos");
+        btnMantenimientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Mantenimientos.png"))); // NOI18N
+        btnMantenimientos.setBorder(null);
+        btnMantenimientos.setBorderPainted(false);
+        btnMantenimientos.setContentAreaFilled(false);
+        btnMantenimientos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMantenimientos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMantenimientosActionPerformed(evt);
@@ -180,16 +184,12 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnIngresarVuelos)
-                                            .addComponent(btnListarVuelos)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(24, 24, 24)
-                                        .addComponent(btnMantenimientos)))
-                                .addGap(37, 37, 37)
+                                    .addComponent(btnIngresarVuelos)
+                                    .addComponent(btnListarVuelos)
+                                    .addComponent(btnMantenimientos))
+                                .addGap(51, 51, 51)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnListarPiloto)
                                     .addComponent(btnIngresarPiloto)
@@ -225,16 +225,15 @@ public class MenuPrincipalOperador extends javax.swing.JFrame {
                     .addComponent(btnIngresarPiloto)
                     .addComponent(btnIngresarVuelos)
                     .addComponent(btnListarComponentes))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnIngresarCompoenente)
                             .addComponent(btnListarLicencias))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                         .addComponent(btnAlertas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
                         .addComponent(btnMantenimientos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4)))

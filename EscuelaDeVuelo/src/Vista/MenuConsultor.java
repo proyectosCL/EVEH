@@ -68,7 +68,7 @@ public class MenuConsultor extends javax.swing.JFrame {
             }
         });
 
-        btnListarMantenimientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/listarMantenimientos.png"))); // NOI18N
+        btnListarMantenimientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ListarMent.png"))); // NOI18N
         btnListarMantenimientos.setBorder(null);
         btnListarMantenimientos.setBorderPainted(false);
         btnListarMantenimientos.setContentAreaFilled(false);
@@ -79,7 +79,7 @@ public class MenuConsultor extends javax.swing.JFrame {
             }
         });
 
-        btnListarAeronaves.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/listarAeronaves.png"))); // NOI18N
+        btnListarAeronaves.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ListarAeronave.png"))); // NOI18N
         btnListarAeronaves.setBorder(null);
         btnListarAeronaves.setBorderPainted(false);
         btnListarAeronaves.setContentAreaFilled(false);
@@ -90,7 +90,11 @@ public class MenuConsultor extends javax.swing.JFrame {
             }
         });
 
-        btnVerPlanes.setText("Ver planes");
+        btnVerPlanes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/VerPlanes.png"))); // NOI18N
+        btnVerPlanes.setBorder(null);
+        btnVerPlanes.setBorderPainted(false);
+        btnVerPlanes.setContentAreaFilled(false);
+        btnVerPlanes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVerPlanes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerPlanesActionPerformed(evt);
@@ -101,10 +105,6 @@ public class MenuConsultor extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnListarPiloto)
-                .addGap(41, 41, 41))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -117,28 +117,29 @@ public class MenuConsultor extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addComponent(btnListarAeronaves)
                         .addGap(116, 116, 116)
-                        .addComponent(btnVerPlanes)))
-                .addContainerGap(116, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnListarPiloto)
+                            .addComponent(btnVerPlanes))))
+                .addContainerGap(62, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(28, 28, 28)
                     .addComponent(btnListarMantenimientos)
-                    .addContainerGap(289, Short.MAX_VALUE)))
+                    .addContainerGap(353, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(btnListarPiloto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addGap(42, 42, 42)
-                        .addComponent(btnListarPiloto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnListarAeronaves)
                         .addGap(38, 38, 38))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVerPlanes)
                         .addGap(49, 49, 49)))
                 .addComponent(btnSalir)
@@ -147,7 +148,7 @@ public class MenuConsultor extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(83, 83, 83)
                     .addComponent(btnListarMantenimientos)
-                    .addContainerGap(225, Short.MAX_VALUE)))
+                    .addContainerGap(223, Short.MAX_VALUE)))
         );
 
         pack();
