@@ -31,7 +31,7 @@ public class Administrar_Correo {
 
     Correo c = new Correo();
 
-    public void enviarCorreo() {
+    public void enviarCorreo(int id ) {
 
         ArrayList<Persona> listaCorreos = listarCorreos();
         int num = listaCorreos.size();
@@ -40,10 +40,10 @@ public class Administrar_Correo {
             c.setPass("ebsphbmzjuvjferm");
             c.setUsuario("soporte.eveh@gmail.com");
             c.setAsunto("Aeronaves en mantencion");
-            c.setMensaje("Estimado piloto, se adjunta listado de aeronaves en mantenimiento.");
+            c.setMensaje("Estimado piloto, la aeronave id "+id+" esta en mantenimiento. Por favor consulte disponibilidad con el operador de turno");
             c.setDestino(listaCorreos.get(i).getCorreo());
-            c.setNombreArchivo("prueba.pdf");
-            c.setRutaArchivo("prueba.pdf");
+//            c.setNombreArchivo("prueba.pdf");
+//            c.setRutaArchivo("prueba.pdf");
             enviarCorreo(c);
         }
 

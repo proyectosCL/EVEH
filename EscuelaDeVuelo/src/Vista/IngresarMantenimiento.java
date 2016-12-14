@@ -398,6 +398,9 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
                 String estado = txtestado.getText();
                 int idaeronave = idCompteMod;
 
+                btnIngresar.setEnabled(false);
+                btnvolver.setEnabled(false);
+
                 Mantenimientos man = new Mantenimientos(idmante, fecha_inicio, fecha_termino);
                 Administrar_Mantenimientos adm = new Administrar_Mantenimientos();
 
@@ -407,8 +410,14 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
                 adm.ingresarDetalleMantenimiento(detalle);
 
                 Administrar_Correo correo = new Administrar_Correo();
-                correo.enviarCorreo();
+                correo.enviarCorreo(idaeronave);
+
                 JOptionPane.showMessageDialog(null, "SE HA INGRESADO EL MANTENIMIENTO");
+                
+                SubmenuMantenimientos btn = new SubmenuMantenimientos();
+                btn.setLocationRelativeTo(null);
+                btn.setVisible(true);
+                this.dispose();
             } else {
 
                 JOptionPane.showMessageDialog(null, "DEBEN ESTAR TODAS LAS REVISIONES CORRECTAS");
