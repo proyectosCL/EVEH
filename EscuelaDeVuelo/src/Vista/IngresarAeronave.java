@@ -54,8 +54,6 @@ public class IngresarAeronave extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         lbltiponave = new javax.swing.JLabel();
-        lblestado = new javax.swing.JLabel();
-        cmbestado = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         lblhorasvuelo = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -80,16 +78,6 @@ public class IngresarAeronave extends javax.swing.JFrame {
 
         lbltiponave.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbltiponave.setText("Tipo Aeronave");
-
-        lblestado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblestado.setText("Estado");
-
-        cmbestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "No Disponible" }));
-        cmbestado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbestadoActionPerformed(evt);
-            }
-        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Fecha Aeronavegabilidad");
@@ -162,46 +150,39 @@ public class IngresarAeronave extends javax.swing.JFrame {
                                 .addComponent(lbltiponave, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(lblestado, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(lbldiasvuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(lblhorasvuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
                                 .addComponent(lblmatriculita)))
-                        .addGap(43, 43, 43)
+                        .addGap(83, 83, 83)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(cmbestado, 0, 200, Short.MAX_VALUE)
-                                .addComponent(cmbtiponave, 0, 200, Short.MAX_VALUE))
+                            .addComponent(cmbtiponave, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblmatriculac, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(btnvolver)
-                        .addGap(13, 13, 13)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txthorasvuelo, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                                    .addComponent(txtdiasvuelo))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbldiasvuelito, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblhorasvuelito, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btningresar)))
-                            .addComponent(JDateVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JDateVencimiento1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbldiasvuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblhorasvuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(251, 251, 251))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addComponent(btnvolver)
+                                .addGap(13, 13, 13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txthorasvuelo)
+                                            .addComponent(txtdiasvuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbldiasvuelito, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblhorasvuelito, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btningresar)))
+                                    .addComponent(JDateVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JDateVencimiento1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(111, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -217,16 +198,12 @@ public class IngresarAeronave extends javax.swing.JFrame {
                         .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbltiponave, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbtiponave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblestado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JDateVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cmbtiponave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(lblmatriculita))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JDateVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -248,26 +225,23 @@ public class IngresarAeronave extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnvolver)
                     .addComponent(btningresar))
-                .addGap(23, 23, 23))
+                .addGap(70, 70, 70))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmbestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbestadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbestadoActionPerformed
-
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
         btningresar.setEnabled(false);
-       btningresar.setText("en curso...");
+        btningresar.setText("en curso...");
         Administrar_Aeronave ingresar = new Administrar_Aeronave();
         String id = "0";
         String matricula = txtmatricula.getText().toUpperCase();
         String horasvuelo = txthorasvuelo.getText();
         String diasvuelo = txtdiasvuelo.getText();
         String tiponave = "" + cmbtiponave.getSelectedItem();
-        String estado = "" + cmbestado.getSelectedItem();
+//        String estado = "" + cmbestado.getSelectedItem();
+        String estado;
 
         String fecha_aeronavegabilidad = null;
         String fecha_inspeccion = null;
@@ -306,15 +280,15 @@ public class IngresarAeronave extends javax.swing.JFrame {
             diasvuelo = "0";
 
         }
-        switch (estado) {
-
-            case "Disponible":
-                estado = "V";
-                break;
-            case "No Disponible":
-                estado = "M";
-                break;
-        }
+//        switch (estado) {
+//
+//            case "Disponible":
+//                estado = "V";
+//                break;
+//            case "No Disponible":
+        estado = "M";
+//                break;
+//        }
 
         Aeronave nueva = new Aeronave(id, matricula, tiponave, estado, fecha_aeronavegabilidad, fecha_inspeccion, horasvuelo, diasvuelo);
 
@@ -332,22 +306,21 @@ public class IngresarAeronave extends javax.swing.JFrame {
                         JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
                         new Object[]{"Configurar aeronave", "Salir",}, "opcion 1");
 
-              
-                    if (seleccion == 0) {
-                        AgregarComponente agregarCompte = new AgregarComponente();
-                        agregarCompte.matriculaNave = matricula;
-                        agregarCompte.setLocationRelativeTo(null);
-                        agregarCompte.setVisible(true);
+                if (seleccion == 0) {
+                    AgregarComponente agregarCompte = new AgregarComponente();
+                    agregarCompte.matriculaNave = matricula;
+                    agregarCompte.setLocationRelativeTo(null);
+                    agregarCompte.setVisible(true);
+                    this.dispose();
+                } else {
+                    if (seleccion == 1) {
+                        JOptionPane.showMessageDialog(null, "La aeronave no estara disponible hasta que se asignen componentes");
+                        MenuPrincipalOperador menu = new MenuPrincipalOperador();
+                        menu.setLocationRelativeTo(null);
+                        menu.setVisible(true);
                         this.dispose();
-                    } else {
-                        if (seleccion == 1) {
-                            MenuPrincipalOperador menu = new MenuPrincipalOperador();
-                            menu.setLocationRelativeTo(null);
-                            menu.setVisible(true);
-                            this.dispose();
-                        }
                     }
-                
+                }
 
 //            int dialogButton = JOptionPane.YES_NO_OPTION;
 //            int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea ingresar los componentes de la aeronave ingresada?", "confirmacion", dialogButton);
@@ -376,8 +349,8 @@ public class IngresarAeronave extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbtiponaveActionPerformed
 
     private void btnvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolverActionPerformed
-   btnvolver.setEnabled(false);
-       btnvolver.setText("en curso...");
+        btnvolver.setEnabled(false);
+        btnvolver.setText("en curso...");
         ListarAeronave menu = new ListarAeronave();
         menu.setVisible(true);
         this.dispose();
@@ -393,14 +366,12 @@ public class IngresarAeronave extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser JDateVencimiento1;
     private javax.swing.JButton btningresar;
     private javax.swing.JButton btnvolver;
-    private javax.swing.JComboBox<String> cmbestado;
     private javax.swing.JComboBox<String> cmbtiponave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel lbldiasvuelito;
     private javax.swing.JLabel lbldiasvuelo;
-    private javax.swing.JLabel lblestado;
     private javax.swing.JLabel lblhorasvuelito;
     private javax.swing.JLabel lblhorasvuelo;
     private javax.swing.JLabel lblmatriculac;

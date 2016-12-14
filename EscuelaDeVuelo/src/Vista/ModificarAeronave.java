@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Vista;
+
 import Atxy2k.CustomTextField.RestrictedTextField;
 import Database.Conexion;
 import Modelo.Aeronave;
@@ -13,6 +14,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 /**
  *
  * @author jordans
@@ -79,6 +81,7 @@ public class ModificarAeronave extends javax.swing.JFrame {
         lblestado.setText("Estado");
 
         cmbestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "No Disponible" }));
+        cmbestado.setEnabled(false);
         cmbestado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbestadoActionPerformed(evt);
@@ -268,122 +271,107 @@ public class ModificarAeronave extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-int idCompteMod=0;
+int idCompteMod = 0;
 
 
-    private void cmbestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbestadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbestadoActionPerformed
-    
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
 
         Conexion con = new Conexion();
         con.conectar();
         Administrar_Aeronave ingresar = new Administrar_Aeronave();
-         String id_persona = ""+idCompteMod;
+        String id_persona = "" + idCompteMod;
         String matricula = txtmatricula.getText();
         String horasvuelo = txthorasvuelo.getText();
         String diasvuelo = txtdiasvuelo.getText();
-        String tiponave = ""+cmbtiponave.getSelectedItem();
-        String estado = ""+cmbestado.getSelectedItem();
-       
-        if (tiponave.equals("Helicoptero")) {
-            tiponave="1";
+        String tiponave = "" + cmbtiponave.getSelectedItem();
+        String estado = "" + cmbestado.getSelectedItem();
 
-        }else {
-            tiponave="2";
+        if (tiponave.equals("Helicoptero")) {
+            tiponave = "1";
+
+        } else {
+            tiponave = "2";
 
         }
 
         switch (estado) {
-          
-            case "Disponible":
-            estado="V";
-            break;
-            default:
-            estado="M";
-            break;
-        }
-            String fecha_aeronavegabilidad = null;
-            String fecha_inspeccion = null;
-            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-            
-            try{
-                Date fecha = JDateVencimiento.getDate();
-                fecha_aeronavegabilidad = df.format(fecha);
-            }catch(Exception ex){
-                System.out.println(ex);
-                JOptionPane.showMessageDialog(null, "Fecha mal ingresada de la aeronavegabilidad de la aeronave");
-                return;
-            }
-            try{
-                Date fecha1 = JDateVencimiento1.getDate();
-                fecha_inspeccion = df.format(fecha1);
-            }catch(Exception ex){
-                System.out.println(ex);
-                JOptionPane.showMessageDialog(null, "Fecha mal ingresada de la inspeccion anual de la aeronave");
-                return;
-            }
-       if (txthorasvuelo.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Se asigna automaticamente el valor cero horas de vuelo");
-               horasvuelo="0";
-              
-            }
-            if (txtdiasvuelo.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Se asigna automaticamente el valor cero dias de vuelo");
-                diasvuelo="0";
-                
-            }
-       
-            Aeronave nueva = new Aeronave(id_persona,matricula,tiponave,estado,fecha_aeronavegabilidad,fecha_inspeccion,horasvuelo,diasvuelo);
 
-            int dialogButton = JOptionPane.YES_NO_OPTION;
-            int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea guardar los cambios?", "confirmacion", dialogButton);
-            if(dialogResult == 0) {      
-                btningresar.setEnabled(false);
-       btningresar.setText("en curso...");
-                if (ingresar.modificarAeronave(nueva)) {
-                        JOptionPane.showMessageDialog(null, "Aeronave Actualizada");
-                        
-                        int seleccion = JOptionPane.showOptionDialog(null, "Seleccione una opcion ",
+            case "Disponible":
+                estado = "V";
+                break;
+            default:
+                estado = "M";
+                break;
+        }
+        String fecha_aeronavegabilidad = null;
+        String fecha_inspeccion = null;
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            Date fecha = JDateVencimiento.getDate();
+            fecha_aeronavegabilidad = df.format(fecha);
+        } catch (Exception ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Fecha mal ingresada de la aeronavegabilidad de la aeronave");
+            return;
+        }
+        try {
+            Date fecha1 = JDateVencimiento1.getDate();
+            fecha_inspeccion = df.format(fecha1);
+        } catch (Exception ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Fecha mal ingresada de la inspeccion anual de la aeronave");
+            return;
+        }
+        if (txthorasvuelo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Se asigna automaticamente el valor cero horas de vuelo");
+            horasvuelo = "0";
+
+        }
+        if (txtdiasvuelo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Se asigna automaticamente el valor cero dias de vuelo");
+            diasvuelo = "0";
+
+        }
+
+        Aeronave nueva = new Aeronave(id_persona, matricula, tiponave, estado, fecha_aeronavegabilidad, fecha_inspeccion, horasvuelo, diasvuelo);
+
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog(this, "¿Desea guardar los cambios?", "confirmacion", dialogButton);
+        if (dialogResult == 0) {
+            btningresar.setEnabled(false);
+            btningresar.setText("en curso...");
+            if (ingresar.modificarAeronave(nueva)) {
+                JOptionPane.showMessageDialog(null, "Aeronave Actualizada");
+
+                int seleccion = JOptionPane.showOptionDialog(null, "Seleccione una opcion ",
                         "Opciones Componentes", JOptionPane.YES_NO_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
-                        new Object[]{"Agregar nuevos componentes a esta aeronave", "Asociar con componentes existentes", "Salir",}, "opcion 1");
+                        new Object[]{"Configurar aeronave", "Salir",}, "opcion 1");
 
                 if (seleccion == 0) {
-                    IngresarComponente ingresarCompte = new IngresarComponente();
-                    ingresarCompte.matriculaNave = matricula;
-                    ingresarCompte.setLocationRelativeTo(null);
-                    ingresarCompte.setVisible(true);
+                    AgregarComponente agregarCompte = new AgregarComponente();
+                    agregarCompte.matriculaNave = matricula;
+                    agregarCompte.setLocationRelativeTo(null);
+                    agregarCompte.setVisible(true);
                     this.dispose();
-
                 } else {
                     if (seleccion == 1) {
-                        AgregarComponente agregarCompte = new AgregarComponente();
-                        agregarCompte.matriculaNave = matricula;
-                        agregarCompte.setLocationRelativeTo(null);
-                        agregarCompte.setVisible(true);
-                        this.dispose();
-                    } else {
-                        if (seleccion == 2) {
+                        if (estado.equals("V")) {
+                            JOptionPane.showMessageDialog(null, "La aeronave no estara disponible hasta que se asignen componentes");
+                        } else {
                             MenuPrincipalOperador menu = new MenuPrincipalOperador();
                             menu.setLocationRelativeTo(null);
                             menu.setVisible(true);
                             this.dispose();
                         }
                     }
-                        
-                        
-                        
-                    }
+                }
             } else {
-              JOptionPane.showMessageDialog(null, "no se guardaron los cambios");
+                JOptionPane.showMessageDialog(null, "no se guardaron los cambios");
             }
-           
-             
-            
-            }
-        
+
+        }
 
         //        // TODO add your handling code here:
     }//GEN-LAST:event_btningresarActionPerformed
@@ -398,65 +386,61 @@ int idCompteMod=0;
         Administrar_Aeronave admper = new Administrar_Aeronave();
         Aeronave person = admper.cargarAeronave(idCompteMod);
 
-       
-            txtmatricula.setText(person.getMatricula());
-        
-            txthorasvuelo.setText(person.getHoras_vuelo());
-         
+        txtmatricula.setText(person.getMatricula());
 
-            txtdiasvuelo.setText(person.getDias_vuelo());
-        
-            
-        if(person.getTiponave().equals("1")){
-         cmbtiponave.setSelectedItem("Helicoptero");
-        }else{
-         cmbtiponave.setSelectedItem("Aeronave");
+        txthorasvuelo.setText(person.getHoras_vuelo());
+
+        txtdiasvuelo.setText(person.getDias_vuelo());
+
+        if (person.getTiponave().equals("1")) {
+            cmbtiponave.setSelectedItem("Helicoptero");
+        } else {
+            cmbtiponave.setSelectedItem("Aeronave");
         }
-        if(person.getEstado().equals("V")){
-             cmbestado.setSelectedItem("Disponible");
-        }else{
-             cmbestado.setSelectedItem("No Disponible");
+        if (person.getEstado().equals("V")) {
+            cmbestado.setSelectedItem("Disponible");
+        } else {
+            cmbestado.setSelectedItem("No Disponible");
         }
-        
-        
+
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-            
-           
-            String fechita =person.getFecha_aeronavegavilidad();
-           try{
-           Date y = df.parse(fechita);
-            JDateVencimiento.setDate(y);   
-           }     catch(ParseException e){
-               e.printStackTrace();
-           }
-                   
 
-        String perroloco =person.getFecha_ultima_inspeccion_anual();
+        String fechita = person.getFecha_aeronavegavilidad();
+        try {
+            Date y = df.parse(fechita);
+            JDateVencimiento.setDate(y);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-           try{
-           Date o = df.parse(perroloco);
-            JDateVencimiento1.setDate(o);   
-           }     catch(ParseException e){
-               e.printStackTrace();
-           }
+        String perroloco = person.getFecha_ultima_inspeccion_anual();
 
-        
+        try {
+            Date o = df.parse(perroloco);
+            JDateVencimiento1.setDate(o);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
 
     }//GEN-LAST:event_btncargarActionPerformed
 
     private void btnvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolverActionPerformed
-      btnvolver.setEnabled(false);
-       btnvolver.setText("en curso...");
+        btnvolver.setEnabled(false);
+        btnvolver.setText("en curso...");
         ListarAeronave menu = new ListarAeronave();
         menu.setVisible(true);
         this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnvolverActionPerformed
 
+    private void cmbestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbestadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbestadoActionPerformed
+
     /**
      * @param args the command line arguments
      */
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser JDateVencimiento;

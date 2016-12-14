@@ -27,7 +27,7 @@ public class ListarAeronave extends javax.swing.JFrame {
      */
     public ListarAeronave() {
         initComponents();
-         cargarTablaComponentes();
+        cargarTablaComponentes();
     }
 
     /**
@@ -46,6 +46,7 @@ public class ListarAeronave extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnAgregarAeronave = new javax.swing.JButton();
         btnMenu = new javax.swing.JButton();
+        btnAgregarComponentes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,6 +117,8 @@ public class ListarAeronave extends javax.swing.JFrame {
             }
         });
 
+        btnAgregarComponentes.setText("Agregar componentes");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,11 +133,13 @@ public class ListarAeronave extends javax.swing.JFrame {
                         .addComponent(btnModificarCompte)
                         .addGap(32, 32, 32)
                         .addComponent(btnEliminarCompte)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 617, Short.MAX_VALUE)
+                        .addGap(55, 55, 55)
+                        .addComponent(btnAgregarComponentes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnMenu)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(440, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(433, 433, 433))
         );
@@ -144,12 +149,17 @@ public class ListarAeronave extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEliminarCompte)
-                    .addComponent(btnModificarCompte)
-                    .addComponent(btnAgregarAeronave)
-                    .addComponent(btnMenu))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEliminarCompte)
+                            .addComponent(btnModificarCompte)
+                            .addComponent(btnAgregarAeronave)
+                            .addComponent(btnMenu)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(btnAgregarComponentes)))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -162,26 +172,23 @@ public class ListarAeronave extends javax.swing.JFrame {
         btnEliminarCompte.setEnabled(true);
         btnModificarCompte.setEnabled(true);
 
-       // lblComponenteSeleccionado.setText("Componente seleccionado");
+        // lblComponenteSeleccionado.setText("Componente seleccionado");
         //lblComponenteSeleccionado.setForeground(Color.green);
     }//GEN-LAST:event_tablaComponentesMouseClicked
 
     private void btnEliminarCompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCompteActionPerformed
-     int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar la aeronave seleccionada?");
+        int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar la aeronave seleccionada?");
         if (JOptionPane.OK_OPTION == resp) {
-              btnEliminarCompte.setEnabled(false);
-        btnEliminarCompte.setText("en curso...");
+            btnEliminarCompte.setEnabled(false);
+            btnEliminarCompte.setText("en curso...");
             Administrar_Aeronave admp = new Administrar_Aeronave();
-           
-            
+
             String id = tablaComponentes.getValueAt(tablaComponentes.getSelectedRow(), 0).toString();
-          
-           
+
             admp.eliminarAeronave(id);
-           
-            
+
             cargarTablaComponentes();
-            
+
         } else {
             cargarTablaComponentes();
         }
@@ -191,14 +198,13 @@ public class ListarAeronave extends javax.swing.JFrame {
     private void btnModificarCompteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCompteActionPerformed
 
         // TODO add your handling code here:
-    
         int resp = JOptionPane.showConfirmDialog(null, "Seguro que desea modificar la aeronave seleccionada?");
         if (JOptionPane.OK_OPTION == resp) {
-              btnModificarCompte.setEnabled(false);
-        btnModificarCompte.setText("en curso...");
+            btnModificarCompte.setEnabled(false);
+            btnModificarCompte.setText("en curso...");
             int idCompte = Integer.parseInt(tablaComponentes.getValueAt(tablaComponentes.getSelectedRow(), 0).toString());
-             
-            ModificarAeronave modCompte= new ModificarAeronave();
+
+            ModificarAeronave modCompte = new ModificarAeronave();
             modCompte.idCompteMod = idCompte;
             modCompte.setVisible(true);
             this.dispose();
@@ -209,7 +215,7 @@ public class ListarAeronave extends javax.swing.JFrame {
 
     private void btnAgregarAeronaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAeronaveActionPerformed
         // TODO add your handling code here:
-         btnAgregarAeronave.setEnabled(false);
+        btnAgregarAeronave.setEnabled(false);
         btnAgregarAeronave.setText("en curso...");
         IngresarAeronave menu = new IngresarAeronave();
         menu.setLocationRelativeTo(null);
@@ -218,11 +224,11 @@ public class ListarAeronave extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarAeronaveActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-         MenuPrincipalOperador menu = new MenuPrincipalOperador();
-         menu.setLocationRelativeTo(null);
+        MenuPrincipalOperador menu = new MenuPrincipalOperador();
+        menu.setLocationRelativeTo(null);
         menu.setVisible(true);
         this.dispose();
-        
+
     }//GEN-LAST:event_btnMenuActionPerformed
 
     /**
@@ -258,17 +264,17 @@ public class ListarAeronave extends javax.swing.JFrame {
                 new ListarAeronave().setVisible(true);
             }
         });
-        
-        
+
     }
-private void cargarTablaComponentes() {
+
+    private void cargarTablaComponentes() {
         //Definición de nombres y tamaño de las columnas al iniciar la ventana.
         DefaultTableModel modelo = new DefaultTableModel() {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-       
+
         tablaComponentes.setModel(modelo);
         tablaComponentes.getTableHeader().setReorderingAllowed(false);
         //.:Nombres de columnas:.
@@ -280,8 +286,7 @@ private void cargarTablaComponentes() {
         modelo.addColumn("FECHA DE INSPECCION ANUAL");
         modelo.addColumn("HORAS DE VUELO");
         modelo.addColumn("DIAS DE VUELO");
-        
-       
+
         //.:Tamaño de columnas:.
         tablaComponentes.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         TableColumnModel columnModel = tablaComponentes.getColumnModel();
@@ -297,27 +302,26 @@ private void cargarTablaComponentes() {
         ArrayList<Aeronave> listaComponente = ac.listarAeronave();
         Object[] fila = new Object[8];
         int num = listaComponente.size();
-        
-         
+
         for (int i = 0; i < num; i++) {
             fila[0] = listaComponente.get(i).getId();
             fila[1] = listaComponente.get(i).getMatricula();
-    
+
             fila[4] = listaComponente.get(i).getFecha_aeronavegavilidad();
-        
+
             fila[5] = listaComponente.get(i).getFecha_ultima_inspeccion_anual();
             fila[6] = listaComponente.get(i).getHoras_vuelo();
-             fila[7] = listaComponente.get(i).getDias_vuelo();
-             if (listaComponente.get(i).getTiponave().matches("1")){
-                  fila[2] = "Helicoptero";
-             }else {
-                     fila[2] = "Aeronave"  ;   
-                          }
-            if (listaComponente.get(i).getEstado().matches("V")){
-                  fila[3] = "Disponible";
-             }else {
-                     fila[3] = "No Disponible"  ;   
-                          }
+            fila[7] = listaComponente.get(i).getDias_vuelo();
+            if (listaComponente.get(i).getTiponave().matches("1")) {
+                fila[2] = "Helicoptero";
+            } else {
+                fila[2] = "Aeronave";
+            }
+            if (listaComponente.get(i).getEstado().matches("V")) {
+                fila[3] = "Disponible";
+            } else {
+                fila[3] = "No Disponible";
+            }
             modelo.addRow(fila);
         }
         tablaComponentes.updateUI();
@@ -325,6 +329,7 @@ private void cargarTablaComponentes() {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarAeronave;
+    private javax.swing.JButton btnAgregarComponentes;
     private javax.swing.JButton btnEliminarCompte;
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnModificarCompte;

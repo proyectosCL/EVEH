@@ -58,7 +58,6 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtestado = new javax.swing.JTextPane();
         jLabel15 = new javax.swing.JLabel();
-        btnMandarCorreo = new javax.swing.JButton();
         btnvolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -132,13 +131,6 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtestado);
 
         jLabel15.setText("Comentarios de la revision");
-
-        btnMandarCorreo.setText("probar envio de correo");
-        btnMandarCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMandarCorreoActionPerformed(evt);
-            }
-        });
 
         btnvolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botones/regresar.png"))); // NOI18N
         btnvolver.setBorder(null);
@@ -220,8 +212,7 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
                                 .addComponent(btnvolver)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnIngresar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnMandarCorreo)))
+                                .addGap(149, 149, 149)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -291,7 +282,6 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
                                 .addGap(178, 178, 178)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btnIngresar)
-                                    .addComponent(btnMandarCorreo)
                                     .addComponent(btnvolver))))
                         .addContainerGap(42, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -440,12 +430,6 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_chkControlActionPerformed
 
-    private void btnMandarCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMandarCorreoActionPerformed
-        // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_btnMandarCorreoActionPerformed
-
     private void btnvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolverActionPerformed
         btnvolver.setEnabled(false);
         btnvolver.setText("en curso...");
@@ -495,7 +479,6 @@ public class IngresarMantenimiento extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser JDateInicio;
     private com.toedter.calendar.JDateChooser JDateTermino;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JButton btnMandarCorreo;
     private javax.swing.JButton btnvolver;
     private javax.swing.JCheckBox chkAlas;
     private javax.swing.JCheckBox chkCabina;

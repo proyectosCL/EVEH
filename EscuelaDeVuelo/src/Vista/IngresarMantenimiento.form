@@ -104,8 +104,7 @@
                               <Component id="btnvolver" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnIngresar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnMandarCorreo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -196,7 +195,6 @@
                               <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="btnIngresar" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnMandarCorreo" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnvolver" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -372,14 +370,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Comentarios de la revision"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnMandarCorreo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="probar envio de correo"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMandarCorreoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnvolver">
       <Properties>
