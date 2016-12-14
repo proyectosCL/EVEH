@@ -60,7 +60,6 @@ public class AgregarComponente extends javax.swing.JFrame {
 //                    this.dispose();
 //                } else {
         cargarTablaControlesFrenos();
-                    
 
 //                    }
 //                }
@@ -371,7 +370,7 @@ public class AgregarComponente extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaControlesFrenosMouseClicked
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        IngresarAeronave menu = new IngresarAeronave();
+        MenuPrincipalOperador menu = new MenuPrincipalOperador();
         menu.setLocationRelativeTo(null);
         menu.setVisible(true);
         this.dispose();
@@ -410,13 +409,13 @@ public class AgregarComponente extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AgregarComponente().setVisible(true);
-                
+
             }
         });
     }
@@ -448,23 +447,22 @@ public class AgregarComponente extends javax.swing.JFrame {
         ArrayList<Componente> listaFuselaje = ac.listarFiltro(1);
         Object[] fila = new Object[8];
         int num = listaFuselaje.size();
-        if(listaFuselaje.isEmpty()){
-            flagDisp=false;
+        if (listaFuselaje.isEmpty()) {
+            flagDisp = false;
             MenuPrincipalOperador menu = new MenuPrincipalOperador();
-        menu.setLocationRelativeTo(null);
-        menu.setVisible(true);
-        this.dispose();
+            menu.setLocationRelativeTo(null);
+            menu.setVisible(true);
+            this.dispose();
         }
-            for (int i = 0; i < num; i++) {
-                fila[0] = listaFuselaje.get(i).getId();
-                fila[1] = listaFuselaje.get(i).getDescripcion();
-                fila[2] = listaFuselaje.get(i).getFabricante();
-                fila[3] = listaFuselaje.get(i).getHoras_vuelo();
-                fila[4] = listaFuselaje.get(i).getDias_vuelo();
-                modelo.addRow(fila);
-            }
-            tablaFuselaje.updateUI();
-        
+        for (int i = 0; i < num; i++) {
+            fila[0] = listaFuselaje.get(i).getId();
+            fila[1] = listaFuselaje.get(i).getDescripcion();
+            fila[2] = listaFuselaje.get(i).getFabricante();
+            fila[3] = listaFuselaje.get(i).getHoras_vuelo();
+            fila[4] = listaFuselaje.get(i).getDias_vuelo();
+            modelo.addRow(fila);
+        }
+        tablaFuselaje.updateUI();
 
     }
 
@@ -494,25 +492,24 @@ public class AgregarComponente extends javax.swing.JFrame {
         Administrar_Componente ac = new Administrar_Componente();
         ArrayList<Componente> listaAlas = ac.listarFiltro(2);
         int num = listaAlas.size();
-        if(listaAlas.isEmpty()){
-            flagDisp=false;
+        if (listaAlas.isEmpty()) {
+            flagDisp = false;
             MenuPrincipalOperador menu = new MenuPrincipalOperador();
-        menu.setLocationRelativeTo(null);
-        menu.setVisible(true);
-        this.dispose();
+            menu.setLocationRelativeTo(null);
+            menu.setVisible(true);
+            this.dispose();
         }
-            Object[] fila = new Object[8];
+        Object[] fila = new Object[8];
 
-            for (int i = 0; i < num; i++) {
-                fila[0] = listaAlas.get(i).getId();
-                fila[1] = listaAlas.get(i).getDescripcion();
-                fila[2] = listaAlas.get(i).getFabricante();
-                fila[3] = listaAlas.get(i).getHoras_vuelo();
-                fila[4] = listaAlas.get(i).getDias_vuelo();
-                modelo.addRow(fila);
-            }
-            tablaAlas.updateUI();
-       
+        for (int i = 0; i < num; i++) {
+            fila[0] = listaAlas.get(i).getId();
+            fila[1] = listaAlas.get(i).getDescripcion();
+            fila[2] = listaAlas.get(i).getFabricante();
+            fila[3] = listaAlas.get(i).getHoras_vuelo();
+            fila[4] = listaAlas.get(i).getDias_vuelo();
+            modelo.addRow(fila);
+        }
+        tablaAlas.updateUI();
 
     }
 
@@ -544,23 +541,22 @@ public class AgregarComponente extends javax.swing.JFrame {
         Object[] fila = new Object[8];
 
         int num = listaEmpenaje.size();
-        if(listaEmpenaje.isEmpty()){
-            flagDisp=false;
+        if (listaEmpenaje.isEmpty()) {
+            flagDisp = false;
             MenuPrincipalOperador menu = new MenuPrincipalOperador();
-        menu.setLocationRelativeTo(null);
-        menu.setVisible(true);
-        this.dispose();
+            menu.setLocationRelativeTo(null);
+            menu.setVisible(true);
+            this.dispose();
         }
-            for (int i = 0; i < num; i++) {
-                fila[0] = listaEmpenaje.get(i).getId();
-                fila[1] = listaEmpenaje.get(i).getDescripcion();
-                fila[2] = listaEmpenaje.get(i).getFabricante();
-                fila[3] = listaEmpenaje.get(i).getHoras_vuelo();
-                fila[4] = listaEmpenaje.get(i).getDias_vuelo();
-                modelo.addRow(fila);
-            }
-            tablaEmpenaje.updateUI();
-        
+        for (int i = 0; i < num; i++) {
+            fila[0] = listaEmpenaje.get(i).getId();
+            fila[1] = listaEmpenaje.get(i).getDescripcion();
+            fila[2] = listaEmpenaje.get(i).getFabricante();
+            fila[3] = listaEmpenaje.get(i).getHoras_vuelo();
+            fila[4] = listaEmpenaje.get(i).getDias_vuelo();
+            modelo.addRow(fila);
+        }
+        tablaEmpenaje.updateUI();
 
     }
 
@@ -591,23 +587,23 @@ public class AgregarComponente extends javax.swing.JFrame {
         ArrayList<Componente> listaControlesFrenos = ac.listarFiltro(4);
         Object[] fila = new Object[8];
         int num = listaControlesFrenos.size();
-        if(listaControlesFrenos.isEmpty()){
-            flagDisp=false;
+        if (listaControlesFrenos.isEmpty()) {
+            flagDisp = false;
             MenuPrincipalOperador menu = new MenuPrincipalOperador();
-        menu.setLocationRelativeTo(null);
-        menu.setVisible(true);
-        this.dispose();
+            menu.setLocationRelativeTo(null);
+            menu.setVisible(true);
+            this.dispose();
         }
-            for (int i = 0; i < num; i++) {
-                fila[0] = listaControlesFrenos.get(i).getId();
-                fila[1] = listaControlesFrenos.get(i).getDescripcion();
-                fila[2] = listaControlesFrenos.get(i).getFabricante();
-                fila[3] = listaControlesFrenos.get(i).getHoras_vuelo();
-                fila[4] = listaControlesFrenos.get(i).getDias_vuelo();
-                modelo.addRow(fila);
-            }
-            tablaControlesFrenos.updateUI();
-        
+        for (int i = 0; i < num; i++) {
+            fila[0] = listaControlesFrenos.get(i).getId();
+            fila[1] = listaControlesFrenos.get(i).getDescripcion();
+            fila[2] = listaControlesFrenos.get(i).getFabricante();
+            fila[3] = listaControlesFrenos.get(i).getHoras_vuelo();
+            fila[4] = listaControlesFrenos.get(i).getDias_vuelo();
+            modelo.addRow(fila);
+        }
+        tablaControlesFrenos.updateUI();
+
     }
 
 

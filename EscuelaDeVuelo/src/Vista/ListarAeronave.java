@@ -118,6 +118,11 @@ public class ListarAeronave extends javax.swing.JFrame {
         });
 
         btnAgregarComponentes.setText("Agregar componentes");
+        btnAgregarComponentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarComponentesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -230,6 +235,21 @@ public class ListarAeronave extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnAgregarComponentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarComponentesActionPerformed
+        // TODO add your handling code here:
+        btnAgregarComponentes.setEnabled(false);
+        btnAgregarComponentes.setText("en curso...");
+        
+        String matricula = (tablaComponentes.getValueAt(tablaComponentes.getSelectedRow(), 1).toString());
+        JOptionPane.showMessageDialog(null,matricula);
+
+             AgregarComponente agregarCompte = new AgregarComponente();
+                    agregarCompte.matriculaNave = matricula;
+                    agregarCompte.setLocationRelativeTo(null);
+                    agregarCompte.setVisible(true);
+                    this.dispose();
+    }//GEN-LAST:event_btnAgregarComponentesActionPerformed
 
     /**
      * @param args the command line arguments

@@ -347,7 +347,7 @@ String matriculaNave2 = "";
     }//GEN-LAST:event_tablaCabinaMouseClicked
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        IngresarAeronave menu = new IngresarAeronave();
+        MenuPrincipalOperador menu = new MenuPrincipalOperador();
         menu.setLocationRelativeTo(null);
         menu.setVisible(true);
         this.dispose();
@@ -430,17 +430,16 @@ String matriculaNave2 = "";
         ArrayList<Componente> listaTren = ac.listarFiltro(5);
         Object[] fila = new Object[8];
         int num = listaTren.size();
-        
-            for (int i = 0; i < num; i++) {
-                fila[0] = listaTren.get(i).getId();
-                fila[1] = listaTren.get(i).getDescripcion();
-                fila[2] = listaTren.get(i).getFabricante();
-                fila[3] = listaTren.get(i).getHoras_vuelo();
-                fila[4] = listaTren.get(i).getDias_vuelo();
-                modelo.addRow(fila);
-            }
-            tablaTrenAterrizaje.updateUI();
-        
+
+        for (int i = 0; i < num; i++) {
+            fila[0] = listaTren.get(i).getId();
+            fila[1] = listaTren.get(i).getDescripcion();
+            fila[2] = listaTren.get(i).getFabricante();
+            fila[3] = listaTren.get(i).getHoras_vuelo();
+            fila[4] = listaTren.get(i).getDias_vuelo();
+            modelo.addRow(fila);
+        }
+        tablaTrenAterrizaje.updateUI();
 
     }
 
@@ -471,17 +470,16 @@ String matriculaNave2 = "";
         ArrayList<Componente> listaMotor = ac.listarFiltro(7);
         Object[] fila = new Object[8];
         int num = listaMotor.size();
-        
-            for (int i = 0; i < num; i++) {
-                fila[0] = listaMotor.get(i).getId();
-                fila[1] = listaMotor.get(i).getDescripcion();
-                fila[2] = listaMotor.get(i).getFabricante();
-                fila[3] = listaMotor.get(i).getHoras_vuelo();
-                fila[4] = listaMotor.get(i).getDias_vuelo();
-                modelo.addRow(fila);
-            }
-            tablaMotor.updateUI();
-        
+
+        for (int i = 0; i < num; i++) {
+            fila[0] = listaMotor.get(i).getId();
+            fila[1] = listaMotor.get(i).getDescripcion();
+            fila[2] = listaMotor.get(i).getFabricante();
+            fila[3] = listaMotor.get(i).getHoras_vuelo();
+            fila[4] = listaMotor.get(i).getDias_vuelo();
+            modelo.addRow(fila);
+        }
+        tablaMotor.updateUI();
 
     }
 
@@ -512,17 +510,16 @@ String matriculaNave2 = "";
         ArrayList<Componente> listaEquipos = ac.listarFiltro(6);
         Object[] fila = new Object[8];
         int num = listaEquipos.size();
-       
-            for (int i = 0; i < num; i++) {
-                fila[0] = listaEquipos.get(i).getId();
-                fila[1] = listaEquipos.get(i).getDescripcion();
-                fila[2] = listaEquipos.get(i).getFabricante();
-                fila[3] = listaEquipos.get(i).getHoras_vuelo();
-                fila[4] = listaEquipos.get(i).getDias_vuelo();
-                modelo.addRow(fila);
-            }
-            tablaEquipos.updateUI();
-        
+
+        for (int i = 0; i < num; i++) {
+            fila[0] = listaEquipos.get(i).getId();
+            fila[1] = listaEquipos.get(i).getDescripcion();
+            fila[2] = listaEquipos.get(i).getFabricante();
+            fila[3] = listaEquipos.get(i).getHoras_vuelo();
+            fila[4] = listaEquipos.get(i).getDias_vuelo();
+            modelo.addRow(fila);
+        }
+        tablaEquipos.updateUI();
 
     }
 
@@ -553,17 +550,17 @@ String matriculaNave2 = "";
         ArrayList<Componente> listaCabina = ac.listarFiltro(8);
         Object[] fila = new Object[8];
         int num = listaCabina.size();
-       
-            for (int i = 0; i < num; i++) {
-                fila[0] = listaCabina.get(i).getId();
-                fila[1] = listaCabina.get(i).getDescripcion();
-                fila[2] = listaCabina.get(i).getFabricante();
-                fila[3] = listaCabina.get(i).getHoras_vuelo();
-                fila[4] = listaCabina.get(i).getDias_vuelo();
-                modelo.addRow(fila);
-            }
-            tablaCabina.updateUI();
-        
+
+        for (int i = 0; i < num; i++) {
+            fila[0] = listaCabina.get(i).getId();
+            fila[1] = listaCabina.get(i).getDescripcion();
+            fila[2] = listaCabina.get(i).getFabricante();
+            fila[3] = listaCabina.get(i).getHoras_vuelo();
+            fila[4] = listaCabina.get(i).getDias_vuelo();
+            modelo.addRow(fila);
+        }
+        tablaCabina.updateUI();
+
     }
 
 
